@@ -275,14 +275,11 @@ function rgbToColorHtml($r,$g=null,$b=null){
    return "#".$rgbToColorHtml_table[(($c=round($r[0]))<0 ? 0 : ($c>255 ? 255 : $c))]
         .$rgbToColorHtml_table[(($c=round($r[1]))<0 ? 0 : ($c>255 ? 255 : $c))]
         .$rgbToColorHtml_table[(($c=round($r[2]))<0 ? 0 : ($c>255 ? 255 : $c))];
-   return ret;
  } else {
    return "#".$rgbToColorHtml_table[(($c=round($r))<0 ? 0 : ($c>255 ? 255 : $c))]
         .$rgbToColorHtml_table[(($c=round($g))<0 ? 0 : ($c>255 ? 255 : $c))]
         .$rgbToColorHtml_table[(($c=round($b))<0 ? 0 : ($c>255 ? 255 : $c))];
-   return ret;
  }
- return ret;
 }
 
 

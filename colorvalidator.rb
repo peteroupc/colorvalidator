@@ -1,7 +1,7 @@
 
 =begin
 This file is in the public domain. Peter O., 2012. http://upokecenter.dreamhosters.com 
-    Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/legalcode  */
+    Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/legalcode 
 
  This file converts between different representations of HTML and CSS colors.
 
@@ -156,9 +156,9 @@ def self.color_to_rgba(x)
   r3=((c=$3.to_i)<0 ? 0 : (c>255 ? 255 : c));
   return [r1,r2,r3,255];
  elsif(/\Argb\(\s*(-?\d+(?:\.\d+)?%)\s*,\s*(-?\d+(?:\.\d+)?%)\s*,\s*(-?\d+(?:\.\d+)?%)\s*\)\z/=~x)
-  r1=((c=$1.to_f)<0 ? 0 : (c>100 ? 100 : c))*255/100;
-  r2=((c=$2.to_f)<0 ? 0 : (c>100 ? 100 : c))*255/100;
-  r3=((c=$3.to_f)<0 ? 0 : (c>100 ? 100 : c))*255/100;
+  r1=((c=$1.to_f)<0 ? 0 : (c>100 ? 100 : c))*255.0/100.0;
+  r2=((c=$2.to_f)<0 ? 0 : (c>100 ? 100 : c))*255.0/100.0;
+  r3=((c=$3.to_f)<0 ? 0 : (c>100 ? 100 : c))*255.0/100.0;
   return [r1,r2,r3,255];
  elsif(/\Argba\(\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*(-?\d+(?:\.\d+)?)\s*\)\z/=~x)
   r1=((c=$1.to_i)<0 ? 0 : (c>255 ? 255 : c));
@@ -167,9 +167,9 @@ def self.color_to_rgba(x)
   r4=((c=$4.to_f)<0 ? 0 : (c>1 ? 1 : c))*255;
   return [r1,r2,r3,r4];
  elsif(/\Argba\(\s*(-?\d+(?:\.\d+)?%)\s*,\s*(-?\d+(?:\.\d+)?%)\s*,\s*(-?\d+(?:\.\d+)?%)\s*,\s*(-?\d+(?:\.\d+)?)\s*\)\z/=~x)
-  r1=((c=($1).to_f)<0 ? 0 : (c>100 ? 100 : c))*255/100;
-  r2=((c=($2).to_f)<0 ? 0 : (c>100 ? 100 : c))*255/100;
-  r3=((c=($3).to_f)<0 ? 0 : (c>100 ? 100 : c))*255/100;
+  r1=((c=($1).to_f)<0 ? 0 : (c>100 ? 100 : c))*255.0/100.0;
+  r2=((c=($2).to_f)<0 ? 0 : (c>100 ? 100 : c))*255.0/100.0;
+  r3=((c=($3).to_f)<0 ? 0 : (c>100 ? 100 : c))*255.0/100.0;
   r4=((c=($4).to_f)<0 ? 0 : (c>1 ? 1 : c))*255;
   return [r1,r2,r3,r4];
  elsif(/\A#([A-Fa-f0-9]{1})([A-Fa-f0-9]{1})([A-Fa-f0-9]{1})\z/=~x)
@@ -178,15 +178,15 @@ def self.color_to_rgba(x)
  elsif(/\Ahsl\(\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*\)\z/=~x)
   r1=($1).to_f;
   if(r1<0||r1>=360);r1=(((r1%360)+360)%360);end;
-  r2=((c=($3).to_f)<0 ? 0 : (c>100 ? 100 : c))*255/100;
-  r3=((c=($2).to_f)<0 ? 0 : (c>100 ? 100 : c))*255/100;
+  r2=((c=($3).to_f)<0 ? 0 : (c>100 ? 100 : c))*255.0/100.0;
+  r3=((c=($2).to_f)<0 ? 0 : (c>100 ? 100 : c))*255.0/100.0;
   rgb=hls_to_rgb([r1,r2,r3]);
   return [rgb[0],rgb[1],rgb[2],255];
  elsif(/\Ahsla\(\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)\s*\)\z/=~x)
   r1=($1).to_f;
   if(r1<0||r1>=360);r1=(((r1%360)+360)%360);end;
-  r2=((c=($3).to_f)<0 ? 0 : (c>100 ? 100 : c))*255/100;
-  r3=((c=($2).to_f)<0 ? 0 : (c>100 ? 100 : c))*255/100;
+  r2=((c=($3).to_f)<0 ? 0 : (c>100 ? 100 : c))*255.0/100.0;
+  r3=((c=($2).to_f)<0 ? 0 : (c>100 ? 100 : c))*255.0/100.0;
   r4=((c=($4).to_f)<0 ? 0 : (c>1 ? 1 : c))*255;
   rgb=hls_to_rgb([r1,r2,r3]);
   return [rgb[0],rgb[1],rgb[2],r4];
@@ -246,14 +246,11 @@ def self.rgb_to_color_html(r,g=nil,b=nil)
    return "#"+@rgb_to_color_html_table[((c=(r[0]).round)<0 ? 0 : (c>255 ? 255 : c))]+
         @rgb_to_color_html_table[((c=(r[1]).round)<0 ? 0 : (c>255 ? 255 : c))]+
         @rgb_to_color_html_table[((c=(r[2]).round)<0 ? 0 : (c>255 ? 255 : c))];
-   return ret;
  else
    return "#"+@rgb_to_color_html_table[((c=(r).round)<0 ? 0 : (c>255 ? 255 : c))]+
         @rgb_to_color_html_table[((c=(g).round)<0 ? 0 : (c>255 ? 255 : c))]+
         @rgb_to_color_html_table[((c=(b).round)<0 ? 0 : (c>255 ? 255 : c))];
-   return ret;
  end
- return ret;
 end
 private
 @color_to_rgba_namedColors=nil;
