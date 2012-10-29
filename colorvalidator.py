@@ -71,7 +71,7 @@ def hls_to_rgb(hls):
    bl=a
  return [clamp(r,0,255),
    clamp(g,0,255),
-   clamp(b,0,255)]
+   clamp(bl,0,255)]
    
 
 def color_html_to_rgba(x):
@@ -157,7 +157,7 @@ def color_to_rgba(x):
  m=re.match('^rgba\(\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*(-?\d+(?:\.\d+)?)\s*\)$',x)
  if m:
   r1=clamp(int(m.group(1)),0,255);
-  r2=clamp(int(m.group(1)),0,255);
+  r2=clamp(int(m.group(2)),0,255);
   r3=clamp(int(m.group(3)),0,255);
   r4=clamp(float(m.group(4)),0,1.0)*255;
   return [r1,r2,r3,r4];
@@ -218,7 +218,7 @@ def color_to_rgb(x):
  if(index(x,"rgba")==0 or index(x,"hsla")==0):
      return None
  rgba=color_to_rgba(x);
- if(rgba[3]==0):
+ if(rgba is None or rgba[3]==0):
      return None
  return array(rgba[0],rgba[1],rgba[2],255);
 
@@ -251,7 +251,7 @@ def rgb_to_color_display(rgb):
    """
  if rgb is None:
      rgb=[0,0,0,0]
- if(len(rgb)==3 or (len(rgb)>3 and rgb[3]==None or rgb[3]==255)):
+ if(len(rgb)==3 or (len(rgb)>3 and (rgb[3]==None or rgb[3]==255))):
   return rgb_to_color_html(rgb);
  else:
   return re.sub('\s+',"",rgb_to_color(rgb));

@@ -254,7 +254,7 @@ function rgbToColor($x){
 }
 
 function rgbToColorDisplay($rgb){
- if(count($rgb)==3 || (count($rgb)>3 && $rgb[3]===null || $rgb[3]==255)){
+ if(count($rgb)==3 || (count($rgb)>3 && ($rgb[3]===null || $rgb[3]==255))){
   return rgbToColorHtml($rgb);
  } else {
   return preg_replace('/\s+/',"",rgbToColor($rgb));

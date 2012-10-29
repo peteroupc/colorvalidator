@@ -162,7 +162,7 @@ def self.color_to_rgba(x)
   return [r1,r2,r3,255];
  elsif(/\Argba\(\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*(-?\d+(?:\.\d+)?)\s*\)\z/=~x)
   r1=((c=$1.to_i)<0 ? 0 : (c>255 ? 255 : c));
-  r2=((c=$1.to_i)<0 ? 0 : (c>255 ? 255 : c));
+  r2=((c=$2.to_i)<0 ? 0 : (c>255 ? 255 : c));
   r3=((c=$3.to_i)<0 ? 0 : (c>255 ? 255 : c));
   r4=((c=$4.to_f)<0 ? 0 : (c>1 ? 1 : c))*255;
   return [r1,r2,r3,r4];
@@ -205,7 +205,7 @@ def self.color_to_rgb(x)
  # don't include rgba or hsla
  if(index(x,"rgba")==0 || index(x,"hsla")==0);return nil;end;
  rgba=ColorValidator.color_to_rgba(x);
- if(rgba[3]==0);return nil;end;
+ if(!rgba || rgba[3]==0);return nil;end;
  return array(rgba[0],rgba[1],rgba[2],255);
 end
 
