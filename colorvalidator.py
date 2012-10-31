@@ -83,7 +83,6 @@ def color_html_to_rgba(x):
  arr=[];
  if(x is None or strlen(x)==0):
      return [0,0,0,255];
- __color_to_rgba_setUpNamedColors();
  x=x.lower();
  if("grey" in x):
      x=re.sub('grey',"gray",x);# support "grey" variants
@@ -192,7 +191,6 @@ def color_to_rgba(x):
   rgb=hls_to_rgb([r1,r2,r3]);
   return [rgb[0],rgb[1],rgb[2],r4];
  else:
-  __color_to_rgba_setUpNamedColors();
   x=x.lower();
   if("grey" in x):
       x=re.sub('grey',"gray",x)# support "grey" variants
@@ -256,29 +254,20 @@ def rgb_to_color_display(rgb):
  else:
   return re.sub('\s+',"",rgb_to_color(rgb));
 
-__rgb_to_color_html_table=None;
 def rgb_to_color_html(r,g=None,b=None):
  """ Converts an RGBA color to an HTML color, (ex. #002233).
    "rgb" must contain at least 3 elements: the red, green, and blue (each 0-255).
    """
- global __rgb_to_color_html_table
- if __rgb_to_color_html_table is None:
-  __rgb_to_color_html_table=[format(i,"02x") for i in range(256)];
- c=None;
  if(r!=None and g==None and b==None):
-   return "#"+__rgb_to_color_html_table[clamp(round(r[0]),0,255)]+__rgb_to_color_html_table[
-        clamp(round(r[1]),0,255)]+__rgb_to_color_html_table[clamp(round(r[2]),0,255)];
+   return "#"+(format(clamp(round(r[0]),0,255),"02x")+
+        format(clamp(round(r[1]),0,255),"02x")+format(clamp(round(r[2]),0,255),"02x"));
  else:
-   return "#"+__rgb_to_color_html_table[clamp(round(r),0,255)]+__rgb_to_color_html_table[
-        clamp(round(g),0,255)]+__rgb_to_color_html_table[clamp(round(b),0,255)];
+   return "#"+(format(clamp(round(r),0,255),"02x")+
+        format(clamp(round(g),0,255),"02x")+format(clamp(round(b),0,255),"02x"));
    return ret;
 
 
-__color_to_rgba_namedColors=None;
-
 def __color_to_rgba_setUpNamedColors():
-  global __color_to_rgba_namedColors
-  if(__color_to_rgba_namedColors is None):
     ncs=("aliceblue,f0f8ff,antiquewhite,faebd7,aqua,00ffff,aquamarine,7fffd4,azure,f0ffff,beige,f5f5dc,bisque,ffe4c4,black,000000,blanchedalmond,ffebcd,blue,0000ff,"+
       "blueviolet,8a2be2,brown,a52a2a,burlywood,deb887,cadetblue,5f9ea0,chartreuse,7fff00,chocolate,d2691e,coral,ff7f50,cornflowerblue,6495ed,cornsilk,fff8dc,"+
       "crimson,dc143c,cyan,00ffff,darkblue,00008b,darkcyan,008b8b,darkgoldenrod,b8860b,darkgray,a9a9a9,darkgreen,006400,darkkhaki,bdb76b,darkmagenta,8b008b,"+
@@ -286,7 +275,7 @@ def __color_to_rgba_setUpNamedColors():
       "darkturquoise,00ced1,darkviolet,9400d3,deeppink,ff1493,deepskyblue,00bfff,dimgray,696969,dodgerblue,1e90ff,firebrick,b22222,floralwhite,fffaf0,forestgreen,"+
       "228b22,fuchsia,ff00ff,gainsboro,dcdcdc,ghostwhite,f8f8ff,gold,ffd700,goldenrod,daa520,gray,808080,green,008000,greenyellow,adff2f,honeydew,f0fff0,hotpink,"+
       "ff69b4,indianred,cd5c5c,indigo,4b0082,ivory,fffff0,khaki,f0e68c,lavender,e6e6fa,lavenderblush,fff0f5,lawngreen,7cfc00,lemonchiffon,fffacd,lightblue,add8e6,"+
-      "lightcoral,f08080,lightcyan,e0ffff,lightgoldenrodyellow,fafad2,lightgrey,d3d3d3,lightgreen,90ee90,lightpink,ffb6c1,lightsalmon,ffa07a,lightseagreen,20b2aa,"+
+      "lightcoral,f08080,lightcyan,e0ffff,lightgoldenrodyellow,fafad2,lightgray,d3d3d3,lightgreen,90ee90,lightpink,ffb6c1,lightsalmon,ffa07a,lightseagreen,20b2aa,"+
       "lightskyblue,87cefa,lightslategray,778899,lightsteelblue,b0c4de,lightyellow,ffffe0,lime,00ff00,limegreen,32cd32,linen,faf0e6,magenta,ff00ff,maroon,800000,"+
       "mediumaquamarine,66cdaa,mediumblue,0000cd,mediumorchid,ba55d3,mediumpurple,9370d8,mediumseagreen,3cb371,mediumslateblue,7b68ee,mediumspringgreen,"+
       "00fa9a,mediumturquoise,48d1cc,mediumvioletred,c71585,midnightblue,191970,mintcream,f5fffa,mistyrose,ffe4e1,moccasin,ffe4b5,navajowhite,ffdead,navy,"+
@@ -301,4 +290,6 @@ def __color_to_rgba_setUpNamedColors():
     while i<len(nc):
      __color_to_rgba_namedColors[nc[i]]="#"+nc[i+1];
      i+=2;
-     
+    return __color_to_rgba_namedColors
+    
+__color_to_rgba_namedColors=__color_to_rgba_setUpNamedColors();
