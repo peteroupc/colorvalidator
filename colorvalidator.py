@@ -141,26 +141,26 @@ def color_to_rgba(x):
  m=re.match('^#([A-Fa-f0-9]{2})([A-Fa-f0-9]{2})([A-Fa-f0-9]{2})$',x)
  if m:
   return [int(m.group(1),16),int(m.group(2),16),int(m.group(3),16),255];
- m=re.match('^rgb\(\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*(-?\d+)\s*\)$',x)
+ m=re.match('^rgb\(\s*([\+\-]?\d+)\s*,\s*([\+\-]?\d+)\s*,\s*([\+\-]?\d+)\s*\)$',x)
  if m:
   r1=clamp(int(m.group(1)),0,255);
   r2=clamp(int(m.group(2)),0,255);
   r3=clamp(int(m.group(3)),0,255);
   return [r1,r2,r3,255];
- m=re.match('^rgb\(\s*(-?\d+(?:\.\d+)?%)\s*,\s*(-?\d+(?:\.\d+)?%)\s*,\s*(-?\d+(?:\.\d+)?%)\s*\)$',x)
+ m=re.match('^rgb\(\s*([\+\-]?\d+(?:\.\d+)?%)\s*,\s*([\+\-]?\d+(?:\.\d+)?%)\s*,\s*([\+\-]?\d+(?:\.\d+)?%)\s*\)$',x)
  if m:
   r1=clamp(float(m.group(1)),0,100)*255.0/100.0;
   r2=clamp(float(m.group(2)),0,100)*255.0/100.0;
   r3=clamp(float(m.group(3)),0,100)*255.0/100.0;
   return [r1,r2,r3,255];
- m=re.match('^rgba\(\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*(-?\d+(?:\.\d+)?)\s*\)$',x)
+ m=re.match('^rgba\(\s*([\+\-]?\d+)\s*,\s*([\+\-]?\d+)\s*,\s*([\+\-]?\d+)\s*,\s*([\+\-]?\d+(?:\.\d+)?)\s*\)$',x)
  if m:
   r1=clamp(int(m.group(1)),0,255);
   r2=clamp(int(m.group(2)),0,255);
   r3=clamp(int(m.group(3)),0,255);
   r4=clamp(float(m.group(4)),0,1.0)*255;
   return [r1,r2,r3,r4];
- m=re.match('^rgba\(\s*(-?\d+(?:\.\d+)?%)\s*,\s*(-?\d+(?:\.\d+)?%)\s*,\s*(-?\d+(?:\.\d+)?%)\s*,\s*(-?\d+(?:\.\d+)?)\s*\)$',x)
+ m=re.match('^rgba\(\s*([\+\-]?\d+(?:\.\d+)?%)\s*,\s*([\+\-]?\d+(?:\.\d+)?%)\s*,\s*([\+\-]?\d+(?:\.\d+)?%)\s*,\s*([\+\-]?\d+(?:\.\d+)?)\s*\)$',x)
  if m:
   r1=clamp(float(m.group(1)),0,100)*255.0/100.0;
   r2=clamp(float(m.group(2)),0,100)*255.0/100.0;
@@ -171,7 +171,7 @@ def color_to_rgba(x):
  if m:
   a=int(m.group(1),16);b=int(m.group(2),16);c=int(m.group(3),16);
   return [a+(a<<4),b+(b<<4),c+(c<<4),255];
- m=re.match('^hsl\(\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*\)$',x)
+ m=re.match('^hsl\(\s*([\+\-]?\d+(?:\.\d+)?)\s*,\s*([\+\-]?\d+(?:\.\d+)?)%\s*,\s*([\+\-]?\d+(?:\.\d+)?)%\s*\)$',x)
  if m:
   r1=float(m.group(1));
   if(r1<0 or r1>=360):
@@ -180,7 +180,7 @@ def color_to_rgba(x):
   r3=clamp(float(m.group(2)),0,100)*255.0/100.0;
   rgb=hls_to_rgb([r1,r2,r3]);
   return [rgb[0],rgb[1],rgb[2],255];
- m=re.match('^hsla\(\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)\s*\)$',x)
+ m=re.match('^hsla\(\s*([\+\-]?\d+(?:\.\d+)?)\s*,\s*([\+\-]?\d+(?:\.\d+)?)%\s*,\s*([\+\-]?\d+(?:\.\d+)?)%\s*,\s*([\+\-]?\d+(?:\.\d+)?)\s*\)$',x)
  if m:
   r1=float(m.group(1));
   if(r1<0 or r1>=360):
