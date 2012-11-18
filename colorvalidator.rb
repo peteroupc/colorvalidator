@@ -1,7 +1,7 @@
 
 =begin
 This file is in the public domain. Peter O., 2012. http://upokecenter.dreamhosters.com 
-    Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/legalcode 
+    Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/ 
 
  This file converts between different representations of HTML and CSS colors.
 
@@ -107,23 +107,24 @@ end
 
 def self.color_html_to_rgba(x)
  arr=[];
- if(!x || strlen(x)==0);return [0,0,0,255];end;
+ if(!x || x.length==0);return [0,0,0,255];end;
  ColorValidator.color_to_rgba_setUpNamedColors();
  x=x.downcase;
  if(x.index("grey"));x=x.sub(/grey/,"gray");end;# support "grey" variants
  ret=@color_to_rgba_namedColors[x];
  if(ret.is_a?(String));return ColorValidator.color_to_rgba(ret);end;
  i=(x[0]=="#") ? 1 : 0;while i<x.length do
-  c=Ord(x[i]);
+  c=0
+  x[i,1].each_byte{|b| c=b };
   hex=0;
   if(c>=0x30 && c<=0x39);hex=c-0x30;end;
   if(c>=0x61 && c<=0x66);hex=c-0x61+10;end;
-  arr[count(arr)]=hex;
+  arr.push(hex);
   i+=1;
  end
- sublength=floor((count(arr)+2)/3);
- while(count(arr)<sublength*3)
-  arr[count(arr)]=0;
+ sublength=((arr.length+2)/3).floor;
+ while(arr.length<sublength*3)
+  arr.push(0);
  end
  currlength=sublength;
  offset=0;

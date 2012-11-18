@@ -1,6 +1,6 @@
 /*
  * This file is in the public domain. Peter O., 2012. http://upokecenter.dreamhosters.com
-    Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/legalcode
+    Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/
 
  This file converts between different representations of HTML and CSS colors.
 

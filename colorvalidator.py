@@ -1,11 +1,11 @@
 
 # This file is in the public domain. Peter O., 2012. http://upokecenter.dreamhosters.com 
-# Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/legalcode 
+# Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/ 
 #
 #  This file converts between different representations of HTML and CSS colors.
 
 
-import re
+import re, math
 
 def clamp(a,min,max):
   if a<min:
@@ -81,7 +81,7 @@ def color_html_to_rgba(x):
    Returns a 4-element array containing the red, green, blue, and alpha
    (each 0-255); the alpha is always 255."""
  arr=[];
- if(x is None or strlen(x)==0):
+ if(x is None or len(x)==0):
      return [0,0,0,255];
  x=x.lower();
  if("grey" in x):
@@ -93,17 +93,17 @@ def color_html_to_rgba(x):
  else:
    i=0;
  while i<len(x):
-   c=Ord(x[i]);
+   c=ord(x[i]);
    hex=0;
    if(c>=0x30 and c<=0x39):
       hex=c-0x30
    if(c>=0x61 and c<=0x66):
       hex=c-0x61+10
-   arr[count(arr)]=hex;
+   arr.append(hex);
    i+=1;
- sublength=floor((count(arr)+2)/3);
- while(count(arr)<sublength*3):
-     arr[count(arr)]=0;
+ sublength=math.floor((len(arr)+2)/3);
+ while(len(arr)<sublength*3):
+     arr.append(0);
  currlength=sublength;
  offset=0;
  while(currlength>2):
