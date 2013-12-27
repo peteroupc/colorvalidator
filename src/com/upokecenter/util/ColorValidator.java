@@ -2,46 +2,24 @@ package com.upokecenter.util;
 /*
  * This file is in the public domain. Peter O., 2012. http://upokecenter.dreamhosters.com
     Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/
-
  This file converts between different representations of HTML and CSS colors.
-
-ColorValidator.HlsToRgb(hls):
-
-Converts Hue/Lightness/Sat colors to Red/Green/Blue colors.
-"hls" is a 3-element array containing the hue (0-360), lightness (0-255)
-and saturation (0-255).
-Returns a 3-element array containing the red, green, and blue (each 0-255).
-
-
-ColorValidator.ColorToRgba(color):
---- NOTE: Use this function to parse colors from alpha color picker controls:
---- http://peteroupc.github.com/colorpicker/
-Converts HTML colors to Red/Green/Blue colors.
-"color" is a CSS color, HTML color, or color name, including
-RGBA and HSLA (ex. #223344 or #234 or royalblue or
-rgb(20,20,20) or rgba(20,30,40,0.5) or hsl(100,100%,50%)
-or hsla(100,100%,50%,0.5) ).
-Invalid strings result in a return value of nil.
-Returns a 4-element array containing the red, green, blue, and alpha
-(each 0-255).
-
  */
-
 
 import java.util.*;
 
 import java.util.regex.*;
 
-
-
+    /**
+     * Contains methods to convert between different representations
+     * of HTML and CSS colors.
+     * @param hls A double[] object.
+     * @return A double[] object.
+     */
     public final class ColorValidator {
 private ColorValidator(){}
-
         public static double[] HlsToRgb(double[] hls) {
-            if((hls)==null)throw new NullPointerException("hls");
-if((3)<0)throw new IllegalArgumentException("3"+" not greater or equal to "+Long.toString((long)(0))+" ("+Long.toString((long)(3))+")");
-if((3)>hls.length)throw new IllegalArgumentException("3"+" not less or equal to "+Long.toString((long)(hls.length))+" ("+Long.toString((long)(3))+")");
-if(((hls.length))<3)throw new IllegalArgumentException("hls"+"'s length"+" not greater or equal to "+Long.toString((long)(3))+" ("+Long.toString((long)((hls.length)))+")");
+            if ((hls) == null) throw new NullPointerException("hls");
+            if ((3) > hls.length) throw new IllegalArgumentException("3" + " not less or equal to " + Long.toString((long)(hls.length)) + " (" + "3" + ")");
             double hueval = hls[0] * 1.0;//[0-360)
             double lum = hls[1] * 1.0;//[0-255]
             double sat = hls[2] * 1.0;//[0-255]
@@ -87,15 +65,16 @@ if(((hls.length))<3)throw new IllegalArgumentException("hls"+"'s length"+" not g
         (g<0 ? 0 : (g>255 ? 255 : g)),
         (bl<0 ? 0 : (bl>255 ? 255 : bl))};
         }
-
-        /**
-         * Converts HTML colors to Red/Green/Blue colors. "color" is an HTML
-         * color or color name (ex. #223344, #234, or royalblue). All strings
-         * are treated as valid. Returns a 4-element array containing the red,
-         * green, blue, and alpha (each 0-255); the alpha is always 255.
-         */
+    /**
+     * Converts HTML colors to Red/Green/Blue colors."color" is an HTML
+     * color or color name (ex. #223344, #234, or royalblue).All strings
+     * are treated as valid.Returns a 4-element array containing the red,
+     * green, blue, and alpha(each 0-255); the alpha is always 255.
+     * @param x A string object.
+     * @return A double[] object.
+     */
         public static double[] ColorHtmlToRgba(String x) {
-            if((x)==null)throw new NullPointerException("x");
+            if ((x) == null) throw new NullPointerException("x");
             ColorToRgbaSetUpNamedColors();
             if (x == null || x.length() == 0) return new double[] { 0, 0, 0, 255 };
             x = x.toLowerCase(java.util.Locale.US);
@@ -137,7 +116,6 @@ if(((hls.length))<3)throw new IllegalArgumentException("hls"+"'s length"+" not g
         255
       };
         }
-
         private static Pattern[] patterns = new Pattern[]{
       Pattern.compile("^#([A-Fa-f0-9]{2})([A-Fa-f0-9]{2})([A-Fa-f0-9]{2})$"),
       Pattern.compile("^rgb\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*\\)$"),
@@ -148,12 +126,10 @@ if(((hls.length))<3)throw new IllegalArgumentException("hls"+"'s length"+" not g
       Pattern.compile("^hsl\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*\\)$"),
       Pattern.compile("^hsla\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*\\)$")
     };
-
         private static Matcher execPattern(Pattern p, String s) {
             Matcher m = p.matcher(s);
             return (m.matches()) ? m : null;
         }
-
         private static double parseHue(String value) {
             try
             {
@@ -200,7 +176,6 @@ if(((hls.length))<3)throw new IllegalArgumentException("hls"+"'s length"+" not g
                 return Double.NaN;
             }
         }
-
         private static double parsePercent(String value) {
             try
             {
@@ -216,7 +191,6 @@ if(((hls.length))<3)throw new IllegalArgumentException("hls"+"'s length"+" not g
                 return Double.NaN;
             }
         }
-
         private static int dehexchar(int c) {
             if (c >= '0' && c <= '9')
                 return c - '0';
@@ -226,7 +200,6 @@ if(((hls.length))<3)throw new IllegalArgumentException("hls"+"'s length"+" not g
                 return c + 10 - 'a';
             return -1;
         }
-
         private static int GetHex(String str) {
             if ((str) == null) throw new NullPointerException("s");
             if (str.length() == 0) throw new IllegalArgumentException("s is empty");
@@ -249,9 +222,7 @@ if(((hls.length))<3)throw new IllegalArgumentException("hls"+"'s length"+" not g
             }
             return h;
         }
-
         public static double[] ColorToRgba(String x) {
-            if((x)==null)throw new NullPointerException("x");
             Matcher e = null;
             if (x == null) return new double[] { 0, 0, 0, 0 };
             if ((e = execPattern(patterns[0], x)) != null)
@@ -332,17 +303,46 @@ if(((hls.length))<3)throw new IllegalArgumentException("hls"+"'s length"+" not g
                     String ret = ColorToRgbaNamedColors.get(x);
                     if (ret != null) return ColorToRgba(ret);
                 }
-                if (x == "transparent") return new double[] { 0, 0, 0, 0 };
+                if (x.equals("transparent")) return new double[] { 0, 0, 0, 0 };
                 return new double[] { 0, 0, 0, 0 };
             }
         }
-
         private static HashMap<String, String> ColorToRgbaNamedColors = ColorToRgbaSetUpNamedColors();
-
         private static String[] nc = new String[]{
-            "aliceblue", "f0f8ff", "antiquewhite", "faebd7", "aqua", "00ffff", "aquamarine", "7fffd4", "azure", "f0ffff", "beige", "f5f5dc", "bisque", "ffe4c4", "black", "000000", "blanchedalmond", "ffebcd", "blue", "0000ff", "blueviolet", "8a2be2", "brown", "a52a2a", "burlywood", "deb887", "cadetblue", "5f9ea0", "chartreuse", "7fff00", "chocolate", "d2691e", "coral", "ff7f50", "cornflowerblue", "6495ed", "cornsilk", "fff8dc", "crimson", "dc143c", "cyan", "00ffff", "darkblue", "00008b", "darkcyan", "008b8b", "darkgoldenrod", "b8860b", "darkgray", "a9a9a9", "darkgreen", "006400", "darkkhaki", "bdb76b", "darkmagenta", "8b008b", "darkolivegreen", "556b2f", "darkorange", "ff8c00", "darkorchid", "9932cc", "darkred", "8b0000", "darksalmon", "e9967a", "darkseagreen", "8fbc8f", "darkslateblue", "483d8b", "darkslategray", "2f4f4f", "darkturquoise", "00ced1", "darkviolet", "9400d3", "deeppink", "ff1493", "deepskyblue", "00bfff", "dimgray", "696969", "dodgerblue", "1e90ff", "firebrick", "b22222", "floralwhite", "fffaf0", "forestgreen", "228b22", "fuchsia", "ff00ff", "gainsboro", "dcdcdc", "ghostwhite", "f8f8ff", "gold", "ffd700", "goldenrod", "daa520", "gray", "808080", "green", "008000", "greenyellow", "adff2f", "honeydew", "f0fff0", "hotpink", "ff69b4", "indianred", "cd5c5c", "indigo", "4b0082", "ivory", "fffff0", "khaki", "f0e68c", "lavender", "e6e6fa", "lavenderblush", "fff0f5", "lawngreen", "7cfc00", "lemonchiffon", "fffacd", "lightblue", "add8e6", "lightcoral", "f08080", "lightcyan", "e0ffff", "lightgoldenrodyellow", "fafad2", "lightgray", "d3d3d3", "lightgreen", "90ee90", "lightpink", "ffb6c1", "lightsalmon", "ffa07a", "lightseagreen", "20b2aa", "lightskyblue", "87cefa", "lightslategray", "778899", "lightsteelblue", "b0c4de", "lightyellow", "ffffe0", "lime", "00ff00", "limegreen", "32cd32", "linen", "faf0e6", "magenta", "ff00ff", "maroon", "800000", "mediumaquamarine", "66cdaa", "mediumblue", "0000cd", "mediumorchid", "ba55d3", "mediumpurple", "9370d8", "mediumseagreen", "3cb371", "mediumslateblue", "7b68ee", "mediumspringgreen", "00fa9a", "mediumturquoise", "48d1cc", "mediumvioletred", "c71585", "midnightblue", "191970", "mintcream", "f5fffa", "mistyrose", "ffe4e1", "moccasin", "ffe4b5", "navajowhite", "ffdead", "navy", "000080", "oldlace", "fdf5e6", "olive", "808000", "olivedrab", "6b8e23", "orange", "ffa500", "orangered", "ff4500", "orchid", "da70d6", "palegoldenrod", "eee8aa", "palegreen", "98fb98", "paleturquoise", "afeeee", "palevioletred", "d87093", "papayawhip", "ffefd5", "peachpuff", "ffdab9", "peru", "cd853f", "pink", "ffc0cb", "plum", "dda0dd", "powderblue", "b0e0e6", "purple", "800080", "red", "ff0000", "rosybrown", "bc8f8f", "royalblue", "4169e1", "saddlebrown", "8b4513", "salmon", "fa8072", "sandybrown", "f4a460", "seagreen", "2e8b57", "seashell", "fff5ee", "sienna", "a0522d", "silver", "c0c0c0", "skyblue", "87ceeb", "slateblue", "6a5acd", "slategray", "708090", "snow", "fffafa", "springgreen", "00ff7f", "steelblue", "4682b4", "tan", "d2b48c", "teal", "008080", "thistle", "d8bfd8", "tomato", "ff6347", "turquoise", "40e0d0", "violet", "ee82ee", "wheat", "f5deb3", "white", "ffffff", "whitesmoke", "f5f5f5", "yellow", "ffff00", "yellowgreen", "9acd32"
+            "aliceblue", "f0f8ff", "antiquewhite", "faebd7", "aqua", "00ffff", "aquamarine", "7fffd4", "azure", "f0ffff", "beige", "f5f5dc",
+          "bisque", "ffe4c4", "black", "000000", "blanchedalmond", "ffebcd", "blue", "0000ff", "blueviolet", "8a2be2", "brown",
+          "a52a2a", "burlywood", "deb887", "cadetblue", "5f9ea0",
+          "chartreuse", "7fff00", "chocolate", "d2691e", "coral", "ff7f50", "cornflowerblue", "6495ed", "cornsilk", "fff8dc", "crimson",
+          "dc143c", "cyan", "00ffff", "darkblue", "00008b", "darkcyan", "008b8b", "darkgoldenrod", "b8860b", "darkgray", "a9a9a9",
+          "darkgreen", "006400", "darkkhaki", "bdb76b", "darkmagenta",
+          "8b008b", "darkolivegreen", "556b2f", "darkorange", "ff8c00", "darkorchid", "9932cc", "darkred", "8b0000", "darksalmon",
+          "e9967a", "darkseagreen", "8fbc8f", "darkslateblue", "483d8b", "darkslategray", "2f4f4f", "darkturquoise", "00ced1",
+          "darkviolet", "9400d3", "deeppink", "ff1493",
+          "deepskyblue", "00bfff", "dimgray", "696969", "dodgerblue", "1e90ff", "firebrick", "b22222", "floralwhite", "fffaf0",
+          "forestgreen", "228b22", "fuchsia", "ff00ff", "gainsboro", "dcdcdc",
+          "ghostwhite", "f8f8ff", "gold", "ffd700", "goldenrod", "daa520", "gray", "808080", "green", "008000", "greenyellow", "adff2f",
+          "honeydew", "f0fff0", "hotpink", "ff69b4", "indianred", "cd5c5c", "indigo", "4b0082", "ivory", "fffff0", "khaki", "f0e68c",
+          "lavender", "e6e6fa", "lavenderblush", "fff0f5", "lawngreen",
+          "7cfc00", "lemonchiffon", "fffacd", "lightblue", "add8e6", "lightcoral", "f08080", "lightcyan", "e0ffff", "lightgoldenrodyellow",
+          "fafad2", "lightgray", "d3d3d3", "lightgreen",
+          "90ee90", "lightpink", "ffb6c1", "lightsalmon", "ffa07a", "lightseagreen", "20b2aa", "lightskyblue", "87cefa", "lightslategray",
+          "778899", "lightsteelblue", "b0c4de", "lightyellow", "ffffe0", "lime", "00ff00", "limegreen", "32cd32", "linen", "faf0e6", "magenta",
+          "ff00ff", "maroon", "800000", "mediumaquamarine",
+          "66cdaa", "mediumblue", "0000cd", "mediumorchid", "ba55d3", "mediumpurple", "9370d8", "mediumseagreen", "3cb371",
+          "mediumslateblue", "7b68ee", "mediumspringgreen",
+          "00fa9a", "mediumturquoise", "48d1cc", "mediumvioletred", "c71585", "midnightblue", "191970", "mintcream", "f5fffa", "mistyrose",
+          "ffe4e1", "moccasin", "ffe4b5", "navajowhite", "ffdead", "navy", "000080", "oldlace", "fdf5e6", "olive", "808000", "olivedrab", "6b8e23",
+          "orange", "ffa500", "orangered",
+          "ff4500", "orchid", "da70d6", "palegoldenrod", "eee8aa", "palegreen", "98fb98", "paleturquoise", "afeeee", "palevioletred", "d87093",
+          "papayawhip", "ffefd5", "peachpuff",
+          "ffdab9", "peru", "cd853f", "pink", "ffc0cb", "plum", "dda0dd", "powderblue", "b0e0e6", "purple", "800080", "red", "ff0000",
+          "rosybrown", "bc8f8f", "royalblue", "4169e1",
+          "saddlebrown", "8b4513", "salmon", "fa8072", "sandybrown", "f4a460", "seagreen", "2e8b57", "seashell", "fff5ee", "sienna",
+          "a0522d", "silver", "c0c0c0", "skyblue", "87ceeb", "slateblue", "6a5acd", "slategray", "708090", "snow", "fffafa", "springgreen",
+          "00ff7f", "steelblue", "4682b4", "tan", "d2b48c", "teal",
+          "008080", "thistle", "d8bfd8", "tomato", "ff6347", "turquoise", "40e0d0", "violet", "ee82ee", "wheat", "f5deb3", "white", "ffffff",
+          "whitesmoke", "f5f5f5", "yellow", "ffff00", "yellowgreen", "9acd32"
         };
-
         private static HashMap<String, String> ColorToRgbaSetUpNamedColors() {
             HashMap<String, String> ColorToRgbaNamedColors = new HashMap<String, String>();
             for (int i = 0; i < nc.length; i += 2)
@@ -351,16 +351,15 @@ if(((hls.length))<3)throw new IllegalArgumentException("hls"+"'s length"+" not g
             }
             return ColorToRgbaNamedColors;
         }
-
-        /**
-         * Converts HTML colors to Red/Green/Blue colors. Use this function
-         * to parse colors from normal color picker controls: http://peteroupc.github.com/colorpicker/
-         * @param x A CSS color, HTML color, or color name, but not including RGBA
-         * or HSLA (ex. #223344 or #234 or royalblue or rgb(20,20,20) or hsl(100,100%,50%)).
-         * @return Returns a 4-element array containing the red, green, blue,
-         * and alpha (each 0-255); the alpha is always 255. Returns null if the
-         * string is not a valid color.
-         */
+    /**
+     * Converts HTML colors to Red/Green/Blue colors. Use this function
+     * to parse colors from normal color picker controls: http://peteroupc.github.com/colorpicker/
+     * @param x A CSS color, HTML color, or color name, but not including RGBA
+     * or HSLA (ex. #223344 or #234 or royalblue or rgb(20,20,20) or hsl(100,100%,50%)).
+     * @return Returns a 4-element array containing the red, green, blue,
+     * and alpha(each 0-255); the alpha is always 255. Returns null if the
+     * string is nota valid color.
+     */
         public static double[] ColorToRgb(String x) {
             if (x == null) return null;
             // don't include rgba or hsla
@@ -369,23 +368,20 @@ if(((hls.length))<3)throw new IllegalArgumentException("hls"+"'s length"+" not g
             if (rgba == null || rgba[3] == 0) return null; // transparent
             return new double[] { rgba[0], rgba[1], rgba[2], 255 };
         }
-
         private static String RoundedString(double r) {
             r = StrictMath.round(r);
             return Double.toString((double)r);
         }
-
-        /**
-         * Converts an RGBA color to a string, either rgb(...) or rgba(...) as
-         * applicable.
-         * @param arrayRGB a 3- or 4-item array containing the intensity of red,
-         * green, and blue (each from 0-255), with optional alpha (0-255)
-         */
+    /**
+     * Converts an RGBA color to a string, either rgb(...) or rgba(...) as
+     * applicable.
+     * @param arrayRGB a 3- or 4-item array containing the intensity of red,
+     * green, and blue (each from 0-255), with optional alpha (0-255)
+     * @return A string object.
+     */
         public static String RgbToColor(double[] arrayRGB) {
-            if((arrayRGB)==null)throw new NullPointerException("arrayRGB");
-if((3)<0)throw new IllegalArgumentException("3"+" not greater or equal to "+Long.toString((long)(0))+" ("+Long.toString((long)(3))+")");
-if((3)>arrayRGB.length)throw new IllegalArgumentException("3"+" not less or equal to "+Long.toString((long)(arrayRGB.length))+" ("+Long.toString((long)(3))+")");
-if(((arrayRGB.length))<3)throw new IllegalArgumentException("arrayRGB"+"'s length"+" not greater or equal to "+Long.toString((long)(3))+" ("+Long.toString((long)((arrayRGB.length)))+")");
+            if ((arrayRGB) == null) throw new NullPointerException("arrayRGB");
+            if ((3) > arrayRGB.length) throw new IllegalArgumentException("3" + " not less or equal to " + Long.toString((long)(arrayRGB.length)) + " (" + "3" + ")");
             // we should include the spaces
             if ((arrayRGB.length > 3 && (arrayRGB[3] == 255)) || arrayRGB.length == 3)
             {
@@ -402,24 +398,22 @@ if(((arrayRGB.length))<3)throw new IllegalArgumentException("arrayRGB"+"'s lengt
                     Double.toString((double)prec) + ")";
             }
         }
-
-        /**
-         * Converts a red-green-blue-alpha color to a string in CSS format.
-         * @param rgb An array containing three or four elements, with the red,
-         * green, blue, and alpha components of the color, each from 0 to 255.
-         * Each element's value is adjusted to 0 if it's less than 0 and to 255 if
-         * it's greater than 255 (the array itself is not modified, though).
-         * @return A string in HTML color format: "#RRGGBB", if there are three
-         * elements or the fourth value in the array is 255, or a string in the RGBA
-         * color format otherwise.
-         * @throws java.lang.IllegalArgumentException "rgb" is null or contains fewer
-         * than three elements.
-         */
+    /**
+     * Converts a red-green-blue-alpha color to a string in CSS format.
+     * @param rgb An array containing three or four elements, with the red,
+     * green, blue, and alpha components of the color, each from 0 to 255.
+     * Each element&apos;s value is adjusted to 0 if it&apos;s less than
+     * 0 and to 255 if it&apos;s greater than 255 (the array itself is not modified,
+     * though).
+     * @return A string in HTML color format: &quot;#RRGGBB&quot;, if there
+     * are three elements or the fourth value in the array is 255, or a string
+     * in the RGBA color format otherwise.
+     * @throws java.lang.IllegalArgumentException "rgb" is null or contains fewer
+     * than three elements.
+     */
         public static String RgbToColorDisplay(double[] rgb) {
-            if((rgb)==null)throw new NullPointerException("rgb");
-if((3)<0)throw new IllegalArgumentException("3"+" not greater or equal to "+Long.toString((long)(0))+" ("+Long.toString((long)(3))+")");
-if((3)>rgb.length)throw new IllegalArgumentException("3"+" not less or equal to "+Long.toString((long)(rgb.length))+" ("+Long.toString((long)(3))+")");
-if(((rgb.length))<3)throw new IllegalArgumentException("rgb"+"'s length"+" not greater or equal to "+Long.toString((long)(3))+" ("+Long.toString((long)((rgb.length)))+")");
+            if ((rgb) == null) throw new NullPointerException("rgb");
+            if ((3) > rgb.length) throw new IllegalArgumentException("3" + " not less or equal to " + Long.toString((long)(rgb.length)) + " (" + "3" + ")");
             if (rgb.length == 3 || (rgb.length > 3 && rgb[3] == 255))
             {
                 return RgbToColorHtml(rgb);
@@ -429,18 +423,16 @@ if(((rgb.length))<3)throw new IllegalArgumentException("rgb"+"'s length"+" not g
                 return RgbToColor(rgb).replace(" ", "");
             }
         }
-
         private static String HexArray = "0123456789abcdef";
-
-        /**
-         * Converts an RGBA color to an HTML color, (ex. #002233). "rgb" must
-         * contain at least 3 elements: the red, green, and blue (each 0-255).
-         */
+    /**
+     * Converts an RGBA color to an HTML color, (ex. #002233)."rgb" must
+     * contain at least 3 elements: the red, green, and blue (each 0-255).
+     * @param rgb A double[] object.
+     * @return A string object.
+     */
         public static String RgbToColorHtml(double[] rgb) {
-            if((rgb)==null)throw new NullPointerException("rgb");
-if((3)<0)throw new IllegalArgumentException("3"+" not greater or equal to "+Long.toString((long)(0))+" ("+Long.toString((long)(3))+")");
-if((3)>rgb.length)throw new IllegalArgumentException("3"+" not less or equal to "+Long.toString((long)(rgb.length))+" ("+Long.toString((long)(3))+")");
-if(((rgb.length))<3)throw new IllegalArgumentException("rgb"+"'s length"+" not greater or equal to "+Long.toString((long)(3))+" ("+Long.toString((long)((rgb.length)))+")");
+            if ((rgb) == null) throw new NullPointerException("rgb");
+            if ((3) > rgb.length) throw new IllegalArgumentException("3" + " not less or equal to " + Long.toString((long)(rgb.length)) + " (" + "3" + ")");
             StringBuilder sb = new StringBuilder();
             int c;
             c = ((c = (int)StrictMath.round(rgb[0])) < 0 ? 0 : (c > 255 ? 255 : c));
@@ -454,16 +446,15 @@ if(((rgb.length))<3)throw new IllegalArgumentException("rgb"+"'s length"+" not g
             sb.append(HexArray.charAt((c) & 15));
             return sb.toString();
         }
-
-        /**
-         * Converts a red-green-blue color to a string in HTML format.
-         * @param r The red component of the color, from 0 to 255. As with "g" and
-         * "b", this value is adjusted to 0 if it's less than 0 and to 255 if it's
-         * greater than 255.
-         * @param g The green component of the color, from 0 to 255.
-         * @param b The blue component of the color, from 0 to 255.
-         * @return A string in HTML color format: "#RRGGBB".
-         */
+    /**
+     * Converts a red-green-blue color to a string in HTML format.
+     * @param r The red component of the color, from 0 to 255. As with &quot;g&quot;
+     * and &quot;b&quot;, this value is adjusted to 0 if it&apos;s less than
+     * 0 and to 255 if it&apos;s greater than 255.
+     * @param g The green component of the color, from 0 to 255.
+     * @param b The blue component of the color, from 0 to 255.
+     * @return A string in HTML color format: &quot;#RRGGBB&quot;.
+     */
         public static String RgbToColorHtml(double r, double g, double b) {
             StringBuilder sb = new StringBuilder();
             int c;
@@ -486,16 +477,13 @@ if(((rgb.length))<3)throw new IllegalArgumentException("rgb"+"'s length"+" not g
             System.out.println(RgbToColorDisplay(ColorToRgba("rgb(20,30%,40)")));
             System.out.println(RgbToColorDisplay(ColorToRgba("rgba(20,30,40,0.5)")));
             System.out.println(RgbToColorDisplay(ColorToRgba("rgba(20,30%,40,0.5)")));
-
             System.out.println(RgbToColorDisplay(ColorToRgba("hsl(20,30%,40%)")));
             System.out.println(RgbToColorDisplay(ColorToRgba("hsl(20,30%,40)")));
             System.out.println(RgbToColorDisplay(ColorToRgba("hsla(20,30%,40%,0.5)")));
             System.out.println(RgbToColorDisplay(ColorToRgba("hsla(20,30%,40,0.5)")));
-
             System.out.println(RgbToColorDisplay(ColorToRgba("green")));
             System.out.println(RgbToColorDisplay(ColorToRgba("greenish")));
             System.out.println(RgbToColorDisplay(ColorToRgba("transparent")));
-
             System.out.println(RgbToColorDisplay(ColorToRgba("gray")));
             System.out.println(RgbToColorDisplay(ColorToRgba("grey")));
             System.out.println(RgbToColorDisplay(ColorToRgba("aliceblue")));
