@@ -1,7 +1,7 @@
 
 =begin
-This file is in the public domain. Peter O., 2012. http://upokecenter.dreamhosters.com 
-    Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/ 
+This file is in the public domain. Peter O., 2012. http://upokecenter.dreamhosters.com
+    Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/
 
  This file converts between different representations of HTML and CSS colors.
 
@@ -12,13 +12,12 @@ Converts Hue/Lightness/Sat colors to Red/Green/Blue colors.
 and saturation (0-255).
 Returns a 3-element array containing the red, green, and blue (each 0-255).
 
-
 ColorValidator.color_to_rgba(color):
 --- NOTE: Use this function to parse colors from alpha color picker controls:
 --- http://peteroupc.github.com/colorpicker/
 Converts HTML colors to Red/Green/Blue colors.
 "color" is a CSS color, HTML color, or color name, including
-RGBA and HSLA (ex. #223344 or #234 or royalblue or 
+RGBA and HSLA (ex. #223344 or #234 or royalblue or
 rgb(20,20,20) or rgba(20,30,40,0.5) or hsl(100,100%,50%)
 or hsla(100,100%,50%,0.5) ).
 Invalid strings result in a return value of nil.
@@ -30,7 +29,7 @@ ColorValidator.color_to_rgb(color):
 --- http://peteroupc.github.com/colorpicker/
 Converts HTML colors to Red/Green/Blue colors.
 "color" is a CSS color, HTML color, or color name, NOT including
-RGBA or HSLA (ex. #223344 or #234 or royalblue 
+RGBA or HSLA (ex. #223344 or #234 or royalblue
 or rgb(20,20,20) or hsl(100,100%,50%)).
 Invalid strings result in a return value of nil.
 Returns a 4-element array containing the red, green, blue, and alpha
@@ -63,7 +62,7 @@ Returns a 4-element array containing the red, green, blue, and alpha
 =end
 
 module ColorValidator
-def self.hls_to_rgb(hls) 
+def self.hls_to_rgb(hls)
  hueval=hls[0]*1.0;#[0-360)
  lum=hls[1]*1.0;#[0-255]
  sat=hls[2]*1.0;#[0-255]
@@ -73,7 +72,7 @@ def self.hls_to_rgb(hls)
   return array(lum,lum,lum);
  end
  b=0;
- if (lum<=127.5) 
+ if (lum<=127.5)
   b=(lum*(255.0+sat))/255.0;
  else
   b=lum*sat;
@@ -131,7 +130,7 @@ def self.color_html_to_rgba(x)
  while(currlength>2)
   if(arr[offset]==0 && arr[sublength+offset]==0 &&
       arr[sublength*2+offset]==0)
-   currlength-=1; offset+=1; 
+   currlength-=1; offset+=1;
   else break; end;
  end
  return [

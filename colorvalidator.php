@@ -1,6 +1,6 @@
 <?php
 
-/* This file is in the public domain. Peter O., 2012. http://upokecenter.dreamhosters.com 
+/* This file is in the public domain. Peter O., 2012. http://upokecenter.dreamhosters.com
     Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/  */
 /*
  This file converts between different representations of HTML and CSS colors.
@@ -14,13 +14,12 @@ Converts Hue/Lightness/Sat colors to Red/Green/Blue colors.
 and saturation (0-255).
 Returns a 3-element array containing the red, green, and blue (each 0-255).
 
-
 colorToRgba(color):
 --- NOTE: Use this function to parse colors from alpha color picker controls:
 --- http://peteroupc.github.com/colorpicker/
 Converts HTML colors to Red/Green/Blue colors.
 "color" is a CSS color, HTML color, or color name, including
-RGBA and HSLA (ex. #223344 or #234 or royalblue or 
+RGBA and HSLA (ex. #223344 or #234 or royalblue or
 $rgb(20,20,20) or rgba(20,30,40,0.5) or hsl(100,100%,50%)
 or hsla(100,100%,50%,0.5) ).
 Invalid strings result in a return value of null.
@@ -32,7 +31,7 @@ colorToRgb(color):
 --- http://peteroupc.github.com/colorpicker/
 Converts HTML colors to Red/Green/Blue colors.
 "color" is a CSS color, HTML color, or color name, NOT including
-RGBA or HSLA (ex. #223344 or #234 or royalblue 
+RGBA or HSLA (ex. #223344 or #234 or royalblue
 or $rgb(20,20,20) or hsl(100,100%,50%)).
 Invalid strings result in a return value of null.
 Returns a 4-element array containing the red, green, blue, and alpha
@@ -63,7 +62,6 @@ All strings are treated as valid.
 Returns a 4-element array containing the red, green, blue, and alpha
 (each 0-255); the alpha is always 255.
 
-
 */
 function hlsToRgb($hls) {
  $hueval=$hls[0]*1.0;//[0-360)
@@ -75,7 +73,7 @@ function hlsToRgb($hls) {
   return array($lum,$lum,$lum);
  }
  $b=0;
- if ($lum<=127.5){ 
+ if ($lum<=127.5){
   $b=($lum*(255.0+$sat))/255.0;
  } else {
   $b=$lum*$sat;
@@ -90,7 +88,7 @@ function hlsToRgb($hls) {
  if ($hue<60) $r=($a+($b-$a)*$hue/60);
  else if ($hue<180) $r=$b;
  else if ($hue<240) $r=($a+($b-$a)*(240-$hue)/60);
- else $r=$a; 
+ else $r=$a;
  $hue=$hueval;
  if ($hue<60) $g=($a+($b-$a)*$hue/60);
  else if ($hue<180) $g=$b;
@@ -132,7 +130,7 @@ function colorHtmlToRgba($x){
  while($currlength>2){
   if($arr[$offset]==0 && $arr[$sublength+$offset]==0 &&
       $arr[$sublength*2+$offset]==0){
-   $currlength--; $offset++;    
+   $currlength--; $offset++;
   } else break;
  }
  return array(
@@ -281,6 +279,5 @@ function rgbToColorHtml($r,$g=null,$b=null){
         .$rgbToColorHtml_table[(($c=round($b))<0 ? 0 : ($c>255 ? 255 : $c))];
  }
 }
-
 
 ?>
