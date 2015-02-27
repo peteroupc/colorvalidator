@@ -1,9 +1,8 @@
 
-# This file is in the public domain. Peter O., 2012. http://upokecenter.dreamhosters.com 
-# Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/ 
+# This file is in the public domain. Peter O., 2012. http://upokecenter.dreamhosters.com
+# Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/
 #
 #  This file converts between different representations of HTML and CSS colors.
-
 
 import re, math
 
@@ -14,7 +13,7 @@ def clamp(a,min,max):
     return max
   else:
     return a
- 
+
 def hls_to_rgb(hls):
  """Converts Hue/Lightness/Sat colors to Red/Green/Blue colors.
       "hls" is a 3-element array containing the hue (0-360), lightness (0-255)
@@ -28,7 +27,7 @@ def hls_to_rgb(hls):
  if(sat==0):
   return [lum,lum,lum]
  b=0
- if (lum<=127.5): 
+ if (lum<=127.5):
   b=(lum*(255.0+sat))/255.0
  else:
   b=lum*sat
@@ -72,7 +71,6 @@ def hls_to_rgb(hls):
  return [clamp(r,0,255),
    clamp(g,0,255),
    clamp(bl,0,255)]
-   
 
 def color_html_to_rgba(x):
  """Converts HTML colors to Red/Green/Blue colors.
@@ -109,7 +107,7 @@ def color_html_to_rgba(x):
  while(currlength>2):
    if(arr[offset]==0 and arr[sublength+offset]==0 and
       arr[sublength*2+offset]==0):
-      currlength-=1; offset+=1; 
+      currlength-=1; offset+=1;
    else:
       break;
  return [
@@ -119,7 +117,6 @@ def color_html_to_rgba(x):
    255
  ];
 
-
 # Converts a representation of a color to its RGB form
 # Returns a 4-item array containing the intensity of red,
 # green, blue, and alpha (each from 0-255)
@@ -128,7 +125,7 @@ def color_to_rgba(x):
      --- http://peteroupc.github.com/colorpicker/
     Converts HTML colors to Red/Green/Blue colors.
     "color" is a CSS color, HTML color, or color name, including
-    RGBA and HSLA (ex. #223344 or #234 or royalblue or 
+    RGBA and HSLA (ex. #223344 or #234 or royalblue or
     rgb(20,20,20) or rgba(20,30,40,0.5) or hsl(100,100%,50%)
     or hsla(100,100%,50%,0.5) ).
     Invalid strings result in a return value of nil.
@@ -199,15 +196,13 @@ def color_to_rgba(x):
   if(x=="transparent"):
       return [0,0,0,0];
   return None;
- 
-
 
 def color_to_rgb(x):
  """--- NOTE: Use this function to parse colors from normal color picker controls:
    --- http://peteroupc.github.com/colorpicker/
    Converts HTML colors to Red/Green/Blue colors.
    "color" is a CSS color, HTML color, or color name, NOT including
-   RGBA or HSLA (ex. #223344 or #234 or royalblue 
+   RGBA or HSLA (ex. #223344 or #234 or royalblue
    or rgb(20,20,20) or hsl(100,100%,50%)).
    Invalid strings result in a return value of nil.
    Returns a 4-element array containing the red, green, blue, and alpha
@@ -219,7 +214,6 @@ def color_to_rgb(x):
  if(rgba is None or rgba[3]==0):
      return None
  return array(rgba[0],rgba[1],rgba[2],255);
-
 
 # Converts a color to a string.
 # 'x' is a 3- or 4-item array containing the intensity of red,
@@ -239,8 +233,6 @@ def rgb_to_color(x):
   if prec==int(prec):
       prec=int(prec)
   return "rgba("+str(round(x[0]))+", "+str(round(x[1]))+", "+str(round(x[2]))+", "+str(prec)+")";
- 
-
 
 def rgb_to_color_display(rgb):
  """Converts an RGBA color to a string, (ex. #002233 or rgba(...) as applicable).
@@ -266,7 +258,6 @@ def rgb_to_color_html(r,g=None,b=None):
         format(clamp(round(g),0,255),"02x")+format(clamp(round(b),0,255),"02x"));
    return ret;
 
-
 def __color_to_rgba_setUpNamedColors():
     ncs=("aliceblue,f0f8ff,antiquewhite,faebd7,aqua,00ffff,aquamarine,7fffd4,azure,f0ffff,beige,f5f5dc,bisque,ffe4c4,black,000000,blanchedalmond,ffebcd,blue,0000ff,"+
       "blueviolet,8a2be2,brown,a52a2a,burlywood,deb887,cadetblue,5f9ea0,chartreuse,7fff00,chocolate,d2691e,coral,ff7f50,cornflowerblue,6495ed,cornsilk,fff8dc,"+
@@ -291,5 +282,5 @@ def __color_to_rgba_setUpNamedColors():
      __color_to_rgba_namedColors[nc[i]]="#"+nc[i+1];
      i+=2;
     return __color_to_rgba_namedColors
-    
+
 __color_to_rgba_namedColors=__color_to_rgba_setUpNamedColors();
