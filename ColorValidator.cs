@@ -48,18 +48,14 @@ namespace PeterO {
 }
             if (hue < 60) {
  r = (a + (b - a) * hue / 60);
-  } else if (hue < 180) {
- r = b;
   } else {
- r = (hue < 240) ? ((a + (b - a) * (240 - hue) / 60)) : (a);
+ r = (hue < 180) ? (b) : ((hue < 240) ? (a + (b - a) * (240 - hue) / 60) : (a));
 }
             hue = hueval;
             if (hue < 60) {
  g = (a + (b - a) * hue / 60);
-  } else if (hue < 180) {
- g = b;
   } else {
- g = (hue < 240) ? ((a + (b - a) * (240 - hue) / 60)) : (a);
+ g = (hue < 180) ? (b) : ((hue < 240) ? (a + (b - a) * (240 - hue) / 60) : (a));
 }
             hue = hueval - 120;
             if (hue < 0) {
@@ -67,10 +63,9 @@ namespace PeterO {
 }
             if (hue < 60) {
  bl = (a + (b - a) * hue / 60);
-  } else if (hue < 180) {
- bl = b;
   } else {
- bl = (hue < 240) ? ((a + (b - a) * (240 - hue) / 60)) : (a);
+ bl = (hue < 180) ? (b) : ((hue < 240) ? (a + (b - a) * (240 - hue) / 60) :
+   (a));
 }
             return new double[] {
                 (r<0 ? 0 : (r>255 ? 255 : r)),
@@ -84,8 +79,8 @@ namespace PeterO {
     /// blue, and alpha(each 0-255); the alpha is always 255.</summary>
     /// <param name='x'>A string object.</param>
     /// <returns>A double[] object.</returns>
-    /// <exception cref='System.ArgumentNullException'>The parameter <paramref
-    /// name='x'/> is null.</exception>
+    /// <exception cref='ArgumentNullException'>The parameter <paramref name='x'/>
+    /// is null.</exception>
         public static double[] ColorHtmlToRgba(string x) {
             if ((x) == null) {
  throw new ArgumentNullException("x");
@@ -139,22 +134,28 @@ namespace PeterO {
         private static Regex[] patterns = new Regex[] {
       new Regex("^#([A-Fa-f0-9]{2})([A-Fa-f0-9]{2})([A-Fa-f0-9]{2})$"),
       new
+
   Regex("^rgb\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*\\)$"
 ),
       new
+
   Regex("^rgb\\(\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+)\\s*\\)$"
 ),
       new
+
   Regex("^rgba\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*\\)$"
 ),
       new
+
   Regex("^rgba\\(\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*\\)$"
 ),
       new Regex("^#([A-Fa-f0-9]{1})([A-Fa-f0-9]{1})([A-Fa-f0-9]{1})$"),
       new
+
   Regex("^hsl\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*\\)$"
 ),
       new
+
   Regex("^hsla\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*\\)$"
 )
     };
@@ -213,10 +214,8 @@ namespace PeterO {
             if (c >= '0' && c <= '9') {
  return c - '0';
 }
-            if (c >= 'A' && c <= 'F') {
- return c + 10 - 'A';
-}
-            return (c >= 'a' && c <= 'f') ? (c + 10 - 'a') : (-1);
+            return (c >= 'A' && c <= 'F') ? (c + 10 - 'A') : ((c >= 'a' && c
+              <= 'f') ? (c + 10 - 'a') : (-1));
         }
         private static int GetHex(string str) {
             if ((str) == null) {
@@ -279,7 +278,7 @@ namespace PeterO {
                 double r2 = parsePercent(e.Groups[2].ToString());
                 double r3 = parsePercent(e.Groups[3].ToString());
                 double r4 = parseUnit(e.Groups[4].ToString());
-                return (Double.IsNaN(r1) || Double.IsNaN(r2) || Double.IsNaN(r3)||
+             return (Double.IsNaN(r1) || Double.IsNaN(r2) || Double.IsNaN(r3)||
                   Double.IsNaN(r4)) ? (null) : (new double[] { r1, r2, r3, r4
                   });
   } else if ((e = execPattern(patterns[4], x)) != null) {
@@ -287,7 +286,7 @@ namespace PeterO {
                 double r2 = parseByte(e.Groups[2].ToString());
                 double r3 = parseByte(e.Groups[3].ToString());
                 double r4 = parseUnit(e.Groups[4].ToString());
-                return (Double.IsNaN(r1) || Double.IsNaN(r2) || Double.IsNaN(r3)||
+             return (Double.IsNaN(r1) || Double.IsNaN(r2) || Double.IsNaN(r3)||
                   Double.IsNaN(r4)) ? (null) : (new double[] { r1, r2, r3, r4
                   });
   } else if ((e = execPattern(patterns[5], x)) != null) {
@@ -382,7 +381,8 @@ namespace PeterO {
             "palevioletred" , "d87093",
           "papayawhip", "ffefd5", "peachpuff",
           "ffdab9" , "peru" , "cd853f" , "pink" , "ffc0cb" , "plum" , "dda0dd",
-            "powderblue" , "b0e0e6" , "purple" , "800080" , "red" , "ff0000",
+            "powderblue" , "b0e0e6" , "purple" , "800080" , "rebeccapurple"
+              ,"663399" ,"red" , "ff0000",
           "rosybrown", "bc8f8f", "royalblue", "4169e1",
           "saddlebrown" , "8b4513" , "salmon" , "fa8072" , "sandybrown",
             "f4a460" , "seagreen" , "2e8b57" , "seashell" , "fff5ee" , "sienna"
@@ -439,7 +439,7 @@ namespace PeterO {
     /// <param name='arrayRGB'>A 3- or 4-item array containing the intensity of red,
     /// green, and blue (each from 0-255), with optional alpha (0-255).</param>
     /// <returns>A string object.</returns>
-    /// <exception cref='System.ArgumentNullException'>The parameter <paramref
+    /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='arrayRGB'/> is null.</exception>
         public static string RgbToColor(double[] arrayRGB) {
             if ((arrayRGB) == null) {
@@ -476,8 +476,8 @@ namespace PeterO {
     /// color format otherwise.</returns>
     /// <exception cref='ArgumentException'>The parameter <paramref name='rgb'/> is
     /// null or contains fewer than three elements.</exception>
-    /// <exception cref='System.ArgumentNullException'>The parameter <paramref
-    /// name='rgb'/> is null.</exception>
+    /// <exception cref='ArgumentNullException'>The parameter <paramref name='rgb'/>
+    /// is null.</exception>
         public static string RgbToColorDisplay(double[] rgb) {
             if ((rgb) == null) {
  throw new ArgumentNullException("rgb");
@@ -498,8 +498,8 @@ namespace PeterO {
     /// and blue (each 0-255).</summary>
     /// <param name='rgb'>A double[] object.</param>
     /// <returns>A string object.</returns>
-    /// <exception cref='System.ArgumentNullException'>The parameter <paramref
-    /// name='rgb'/> is null.</exception>
+    /// <exception cref='ArgumentNullException'>The parameter <paramref name='rgb'/>
+    /// is null.</exception>
         public static string RgbToColorHtml(double[] rgb) {
             if ((rgb) == null) {
  throw new ArgumentNullException("rgb");
@@ -535,15 +535,15 @@ namespace PeterO {
         public static string RgbToColorHtml(double r, double g, double b) {
             var sb = new StringBuilder();
             int c;
-            c = ((c = (int)Math.Round(r, MidpointRounding.AwayFromZero)) < 0 ? 0:
+          c = ((c = (int)Math.Round(r, MidpointRounding.AwayFromZero)) < 0 ? 0:
               (c > 255 ? 255 : c));
             sb.Append(HexArray[(c >> 4) & 15]);
             sb.Append(HexArray[(c) & 15]);
-            c = ((c = (int)Math.Round(g, MidpointRounding.AwayFromZero)) < 0 ? 0:
+          c = ((c = (int)Math.Round(g, MidpointRounding.AwayFromZero)) < 0 ? 0:
               (c > 255 ? 255 : c));
             sb.Append(HexArray[(c >> 4) & 15]);
             sb.Append(HexArray[(c) & 15]);
-            c = ((c = (int)Math.Round(b, MidpointRounding.AwayFromZero)) < 0 ? 0:
+          c = ((c = (int)Math.Round(b, MidpointRounding.AwayFromZero)) < 0 ? 0:
               (c > 255 ? 255 : c));
             sb.Append(HexArray[(c >> 4) & 15]);
             sb.Append(HexArray[(c) & 15]);
