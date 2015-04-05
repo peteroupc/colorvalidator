@@ -46,10 +46,10 @@ namespace PeterO {
             if (hue >= 360) {
  hue -= 360;
 }
-            r = (hue < 60) ? ((a + (b - a) * hue / 60)) : ((hue < 180) ? (b) :
+            r = (hue < 60) ? (a + (b - a) * hue / 60) : ((hue < 180) ? (b) :
               ((hue < 240) ? (a + (b - a) * (240 - hue) / 60) : (a)));
             hue = hueval;
-            g = (hue < 60) ? ((a + (b - a) * hue / 60)) : ((hue < 180) ? (b) :
+            g = (hue < 60) ? (a + (b - a) * hue / 60) : ((hue < 180) ? (b) :
               ((hue < 240) ? (a + (b - a) * (240 - hue) / 60) : (a)));
             hue = hueval - 120;
             if (hue < 0) {
