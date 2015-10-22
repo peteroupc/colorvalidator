@@ -67,7 +67,7 @@ namespace PeterO {
         (bl<0 ? 0 : (bl>255 ? 255 : bl))};
         }
 
-    /// <summary>Converts HTML colors to Red/Green/Blue colors.&quot;color&quot; is
+    /// <summary>Converts HTML colors to Red/Green/Blue colors.&#x22;color&#x22; is
     /// an HTML color or color name (ex. #223344, #234, or royalblue).All strings
     /// are treated as valid.Returns a 4-element array containing the red, green,
     /// blue, and alpha(each 0-255); the alpha is always 255.</summary>
@@ -488,7 +488,7 @@ namespace PeterO {
         private static string HexArray = "0123456789abcdef";
 
     /// <summary>Converts an RGBA color to an HTML color, (ex.
-    /// #002233).&quot;rgb&quot; must contain at least 3 elements: the red, green,
+    /// #002233).&#x22;rgb&#x22; must contain at least 3 elements: the red, green,
     /// and blue (each 0-255).</summary>
     /// <param name='rgb'>A double[] object.</param>
     /// <returns>A string object.</returns>

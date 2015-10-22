@@ -279,5 +279,3 @@ function rgbToColorHtml($r,$g=null,$b=null){
         .$rgbToColorHtml_table[(($c=round($b))<0 ? 0 : ($c>255 ? 255 : $c))];
  }
 }
-
-?>
