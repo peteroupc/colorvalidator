@@ -9,15 +9,15 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 namespace PeterO {
-    /// <summary>Contains methods to convert between different representations of
-    /// HTML and CSS colors.</summary>
+    /// <summary>Contains methods to convert between different
+    /// representations of HTML and CSS colors.</summary>
   public static class ColorValidator {
     /// <summary>Converts a color in the HLS color space to
     /// red/green/blue.</summary>
     /// <param name='hls'>Another double[] object.</param>
     /// <returns>A double[] object.</returns>
-    /// <exception cref='ArgumentNullException'>The parameter <paramref name='hls'/>
-    /// is null.</exception>
+    /// <exception cref='ArgumentNullException'>The parameter <paramref
+    /// name='hls'/> is null.</exception>
     public static double[] HlsToRgb(double[] hls) {
       if ((hls) == null) {
         throw new ArgumentNullException("hls");
@@ -74,8 +74,8 @@ namespace PeterO {
     /// <summary>Converts HTML colors to Red/Green/Blue colors.</summary>
     /// <param name='x'>A string object.</param>
     /// <returns>A double[] object.</returns>
-    /// <exception cref='ArgumentNullException'>The parameter <paramref name='x'/>
-    /// is null.</exception>
+    /// <exception cref='ArgumentNullException'>The parameter <paramref
+    /// name='x'/> is null.</exception>
     public static double[] ColorHtmlToRgba(string x) {
       if ((x) == null) {
         throw new ArgumentNullException("x");
@@ -130,28 +130,34 @@ namespace PeterO {
       new Regex("^#([A-Fa-f0-9]{2})([A-Fa-f0-9]{2})([A-Fa-f0-9]{2})$"),
       new
 
-  Regex("^rgb\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*\\)$"
+  Regex(
+  "^rgb\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*\\)$"
 ),
       new
 
-  Regex("^rgb\\(\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+)\\s*\\)$"
+  Regex(
+  "^rgb\\(\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+)\\s*\\)$"
 ),
       new
 
-  Regex("^rgba\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*\\)$"
+  Regex(
+  "^rgba\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*\\)$"
 ),
       new
 
-  Regex("^rgba\\(\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*\\)$"
+  Regex(
+  "^rgba\\(\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*\\)$"
 ),
       new Regex("^#([A-Fa-f0-9]{1})([A-Fa-f0-9]{1})([A-Fa-f0-9]{1})$"),
       new
 
-  Regex("^hsl\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*\\)$"
+  Regex(
+  "^hsl\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*\\)$"
 ),
       new
 
-  Regex("^hsla\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*\\)$"
+  Regex(
+  "^hsla\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*\\)$"
 )
     };
     private static Match execPattern(Regex p, string s) {
@@ -332,13 +338,14 @@ namespace PeterO {
       ColorToRgbaSetUpNamedColors();
     private static string[] nc = new string[] {
             "aliceblue" , "f0f8ff" , "antiquewhite" , "faebd7" , "aqua",
-              "00ffff" , "aquamarine" , "7fffd4" , "azure" , "f0ffff" , "beige"
-              , "f5f5dc",
-          "bisque" , "ffe4c4" , "black" , "000000" , "blanchedalmond" , "ffebcd"
-            , "blue" , "0000ff" , "blueviolet" , "8a2be2" , "brown",
+              "00ffff" , "aquamarine" , "7fffd4" , "azure" , "f0ffff" , "beige",
+"f5f5dc",
+        "bisque" , "ffe4c4" , "black" , "000000" , "blanchedalmond",
+            "ffebcd",
+"blue" , "0000ff" , "blueviolet" , "8a2be2" , "brown",
           "a52a2a", "burlywood", "deb887", "cadetblue", "5f9ea0",
-          "chartreuse" , "7fff00" , "chocolate" , "d2691e" , "coral" , "ff7f50"
-            , "cornflowerblue" , "6495ed" , "cornsilk" , "fff8dc" , "crimson",
+          "chartreuse" , "7fff00" , "chocolate" , "d2691e" , "coral" , "ff7f50",
+"cornflowerblue" , "6495ed" , "cornsilk" , "fff8dc" , "crimson",
           "dc143c" , "cyan" , "00ffff" , "darkblue" , "00008b" , "darkcyan",
             "008b8b" , "darkgoldenrod" , "b8860b" , "darkgray" , "a9a9a9",
           "darkgreen", "006400", "darkkhaki", "bdb76b", "darkmagenta",
@@ -352,8 +359,8 @@ namespace PeterO {
           "forestgreen", "228b22", "fuchsia", "ff00ff", "gainsboro", "dcdcdc",
           "ghostwhite" , "f8f8ff" , "gold" , "ffd700" , "goldenrod" , "daa520",
             "gray" , "808080" , "green" , "008000" , "greenyellow" , "adff2f",
-          "honeydew" , "f0fff0" , "hotpink" , "ff69b4" , "indianred" , "cd5c5c"
-            , "indigo" , "4b0082" , "ivory" , "fffff0" , "khaki" , "f0e68c",
+          "honeydew" , "f0fff0" , "hotpink" , "ff69b4" , "indianred" , "cd5c5c",
+"indigo" , "4b0082" , "ivory" , "fffff0" , "khaki" , "f0e68c",
           "lavender", "e6e6fa", "lavenderblush", "fff0f5", "lawngreen",
           "7cfc00" , "lemonchiffon" , "fffacd" , "lightblue" , "add8e6",
             "lightcoral" , "f08080" , "lightcyan" , "e0ffff",
@@ -369,8 +376,9 @@ namespace PeterO {
           "66cdaa" , "mediumblue" , "0000cd" , "mediumorchid" , "ba55d3",
             "mediumpurple" , "9370d8" , "mediumseagreen" , "3cb371",
           "mediumslateblue", "7b68ee", "mediumspringgreen",
-          "00fa9a" , "mediumturquoise" , "48d1cc" , "mediumvioletred" , "c71585"
-            , "midnightblue" , "191970" , "mintcream" , "f5fffa" , "mistyrose",
+        "00fa9a" , "mediumturquoise" , "48d1cc" , "mediumvioletred",
+            "c71585",
+"midnightblue" , "191970" , "mintcream" , "f5fffa" , "mistyrose",
           "ffe4e1" , "moccasin" , "ffe4b5" , "navajowhite" , "ffdead" , "navy",
             "000080" , "oldlace" , "fdf5e6" , "olive" , "808000" , "olivedrab",
             "6b8e23",
@@ -404,15 +412,15 @@ namespace PeterO {
       return ColorToRgbaNamedColors;
     }
 
-    /// <summary>Converts HTML colors to Red/Green/Blue colors. Use this function to
-    /// parse colors from normal color picker controls:
+    /// <summary>Converts HTML colors to Red/Green/Blue colors. Use this
+    /// function to parse colors from normal color picker controls:
     /// http://peteroupc.github.com/colorpicker/.</summary>
-    /// <param name='x'>A CSS color, HTML color, or color name, but not including
-    /// RGBA or HSLA (ex. #223344 or #234 or royalblue or rgb(20, 20, 20) or
-    /// hsl(100, 100%, 50%)).</param>
-    /// <returns>Returns a 4-element array containing the red, green, blue, and
-    /// alpha(each 0-255); the alpha is always 255. Returns null if the string is
-    /// nota valid color.</returns>
+    /// <param name='x'>A CSS color, HTML color, or color name, but not
+    /// including RGBA or HSLA (ex. #223344 or #234 or royalblue or rgb(20,
+    /// 20, 20) or hsl(100, 100%, 50%)).</param>
+    /// <returns>Returns a 4-element array containing the red, green, blue,
+    /// and alpha(each 0-255); the alpha is always 255. Returns null if the
+    /// string is nota valid color.</returns>
     public static double[] ColorToRgb(string x) {
       if (x == null) {
         return null;
@@ -433,10 +441,11 @@ namespace PeterO {
         System.Globalization.CultureInfo.InvariantCulture);
     }
 
-    /// <summary>Converts an RGBA color to a string, either rgb(...) or rgba(...) as
-    /// applicable.</summary>
-    /// <param name='arrayRGB'>A 3- or 4-item array containing the intensity of red,
-    /// green, and blue (each from 0-255), with optional alpha (0-255).</param>
+    /// <summary>Converts an RGBA color to a string, either rgb(...) or
+    /// rgba(...) as applicable.</summary>
+    /// <param name='arrayRGB'>A 3- or 4-item array containing the
+    /// intensity of red, green, and blue (each from 0-255), with optional
+    /// alpha (0-255).</param>
     /// <returns>A string object.</returns>
     /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='arrayRGB'/> is null.</exception>
@@ -465,18 +474,19 @@ namespace PeterO {
 
     /// <summary>Converts a red-green-blue-alpha color to a string in CSS
     /// format.</summary>
-    /// <param name='rgb'>An array containing three or four elements, with the red,
-    /// green, blue, and alpha components of the color, each from 0 to 255. Each
-    /// element&apos;s value is adjusted to 0 if it&apos;s less than 0 and to 255 if
-    /// it&apos;s greater than 255 (the array itself is not modified,
-    /// though).</param>
-    /// <returns>A string in HTML color format: "#RRGGBB", if there are three
-    /// elements or the fourth value in the array is 255, or a string in the RGBA
-    /// color format otherwise.</returns>
-    /// <exception cref='ArgumentException'>The parameter <paramref name='rgb'/> is
-    /// null or contains fewer than three elements.</exception>
-    /// <exception cref='ArgumentNullException'>The parameter <paramref name='rgb'/>
-    /// is null.</exception>
+    /// <param name='rgb'>An array containing three or four elements, with
+    /// the red, green, blue, and alpha components of the color, each from
+    /// 0 to 255. Each element&apos;s value is adjusted to 0 if it&apos;s
+    /// less than 0 and to 255 if it&apos;s greater than 255 (the array
+    /// itself is not modified, though).</param>
+    /// <returns>A string in HTML color format: "#RRGGBB", if there are
+    /// three elements or the fourth value in the array is 255, or a string
+    /// in the RGBA color format otherwise.</returns>
+    /// <exception cref='ArgumentException'>The parameter <paramref
+    /// name='rgb'/> is null or contains fewer than three
+    /// elements.</exception>
+    /// <exception cref='ArgumentNullException'>The parameter <paramref
+    /// name='rgb'/> is null.</exception>
     public static string RgbToColorDisplay(double[] rgb) {
       if ((rgb) == null) {
         throw new ArgumentNullException("rgb");
@@ -493,12 +503,12 @@ namespace PeterO {
     private static string HexArray = "0123456789abcdef";
 
     /// <summary>Converts an RGBA color to an HTML color, (ex.
-    /// #002233).&#x22;rgb&#x22; must contain at least 3 elements: the red, green,
-    /// and blue (each 0-255).</summary>
+    /// #002233).&#x22;rgb&#x22; must contain at least 3 elements: the red,
+    /// green, and blue (each 0-255).</summary>
     /// <param name='rgb'>A double[] object.</param>
     /// <returns>A string object.</returns>
-    /// <exception cref='ArgumentNullException'>The parameter <paramref name='rgb'/>
-    /// is null.</exception>
+    /// <exception cref='ArgumentNullException'>The parameter <paramref
+    /// name='rgb'/> is null.</exception>
     public static string RgbToColorHtml(double[] rgb) {
       if ((rgb) == null) {
         throw new ArgumentNullException("rgb");
@@ -525,11 +535,14 @@ namespace PeterO {
 
     /// <summary>Converts a red-green-blue color to a string in HTML
     /// format.</summary>
-    /// <param name='r'>The red component of the color, from 0 to 255. As with
-    /// &quot;g&quot; and &quot;b&quot;, this value is adjusted to 0 if it&apos;s
-    /// less than 0 and to 255 if it&apos;s greater than 255.</param>
-    /// <param name='g'>The green component of the color, from 0 to 255.</param>
-    /// <param name='b'>The blue component of the color, from 0 to 255.</param>
+    /// <param name='r'>The red component of the color, from 0 to 255. As
+    /// with &quot;g&quot; and &quot;b&quot;, this value is adjusted to 0
+    /// if it&apos;s less than 0 and to 255 if it&apos;s greater than
+    /// 255.</param>
+    /// <param name='g'>The green component of the color, from 0 to
+    /// 255.</param>
+    /// <param name='b'>The blue component of the color, from 0 to
+    /// 255.</param>
     /// <returns>A string in HTML color format: "#RRGGBB".</returns>
     public static string RgbToColorHtml(double r, double g, double b) {
       var sb = new StringBuilder();
