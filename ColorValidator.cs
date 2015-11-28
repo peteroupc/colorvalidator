@@ -97,7 +97,7 @@ namespace PeterO {
       var arr = new int[x.Length];
       for (int i = (x[0] == '#') ? 1 : 0; i < x.Length; i++) {
         int c = x[i];
-        int hex = 0;
+        var hex = 0;
         if (c >= 0x30 && c <= 0x39) {
           hex = c - 0x30;
         }
@@ -111,7 +111,7 @@ namespace PeterO {
         arr[arr.Length] = 0;
       }
       int currlength = sublength;
-      int offset = 0;
+      var offset = 0;
       while (currlength > 2) {
         if (arr[offset] == 0 && arr[sublength + offset] == 0 &&
            arr[sublength * 2 + offset] == 0) {
@@ -476,9 +476,9 @@ namespace PeterO {
     /// format.</summary>
     /// <param name='rgb'>An array containing three or four elements, with
     /// the red, green, blue, and alpha components of the color, each from
-    /// 0 to 255. Each element&apos;s value is adjusted to 0 if it&apos;s
-    /// less than 0 and to 255 if it&apos;s greater than 255 (the array
-    /// itself is not modified, though).</param>
+    /// 0 to 255. Each element's value is adjusted to 0 if it's less than 0
+    /// and to 255 if it's greater than 255 (the array itself is not
+    /// modified, though).</param>
     /// <returns>A string in HTML color format: "#RRGGBB", if there are
     /// three elements or the fourth value in the array is 255, or a string
     /// in the RGBA color format otherwise.</returns>
@@ -536,9 +536,8 @@ namespace PeterO {
     /// <summary>Converts a red-green-blue color to a string in HTML
     /// format.</summary>
     /// <param name='r'>The red component of the color, from 0 to 255. As
-    /// with &quot;g&quot; and &quot;b&quot;, this value is adjusted to 0
-    /// if it&apos;s less than 0 and to 255 if it&apos;s greater than
-    /// 255.</param>
+    /// with "g" and "b", this value is adjusted to 0 if it's less than 0
+    /// and to 255 if it's greater than 255.</param>
     /// <param name='g'>The green component of the color, from 0 to
     /// 255.</param>
     /// <param name='b'>The blue component of the color, from 0 to
