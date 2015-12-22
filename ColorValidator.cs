@@ -14,8 +14,15 @@ namespace PeterO {
   public static class ColorValidator {
     /// <summary>Converts a color in the HLS color space to
     /// red/green/blue.</summary>
-    /// <param name='hls'>Another double[] object.</param>
-    /// <returns>A double[] object.</returns>
+    /// <param name='hls'>An array containing three elements. This is a
+    /// color in the form of hue, lightness, and saturation in that order.
+    /// Hue can range from 0 to 360, and lightness and saturation can range
+    /// from 0 to 255. If lightness and saturation are out of range, those
+    /// values are clamped to fit that range (the array itself is not
+    /// modified, though).</param>
+    /// <returns>An array containing three elements, with the red, green,
+    /// and blue components of the same color, each from 0 to
+    /// 255.</returns>
     /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='hls'/> is null.</exception>
     public static double[] HlsToRgb(double[] hls) {
@@ -72,18 +79,14 @@ namespace PeterO {
     }
 
     /// <summary>Converts HTML colors to Red/Green/Blue colors.</summary>
-    /// <param name='x'>A string object.</param>
-    /// <returns>A double[] object.</returns>
-    /// <exception cref='ArgumentNullException'>The parameter <paramref
-    /// name='x'/> is null.</exception>
+    /// <param name='x'>A string object naming an HTML color. This can be a
+    /// named color or a color in the form "#RRGGBB".</param>
+    /// <returns>An array containing four elements, with the red, green,
+    /// blue, and alpha components of the same color, each from 0 to 255.
+    /// Returns (0,0,0,0) if <paramref name='x'/> is null or
+    /// empty.</returns>
     public static double[] ColorHtmlToRgba(string x) {
-      if ((x) == null) {
-        throw new ArgumentNullException("x");
-      }
       ColorToRgbaSetUpNamedColors();
-      if (x == null || x.Length == 0) {
-        return new double[] { 0, 0, 0, 255 };
-      }
       x = x.ToLower(System.Globalization.CultureInfo.InvariantCulture);
       if (x.IndexOf("grey") >= 0) {
         x = x.Replace("grey", "gray");  // support "grey" variants
@@ -250,9 +253,45 @@ namespace PeterO {
       return h;
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='x'>A string object.</param>
-    /// <returns>A double[] object.</returns>
+    /// <summary>Converts an HTML or CSS color string to a 4-element RGB
+    /// array.</summary>
+    /// <param name='x'>A string which names a color. The following lists
+    /// the kinds of colors accepted:
+    /// <list>
+    /// <item>HTML colors with the syntax <c>#RRGGBB</c>, where RR is the
+    /// hexadecimal form of the red component (00-FF), GG is the
+    /// hexadecimal green component, and BB is the hexadecimal blue
+    /// component. Example: #88DFE0.</item>
+    /// <item>HTML colors with the syntax <c>#RGB</c>, where R is the
+    /// hexadecimal form of the red component (0-F), G is the hexadecimal
+    /// green component, and B is the hexadecimal blue component. Example:
+    /// #8DE.</item>
+    /// <item>CSS colors with the syntax <c>rgb(red, green, blue)</c> or
+    /// <c>rgba(red, green, blue, alpha)</c> where <c>red</c>,
+    /// <c>green</c>, and <c>blue</c> are the red, green, and blue
+    /// components, respectively, either as a number (0-255) or as a
+    /// percent, and <c>alpha</c> is a number from 0-1 specifying the alpha
+    /// component. Examples: <c>rgb(255, 0, 0)</c>, <c>rgb(100%, 50%,
+    /// 0%)</c>, <c>rgba(20, 255, 255, 0.5)</c>.</item>
+    /// <item>CSS colors with the syntax <c>hsl(hue, sat, light)</c> or
+    /// <c>hsla(hue, sat, light, alpha)</c> where <c>hue</c> is the hue
+    /// component in degrees (0-360), <c>sat</c> and <c>light</c> are the
+    /// saturation and lightness components, respectively, as percents, and
+    /// <c>alpha</c> is a number from 0-1 specifying the alpha component.
+    /// Examples: <c>rgb(255, 0, 0)</c>, <c>hsl(200, 50%, 50%)</c>,
+    /// <c>hsla(20, 80%, 90%, 0.5)</c>.</item>
+    /// <item>CSS colors such as <c>red</c>, <c>green</c>, <c>white</c>,
+    /// <c>lemonchiffon</c>, <c>chocolate</c>, and so on, including the
+    /// newly added <c>rebeccapurple</c>.</item>
+    /// <item>The value <c>transparent</c>, meaning transparent
+    /// black.</item></list>
+    /// <para>For more information: Colors in HTML and How to Enter Them,
+    /// http://upokecenter.dreamhosters.com/articles/miscellaneous/how-to-enter-colors/</para>
+    /// .</param>
+    /// <returns>An array containing four elements, with the red, green,
+    /// blue, and alpha components of the same color, each from 0 to 255.
+    /// Returns (0, 0, 0, 0) if <paramref name='x'/> is null, empty, or has
+    /// invalid syntax.</returns>
     public static double[] ColorToRgba(string x) {
       Match e = null;
       if (x == null) {
@@ -269,14 +308,14 @@ namespace PeterO {
         double r2 = parsePercent(e.Groups[2].ToString());
         double r3 = parsePercent(e.Groups[3].ToString());
         return (Double.IsNaN(r1) || Double.IsNaN(r2) ||
-          Double.IsNaN(r3)) ? (null) : (new double[] { r1, r2, r3, 255
+          Double.IsNaN(r3)) ? (new double[] { 0, 0, 0, 0 }) : (new double[] { r1, r2, r3, 255
                   });
       } else if ((e = execPattern(patterns[2], x)) != null) {
         double r1 = parseByte(e.Groups[1].ToString());
         double r2 = parseByte(e.Groups[2].ToString());
         double r3 = parseByte(e.Groups[3].ToString());
         return (Double.IsNaN(r1) || Double.IsNaN(r2) ||
-          Double.IsNaN(r3)) ? (null) : (new double[] { r1, r2, r3, 255
+          Double.IsNaN(r3)) ? (new double[] { 0, 0, 0, 0 }) : (new double[] { r1, r2, r3, 255
                   });
       } else if ((e = execPattern(patterns[3], x)) != null) {
         double r1 = parsePercent(e.Groups[1].ToString());
@@ -284,16 +323,16 @@ namespace PeterO {
         double r3 = parsePercent(e.Groups[3].ToString());
         double r4 = parseUnit(e.Groups[4].ToString());
         return (Double.IsNaN(r1) || Double.IsNaN(r2) || Double.IsNaN(r3) ||
-             Double.IsNaN(r4)) ? (null) : (new double[] { r1, r2, r3, r4
-                  });
+             Double.IsNaN(r4)) ? (new double[] { 0, 0, 0, 0 }) : (new
+               double[] { r1, r2, r3, r4 });
       } else if ((e = execPattern(patterns[4], x)) != null) {
         double r1 = parseByte(e.Groups[1].ToString());
         double r2 = parseByte(e.Groups[2].ToString());
         double r3 = parseByte(e.Groups[3].ToString());
         double r4 = parseUnit(e.Groups[4].ToString());
         return (Double.IsNaN(r1) || Double.IsNaN(r2) || Double.IsNaN(r3) ||
-             Double.IsNaN(r4)) ? (null) : (new double[] { r1, r2, r3, r4
-                  });
+             Double.IsNaN(r4)) ? (new double[] { 0, 0, 0, 0 }) : (new
+               double[] { r1, r2, r3, r4 });
       } else if ((e = execPattern(patterns[5], x)) != null) {
         int a = GetHex(e.Groups[1].ToString());
         int b = GetHex(e.Groups[2].ToString());
@@ -304,7 +343,7 @@ namespace PeterO {
         double r2 = parsePercent(e.Groups[3].ToString());
         double r3 = parsePercent(e.Groups[2].ToString());
         if (Double.IsNaN(r1) || Double.IsNaN(r2) || Double.IsNaN(r3)) {
-          return null;
+          return (new double[] { 0, 0, 0, 0 });
         }
         double[] rgb = HlsToRgb(new double[] { r1, r2, r3 });
         return new double[] { rgb[0], rgb[1], rgb[2], 255 };
@@ -315,7 +354,7 @@ namespace PeterO {
         double r4 = parseUnit(e.Groups[4].ToString());
         if (Double.IsNaN(r1) || Double.IsNaN(r2) || Double.IsNaN(r3) ||
           Double.IsNaN(r4)) {
-          return null;
+          return (new double[] { 0, 0, 0, 0 });
         }
         double[] rgb = HlsToRgb(new double[] { r1, r2, r3 });
         return new double[] { rgb[0], rgb[1], rgb[2], r4 };
@@ -412,15 +451,39 @@ namespace PeterO {
       return ColorToRgbaNamedColors;
     }
 
-    /// <summary>Converts HTML colors to Red/Green/Blue colors. Use this
-    /// function to parse colors from normal color picker controls:
+    /// <summary>Converts HTML and CSS colors to Red/Green/Blue colors. Use
+    /// this function to parse colors from normal color picker controls:
     /// http://peteroupc.github.com/colorpicker/.</summary>
-    /// <param name='x'>A CSS color, HTML color, or color name, but not
-    /// including RGBA or HSLA (ex. #223344 or #234 or royalblue or rgb(20,
-    /// 20, 20) or hsl(100, 100%, 50%)).</param>
+    /// <param name='x'>A string which names a color. The following lists
+    /// the kinds of colors accepted:
+    /// <list>
+    /// <item>HTML colors with the syntax <c>#RRGGBB</c>, where RR is the
+    /// hexadecimal form of the red component (00-FF), GG is the
+    /// hexadecimal green component, and BB is the hexadecimal blue
+    /// component. Example: #88DFE0.</item>
+    /// <item>HTML colors with the syntax <c>#RGB</c>, where R is the
+    /// hexadecimal form of the red component (0-F), G is the hexadecimal
+    /// green component, and B is the hexadecimal blue component. Example:
+    /// #8DE.</item>
+    /// <item>CSS colors with the syntax <c>rgb(red, green, blue)</c>,
+    /// where <c>red</c>, <c>green</c>, and <c>blue</c> are the red,
+    /// green, and blue components, respectively, either as a number
+    /// (0-255) or as a percent. Examples: <c>rgb(255, 0, 0)</c>,
+    /// <c>rgb(100%, 50%, 0%)</c>.</item>
+    /// <item>CSS colors with the syntax <c>hsl(hue, sat, light)</c>,
+    /// where <c>hue</c> is the hue component in degrees (0-360), and
+    /// <c>sat</c> and <c>light</c> are the saturation and lightness
+    /// components, respectively, as percents. Examples: <c>rgb(255, 0,
+    /// 0)</c>, <c>hsl(200, 50%, 50%)</c>.</item>
+    /// <item>CSS colors such as <c>red</c>, <c>green</c>, <c>white</c>,
+    /// <c>lemonchiffon</c>, <c>chocolate</c>, and so on, including the
+    /// newly added <c>rebeccapurple</c>.</item></list>
+    /// <para>For more information: Colors in HTML and How to Enter Them,
+    /// http://upokecenter.dreamhosters.com/articles/miscellaneous/how-to-enter-colors/</para>
+    /// .</param>
     /// <returns>Returns a 4-element array containing the red, green, blue,
     /// and alpha(each 0-255); the alpha is always 255. Returns null if the
-    /// string is nota valid color.</returns>
+    /// string is not a valid color.</returns>
     public static double[] ColorToRgb(string x) {
       if (x == null) {
         return null;
@@ -560,25 +623,5 @@ namespace PeterO {
       sb.Append(HexArray[(c) & 15]);
       return sb.ToString();
     }
-    /* public static void MainTest(string[] args) {
-        Console.WriteLine(RgbToColorDisplay(ColorToRgba("#abc")));
-        Console.WriteLine(RgbToColorDisplay(ColorToRgba("#aebece")));
-        Console.WriteLine(RgbToColorDisplay(ColorToRgba("rgb(20,30,40)")));
-        Console.WriteLine(RgbToColorDisplay(ColorToRgba("rgb(20,30%,40)")));
-   Console.WriteLine(RgbToColorDisplay(ColorToRgba("rgba(20,30,40,0.5)")));
-  Console.WriteLine(RgbToColorDisplay(ColorToRgba("rgba(20,30%,40,0.5)")));
-      Console.WriteLine(RgbToColorDisplay(ColorToRgba("hsl(20,30%,40%)")));
-        Console.WriteLine(RgbToColorDisplay(ColorToRgba("hsl(20,30%,40)")));
- Console.WriteLine(RgbToColorDisplay(ColorToRgba("hsla(20,30%,40%,0.5)")));
-  Console.WriteLine(RgbToColorDisplay(ColorToRgba("hsla(20,30%,40,0.5)")));
-        Console.WriteLine(RgbToColorDisplay(ColorToRgba("green")));
-        Console.WriteLine(RgbToColorDisplay(ColorToRgba("greenish")));
-        Console.WriteLine(RgbToColorDisplay(ColorToRgba("transparent")));
-        Console.WriteLine(RgbToColorDisplay(ColorToRgba("gray")));
-        Console.WriteLine(RgbToColorDisplay(ColorToRgba("grey")));
-        Console.WriteLine(RgbToColorDisplay(ColorToRgba("aliceblue")));
-        Console.WriteLine(RgbToColorDisplay(ColorToRgba("#aebece")));
-    }
-     */
   }
 }
