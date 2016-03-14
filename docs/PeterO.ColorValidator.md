@@ -15,7 +15,7 @@ Converts HTML colors to Red/Green/Blue colors.
 
  * <i>x</i>: A string in the form of an HTML color or CSS color name (ex. #223344, #234, or royalblue).All strings are treated as valid.Returns a 4-element array containing the red, green, blue, and alpha(each 0-255); the alpha is always 255..
 
-<b>Returns:</b>
+<b>Return Value:</b>
 
 An array of four elements, each from 0 to 255: the red, green, blue, and alpha components, in that order.
 
@@ -36,7 +36,7 @@ Converts HTML colors to Red/Green/Blue colors. Use this function to parse colors
 
  * <i>x</i>: A string object.
 
-<b>Returns:</b>
+<b>Return Value:</b>
 
 A double[] object.
 
@@ -51,7 +51,7 @@ Not documented yet.
 
  * <i>x</i>: Not documented yet.
 
-<b>Returns:</b>
+<b>Return Value:</b>
 
 Not documented yet.
 
@@ -66,7 +66,7 @@ Converts a color in the HLS color space to red/green/blue.
 
  * <i>hls</i>: An array containing three elements: The first is the hue, in degrees, ranging from 0 through 360; the second is the luminosity (luminance or lightness), ranging from 0 to 255; and the third is the saturation, ranging from 0 to 255.
 
-<b>Returns:</b>
+<b>Return Value:</b>
 
 An array of three elements, each from 0 to 255: the red, green, and blue components, in that order.
 
@@ -87,7 +87,7 @@ Converts an RGBA color to a string, either rgb(...) or rgba(...) as applicable.
 
  * <i>arrayRGB</i>: A double[] object.
 
-<b>Returns:</b>
+<b>Return Value:</b>
 
 A string object.
 
@@ -108,7 +108,7 @@ Converts a red-green-blue-alpha color to a string in CSS format.
 
  * <i>rgb</i>: A double[] object.
 
-<b>Returns:</b>
+<b>Return Value:</b>
 
 A string object.
 
@@ -139,7 +139,7 @@ Converts a red-green-blue color to a string in HTML format.
 
  * <i>b</i>: A 64-bit floating-point number. (3).
 
-<b>Returns:</b>
+<b>Return Value:</b>
 
 A string object.
 
@@ -154,7 +154,7 @@ Converts an RGBA color to an HTML color, (ex. #002233)."rgb" must contain at lea
 
  * <i>rgb</i>: A double[] object.
 
-<b>Returns:</b>
+<b>Return Value:</b>
 
 A string object.
 

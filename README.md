@@ -9,6 +9,8 @@ Currently available for PHP, Python, Ruby, C#, and Java.  In the public domain.
 Documentation
 ------------
 
+**See the [Java API documentation](https://peteroupc.github.io/colorvalidator/api/).**
+
 **See the [C# (.NET) API documentation](https://peteroupc.github.io/colorvalidator/docs/).**
 
 ## Donate to me

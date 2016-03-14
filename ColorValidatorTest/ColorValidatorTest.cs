@@ -12,7 +12,7 @@ namespace Test {
         ColorValidator.ColorHtmlToRgba(null);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-Console.Write(String.Empty);
+new Object();
 } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -24,7 +24,7 @@ Console.Write(String.Empty);
         ColorValidator.ColorToRgb(null);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-Console.Write(String.Empty);
+new Object();
 } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -36,7 +36,7 @@ Console.Write(String.Empty);
         ColorValidator.ColorToRgba(null);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-Console.Write(String.Empty);
+new Object();
 } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -48,7 +48,7 @@ Console.Write(String.Empty);
         ColorValidator.HlsToRgb(null);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-Console.Write(String.Empty);
+new Object();
 } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -60,7 +60,7 @@ Console.Write(String.Empty);
         ColorValidator.RgbToColor(null);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-Console.Write(String.Empty);
+new Object();
 } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -72,7 +72,7 @@ Console.Write(String.Empty);
         ColorValidator.RgbToColorDisplay(null);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-Console.Write(String.Empty);
+new Object();
 } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -84,7 +84,7 @@ Console.Write(String.Empty);
         ColorValidator.RgbToColorHtml(null);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-Console.Write(String.Empty);
+new Object();
 } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
