@@ -1,4 +1,4 @@
-﻿## PeterO.ColorValidator
+## PeterO.ColorValidator
 
     public static class ColorValidator
 
@@ -21,7 +21,7 @@ An array of four elements, each from 0 to 255: the red, green, blue, and alpha c
 
 <b>Exceptions:</b>
 
- * System.ArgumentNullException: 
+ * System.ArgumentNullException:
 The parameter  <i>x</i>
 is null.
 
@@ -30,7 +30,7 @@ is null.
     public static double[] ColorToRgb(
         string x);
 
-Converts HTML colors to Red/Green/Blue colors. Use this function to parse colors from normal color picker controls: http://peteroupc.github.com/colorpicker/.
+Converts HTML colors to Red/Green/Blue colors. Use this function to parse colors from normal color picker controls: [http://peteroupc.github.com/colorpicker/.](http://peteroupc.github.com/colorpicker/.)
 
 <b>Parameters:</b>
 
@@ -72,7 +72,7 @@ An array of three elements, each from 0 to 255: the red, green, and blue compone
 
 <b>Exceptions:</b>
 
- * System.ArgumentNullException: 
+ * System.ArgumentNullException:
 The parameter  <i>hls</i>
  is null.
 
@@ -93,7 +93,7 @@ A string object.
 
 <b>Exceptions:</b>
 
- * System.ArgumentNullException: 
+ * System.ArgumentNullException:
 The parameter  <i>arrayRGB</i>
  is null.
 
@@ -114,11 +114,11 @@ A string object.
 
 <b>Exceptions:</b>
 
- * System.ArgumentException: 
+ * System.ArgumentException:
 The parameter  <i>rgb</i>
  is null or contains fewer than three elements.
 
- * System.ArgumentNullException: 
+ * System.ArgumentNullException:
 The parameter  <i>rgb</i>
 is null.
 
@@ -160,8 +160,6 @@ A string object.
 
 <b>Exceptions:</b>
 
- * System.ArgumentNullException: 
+ * System.ArgumentNullException:
 The parameter  <i>rgb</i>
 is null.
-
-

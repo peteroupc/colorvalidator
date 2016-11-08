@@ -1,3 +1,6 @@
+*.bat
+*.jar
+*.suo
+*.userprefs
 bin/
 obj/
-*.suo
