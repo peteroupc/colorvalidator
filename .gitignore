@@ -1,6 +1,10 @@
 *.bat
 *.jar
+*.map
 *.suo
 *.userprefs
+.nuget/
 bin/
+encoding/
 obj/
+packages/

@@ -1,257 +1,1012 @@
 /*
- * This file is in the public domain. Peter O., 2012.
-   http://upokecenter.dreamhosters.com
-    Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/
- This file converts between different representations of HTML and CSS colors.
+Written in 2012-2016 by Peter O.
+Any copyright is dedicated to the Public Domain.
+http://creativecommons.org/publicdomain/zero/1.0/
+If you like this, you should donate to Peter O.
+at: http://peteroupc.github.io/
  */
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text.RegularExpressions;
 namespace PeterO {
     /// <summary>Contains methods to convert between different
     /// representations of HTML and CSS colors.</summary>
-  public static class ColorValidator {
-    /// <summary>Converts a color in the HLS color space to
-    /// red/green/blue.</summary>
-    /// <param name='hls'>An array containing three elements. This is a
-    /// color in the form of hue, lightness, and saturation in that order.
+    public static class ColorValidator {
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>Not documented yet.</param>
+    /// <param name='index'>Not documented yet.</param>
+    /// <param name='endIndex'>Not documented yet. (3).</param>
+    /// <returns>A 32-bit signed integer.</returns>
+        private static int ParseComma (string str, int index, int endIndex) {
+            int indexStart, indexTemp;
+            indexStart = index;
+            indexTemp = index;
+            do {
+      while (index < endIndex && ((str [index] == 32) || (str [index] == 13)||
+                (str [index] >= 9 && str [index] <= 10))) {
+                    ++index;
+                }
+                if (index < endIndex && (str [index] == 44)) {
+                    ++index;
+                } else {
+                    index = indexStart; break;
+                }
+      while (index < endIndex && ((str [index] == 32) || (str [index] == 13)||
+                (str [index] >= 9 && str [index] <= 10))) {
+                    ++index;
+                }
+                indexTemp = index;
+            } while (false);
+            return indexTemp;
+        }
+
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>Not documented yet.</param>
+    /// <param name='index'>Not documented yet.</param>
+    /// <param name='endIndex'>Not documented yet. (3).</param>
+    /// <returns>A 32-bit signed integer.</returns>
+        private static int ParseEndparen (string str, int index, int endIndex) {
+            int indexStart, indexTemp;
+            indexStart = index;
+            indexTemp = index;
+            do {
+      while (index < endIndex && ((str [index] == 32) || (str [index] == 13)||
+                (str [index] >= 9 && str [index] <= 10))) {
+                    ++index;
+                }
+                if (index < endIndex && (str [index] == 41)) {
+                    ++index;
+                } else {
+                    index = indexStart; break;
+                }
+                indexTemp = index;
+            } while (false);
+            return indexTemp;
+        }
+
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>Not documented yet.</param>
+    /// <param name='index'>Not documented yet.</param>
+    /// <param name='endIndex'>Not documented yet. (3).</param>
+    /// <param name='ret'>A 64-bit floating-point number.</param>
+    /// <returns>A 32-bit signed integer.</returns>
+        private static int ParseHeaderHsl (string str, int index, int
+          endIndex, double [] ret) {
+            int indexStart, indexTemp, tx2;
+            indexStart = index;
+            indexTemp = index;
+            do {
+                if (index + 3 < endIndex && (str [index] & ~32) == 72 &&
+                  (str [index + 1] & ~32) == 83 && (str [index + 2] & ~32)
+                  == 76 && str [index + 3] == 40) {
+                    index += 4;
+                } else {
+                    break;
+                }
+      while (index < endIndex && ((str [index] == 32) || (str [index] == 13)||
+                (str [index] >= 9 && str [index] <= 10))) {
+                    ++index;
+                }
+                double hue = 0, sat = 0, lgt = 0, alpha = 0;
+                tx2 = ParseNumber (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    hue = StringToHue (str, index, tx2);
+                    index = tx2;
+                }
+                tx2 = ParseComma (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                tx2 = ParseNumber (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    sat = StringToPercent (str, index, tx2) * 255.0 / 100.0;
+                    index = tx2;
+                }
+                tx2 = ParsePctcomma (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                tx2 = ParseNumber (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    lgt = StringToPercent (str, index, tx2) * 255.0 / 100.0;
+                    index = tx2;
+                }
+                if (index < endIndex && (str [index] == 37)) {
+                    ++index;
+                } else {
+                    index = indexStart; break;
+                }
+                tx2 = ParseEndparen (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                double [] rgb = HlsToRgb (hue, lgt, sat);
+                ret [0] = rgb [0];
+                ret [1] = rgb [1];
+                ret [2] = rgb [2];
+                ret [3] = 255.0;
+                indexTemp = index;
+            } while (false);
+            return indexTemp;
+        }
+
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>Not documented yet.</param>
+    /// <param name='index'>Not documented yet.</param>
+    /// <param name='endIndex'>Not documented yet. (3).</param>
+    /// <param name='ret'>A 64-bit floating-point number.</param>
+    /// <returns>A 32-bit signed integer.</returns>
+        private static int ParseHeaderHsla (
+    string str,
+    int index,
+    int endIndex,
+    double [] ret) {
+            int indexStart, indexTemp, tx2;
+            indexStart = index;
+            indexTemp = index;
+            do {
+                if (index + 4 < endIndex && (str [index] & ~32) == 72 &&
+                  (str [index + 1] & ~32) == 83 && (str [index + 2] & ~32)
+             == 76 && (str [index + 3] & ~32) == 65 && str [index + 4] ==
+                  40) {
+                    index += 5;
+                } else {
+                    break;
+                }
+      while (index < endIndex && ((str [index] == 32) || (str [index] == 13)||
+                (str [index] >= 9 && str [index] <= 10))) {
+                    ++index;
+                }
+                double hue = 0, sat = 0, lgt = 0, alpha = 0;
+                tx2 = ParseNumber (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    hue = StringToHue (str, index, tx2);
+                    index = tx2;
+                }
+                tx2 = ParseComma (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                tx2 = ParseNumber (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    sat = StringToPercent (str, index, tx2) * 255.0 / 100.0;
+                    index = tx2;
+                }
+                tx2 = ParsePctcomma (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                tx2 = ParseNumber (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    lgt = StringToPercent (str, index, tx2) * 255.0 / 100.0;
+                    index = tx2;
+                }
+                tx2 = ParsePctcomma (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                tx2 = ParseNumber (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                tx2 = ParseEndparen (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    alpha = StringToAlpha (str, index, tx2);
+                    index = tx2;
+                }
+                double [] rgb = HlsToRgb (hue, lgt, sat);
+                ret [0] = rgb [0];
+                ret [1] = rgb [1];
+                ret [2] = rgb [2];
+                ret [3] = alpha;
+                indexTemp = index;
+            } while (false);
+            return indexTemp;
+        }
+
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>Not documented yet.</param>
+    /// <param name='index'>Not documented yet.</param>
+    /// <param name='endIndex'>Not documented yet. (3).</param>
+    /// <param name='result'>A 64-bit floating-point number.</param>
+    /// <returns>A 32-bit signed integer.</returns>
+        private static int ParseHeaderRgbanumber (
+        string str,
+        int index,
+        int endIndex,
+        double [] result) {
+            int indexStart, indexTemp, tx2;
+            indexStart = index;
+            indexTemp = index;
+            do {
+                if (index + 4 < endIndex && (str [index] & ~32) == 82 &&
+                  (str [index + 1] & ~32) == 71 && (str [index + 2] & ~32)
+             == 66 && (str [index + 3] & ~32) == 65 && str [index + 4] ==
+                  40) {
+                    index += 5;
+                } else {
+                    break;
+                }
+      while (index < endIndex && ((str [index] == 32) || (str [index] == 13)||
+                (str [index] >= 9 && str [index] <= 10))) {
+                    ++index;
+                }
+                double red = 0, green = 0, blue = 0, alpha = 0;
+                tx2 = ParseInteger (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    red = StringToByte (str, index, tx2);
+                    index = tx2;
+                }
+                tx2 = ParseComma (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                tx2 = ParseInteger (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    green = StringToByte (str, index, tx2);
+                    index = tx2;
+                }
+                tx2 = ParseComma (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                tx2 = ParseInteger (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    blue = StringToByte (str, index, tx2);
+                    index = tx2;
+                }
+                tx2 = ParseComma (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                tx2 = ParseNumber (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    alpha = StringToAlpha (str, index, tx2);
+                    index = tx2;
+                }
+                tx2 = ParseEndparen (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                result [0] = red;
+                result [1] = green;
+                result [2] = blue;
+                result [3] = alpha;
+                indexTemp = index;
+                indexTemp = index;
+            } while (false);
+            return indexTemp;
+        }
+
+        private static int ParseHeaderRgbapercent (
+         string str,
+         int index,
+         int endIndex,
+         double [] result) {
+            int indexStart, indexTemp, tx2;
+            indexStart = index;
+            indexTemp = index;
+            do {
+                if (index + 4 < endIndex && (str [index] & ~32) == 82 &&
+                  (str [index + 1] & ~32) == 71 && (str [index + 2] & ~32)
+             == 66 && (str [index + 3] & ~32) == 65 && str [index + 4] ==
+                  40) {
+                    index += 5;
+                } else {
+                    break;
+                }
+      while (index < endIndex && ((str [index] == 32) || (str [index] == 13)||
+                (str [index] >= 9 && str [index] <= 10))) {
+                    ++index;
+                }
+                double red = 0, green = 0, blue = 0, alpha = 0;
+                tx2 = ParseNumber (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    red = StringToPercentComponent (str, index, tx2);
+                    index = tx2;
+                }
+                tx2 = ParsePctcomma (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                tx2 = ParseNumber (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    green = StringToPercentComponent (str, index, tx2);
+                    index = tx2;
+                }
+                tx2 = ParsePctcomma (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                tx2 = ParseNumber (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    blue = StringToPercentComponent (str, index, tx2);
+                    index = tx2;
+                }
+                tx2 = ParsePctcomma (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                tx2 = ParseNumber (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    alpha = StringToAlpha (str, index, tx2);
+                    index = tx2;
+                }
+                tx2 = ParseEndparen (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                result [0] = red;
+                result [1] = green;
+                result [2] = blue;
+                result [3] = alpha;
+                indexTemp = index;
+            } while (false);
+            return indexTemp;
+        }
+
+        private static int ParseHeaderRgbnumber (
+       string str,
+       int index,
+       int endIndex,
+       double [] result) {
+            int indexStart, indexTemp, tx2;
+            indexStart = index;
+            indexTemp = index;
+            do {
+                int red = 0, green = 0, blue = 0;
+                if (index + 3 < endIndex && (str [index] & ~32) == 82 &&
+                  (str [index + 1] & ~32) == 71 && (str [index + 2] & ~32)
+                  == 66 && str [index + 3] == 40) {
+                    index += 4;
+                } else {
+                    break;
+                }
+      while (index < endIndex && ((str [index] == 32) || (str [index] == 13)||
+                (str [index] >= 9 && str [index] <= 10))) {
+                    ++index;
+                }
+                tx2 = ParseInteger (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    red = StringToByte (str, index, tx2);
+                    index = tx2;
+                }
+                tx2 = ParseComma (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                tx2 = ParseInteger (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    green = StringToByte (str, index, tx2);
+                    index = tx2;
+                }
+                tx2 = ParseComma (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                tx2 = ParseInteger (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    blue = StringToByte (str, index, tx2);
+                    index = tx2;
+                }
+                tx2 = ParseEndparen (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                result [0] = red;
+                result [1] = green;
+                result [2] = blue;
+                result [3] = 255.0;
+                indexTemp = index;
+            } while (false);
+            return indexTemp;
+        }
+
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>Not documented yet.</param>
+    /// <param name='index'>Not documented yet.</param>
+    /// <param name='endIndex'>Not documented yet. (3).</param>
+    /// <param name='result'>A 64-bit floating-point number.</param>
+    /// <returns>A 32-bit signed integer.</returns>
+        private static int ParseHeaderRgbpercent (
+        string str,
+        int index,
+        int endIndex,
+        double [] result) {
+            int indexStart, indexTemp, tx2;
+            indexStart = index;
+            indexTemp = index;
+            do {
+                if (index + 3 < endIndex && (str [index] & ~32) == 82 &&
+                  (str [index + 1] & ~32) == 71 && (str [index + 2] & ~32)
+                  == 66 && str [index + 3] == 40) {
+                    index += 4;
+                } else {
+                    break;
+                }
+      while (index < endIndex && ((str [index] == 32) || (str [index] == 13)||
+                (str [index] >= 9 && str [index] <= 10))) {
+                    ++index;
+                }
+                double red = 0, green = 0, blue = 0;
+                tx2 = ParseNumber (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    red = StringToPercentComponent (str, index, tx2);
+                    index = tx2;
+                }
+                tx2 = ParsePctcomma (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                tx2 = ParseNumber (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    green = StringToPercentComponent (str, index, tx2);
+                    index = tx2;
+                }
+                tx2 = ParsePctcomma (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                tx2 = ParseNumber (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    blue = StringToPercentComponent (str, index, tx2);
+                    index = tx2;
+                }
+                if (index < endIndex && (str [index] == 37)) {
+                    ++index;
+                } else {
+                    index = indexStart; break;
+                }
+                tx2 = ParseEndparen (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                result [0] = red;
+                result [1] = green;
+                result [2] = blue;
+                result [3] = 255.0;
+                indexTemp = index;
+            } while (false);
+            return indexTemp;
+        }
+
+     private static double StringToNumber (string str, int index, int
+          endIndex) {
+            string str2 = str.Substring (index, endIndex - index);
+            return
+    Convert.ToDouble (str2,
+          System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+    private static double StringToPercent (string str, int index, int
+          endIndex) {
+            double num = StringToNumber (str, index, endIndex);
+            return Double.IsNaN (num) ? (-1) : ((num < 0) ? 0 : ((num > 100) ?
+              100 : num));
+        }
+      private static double StringToAlpha (string str, int index, int
+          endIndex) {
+            double num = StringToNumber (str, index, endIndex);
+            return (Double.IsNaN (num)) ? (0) : ((num < 0) ? (0) : ((num >
+              1.0) ? 255 : num * 255.0));
+        }
+
+  private static int StringToAlphaRounded (string str, int index, int
+          endIndex) {
+            return (int)Math.Round (StringToAlpha (str, index, endIndex),
+              MidpointRounding.AwayFromZero);
+        }
+
+        private static double StringToPercentComponent (
+      string str,
+      int index,
+      int endIndex) {
+            double num = StringToPercent (str, index, endIndex);
+            return (num < 0) ? (-1) : num * 255.0 / 100.0;
+        }
+
+      private static double StringToHue (string str, int index, int
+          endIndex) {
+            int fast = StringToHueFast (str, index, endIndex);
+            if (fast >= 0) {
+                return fast;
+            }
+            if (index == endIndex) {
+                return -1;
+            }
+            if (str [index] == '+') {
+                ++index;
+                if (index == endIndex) {
+                    return -1;
+                }
+            }
+            double num = StringToNumber (str, index, endIndex);
+            return (Double.IsNaN (num) || Double.IsPositiveInfinity (num) ||
+              Double.IsNegativeInfinity (num)) ? (-1) : (((num % 360) + 360) %
+              360);
+        }
+
+     private static int StringToHueFast (string str, int index, int
+          endIndex) {
+            if (index == endIndex) {
+                return -1;
+            }
+            var i = index;
+            if (str [i] == '-') {
+                return -1;
+            } else if (str [i] == '+') {
+                ++i;
+            }
+            if (i == endIndex) {
+                return -1;
+            }
+            var ret = 0;
+            while (i < endIndex) {
+                int c = str [i];
+                ++i;
+        if (c >= '0' && c <= '9') {
+          int x = c - '0';
+          ret *= 10;
+          ret += x;
+          if (ret > 360) {
+            return -1;
+          }
+        } else {
+          return -1;
+        }
+            }
+            return ret == 360 ? 0 : ret;
+        }
+
+        private static int StringToByte (string str, int index, int endIndex) {
+            if (index == endIndex) {
+                return 0;
+            }
+            var i = index;
+            if (str [i] == '-') {
+                return 0;
+            } else if (str [i] == '+') {
+                ++i;
+            }
+            if (i == endIndex) {
+                return 0;
+            }
+            var ret = 0;
+            while (i < endIndex) {
+                int c = str [i];
+                ++i;
+        if (c >= '0' && c <= '9') {
+          int x = c - '0';
+          ret *= 10;
+          ret += x;
+          if (ret > 255) {
+            return 255;
+          }
+        } else {
+          return 0;
+        }
+            }
+            return ret;
+        }
+
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>Not documented yet.</param>
+    /// <param name='index'>Not documented yet.</param>
+    /// <param name='endIndex'>Not documented yet. (3).</param>
+    /// <returns>A 32-bit signed integer.</returns>
+        private static int ParseInteger (string str, int index, int endIndex) {
+            int indexStart, indexTemp;
+            indexStart = index;
+            indexTemp = index;
+            do {
+                if (index < endIndex && ((str [index] == 43) || (str [index] ==
+                    45))) {
+                    ++index;
+                }
+                if (index < endIndex && (str [index] >= 48 && str [index] <=
+                    57)) {
+                    ++index;
+                while (index < endIndex && (str [index] >= 48 && str [index]
+                <= 57)) {
+                    ++index;
+                    }
+                } else {
+                    index = indexStart; break;
+                }
+                indexTemp = index;
+            } while (false);
+            return indexTemp;
+        }
+
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>Not documented yet.</param>
+    /// <param name='index'>Not documented yet.</param>
+    /// <param name='endIndex'>Not documented yet. (3).</param>
+    /// <returns>A 32-bit signed integer.</returns>
+        private static int ParseNumber (string str, int index, int endIndex) {
+            int indexStart, indexStart3, indexStart4, indexTemp, indexTemp2,
+                    indexTemp3,
+                    indexTemp4;
+            indexStart = index;
+            indexTemp = index;
+            do {
+                if (index < endIndex && ((str [index] == 43) || (str [index] ==
+                    45))) {
+                    ++index;
+                }
+                do {
+                    indexTemp2 = index;
+                    do {
+                    indexTemp3 = index;
+                    do {
+                    indexStart3 = index;
+                    if (index < endIndex && (str [index] >= 48 && str [index] <=
+                    57)) {
+                    ++index;
+                while (index < endIndex && (str [index] >= 48 && str [index]
+                <= 57)) {
+                    ++index;
+                    }
+                    } else {
+                    break;
+                    }
+                    do {
+                    indexTemp4 = index;
+                    do {
+                    indexStart4 = index;
+                    if (index < endIndex && (str [index] == 46)) {
+                    ++index;
+                    } else {
+                    break;
+                    }
+                    if (index < endIndex && (str [index] >= 48 && str [index] <=
+                    57)) {
+                    ++index;
+                while (index < endIndex && (str [index] >= 48 && str [index]
+                <= 57)) {
+                    ++index;
+                    }
+                    } else {
+                    index = indexStart4; break;
+                    }
+                    indexTemp4 = index;
+                    index = indexStart4;
+                    } while (false);
+                    if (indexTemp4 != index) {
+                    index = indexTemp4;
+                    } else {
+                    break;
+                    }
+                    } while (false);
+                    indexTemp3 = index;
+                    index = indexStart3;
+                    } while (false);
+                    if (indexTemp3 != index) {
+                    indexTemp2 = indexTemp3; break;
+                    }
+                    indexTemp3 = index;
+                    do {
+                    indexStart3 = index;
+                    if (index < endIndex && (str [index] == 46)) {
+                    ++index;
+                    } else {
+                    break;
+                    }
+                    if (index < endIndex && (str [index] >= 48 && str [index] <=
+                    57)) {
+                    ++index;
+                while (index < endIndex && (str [index] >= 48 && str [index]
+                <= 57)) {
+                    ++index;
+                    }
+                    } else {
+                    index = indexStart3; break;
+                    }
+                    indexTemp3 = index;
+                    index = indexStart3;
+                    } while (false);
+                    if (indexTemp3 != index) {
+                    indexTemp2 = indexTemp3; break;
+                    }
+                    } while (false);
+                    if (indexTemp2 != index) {
+                    index = indexTemp2;
+                    } else {
+                    index = indexStart; break;
+                    }
+                } while (false);
+                if (index == indexStart) {
+                    break;
+                }
+                indexTemp = index;
+            } while (false);
+            return indexTemp;
+        }
+
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>Not documented yet.</param>
+    /// <param name='index'>Not documented yet.</param>
+    /// <param name='endIndex'>Not documented yet. (3).</param>
+    /// <returns>A 32-bit signed integer.</returns>
+        private static int ParsePctcomma (string str, int index, int endIndex) {
+            int indexStart, indexTemp, tx2;
+            indexStart = index;
+            indexTemp = index;
+            do {
+                if (index < endIndex && (str [index] == 37)) {
+                    ++index;
+                } else {
+                    break;
+                }
+                tx2 = ParseComma (str, index, endIndex);
+                if (tx2 == index) {
+                    index = indexStart; break;
+                } else {
+                    index = tx2;
+                }
+                indexTemp = index;
+            } while (false);
+            return indexTemp;
+        }
+
+    /// <summary>Converts a color in the HLS color space to red/green/blue.
     /// Hue can range from 0 to 360, and lightness and saturation can range
     /// from 0 to 255. If lightness and saturation are out of range, those
-    /// values are clamped to fit that range (the array itself is not
-    /// modified, though).</param>
+    /// values are clamped to fit that range.</summary>
     /// <returns>An array containing three elements, with the red, green,
     /// and blue components of the same color, each from 0 to
     /// 255.</returns>
-    /// <exception cref='ArgumentNullException'>The parameter <paramref
-    /// name='hls'/> is null.</exception>
-    public static double[] HlsToRgb(double[] hls) {
-      if ((hls) == null) {
-        throw new ArgumentNullException("hls");
-      }
-      if (3 > hls.Length) {
-        throw new ArgumentException("3 more than " + hls.Length + " (3)");
-      }
-      double hueval = hls[0] * 1.0;  // [0-360)
-      double lum = hls[1] * 1.0;  // [0-255]
-      double sat = hls[2] * 1.0;  // [0-255]
-      lum = (lum < 0 ? 0 : (lum > 255 ? 255 : lum));
-      sat = (sat < 0 ? 0 : (sat > 255 ? 255 : sat));
-      if (sat == 0) {
-        return new double[] { lum, lum, lum };
-      }
-      double b = 0;
-      if (lum <= 127.5) {
-        b = (lum * (255.0 + sat)) / 255.0;
-      } else {
-        b = lum * sat;
-        b /= 255.0;
-        b = lum + sat - b;
-      }
-      double a = (lum * 2) - b;
-      double r, g, bl;
-      if (hueval < 0 || hueval >= 360) {
-        hueval = (((hueval % 360) + 360) % 360);
-      }
-      double hue = hueval + 120;
-      if (hue >= 360) {
-        hue -= 360;
-      }
-      r = (hue < 60) ? (a + (b - a) * hue / 60) : ((hue < 180) ? (b) :
-        ((hue < 240) ? (a + (b - a) * (240 - hue) / 60) : (a)));
-      hue = hueval;
-      g = (hue < 60) ? (a + (b - a) * hue / 60) : ((hue < 180) ? (b) :
-        ((hue < 240) ? (a + (b - a) * (240 - hue) / 60) : (a)));
-      hue = hueval - 120;
-      if (hue < 0) {
-        hue += 360;
-      }
-      if (hue < 60) {
-        bl = (a + (b - a) * hue / 60);
-      } else {
-     bl = (hue < 180) ? (b) : ((hue < 240) ? (a + (b - a) * (240 - hue) / 60) :
-          (a));
-      }
-      return new double[] {
-                (r<0 ? 0 : (r>255 ? 255 : r)),
-        (g<0 ? 0 : (g>255 ? 255 : g)),
-        (bl<0 ? 0 : (bl>255 ? 255 : bl))};
-    }
+    /// <exception cref='ArgumentNullException'>The parameter "hls" is
+    /// null.</exception>
+     public static double [] HlsToRgb (double hueval, double lum, double
+          sat) {
+            lum = lum < 0 ? 0 : (lum > 255 ? 255 : lum);
+            sat = sat < 0 ? 0 : (sat > 255 ? 255 : sat);
+            if (sat == 0) {
+                return new double [] { lum, lum, lum };
+            }
+            double b = 0;
+            if (lum <= 127.5) {
+                b = (lum * (255.0 + sat)) / 255.0;
+            } else {
+                b = lum * sat;
+                b /= 255.0;
+                b = lum + sat - b;
+            }
+            double a = (lum * 2) - b;
+            double r, g, bl;
+            if (hueval < 0 || hueval >= 360) {
+                hueval = ((hueval % 360) + 360) % 360;
+            }
+            double hue = hueval + 120;
+            if (hue >= 360) {
+                hue -= 360;
+            }
+            r = (hue < 60) ? (a + (b - a) * hue / 60) : ((hue < 180) ? b :
+              ((hue < 240) ? (a + (b - a) * (240 - hue) / 60) : a));
+            hue = hueval;
+      g = (hue < 60) ? (a + (b - a) * hue / 60) : ((hue < 180) ? b :
+              ((hue < 240) ? (a + (b - a) * (240 - hue) / 60) : a));
+            hue = hueval - 120;
+            if (hue < 0) {
+                hue += 360;
+            }
+            bl = (hue < 60) ? (a + (b - a) * hue / 60) : ((hue < 180) ? b :
+              ((hue < 240) ? (a + (b - a) * (240 - hue) / 60) : a));
+            return new double [] {
+                (r < 0 ? 0 : (r > 255 ? 255 : r)),
+        (g < 0 ? 0 : (g > 255 ? 255 : g)),
+        (bl < 0 ? 0 : (bl > 255 ? 255 : bl))};
+        }
 
-    /// <summary>Converts HTML colors to Red/Green/Blue colors.</summary>
-    /// <param name='x'>A string object naming an HTML color. This can be a
-    /// named color or a color in the form "#RRGGBB".</param>
-    /// <returns>An array containing four elements, with the red, green,
-    /// blue, and alpha components of the same color, each from 0 to 255.
-    /// Returns (0,0,0,0) if <paramref name='x'/> is null or
-    /// empty.</returns>
-    public static double[] ColorHtmlToRgba(string x) {
-      ColorToRgbaSetUpNamedColors();
-      x = x.ToLower(System.Globalization.CultureInfo.InvariantCulture);
-      if (x.IndexOf("grey") >= 0) {
-        x = x.Replace("grey", "gray");  // support "grey" variants
-      }
-      if (ColorToRgbaNamedColors.ContainsKey(x)) {
-        string ret = ColorToRgbaNamedColors[x];
-        if (ret != null) {
-          return ColorToRgba(ret);
+    /// <summary>Not documented yet.</summary>
+    /// <param name='c'>Not documented yet.</param>
+    /// <returns>A 32-bit signed integer.</returns>
+        private static int dehexchar (int c) {
+            if (c >= '0' && c <= '9') {
+                return c - '0';
+            }
+            return (c >= 'A' && c <= 'F') ? (c + 10 - 'A') : ((c >= 'a' && c
+              <= 'f') ? (c + 10 - 'a') : (-1));
         }
-      }
-      var arr = new int[x.Length];
-      for (int i = (x[0] == '#') ? 1 : 0; i < x.Length; i++) {
-        int c = x[i];
-        var hex = 0;
-        if (c >= 0x30 && c <= 0x39) {
-          hex = c - 0x30;
-        }
-        if (c >= 0x61 && c <= 0x66) {
-          hex = c - 0x61 + 10;
-        }
-        arr[arr.Length] = hex;
-      }
-      int sublength = ((arr.Length + 2) / 3);
-      while (arr.Length < sublength * 3) {
-        arr[arr.Length] = 0;
-      }
-      int currlength = sublength;
-      var offset = 0;
-      while (currlength > 2) {
-        if (arr[offset] == 0 && arr[sublength + offset] == 0 &&
-           arr[sublength * 2 + offset] == 0) {
-          --currlength; offset++;
-        } else {
-          break;
-        }
-      }
-      return new double[] {
-        arr[offset]*16 + arr[offset + 1],
-        arr[sublength + offset]*16 + arr[sublength + offset + 1],
-        arr[sublength*2 + offset]*16 + arr[sublength*2 + offset + 1],
-        255 };
-    }
-    private static Regex[] patterns = new Regex[] {
-      new Regex("^#([A-Fa-f0-9]{2})([A-Fa-f0-9]{2})([A-Fa-f0-9]{2})$"),
-      new
 
-  Regex(
-  "^rgb\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*\\)$"
-),
-      new
-
-  Regex(
-  "^rgb\\(\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+)\\s*\\)$"
-),
-      new
-
-  Regex(
-  "^rgba\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?%)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*\\)$"
-),
-      new
-
-  Regex(
-  "^rgba\\(\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*\\)$"
-),
-      new Regex("^#([A-Fa-f0-9]{1})([A-Fa-f0-9]{1})([A-Fa-f0-9]{1})$"),
-      new
-
-  Regex(
-  "^hsl\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*\\)$"
-),
-      new
-
-  Regex(
-  "^hsla\\(\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)%\\s*,\\s*([\\+\\-]?\\d+(?:\\.\\d+)?)\\s*\\)$"
-)
-    };
-    private static Match execPattern(Regex p, string s) {
-      Match m = p.Match(s);
-      return (m.Success) ? m : null;
-    }
-    private static double parseHue(string value) {
-      try {
-        double c = Convert.ToDouble(value,
-          System.Globalization.CultureInfo.InvariantCulture);
-        if (c < 0 || c >= 360) {
-          c = (((c % 360) + 360) % 360);
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>Not documented yet.</param>
+    /// <returns>A string object.</returns>
+        private static string ToLowerCaseAscii (string str) {
+            if (str == null) {
+                return null;
+            }
+            var len = str.Length;
+            var c = (char)0;
+            var hasUpperCase = false;
+            for (var i = 0; i < len; ++i) {
+                c = str [i];
+                if (c >= 'A' && c <= 'Z') {
+                    hasUpperCase = true;
+                    break;
+                }
+            }
+            if (!hasUpperCase) {
+                return str;
+            }
+            var builder = new StringBuilder();
+            for (var i = 0; i < len; ++i) {
+                c = str [i];
+                if (c >= 'A' && c <= 'Z') {
+                    builder.Append ((char)(c + 0x20));
+                } else {
+                    builder.Append (c);
+                }
+            }
+            return builder.ToString();
         }
-        return c;
-      } catch (FormatException) {
-        return Double.NaN;
-      } catch (OverflowException) {
-        return Double.NaN;
-      }
-    }
-    private static double parseByte(string value) {
-      try {
-        double c = Convert.ToDouble(value,
-          System.Globalization.CultureInfo.InvariantCulture);
-        return (c < 0 ? 0 : (c > 255 ? 255 : c));
-      } catch (FormatException) {
-        return Double.NaN;
-      } catch (OverflowException) {
-        return Double.NaN;
-      }
-    }
-    private static double parseUnit(string value) {
-      try {
-        double c = Convert.ToDouble(value,
-          System.Globalization.CultureInfo.InvariantCulture);
-        return (c < 0 ? 0 : (c > 1.0 ? 1.0 : c)) * 255.0;
-      } catch (FormatException) {
-        return Double.NaN;
-      } catch (OverflowException) {
-        return Double.NaN;
-      }
-    }
-    private static double parsePercent(string value) {
-      try {
-        double c = Convert.ToDouble(value,
-          System.Globalization.CultureInfo.InvariantCulture);
-        return (c < 0 ? 0 : (c > 100 ? 100 : c)) * 255.0 / 100.0;
-      } catch (FormatException) {
-        return Double.NaN;
-      } catch (OverflowException) {
-        return Double.NaN;
-      }
-    }
-    private static int dehexchar(int c) {
-      if (c >= '0' && c <= '9') {
-        return c - '0';
-      }
-      return (c >= 'A' && c <= 'F') ? (c + 10 - 'A') : ((c >= 'a' && c
-        <= 'f') ? (c + 10 - 'a') : (-1));
-    }
-    private static int GetHex(string str) {
-      if ((str) == null) {
-        throw new ArgumentNullException("s");
-      }
-      if (str.Length == 0) {
-        throw new ArgumentException("s is empty");
-      }
-      int h = dehexchar(str[0]);
-      if (h < 0) {
-        return 0;
-      }
-      if (str.Length > 1) {
-        h = (h * 16) + dehexchar(str[1]);
-        if (h < 0) {
-          return 0;
+
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>Not documented yet.</param>
+    /// <returns>A string object.</returns>
+        private static string TrimAsciiWhite (string str) {
+            if (String.IsNullOrEmpty (str)) {
+                return str;
+            }
+            var index = 0;
+            int valueSLength = str.Length;
+            while (index < valueSLength) {
+                char c = str [index];
+           if (c != 0x09 && c != 0x20 && c != 0x0c && c != 0x0d && c !=
+                  0x0a) {
+                    break;
+                }
+                ++index;
+            }
+            if (index == valueSLength) {
+                return String.Empty;
+            }
+            int indexStart = index;
+            index = str.Length - 1;
+            while (index >= 0) {
+                char c = str [index];
+           if (c != 0x09 && c != 0x20 && c != 0x0c && c != 0x0d && c !=
+                  0x0a) {
+                    int indexEnd = index + 1;
+                    if (indexEnd == indexStart) {
+                    return String.Empty;
+                    }
+                    return (indexEnd == str.Length && indexStart == 0) ? str :
+                    str.Substring (indexStart, indexEnd - indexStart);
+                }
+                --index;
+            }
+            return String.Empty;
         }
-      }
-      if (str.Length > 2) {
-        h = (h * 16) + dehexchar(str[2]);
-        if (h < 0) {
-          return 0;
+
+        private static bool RgbHex (string str, int [] hexval, bool hash) {
+            if (String.IsNullOrEmpty (str)) {
+                return false;
+            }
+            int slen = str.Length;
+            var hexes = new int [8];
+            var index = 0;
+            var hexIndex = 0;
+            if (str [0] == '#') {
+                --slen;
+                ++index;
+            } else if (hash) {
+                return false;
+            }
+            if (slen != 3 && slen != 4 && slen != 6 && slen != 8) {
+                return false;
+            }
+            for (var i = index; i < str.Length; ++i) {
+                int hex = dehexchar (str [i]);
+                if (hex < 0) {
+                    return false;
+                }
+                hexes [hexIndex++] = hex;
+            }
+            if (slen == 3) {
+                hexval [0] = unchecked(hexes [0] | (hexes [0] << 4) |
+       (hexes [1] << 8) | (hexes [1] << 12) | (hexes [2] << 16) | (hexes [2]<<
+               20) | (int)0xff000000);
+            } else if (slen == 4) {
+                hexval [0] = unchecked(hexes [0] | (hexes [0] << 4) |
+       (hexes [1] << 8) | (hexes [1] << 12) | (hexes [2] << 16) | (hexes [2]<<
+               20) | (hexes [3] << 24) | (hexes [3] << 28));
+            } else if (slen == 6) {
+                hexval [0] = unchecked(hexes [1] | (hexes [0] << 4) |
+       (hexes [3] << 8) | (hexes [2] << 12) | (hexes [5] << 16) | (hexes [4]<<
+                20) | (int)0xff000000);
+            } else if (slen == 8) {
+                hexval [0] = unchecked(hexes [1] | (hexes [0] << 4) |
+       (hexes [3] << 8) | (hexes [2] << 12) | (hexes [5] << 16) | (hexes [4]<<
+               20) | (hexes [7] << 24) | (hexes [6] << 28));
+            }
+            return true;
         }
-      }
-      if (str.Length > 3) {
-        h = (h * 16) + dehexchar(str[3]);
-        if (h < 0) {
-          return 0;
-        }
-      }
-      return h;
-    }
 
     /// <summary>Converts an HTML or CSS color string to a 4-element RGB
     /// array.</summary>
@@ -290,92 +1045,67 @@ namespace PeterO {
     /// .</param>
     /// <returns>An array containing four elements, with the red, green,
     /// blue, and alpha components of the same color, each from 0 to 255.
-    /// Returns (0, 0, 0, 0) if <paramref name='x'/> is null, empty, or has
-    /// invalid syntax.</returns>
-    public static double[] ColorToRgba(string x) {
-      Match e = null;
-      if (x == null) {
-        return new double[] { 0, 0, 0, 0 };
-      }
-      if ((e = execPattern(patterns[0], x)) != null) {
-        return new double[] {
-          GetHex(e.Groups[1].ToString()),
-          GetHex(e.Groups[2].ToString()),
-          GetHex(e.Groups[3].ToString()),
-          255 };
-      } else if ((e = execPattern(patterns[1], x)) != null) {
-        double r1 = parsePercent(e.Groups[1].ToString());
-        double r2 = parsePercent(e.Groups[2].ToString());
-        double r3 = parsePercent(e.Groups[3].ToString());
-        return (Double.IsNaN(r1) || Double.IsNaN(r2) ||
-          Double.IsNaN(r3)) ? (new double[] { 0, 0, 0, 0 }) : (new double[] { r1, r2, r3, 255
-                  });
-      } else if ((e = execPattern(patterns[2], x)) != null) {
-        double r1 = parseByte(e.Groups[1].ToString());
-        double r2 = parseByte(e.Groups[2].ToString());
-        double r3 = parseByte(e.Groups[3].ToString());
-        return (Double.IsNaN(r1) || Double.IsNaN(r2) ||
-          Double.IsNaN(r3)) ? (new double[] { 0, 0, 0, 0 }) : (new double[] { r1, r2, r3, 255
-                  });
-      } else if ((e = execPattern(patterns[3], x)) != null) {
-        double r1 = parsePercent(e.Groups[1].ToString());
-        double r2 = parsePercent(e.Groups[2].ToString());
-        double r3 = parsePercent(e.Groups[3].ToString());
-        double r4 = parseUnit(e.Groups[4].ToString());
-        return (Double.IsNaN(r1) || Double.IsNaN(r2) || Double.IsNaN(r3) ||
-             Double.IsNaN(r4)) ? (new double[] { 0, 0, 0, 0 }) : (new
-               double[] { r1, r2, r3, r4 });
-      } else if ((e = execPattern(patterns[4], x)) != null) {
-        double r1 = parseByte(e.Groups[1].ToString());
-        double r2 = parseByte(e.Groups[2].ToString());
-        double r3 = parseByte(e.Groups[3].ToString());
-        double r4 = parseUnit(e.Groups[4].ToString());
-        return (Double.IsNaN(r1) || Double.IsNaN(r2) || Double.IsNaN(r3) ||
-             Double.IsNaN(r4)) ? (new double[] { 0, 0, 0, 0 }) : (new
-               double[] { r1, r2, r3, r4 });
-      } else if ((e = execPattern(patterns[5], x)) != null) {
-        int a = GetHex(e.Groups[1].ToString());
-        int b = GetHex(e.Groups[2].ToString());
-        int c = GetHex(e.Groups[3].ToString());
-        return new double[] { a + (a << 4), b + (b << 4), c + (c << 4), 255 };
-      } else if ((e = execPattern(patterns[6], x)) != null) {  // hsl
-        double r1 = parseHue(e.Groups[1].ToString());
-        double r2 = parsePercent(e.Groups[3].ToString());
-        double r3 = parsePercent(e.Groups[2].ToString());
-        if (Double.IsNaN(r1) || Double.IsNaN(r2) || Double.IsNaN(r3)) {
-          return (new double[] { 0, 0, 0, 0 });
+    /// Returns null if "x" is null, empty, or has invalid
+    /// syntax.</returns>
+        public static double [] ColorToRgba (string x) {
+            if (String.IsNullOrEmpty (x)) {
+                return null;
+            }
+            x = TrimAsciiWhite (x);
+            x = ToLowerCaseAscii (x);
+            if (x.Equals ("transparent")) {
+                return new double [] { 0, 0, 0, 0 };
+            }
+            if (String.IsNullOrEmpty (x)) {
+                return null;
+            }
+            var hex = new int [1];
+            double [] ret = new double [4];
+            if (x [0] == '#') {
+                if (RgbHex (x, hex, true)) {
+                    return new double [] {
+                    (double)(hex[0] & 0xff),
+                    (double)((hex[0] >> 8) & 0xff),
+                    (double)((hex[0] >> 16) & 0xff),
+                (double)((hex[0] >> 24) & 0xff) };
+                }
+            }
+            if (x.Length > 3 && x.Substring (0, 3).Equals ("rgb")) {
+              return (ParseHeaderRgbnumber (x, 0, x.Length, ret) == x.Length||
+                ParseHeaderRgbpercent (x, 0, x.Length, ret) == x.Length ||
+                 ParseHeaderRgbanumber (x, 0, x.Length, ret) == x.Length ||
+    ParseHeaderRgbapercent (x, 0, x.Length, ret) == x.Length) ? (ret) :
+                   (null);
+            }
+            if (x.Length > 3 && x.Substring (0, 3).Equals ("hsl")) {
+                return (ParseHeaderHsl (x, 0, x.Length, ret) == x.Length ||
+           ParseHeaderHsla (x, 0, x.Length, ret) == x.Length) ? (ret) :
+               (null);
+            }
+            Dictionary<string, string> colors = ColorToRgbaSetUpNamedColors();
+            if (colors.ContainsKey (x)) {
+                string colorValue = colors [x];
+                if (colorValue != null) {
+                    RgbHex (colorValue, hex, false);
+                    return new double [] {
+                    (double)(hex[0] & 0xff),
+                    (double)((hex[0] >> 8) & 0xff),
+                    (double)((hex[0] >> 16) & 0xff),
+                (double)((hex[0] >> 24) & 0xff) };
+                }
+            }
+            return null;
         }
-        double[] rgb = HlsToRgb(new double[] { r1, r2, r3 });
-        return new double[] { rgb[0], rgb[1], rgb[2], 255 };
-      } else if ((e = execPattern(patterns[7], x)) != null) {  // hsla
-        double r1 = parseHue(e.Groups[1].ToString());
-        double r2 = parsePercent(e.Groups[3].ToString());
-        double r3 = parsePercent(e.Groups[2].ToString());
-        double r4 = parseUnit(e.Groups[4].ToString());
-        if (Double.IsNaN(r1) || Double.IsNaN(r2) || Double.IsNaN(r3) ||
-          Double.IsNaN(r4)) {
-          return (new double[] { 0, 0, 0, 0 });
-        }
-        double[] rgb = HlsToRgb(new double[] { r1, r2, r3 });
-        return new double[] { rgb[0], rgb[1], rgb[2], r4 };
-      } else {
-        x = x.ToLower(System.Globalization.CultureInfo.InvariantCulture);
-        if (x.IndexOf("grey") >= 0) {
-          x = x.Replace("grey", "gray");  // support "grey" variants
-        }
-        if (ColorToRgbaNamedColors.ContainsKey(x)) {
-          string ret = ColorToRgbaNamedColors[x];
-          if (ret != null) {
-            return ColorToRgba(ret);
-          }
-        }
-        return (x.Equals("transparent")) ? (new double[] { 0, 0, 0, 0
-                  }) : (new double[] { 0, 0, 0, 0 });
-      }
-    }
-    private static Dictionary<string, string> ColorToRgbaNamedColors =
-      ColorToRgbaSetUpNamedColors();
-    private static string[] nc = new string[] {
+
+    /// <summary>Not documented yet.</summary>
+        private static volatile Dictionary<string, string>
+              namedColorMap;
+
+    /// <summary>Not documented yet.</summary>
+        private static object syncRoot = new Object();
+
+    /// <summary>Not documented yet.</summary>
+        private static string [] nc = new string [] {
             "aliceblue", "f0f8ff", "antiquewhite", "faebd7", "aqua",
               "00ffff", "aquamarine", "7fffd4", "azure", "f0ffff", "beige",
   "f5f5dc",
@@ -427,12 +1157,12 @@ namespace PeterO {
             "palevioletred", "d87093",
           "papayawhip", "ffefd5", "peachpuff",
           "ffdab9", "peru", "cd853f", "pink", "ffc0cb", "plum", "dda0dd",
-            "powderblue", "b0e0e6", "purple", "800080", "rebeccapurple"
-              ,"663399" ,"red", "ff0000",
+            "powderblue", "b0e0e6", "purple", "800080", "rebeccapurple",
+  "663399", "red", "ff0000",
           "rosybrown", "bc8f8f", "royalblue", "4169e1",
           "saddlebrown", "8b4513", "salmon", "fa8072", "sandybrown",
-            "f4a460", "seagreen", "2e8b57", "seashell", "fff5ee", "sienna"
-            ,
+            "f4a460", "seagreen", "2e8b57", "seashell", "fff5ee", "sienna",
+
           "a0522d", "silver", "c0c0c0", "skyblue", "87ceeb", "slateblue",
             "6a5acd", "slategray", "708090", "snow", "fffafa",
             "springgreen",
@@ -442,67 +1172,53 @@ namespace PeterO {
             "ffffff",
           "whitesmoke", "f5f5f5", "yellow", "ffff00", "yellowgreen", "9acd32"
         };
-    private static Dictionary<string, string> ColorToRgbaSetUpNamedColors() {
-      Dictionary<string, string> ColorToRgbaNamedColors = new
-        Dictionary<string, string>();
-      for (int i = 0; i < nc.Length; i += 2) {
-        ColorToRgbaNamedColors.Add(nc[i], "#" + nc[i + 1]);
-      }
-      return ColorToRgbaNamedColors;
-    }
 
-    /// <summary>Converts HTML and CSS colors to Red/Green/Blue colors. Use
-    /// this function to parse colors from normal color picker controls:
-    /// http://peteroupc.github.com/colorpicker/.</summary>
-    /// <param name='x'>A string which names a color. The following lists
-    /// the kinds of colors accepted:
-    /// <list>
-    /// <item>HTML colors with the syntax <c>#RRGGBB</c>, where RR is the
-    /// hexadecimal form of the red component (00-FF), GG is the
-    /// hexadecimal green component, and BB is the hexadecimal blue
-    /// component. Example: #88DFE0.</item>
-    /// <item>HTML colors with the syntax <c>#RGB</c>, where R is the
-    /// hexadecimal form of the red component (0-F), G is the hexadecimal
-    /// green component, and B is the hexadecimal blue component. Example:
-    /// #8DE.</item>
-    /// <item>CSS colors with the syntax <c>rgb(red, green, blue)</c>,
-    /// where <c>red</c>, <c>green</c>, and <c>blue</c> are the red,
-    /// green, and blue components, respectively, either as a number
-    /// (0-255) or as a percent. Examples: <c>rgb(255, 0, 0)</c>,
-    /// <c>rgb(100%, 50%, 0%)</c>.</item>
-    /// <item>CSS colors with the syntax <c>hsl(hue, sat, light)</c>,
-    /// where <c>hue</c> is the hue component in degrees (0-360), and
-    /// <c>sat</c> and <c>light</c> are the saturation and lightness
-    /// components, respectively, as percents. Examples: <c>rgb(255, 0,
-    /// 0)</c>, <c>hsl(200, 50%, 50%)</c>.</item>
-    /// <item>CSS colors such as <c>red</c>, <c>green</c>, <c>white</c>,
-    /// <c>lemonchiffon</c>, <c>chocolate</c>, and so on, including the
-    /// newly added <c>rebeccapurple</c>.</item></list>
-    /// <para>For more information: Colors in HTML and How to Enter Them,
-    /// http://upokecenter.dreamhosters.com/articles/miscellaneous/how-to-enter-colors/</para>
-    /// .</param>
-    /// <returns>Returns a 4-element array containing the red, green, blue,
-    /// and alpha(each 0-255); the alpha is always 255. Returns null if the
-    /// string is not a valid color.</returns>
-    public static double[] ColorToRgb(string x) {
-      if (x == null) {
-        return null;
-      }
-      // don't include rgba or hsla
-      if (x.IndexOf("rgba") == 0 || x.IndexOf("hsla") == 0) {
-        return null;
-      }
-      double[] rgba = ColorToRgba(x);
-      if (rgba == null || rgba[3] == 0) {
-        return null;  // transparent
-      }
-      return new double[] { rgba[0], rgba[1], rgba[2], 255 };
-    }
-    private static string RoundedString(double r) {
-      r = Math.Round(r, MidpointRounding.AwayFromZero);
-      return Convert.ToString((double)r,
+    /// <summary>Not documented yet.</summary>
+    /// <returns>A Dictionary(string, string) object.</returns>
+     private static Dictionary<string, string> ColorToRgbaSetUpNamedColors
+          () {
+            if (namedColorMap == null) {
+                lock (syncRoot) {
+                    if (namedColorMap == null) {
+                    namedColorMap = new Dictionary<string, string>();
+                    for (int i = 0; i < nc.Length; i += 2) {
+                    namedColorMap.Add (nc [i], nc [i + 1]);
+                    }
+                    // "Grey" aliases for "gray" colors
+                    namedColorMap.Add ("grey", namedColorMap ["gray"]);
+                    namedColorMap.Add ("darkgrey", namedColorMap ["darkgray"]);
+          namedColorMap.Add ("darkslategrey", namedColorMap
+                    ["darkslategray"]);
+                    namedColorMap.Add ("dimgrey", namedColorMap ["dimgray"]);
+                  namedColorMap.Add ("lightgrey", namedColorMap
+                    ["lightgray"]);
+        {
+string objectTemp = "lightslategrey";
+string objectTemp2 = namedColorMap
+                    ["lightslategray"];
+namedColorMap.Add(objectTemp, objectTemp2);
+}
+                  {
+string objectTemp = "slategrey";
+string objectTemp2 = namedColorMap
+                    ["slategray"];
+namedColorMap.Add(objectTemp, objectTemp2);
+}
+                    }
+                }
+            }
+            return namedColorMap;
+        }
+
+    /// <summary>Not documented yet.</summary>
+    /// <param name='r'>Not documented yet.</param>
+    /// <returns>A string object.</returns>
+        private static string RoundedString (double r) {
+            r = Math.Round (r, MidpointRounding.AwayFromZero);
+            return Convert.ToString (
+        (double)r,
         System.Globalization.CultureInfo.InvariantCulture);
-    }
+        }
 
     /// <summary>Converts an RGBA color to a string, either rgb(...) or
     /// rgba(...) as applicable.</summary>
@@ -512,28 +1228,32 @@ namespace PeterO {
     /// <returns>A string object.</returns>
     /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='arrayRGB'/> is null.</exception>
-    public static string RgbToColor(double[] arrayRGB) {
-      if ((arrayRGB) == null) {
-        throw new ArgumentNullException("arrayRGB");
-      }
-      if (3 > arrayRGB.Length) {
-        throw new ArgumentException("3 more than " + arrayRGB.Length + " (3)");
-      }
-      // we should include the spaces
-   if ((arrayRGB.Length > 3 && (arrayRGB[3] == 255)) || arrayRGB.Length == 3) {
-        return "rgb(" + RoundedString(arrayRGB[0]) + ", " +
-            RoundedString(arrayRGB[1]) + ", " +
-            RoundedString(arrayRGB[2]) + ")";
-      } else {
-        double prec = Math.Round((arrayRGB[3] / 255.0) * 100.0,
+        public static string RgbToColor (double [] arrayRGB) {
+            if (arrayRGB == null) {
+                throw new ArgumentNullException ("arrayRGB");
+            }
+            if (arrayRGB.Length < 3) {
+       throw new ArgumentException ("3 more than " + arrayRGB.Length +
+                  " (3)");
+            }
+            // we should include the spaces
+     if ((arrayRGB.Length > 3 && (arrayRGB [3] == 255.0)) || arrayRGB.Length
+              == 3) {
+                return "rgb(" + RoundedString (arrayRGB [0]) + ", " +
+                    RoundedString (arrayRGB [1]) + ", " +
+                    RoundedString (arrayRGB [2]) + ")";
+            } else {
+                double prec = Math.Round (
+          (arrayRGB [3] / 255.0) * 100.0,
           MidpointRounding.AwayFromZero) / 100.0;
-        return "rgba(" + RoundedString(arrayRGB[0]) + ", " +
-            RoundedString(arrayRGB[1]) + ", " +
-            RoundedString(arrayRGB[2]) + ", " +
-            Convert.ToString((double)prec,
-            System.Globalization.CultureInfo.InvariantCulture) + ")";
-      }
-    }
+                return "rgba(" + RoundedString (arrayRGB [0]) + ", " +
+                    RoundedString (arrayRGB [1]) + ", " +
+                    RoundedString (arrayRGB [2]) + ", " +
+                    Convert.ToString (
+          (double)prec,
+          System.Globalization.CultureInfo.InvariantCulture) + ")";
+            }
+        }
 
     /// <summary>Converts a red-green-blue-alpha color to a string in CSS
     /// format.</summary>
@@ -550,20 +1270,23 @@ namespace PeterO {
     /// elements.</exception>
     /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='rgb'/> is null.</exception>
-    public static string RgbToColorDisplay(double[] rgb) {
-      if ((rgb) == null) {
-        throw new ArgumentNullException("rgb");
-      }
-      if (3 > rgb.Length) {
-        throw new ArgumentException("3 more than " + rgb.Length + " (3)");
-      }
-      if (rgb.Length == 3 || (rgb.Length > 3 && rgb[3] == 255)) {
-        return RgbToColorHtml(rgb);
-      } else {
-        return RgbToColor(rgb).Replace(" ", "");
-      }
-    }
-    private static string HexArray = "0123456789abcdef";
+        public static string RgbToColorDisplay (double [] rgb) {
+            if (rgb == null) {
+                throw new ArgumentNullException ("rgb");
+            }
+            if (rgb.Length < 3) {
+            throw new ArgumentException ("3 more than " + rgb.Length +
+                  " (3)");
+            }
+            if (rgb.Length == 3 || (rgb.Length > 3 && rgb [3] == 255)) {
+                return RgbToColorHtml (rgb);
+            } else {
+                return RgbToColor (rgb).Replace (" ", String.Empty);
+            }
+        }
+
+    /// <summary>Not documented yet.</summary>
+        private static string valueHexArray = "0123456789abcdef";
 
     /// <summary>Converts an RGBA color to an HTML color, (ex.
     /// #002233).&#x22;rgb&#x22; must contain at least 3 elements: the red,
@@ -572,56 +1295,30 @@ namespace PeterO {
     /// <returns>A string object.</returns>
     /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='rgb'/> is null.</exception>
-    public static string RgbToColorHtml(double[] rgb) {
-      if ((rgb) == null) {
-        throw new ArgumentNullException("rgb");
-      }
-      if (3 > rgb.Length) {
-        throw new ArgumentException("3 more than " + rgb.Length + " (3)");
-      }
-      var sb = new StringBuilder();
-      int c;
-      c = ((c = (int)Math.Round(rgb[0], MidpointRounding.AwayFromZero)) <
-        0 ? 0 : (c > 255 ? 255 : c));
-      sb.Append(HexArray[(c >> 4) & 15]);
-      sb.Append(HexArray[(c) & 15]);
-      c = ((c = (int)Math.Round(rgb[1], MidpointRounding.AwayFromZero)) <
-        0 ? 0 : (c > 255 ? 255 : c));
-      sb.Append(HexArray[(c >> 4) & 15]);
-      sb.Append(HexArray[(c) & 15]);
-      c = ((c = (int)Math.Round(rgb[2], MidpointRounding.AwayFromZero)) <
-        0 ? 0 : (c > 255 ? 255 : c));
-      sb.Append(HexArray[(c >> 4) & 15]);
-      sb.Append(HexArray[(c) & 15]);
-      return sb.ToString();
+        public static string RgbToColorHtml (double [] rgb) {
+            if (rgb == null) {
+                throw new ArgumentNullException ("rgb");
+            }
+            if (rgb.Length < 3) {
+             throw new ArgumentException ("3 more than " + rgb.Length +
+                  "(3)");
+            }
+            var sb = new StringBuilder();
+            int c;
+          c = ((c = (int)Math.Round (rgb [0],
+              MidpointRounding.AwayFromZero)) <
+              0 ? 0 : (c > 255 ? 255 : c));
+            sb.Append (valueHexArray [(c >> 4) & 15]);
+            sb.Append (valueHexArray [c & 15]);
+          c = ((c = (int)Math.Round (rgb [1],
+              MidpointRounding.AwayFromZero)) < 0 ? 0 : (c > 255 ? 255 : c));
+            sb.Append (valueHexArray [(c >> 4) & 15]);
+            sb.Append (valueHexArray [c & 15]);
+          c = ((c = (int)Math.Round (rgb [2],
+              MidpointRounding.AwayFromZero)) < 0 ? 0 : (c > 255 ? 255 : c));
+            sb.Append (valueHexArray [(c >> 4) & 15]);
+            sb.Append (valueHexArray [c & 15]);
+            return sb.ToString();
+        }
     }
-
-    /// <summary>Converts a red-green-blue color to a string in HTML
-    /// format.</summary>
-    /// <param name='r'>The red component of the color, from 0 to 255. As
-    /// with "g" and "b", this value is adjusted to 0 if it's less than 0
-    /// and to 255 if it's greater than 255.</param>
-    /// <param name='g'>The green component of the color, from 0 to
-    /// 255.</param>
-    /// <param name='b'>The blue component of the color, from 0 to
-    /// 255.</param>
-    /// <returns>A string in HTML color format: "#RRGGBB".</returns>
-    public static string RgbToColorHtml(double r, double g, double b) {
-      var sb = new StringBuilder();
-      int c;
-      c = ((c = (int)Math.Round(r, MidpointRounding.AwayFromZero)) < 0 ? 0 :
-          (c > 255 ? 255 : c));
-      sb.Append(HexArray[(c >> 4) & 15]);
-      sb.Append(HexArray[(c) & 15]);
-      c = ((c = (int)Math.Round(g, MidpointRounding.AwayFromZero)) < 0 ? 0 :
-          (c > 255 ? 255 : c));
-      sb.Append(HexArray[(c >> 4) & 15]);
-      sb.Append(HexArray[(c) & 15]);
-      c = ((c = (int)Math.Round(b, MidpointRounding.AwayFromZero)) < 0 ? 0 :
-          (c > 255 ? 255 : c));
-      sb.Append(HexArray[(c >> 4) & 15]);
-      sb.Append(HexArray[(c) & 15]);
-      return sb.ToString();
-    }
-  }
 }
