@@ -1,3 +1,4 @@
+*.Cache
 *.bat
 *.jar
 *.map
@@ -8,3 +9,4 @@ bin/
 encoding/
 obj/
 packages/
+target/

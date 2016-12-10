@@ -1,42 +1,42 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using PeterO;
-using NUnit.Framework;
+package com.upokecenter.test;
 
-namespace Test {
-  [TestFixture]
-  public partial class ColorValidatorTest {
-    [Test]
+import java.util.*;
+
+import com.upokecenter.util.*;
+import org.junit.Assert;
+import org.junit.Test;
+
+  public class ColorValidatorTest {
+    @Test
     public void TestColorHtmlToRgba() {
     }
-    [Test]
+    @Test
     public void TestHlsToRgb() {
     }
 
     private void AssertCssColor(
-  string str,
+  String str,
   double r,
   double g,
   double b,
   double a) {
       double[] rgba = ColorValidator.ColorToRgba(str);
       Assert.NotNull(rgba, str);
-    string valueSMsg = str + "\n" + rgba[0] + ", " + rgba[1] + ", " +
+    String valueSMsg = str + "\n" + rgba[0] + ", " + rgba[1] + ", " +
       rgba[2] + ", " +
  rgba[3];
-      Assert.AreEqual(r, rgba[0], 1.5, valueSMsg + ": red");
-      Assert.AreEqual(g, rgba[1], 1.5, valueSMsg + ": green");
-      Assert.AreEqual(b, rgba[2], 1.5, valueSMsg + ": blue");
-      Assert.AreEqual(a, rgba[3], 1.5, valueSMsg + ": alpha");
+      Assert.assertEquals(r, rgba[0], 1.5, valueSMsg + ": red");
+      Assert.assertEquals(g, rgba[1], 1.5, valueSMsg + ": green");
+      Assert.assertEquals(b, rgba[2], 1.5, valueSMsg + ": blue");
+      Assert.assertEquals(a, rgba[3], 1.5, valueSMsg + ": alpha");
     }
 
-    [Test]
+    @Test
     public void TestColorNames() {
       this.AssertCssColor("Red", 255, 0, 0, 255);
     }
 
-    [Test]
+    @Test
     public void TestColorToRgba() {
   this.AssertCssColor(
   "\t\t\tRGba(\n\r\r\r\r\n\r\n+3.3%\n\r,00041.7%\t\t \r\t \r\r,\r\n\r\r4%,000.8385969580)"
@@ -8071,29 +8071,28 @@ AssertCssColor(
  255.0);
 AssertCssColor("rgba(9602,+452,\n\t\t+25,\r\n\t14442\r \n\r)",255,255,25,255.0);
     }
-    [Test]
+    @Test
     public void TestRgbToColorDisplay() {
       try {
         ColorValidator.RgbToColorDisplay(null);
-        Assert.Fail("Should have failed");
-      } catch (ArgumentNullException) {
+        Assert.fail("Should have failed");
+      } catch (NullPointerException ex) {
 new Object();
 } catch (Exception ex) {
-        Assert.Fail(ex.ToString());
-        throw new InvalidOperationException(String.Empty, ex);
+        Assert.fail(ex.toString());
+        throw new IllegalStateException("", ex);
       }
     }
-    [Test]
+    @Test
     public void TestRgbToColorHtml() {
       try {
         ColorValidator.RgbToColorHtml(null);
-        Assert.Fail("Should have failed");
-      } catch (ArgumentNullException) {
+        Assert.fail("Should have failed");
+      } catch (NullPointerException ex) {
 new Object();
 } catch (Exception ex) {
-        Assert.Fail(ex.ToString());
-        throw new InvalidOperationException(String.Empty, ex);
+        Assert.fail(ex.toString());
+        throw new IllegalStateException("", ex);
       }
     }
   }
-}
