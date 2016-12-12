@@ -16,7 +16,7 @@ namespace PeterO {
         private static int SkipWhite(string str, int index, int endIndex) {
             while (index < endIndex) {
                 int c = str[index];
-                if (c == 32 || c == 13 || c == 9 || c == 10) {
+                if (c == 32 || c == 13 || c == 12 || c == 9 || c == 10) {
                     ++index;
                 } else {
                     break;
@@ -638,8 +638,6 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
     /// <summary>Not documented yet.</summary>
     /// <param name='str'>Not documented yet.</param>
     /// <returns>A string object.</returns>
-        [System.ComponentModel.EditorBrowsable
-          (System.ComponentModel.EditorBrowsableState.Never)]
         private static string ToLowerCaseAscii(string str) {
             if (str == null) {
                 return null;
@@ -672,8 +670,6 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
     /// <summary>Not documented yet.</summary>
     /// <param name='str'>Not documented yet.</param>
     /// <returns>A string object.</returns>
-        [System.ComponentModel.EditorBrowsable
-          (System.ComponentModel.EditorBrowsableState.Never)]
         private static string TrimAsciiWhite(string str) {
             if (String.IsNullOrEmpty(str)) {
                 return str;
@@ -784,8 +780,8 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
     /// newly added <c>rebeccapurple</c>.</item>
     /// <item>The value <c>transparent</c>, meaning transparent
     /// black.</item></list>
-    /// <para>For more information: Colors in HTML and How to Enter Them,
-    /// http://upokecenter.dreamhosters.com/articles/miscellaneous/how-to-enter-colors/</para>
+    /// <para>For more information:
+    /// https://peteroupc.github.io/html3dutil/tutorial-colors.html</para>
     /// .</param>
     /// <returns>An array containing four elements, with the red, green,
     /// blue, and alpha components of the same color, each from 0 to 255.
@@ -948,8 +944,6 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
     /// <summary>Not documented yet.</summary>
     /// <param name='r'>Not documented yet.</param>
     /// <returns>A string object.</returns>
-        [System.ComponentModel.EditorBrowsable
-          (System.ComponentModel.EditorBrowsableState.Never)]
         private static string RoundedString(double r) {
             r = Math.Round(r, MidpointRounding.AwayFromZero);
             return Convert.ToString(
@@ -965,8 +959,6 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
     /// <returns>A string object.</returns>
     /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='arrayRGB'/> is null.</exception>
-        [System.ComponentModel.EditorBrowsable
-          (System.ComponentModel.EditorBrowsableState.Never)]
         public static string RgbToColor(double[] arrayRGB) {
             if (arrayRGB == null) {
                 throw new ArgumentNullException("arrayRGB");
@@ -1007,8 +999,6 @@ RoundedString(arrayRGB[2]) + ")" ; } else { double prec = Math.Round(
     /// elements.</exception>
     /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='rgb'/> is null.</exception>
-        [System.ComponentModel.EditorBrowsable
-          (System.ComponentModel.EditorBrowsableState.Never)]
         public static string RgbToColorDisplay(double[] rgb) {
             if (rgb == null) {
                 throw new ArgumentNullException("rgb");
@@ -1034,9 +1024,7 @@ RoundedString(arrayRGB[2]) + ")" ; } else { double prec = Math.Round(
     /// <returns>A string object.</returns>
     /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='rgb'/> is null.</exception>
-        [System.ComponentModel.EditorBrowsable
-          (System.ComponentModel.EditorBrowsableState.Never)]
-        public static string RgbToColorHtml(double[] rgb) {
+       public static string RgbToColorHtml(double[] rgb) {
             if (rgb == null) {
                 throw new ArgumentNullException("rgb");
             }

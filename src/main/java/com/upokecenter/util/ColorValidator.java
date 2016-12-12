@@ -19,7 +19,7 @@ private ColorValidator() {
         private static int SkipWhite(String str, int index, int endIndex) {
             while (index < endIndex) {
                 int c = str.charAt(index);
-                if (c == 32 || c == 13 || c == 9 || c == 10) {
+                if (c == 32 || c == 13 || c == 12 || c == 9 || c == 10) {
                     ++index;
                 } else {
                     break;
@@ -657,7 +657,6 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
      * @param str Not documented yet.
      * @return A string object.
      */
-
         private static String ToLowerCaseAscii(String str) {
             if (str == null) {
                 return null;
@@ -692,7 +691,6 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
      * @param str Not documented yet.
      * @return A string object.
      */
-
         private static String TrimAsciiWhite(String str) {
             if (((str) == null || (str).length() == 0)) {
                 return str;
@@ -797,10 +795,8 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
      * {@code red}, {@code green}, {@code white}, {@code lemonchiffon},
      * {@code chocolate}, and so on, including the newly added {@code
      * rebeccapurple}.</li> <li>The value {@code transparent}, meaning
-     * transparent black.</li></ul> <p>For more information: Colors in HTML
-     * and How to Enter Them,
-  * http://upokecenter.dreamhosters.com/articles/miscellaneous/how-to-enter-colors/</p>
-     * .
+     * transparent black.</li></ul> <p>For more information:
+     * https://peteroupc.github.io/html3dutil/tutorial-colors.html</p> .
      * @return An array containing four elements, with the red, green, blue, and
      * alpha components of the same color, each from 0 to 255. Returns null
      * if {@code x} is null, empty, or has invalid syntax.
@@ -972,7 +968,6 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
      * @param r Not documented yet.
      * @return A string object.
      */
-
         private static String RoundedString(double r) {
             r = StrictMath.round(r);
             return Double.toString((double)r);
@@ -986,7 +981,6 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
      * @return A string object.
      * @throws NullPointerException The parameter {@code arrayRGB} is null.
      */
-
         public static String RgbToColor(double[] arrayRGB) {
             if (arrayRGB == null) {
                 throw new NullPointerException("arrayRGB");
@@ -1022,7 +1016,6 @@ RoundedString(arrayRGB[2]) + ")" ; } else { double prec = StrictMath.round(
      * fewer than three elements.
      * @throws NullPointerException The parameter {@code rgb} is null.
      */
-
         public static String RgbToColorDisplay(double[] rgb) {
             if (rgb == null) {
                 throw new NullPointerException("rgb");
@@ -1050,8 +1043,7 @@ RoundedString(arrayRGB[2]) + ")" ; } else { double prec = StrictMath.round(
      * @return A string object.
      * @throws NullPointerException The parameter {@code rgb} is null.
      */
-
-        public static String RgbToColorHtml(double[] rgb) {
+       public static String RgbToColorHtml(double[] rgb) {
             if (rgb == null) {
                 throw new NullPointerException("rgb");
             }

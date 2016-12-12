@@ -74,10 +74,8 @@ Converts an HTML or CSS color string to a 4-element RGB array.
  50%)</code>, <code>hsla(20, 80%, 90%, 0.5)</code>.</li> <li>CSS colors such as
  <code>red</code>, <code>green</code>, <code>white</code>, <code>lemonchiffon</code>,
  <code>chocolate</code>, and so on, including the newly added <code>rebeccapurple</code>.</li> <li>The value <code>transparent</code>, meaning
- transparent black.</li></ul> <p>For more information: Colors in HTML
- and How to Enter Them,
- http://upokecenter.dreamhosters.com/articles/miscellaneous/how-to-enter-colors/</p>
- .
+ transparent black.</li></ul> <p>For more information:
+ https://peteroupc.github.io/html3dutil/tutorial-colors.html</p> .
 
 **Returns:**
 
