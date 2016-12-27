@@ -559,7 +559,11 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
                     ++index;
                     if ((tmp = ParseInteger(str, index, endIndex, false)) !=
                     index) {
-                    return tmp;
+           int tmp2 = 0;
+      return (index < endIndex && (str.charAt(index) == 0x45 || str.charAt(index) == 0x65)
+             &&
+   (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index + 1) ?
+       tmp2 : tmp;
                     } else {
                     return index - 1;
                     }
@@ -575,7 +579,11 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
                     ++index;
                     if ((tmp = ParseInteger(str, index, endIndex, false)) !=
                     index) {
-                    return tmp;
+           int tmp2 = 0;
+      return (index < endIndex && (str.charAt(index) == 0x45 || str.charAt(index) == 0x65)
+             &&
+   (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index + 1) ?
+       tmp2 : tmp;
                     } else {
                     return indexStart;
                     }
@@ -930,8 +938,7 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
      * Not documented yet.
      * @return A Dictionary(string, string) object.
      */
-        private static HashMap<String, String> ColorToRgbaSetUpNamedColors(
-) {
+      private static HashMap<String, String> ColorToRgbaSetUpNamedColors() {
             if (namedColorMap == null) {
                 synchronized (syncRoot) {
                     if (namedColorMap == null) {
@@ -1052,9 +1059,7 @@ RoundedString(arrayRGB[2]) + ")" ; } else { double prec = StrictMath.round(
                     "(3)");
             }
             StringBuilder sb = new StringBuilder();
-            int c; c = ((
-  c = (
-  int)StrictMath.round(
+            int c; c = ((c = (int)StrictMath.round(
   rgb[0])) < 0 ? 0 : (c > 255 ? 255 : c));
             sb.append(valueHexArray.charAt((c >> 4) & 15));
             sb.append(valueHexArray.charAt(c & 15)); c = ((

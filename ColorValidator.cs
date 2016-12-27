@@ -544,7 +544,11 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
                     ++index;
                     if ((tmp = ParseInteger(str, index, endIndex, false)) !=
                     index) {
-                    return tmp;
+           var tmp2 = 0;
+      return (index < endIndex && (str[index] == 0x45 || str[index] == 0x65)
+             &&
+   (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index + 1) ?
+       tmp2 : tmp;
                     } else {
                     return index - 1;
                     }
@@ -560,7 +564,11 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
                     ++index;
                     if ((tmp = ParseInteger(str, index, endIndex, false)) !=
                     index) {
-                    return tmp;
+           var tmp2 = 0;
+      return (index < endIndex && (str[index] == 0x45 || str[index] == 0x65)
+             &&
+   (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index + 1) ?
+       tmp2 : tmp;
                     } else {
                     return indexStart;
                     }
@@ -908,8 +916,8 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
 
     /// <summary>Not documented yet.</summary>
     /// <returns>A Dictionary(string, string) object.</returns>
-        private static Dictionary<string, string> ColorToRgbaSetUpNamedColors(
-  ) {
+      private static Dictionary<string, string>
+          ColorToRgbaSetUpNamedColors() {
             if (namedColorMap == null) {
                 lock (syncRoot) {
                     if (namedColorMap == null) {
@@ -1033,9 +1041,7 @@ RoundedString(arrayRGB[2]) + ")" ; } else { double prec = Math.Round(
                     "(3)");
             }
             var sb = new StringBuilder();
-            int c; c = ((
-  c = (
-  int)Math.Round(
+            int c; c = ((c = (int)Math.Round(
   rgb[0],
   MidpointRounding.AwayFromZero)) < 0 ? 0 : (c > 255 ? 255 : c));
             sb.Append(valueHexArray[(c >> 4) & 15]);
