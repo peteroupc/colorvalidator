@@ -595,9 +595,8 @@ namespace PeterO {
       int index,
       int endIndex) {
             double num = StringToNumber(str, index, endIndex);
-            return Double.IsNaN(num) ? (-1) :
-	        ((num < 0) ? 0 :
-	      ((num > 100) ? 100 : num));
+            return Double.IsNaN(num) ? (-1) : ((num < 0) ? 0 :
+        ((num > 100) ? 100 : num));
         }
 
     /// <summary>Not documented yet.</summary>
@@ -1005,14 +1004,11 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
             return null;
         }
 
-    /// <summary>Not documented yet.</summary>
         private static volatile Dictionary<string, string>
               namedColorMap;
 
-    /// <summary>Not documented yet.</summary>
         private static object syncRoot = new Object();
 
-    /// <summary>Not documented yet.</summary>
         private static string[] nc = new string[] {
             "aliceblue", "f0f8ff", "antiquewhite", "faebd7", "aqua",
               "00ffff", "aquamarine", "7fffd4", "azure", "f0ffff", "beige",
@@ -1081,8 +1077,6 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
           "whitesmoke", "f5f5f5", "yellow", "ffff00", "yellowgreen", "9acd32"
         };
 
-    /// <summary>Not documented yet.</summary>
-    /// <returns>A Dictionary(string, string) object.</returns>
         private static Dictionary<string, string>
             ColorToRgbaSetUpNamedColors() {
             if (namedColorMap == null) {
@@ -1116,10 +1110,6 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
             return namedColorMap;
         }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='r'>The parameter <paramref name='r'/> is not
-    /// documented yet.</param>
-    /// <returns>A string object.</returns>
         private static string RoundedString(double r) {
             r = Math.Round(r, MidpointRounding.AwayFromZero);
             return Convert.ToString(
@@ -1148,9 +1138,9 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
                   arrayRGB.Length == 3) {
                 return "rgb(" + RoundedString(arrayRGB[0]) + ", " +
                     RoundedString(arrayRGB[1]) + ", " +
-RoundedString(arrayRGB[2]) + ")" ; 
-			  } 
-			  double prec = Math.Round(
+RoundedString(arrayRGB[2]) + ")";
+        }
+        double prec = Math.Round(
   (arrayRGB[3] / 255.0) * 100.0,
   MidpointRounding.AwayFromZero) / 100.0;
                 return "rgba(" + RoundedString(arrayRGB[0]) + ", " +

@@ -568,8 +568,8 @@ private ColorValidator() {
       int index,
       int endIndex) {
             double num = StringToNumber(str, index, endIndex);
-            return Double.isNaN(num) ? (-1) :((num < 0) ? 0 :((num > 100) ?
-              100 : num));
+            return Double.isNaN(num) ? (-1) : ((num < 0) ? 0 :
+        ((num > 100) ? 100 : num));
         }
 
     /**
@@ -964,20 +964,11 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
             return null;
         }
 
-    /**
-     * Not documented yet.
-     */
         private static volatile HashMap<String, String>
               namedColorMap;
 
-    /**
-     * Not documented yet.
-     */
         private static Object syncRoot = new Object();
 
-    /**
-     * Not documented yet.
-     */
         private static String[] nc = new String[] {
             "aliceblue", "f0f8ff", "antiquewhite", "faebd7", "aqua",
               "00ffff", "aquamarine", "7fffd4", "azure", "f0ffff", "beige",
@@ -1046,10 +1037,6 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
           "whitesmoke", "f5f5f5", "yellow", "ffff00", "yellowgreen", "9acd32"
         };
 
-    /**
-     * Not documented yet.
-     * @return A Dictionary(string, string) object.
-     */
         private static HashMap<String, String> ColorToRgbaSetUpNamedColors() {
             if (namedColorMap == null) {
                 synchronized (syncRoot) {
@@ -1082,11 +1069,6 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
             return namedColorMap;
         }
 
-    /**
-     * Not documented yet.
-     * @param r The parameter {@code r} is not documented yet.
-     * @return A string object.
-     */
         private static String RoundedString(double r) {
             r = StrictMath.round(r);
             return Double.toString((double)r);
@@ -1113,13 +1095,14 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
                   arrayRGB.length == 3) {
                 return "rgb(" + RoundedString(arrayRGB[0]) + ", " +
                     RoundedString(arrayRGB[1]) + ", " +
-RoundedString(arrayRGB[2]) + ")" ; } else { double prec = StrictMath.round(
-  (arrayRGB [3] / 255.0) * 100.0) / 100.0;
+RoundedString(arrayRGB[2]) + ")";
+        }
+        double prec = StrictMath.round(
+  (arrayRGB[3] / 255.0) * 100.0) / 100.0;
                 return "rgba(" + RoundedString(arrayRGB[0]) + ", " +
                     RoundedString(arrayRGB[1]) + ", " +
                     RoundedString(arrayRGB[2]) + ", " +
                     Double.toString((double)prec) + ")";
-            }
         }
 
     /**
