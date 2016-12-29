@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using PeterO;
 using NUnit.Framework;
+using PeterO;
 
 namespace Test {
   [TestFixture]

@@ -2,9 +2,9 @@ package com.upokecenter.test;
 
 import java.util.*;
 
-import com.upokecenter.util.*;
 import org.junit.Assert;
 import org.junit.Test;
+import com.upokecenter.util.*;
 
   public class ColorValidatorTest {
     @Test
@@ -21,7 +21,9 @@ import org.junit.Test;
   double b,
   double a) {
       double[] rgba = ColorValidator.ColorToRgba(str);
-      if ((rgba) == null)Assert.fail(str);
+      if ((rgba) == null) {
+ Assert.fail(str);
+ }
     String valueSMsg = str + "\n" + rgba[0] + ", " + rgba[1] + ", " +
       rgba[2] + ", " +
  rgba[3];

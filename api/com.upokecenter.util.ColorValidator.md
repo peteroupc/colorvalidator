@@ -32,11 +32,11 @@ Converts a color in the HLS color space to red/green/blue. Hue can range
 
 **Parameters:**
 
-* <code>hueval</code> - Not documented yet.
+* <code>hueval</code> - The parameter <code>hueval</code> is not documented yet.
 
-* <code>lum</code> - Not documented yet.
+* <code>lum</code> - The parameter <code>lum</code> is not documented yet.
 
-* <code>sat</code> - Not documented yet. (3).
+* <code>sat</code> - The parameter <code>sat</code> is not documented yet.
 
 **Returns:**
 
@@ -75,7 +75,7 @@ Converts an HTML or CSS color string to a 4-element RGB array.
  <code>red</code>, <code>green</code>, <code>white</code>, <code>lemonchiffon</code>,
  <code>chocolate</code>, and so on, including the newly added <code>rebeccapurple</code>.</li> <li>The value <code>transparent</code>, meaning
  transparent black.</li></ul> <p>For more information:
- [https://peteroupc.github.io/html3dutil/tutorial-colors.html</p>](https://peteroupc.github.io/html3dutil/tutorial-colors.html</p>) .
+ https://peteroupc.github.io/html3dutil/tutorial-colors.html</p> .
 
 **Returns:**
 

@@ -13,6 +13,14 @@ namespace PeterO {
     /// <summary>Contains methods to convert between different
     /// representations of HTML and CSS colors.</summary>
     public static class ColorValidator {
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
+    /// <returns>A 32-bit signed integer.</returns>
         private static int SkipWhite(string str, int index, int endIndex) {
             while (index < endIndex) {
                 int c = str[index];
@@ -26,9 +34,12 @@ namespace PeterO {
         }
 
     /// <summary>Not documented yet.</summary>
-    /// <param name='str'>Not documented yet.</param>
-    /// <param name='index'>Not documented yet.</param>
-    /// <param name='endIndex'>Not documented yet. (3).</param>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
     /// <returns>A 32-bit signed integer.</returns>
         private static int ParseComma(string str, int index, int endIndex) {
             int indexStart = index;
@@ -41,9 +52,12 @@ namespace PeterO {
         }
 
     /// <summary>Not documented yet.</summary>
-    /// <param name='str'>Not documented yet.</param>
-    /// <param name='index'>Not documented yet.</param>
-    /// <param name='endIndex'>Not documented yet. (3).</param>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
     /// <returns>A 32-bit signed integer.</returns>
         private static int ParseEndparen(string str, int index, int endIndex) {
             int indexStart = index;
@@ -56,16 +70,19 @@ namespace PeterO {
         }
 
     /// <summary>Not documented yet.</summary>
-    /// <param name='str'>Not documented yet.</param>
-    /// <param name='index'>Not documented yet.</param>
-    /// <param name='endIndex'>Not documented yet. (3).</param>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
     /// <param name='ret'>A 64-bit floating-point number.</param>
     /// <returns>A 32-bit signed integer.</returns>
-    private static int Hsl(
-  string str,
-  int index,
-  int endIndex,
-  double[] ret) {
+        private static int Hsl(
+      string str,
+      int index,
+      int endIndex,
+      double[] ret) {
             int indexStart, indexTemp, tx2;
             indexStart = index;
             indexTemp = index;
@@ -110,24 +127,48 @@ namespace PeterO {
             return indexTemp;
         }
 
-    private static int Pct(
-        string str,
-        int index,
-        int endIndex,
-        double[] ret,
-        int retIndex) {
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
+    /// <param name='ret'>The parameter <paramref name='ret'/> is not
+    /// documented yet.</param>
+    /// <param name='retIndex'>The parameter <paramref name='retIndex'/> is
+    /// not documented yet.</param>
+    /// <returns>A 32-bit signed integer.</returns>
+        private static int Pct(
+            string str,
+            int index,
+            int endIndex,
+            double[] ret,
+            int retIndex) {
             int tx2 = ParseNumber(str, index, endIndex);
             if (tx2 != index) {
                 if (tx2 >= endIndex || str[tx2] != 37) {
- return index;
-}
+                    return index;
+                }
                 ret[retIndex] = StringToPercent(str, index, tx2) * 255.0 /
                     100.0;
-        return tx2 + 1;
+                return tx2 + 1;
             }
             return tx2;
         }
 
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
+    /// <param name='ret'>The parameter <paramref name='ret'/> is not
+    /// documented yet.</param>
+    /// <param name='retIndex'>The parameter <paramref name='retIndex'/> is
+    /// not documented yet.</param>
+    /// <returns>A 32-bit signed integer.</returns>
         private static int ParseByte(
         string str,
         int index,
@@ -141,6 +182,18 @@ namespace PeterO {
             return tx2;
         }
 
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
+    /// <param name='ret'>The parameter <paramref name='ret'/> is not
+    /// documented yet.</param>
+    /// <param name='retIndex'>The parameter <paramref name='retIndex'/> is
+    /// not documented yet.</param>
+    /// <returns>A 32-bit signed integer.</returns>
         private static int ParseHue(
         string str,
         int index,
@@ -158,38 +211,74 @@ namespace PeterO {
             }
         }
 
-    private static int SepByte(
-        string str,
-        int index,
-        int endIndex,
-        double[] ret,
-        int retIndex) {
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
+    /// <param name='ret'>The parameter <paramref name='ret'/> is not
+    /// documented yet.</param>
+    /// <param name='retIndex'>The parameter <paramref name='retIndex'/> is
+    /// not documented yet.</param>
+    /// <returns>A 32-bit signed integer.</returns>
+        private static int SepByte(
+            string str,
+            int index,
+            int endIndex,
+            double[] ret,
+            int retIndex) {
             int tx2 = ParseComma(str, index, endIndex);
              return (tx2 != index) ? ParseByte(
-     str,
-     tx2,
-     endIndex,
-     ret,
-     retIndex) : tx2;
+    str,
+    tx2,
+    endIndex,
+    ret,
+    retIndex) : tx2;
         }
 
-    private static int SepPct(
-        string str,
-        int index,
-        int endIndex,
-        double[] ret,
-        int retIndex) {
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
+    /// <param name='ret'>The parameter <paramref name='ret'/> is not
+    /// documented yet.</param>
+    /// <param name='retIndex'>The parameter <paramref name='retIndex'/> is
+    /// not documented yet.</param>
+    /// <returns>A 32-bit signed integer.</returns>
+        private static int SepPct(
+            string str,
+            int index,
+            int endIndex,
+            double[] ret,
+            int retIndex) {
             int tx2 = ParseComma(str, index, endIndex);
             return (tx2 != index) ?
               Pct(str, tx2, endIndex, ret, retIndex) : tx2;
         }
 
-    private static int SepAlpha(
-        string str,
-        int index,
-        int endIndex,
-        double[] ret,
-        int retIndex) {
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
+    /// <param name='ret'>The parameter <paramref name='ret'/> is not
+    /// documented yet.</param>
+    /// <param name='retIndex'>The parameter <paramref name='retIndex'/> is
+    /// not documented yet.</param>
+    /// <returns>A 32-bit signed integer.</returns>
+        private static int SepAlpha(
+            string str,
+            int index,
+            int endIndex,
+            double[] ret,
+            int retIndex) {
             int tx2 = ParseComma(str, index, endIndex);
             if (tx2 != index) {
                 index = tx2;
@@ -202,16 +291,19 @@ namespace PeterO {
         }
 
     /// <summary>Not documented yet.</summary>
-    /// <param name='str'>Not documented yet.</param>
-    /// <param name='index'>Not documented yet.</param>
-    /// <param name='endIndex'>Not documented yet. (3).</param>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
     /// <param name='ret'>A 64-bit floating-point number.</param>
     /// <returns>A 32-bit signed integer.</returns>
-    private static int Hsla(
-    string str,
-    int index,
-    int endIndex,
-    double[] ret) {
+        private static int Hsla(
+        string str,
+        int index,
+        int endIndex,
+        double[] ret) {
             int indexStart, indexTemp, tx2;
             indexStart = index;
             indexTemp = index;
@@ -261,16 +353,19 @@ namespace PeterO {
         }
 
     /// <summary>Not documented yet.</summary>
-    /// <param name='str'>Not documented yet.</param>
-    /// <param name='index'>Not documented yet.</param>
-    /// <param name='endIndex'>Not documented yet. (3).</param>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
     /// <param name='result'>A 64-bit floating-point number.</param>
     /// <returns>A 32-bit signed integer.</returns>
-    private static int Rgba(
-        string str,
-        int index,
-        int endIndex,
-        double[] result) {
+        private static int Rgba(
+            string str,
+            int index,
+            int endIndex,
+            double[] result) {
             int indexStart, tx2;
             indexStart = index;
             index = SkipWhite(str, index, endIndex);
@@ -372,11 +467,21 @@ namespace PeterO {
             return index;
         }
 
-    private static int Rgb(
-       string str,
-       int index,
-       int endIndex,
-       double[] result) {
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
+    /// <param name='result'>The parameter <paramref name='result'/> is not
+    /// documented yet.</param>
+    /// <returns>A 32-bit signed integer.</returns>
+        private static int Rgb(
+           string str,
+           int index,
+           int endIndex,
+           double[] result) {
             int indexStart, tx2;
             indexStart = index;
             index = SkipWhite(str, index, endIndex);
@@ -458,6 +563,14 @@ namespace PeterO {
             }
         }
 
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
+    /// <returns>A 64-bit floating-point number.</returns>
         private static double StringToNumber(
      string str,
      int index,
@@ -469,15 +582,32 @@ namespace PeterO {
   System.Globalization.CultureInfo.InvariantCulture);
         }
 
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
+    /// <returns>A 64-bit floating-point number.</returns>
         private static double StringToPercent(
       string str,
       int index,
       int endIndex) {
             double num = StringToNumber(str, index, endIndex);
-            return Double.IsNaN(num) ? (-1) :((num < 0) ? 0 :((num > 100) ?
-              100 : num));
+            return Double.IsNaN(num) ? (-1) :
+	        ((num < 0) ? 0 :
+	      ((num > 100) ? 100 : num));
         }
 
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
+    /// <returns>A 64-bit floating-point number.</returns>
         private static double StringToAlpha(
     string str,
     int index,
@@ -486,16 +616,32 @@ namespace PeterO {
             return (num < 0) ? 0 : ((num > 1.0) ? 255 : num * 255.0);
         }
 
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
+    /// <returns>A 64-bit floating-point number.</returns>
         private static double StringToHue(
     string str,
     int index,
     int endIndex) {
             double num = StringToNumber(str, index, endIndex);
              return (Double.IsNaN(num) || Double.IsPositiveInfinity(num) ||
-            Double.IsNegativeInfinity(num)) ? 0 : (((num % 360) + 360) %
-            360);
+           Double.IsNegativeInfinity(num)) ? 0 : (((num % 360) + 360) %
+           360);
         }
 
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
+    /// <returns>A 64-bit floating-point number.</returns>
         private static double StringToByte(
     string str,
     int index,
@@ -505,9 +651,12 @@ namespace PeterO {
         }
 
     /// <summary>Not documented yet.</summary>
-    /// <param name='str'>Not documented yet.</param>
-    /// <param name='index'>Not documented yet.</param>
-    /// <param name='endIndex'>Not documented yet. (3).</param>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
     /// <param name='posneg'>A Boolean object.</param>
     /// <returns>A 32-bit signed integer.</returns>
         private static int ParseInteger(
@@ -529,9 +678,12 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
         }
 
     /// <summary>Not documented yet.</summary>
-    /// <param name='str'>Not documented yet.</param>
-    /// <param name='index'>Not documented yet.</param>
-    /// <param name='endIndex'>Not documented yet. (3).</param>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='index'>The parameter <paramref name='index'/> is not
+    /// documented yet.</param>
+    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
+    /// not documented yet.</param>
     /// <returns>A 32-bit signed integer.</returns>
         private static int ParseNumber(string str, int index, int endIndex) {
             int indexStart = index;
@@ -544,11 +696,11 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
                     ++index;
                     if ((tmp = ParseInteger(str, index, endIndex, false)) !=
                     index) {
-           var tmp2 = 0;
-      return (index < endIndex && (str[index] == 0x45 || str[index] == 0x65)
-             &&
-   (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index + 1) ?
-       tmp2 : tmp;
+                    var tmp2 = 0;
+       return (index < endIndex && (str[index] == 0x45 || str[index] ==
+  0x65) && (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index +
+
+                1) ? tmp2 : tmp;
                     } else {
                     return index - 1;
                     }
@@ -564,11 +716,11 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
                     ++index;
                     if ((tmp = ParseInteger(str, index, endIndex, false)) !=
                     index) {
-           var tmp2 = 0;
-      return (index < endIndex && (str[index] == 0x45 || str[index] == 0x65)
-             &&
-   (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index + 1) ?
-       tmp2 : tmp;
+                    var tmp2 = 0;
+       return (index < endIndex && (str[index] == 0x45 || str[index] ==
+  0x65) && (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index +
+
+                1) ? tmp2 : tmp;
                     } else {
                     return indexStart;
                     }
@@ -581,9 +733,12 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
     /// Hue can range from 0 to 360, and lightness and saturation can range
     /// from 0 to 255. If lightness and saturation are out of range, those
     /// values are clamped to fit that range.</summary>
-    /// <param name='hueval'>Not documented yet.</param>
-    /// <param name='lum'>Not documented yet.</param>
-    /// <param name='sat'>Not documented yet. (3).</param>
+    /// <param name='hueval'>The parameter <paramref name='hueval'/> is not
+    /// documented yet.</param>
+    /// <param name='lum'>The parameter <paramref name='lum'/> is not
+    /// documented yet.</param>
+    /// <param name='sat'>The parameter <paramref name='sat'/> is not
+    /// documented yet.</param>
     /// <returns>An array containing three elements, with the red, green,
     /// and blue components of the same color, each from 0 to
     /// 255.</returns>
@@ -615,25 +770,27 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
             if (hue >= 360) {
                 hue -= 360;
             }
-            r = (hue < 60) ? (a + (b - a) * hue / 60) : ((hue < 180) ? b :
-              ((hue < 240) ? (a + (b - a) * (240 - hue) / 60) : a));
+            r = (hue < 60) ? (a + ((b - a) * hue / 60)) : ((hue < 180) ? b :
+              ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
             hue = hueval;
-            g = (hue < 60) ? (a + (b - a) * hue / 60) : ((hue < 180) ? b :
-                    ((hue < 240) ? (a + (b - a) * (240 - hue) / 60) : a));
+            g = (hue < 60) ? (a + ((b - a) * hue / 60)) : ((hue < 180) ? b :
+              ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
             hue = hueval - 120;
             if (hue < 0) {
                 hue += 360;
             }
-            bl = (hue < 60) ? (a + (b - a) * hue / 60) : ((hue < 180) ? b :
-              ((hue < 240) ? (a + (b - a) * (240 - hue) / 60) : a));
+            bl = (hue < 60) ? (a + ((b - a) * hue / 60)) : ((hue < 180) ? b :
+              ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
             return new double[] {
                 (r < 0 ? 0 : (r > 255 ? 255 : r)),
         (g < 0 ? 0 : (g > 255 ? 255 : g)),
-        (bl < 0 ? 0 : (bl > 255 ? 255 : bl))};
+        (bl < 0 ? 0 : (bl > 255 ? 255 : bl))
+      };
         }
 
     /// <summary>Not documented yet.</summary>
-    /// <param name='c'>Not documented yet.</param>
+    /// <param name='c'>The parameter <paramref name='c'/> is not
+    /// documented yet.</param>
     /// <returns>A 32-bit signed integer.</returns>
         private static int dehexchar(int c) {
             if (c >= '0' && c <= '9') {
@@ -644,7 +801,8 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
         }
 
     /// <summary>Not documented yet.</summary>
-    /// <param name='str'>Not documented yet.</param>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
     /// <returns>A string object.</returns>
         private static string ToLowerCaseAscii(string str) {
             if (str == null) {
@@ -676,7 +834,8 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
         }
 
     /// <summary>Not documented yet.</summary>
-    /// <param name='str'>Not documented yet.</param>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
     /// <returns>A string object.</returns>
         private static string TrimAsciiWhite(string str) {
             if (String.IsNullOrEmpty(str)) {
@@ -713,6 +872,14 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
             return String.Empty;
         }
 
+    /// <summary>Not documented yet.</summary>
+    /// <param name='str'>The parameter <paramref name='str'/> is not
+    /// documented yet.</param>
+    /// <param name='hexval'>The parameter <paramref name='hexval'/> is not
+    /// documented yet.</param>
+    /// <param name='hash'>The parameter <paramref name='hash'/> is not
+    /// documented yet.</param>
+    /// <returns>A Boolean object.</returns>
         private static bool RgbHex(string str, double[] hexval, bool hash) {
             if (String.IsNullOrEmpty(str)) {
                 return false;
@@ -815,19 +982,19 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
             }
             if (x.Length > 4 && x.Substring(0, 4).Equals("rgb(")) {
                  return (Rgb(x, 4, x.Length, ret) == x.Length) ?
-                 ret : null;
+                ret : null;
             }
             if (x.Length > 5 && x.Substring(0, 5).Equals("rgba(")) {
                  return (Rgba(x, 5, x.Length, ret) == x.Length) ?
-                  ret : null;
+                 ret : null;
             }
             if (x.Length > 4 && x.Substring(0, 4).Equals("hsl(")) {
                  return (Hsl(x, 4, x.Length, ret) == x.Length) ?
-                 ret : null;
+                ret : null;
             }
             if (x.Length > 5 && x.Substring(0, 5).Equals("hsla(")) {
                  return (Hsla(x, 5, x.Length, ret) == x.Length) ?
-                  ret : null;
+                 ret : null;
             }
             Dictionary<string, string> colors = ColorToRgbaSetUpNamedColors();
             if (colors.ContainsKey(x)) {
@@ -916,8 +1083,8 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
 
     /// <summary>Not documented yet.</summary>
     /// <returns>A Dictionary(string, string) object.</returns>
-      private static Dictionary<string, string>
-          ColorToRgbaSetUpNamedColors() {
+        private static Dictionary<string, string>
+            ColorToRgbaSetUpNamedColors() {
             if (namedColorMap == null) {
                 lock (syncRoot) {
                     if (namedColorMap == null) {
@@ -934,14 +1101,14 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
 
                     ncm.Add("dimgrey", ncm["dimgray"]);
                     ncm.Add(
-            "lightgrey",
-            ncm["lightgray"]);
+                "lightgrey",
+                ncm["lightgray"]);
                     ncm.Add(
-            "lightslategrey",
-            ncm["lightslategray"]);
+                "lightslategrey",
+                ncm["lightslategray"]);
                     ncm.Add(
-            "slategrey",
-            ncm["slategray"]);
+                "slategrey",
+                ncm["slategray"]);
                     namedColorMap = ncm;
                     }
                 }
@@ -950,7 +1117,8 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
         }
 
     /// <summary>Not documented yet.</summary>
-    /// <param name='r'>Not documented yet.</param>
+    /// <param name='r'>The parameter <paramref name='r'/> is not
+    /// documented yet.</param>
     /// <returns>A string object.</returns>
         private static string RoundedString(double r) {
             r = Math.Round(r, MidpointRounding.AwayFromZero);
@@ -980,8 +1148,10 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
                   arrayRGB.Length == 3) {
                 return "rgb(" + RoundedString(arrayRGB[0]) + ", " +
                     RoundedString(arrayRGB[1]) + ", " +
-RoundedString(arrayRGB[2]) + ")" ; } else { double prec = Math.Round(
-  (arrayRGB [3] / 255.0) * 100.0,
+RoundedString(arrayRGB[2]) + ")" ; 
+			  } 
+			  double prec = Math.Round(
+  (arrayRGB[3] / 255.0) * 100.0,
   MidpointRounding.AwayFromZero) / 100.0;
                 return "rgba(" + RoundedString(arrayRGB[0]) + ", " +
                     RoundedString(arrayRGB[1]) + ", " +
@@ -989,7 +1159,6 @@ RoundedString(arrayRGB[2]) + ")" ; } else { double prec = Math.Round(
                     Convert.ToString(
           (double)prec,
           System.Globalization.CultureInfo.InvariantCulture) + ")";
-            }
         }
 
     /// <summary>Converts a red-green-blue-alpha color to a string in CSS
@@ -1032,7 +1201,7 @@ RoundedString(arrayRGB[2]) + ")" ; } else { double prec = Math.Round(
     /// <returns>A string object.</returns>
     /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='rgb'/> is null.</exception>
-       public static string RgbToColorHtml(double[] rgb) {
+        public static string RgbToColorHtml(double[] rgb) {
             if (rgb == null) {
                 throw new ArgumentNullException("rgb");
             }
@@ -1041,23 +1210,13 @@ RoundedString(arrayRGB[2]) + ")" ; } else { double prec = Math.Round(
                     "(3)");
             }
             var sb = new StringBuilder();
-            int c; c = ((c = (int)Math.Round(
-  rgb[0],
-  MidpointRounding.AwayFromZero)) < 0 ? 0 : (c > 255 ? 255 : c));
-            sb.Append(valueHexArray[(c >> 4) & 15]);
-            sb.Append(valueHexArray[c & 15]); c = ((
-      c = (
-      int)Math.Round(
-      rgb[1],
-      MidpointRounding.AwayFromZero)) < 0 ? 0 : (c > 255 ? 255 : c));
-            sb.Append(valueHexArray[(c >> 4) & 15]);
-            sb.Append(valueHexArray[c & 15]); c = ((
-      c = (
-      int)Math.Round(
-      rgb[2],
-      MidpointRounding.AwayFromZero)) < 0 ? 0 : (c > 255 ? 255 : c));
-            sb.Append(valueHexArray[(c >> 4) & 15]);
-            sb.Append(valueHexArray[c & 15]);
+            int c, d;
+            for (var i = 0; i < 3; ++i) {
+                d = (int)Math.Round(rgb[i], MidpointRounding.AwayFromZero);
+                c = d < 0 ? 0 : (d > 255 ? 255 : d);
+                sb.Append(valueHexArray[(c >> 4) & 15]);
+                sb.Append(valueHexArray[c & 15]);
+            }
             return sb.ToString();
         }
     }

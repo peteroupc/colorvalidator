@@ -16,6 +16,13 @@ import java.util.*;
     public final class ColorValidator {
 private ColorValidator() {
 }
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
+     * @return A 32-bit signed integer.
+     */
         private static int SkipWhite(String str, int index, int endIndex) {
             while (index < endIndex) {
                 int c = str.charAt(index);
@@ -30,9 +37,9 @@ private ColorValidator() {
 
     /**
      * Not documented yet.
-     * @param str Not documented yet.
-     * @param index Not documented yet.
-     * @param endIndex Not documented yet. (3).
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
      * @return A 32-bit signed integer.
      */
         private static int ParseComma(String str, int index, int endIndex) {
@@ -47,9 +54,9 @@ private ColorValidator() {
 
     /**
      * Not documented yet.
-     * @param str Not documented yet.
-     * @param index Not documented yet.
-     * @param endIndex Not documented yet. (3).
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
      * @return A 32-bit signed integer.
      */
         private static int ParseEndparen(String str, int index, int endIndex) {
@@ -64,17 +71,17 @@ private ColorValidator() {
 
     /**
      * Not documented yet.
-     * @param str Not documented yet.
-     * @param index Not documented yet.
-     * @param endIndex Not documented yet. (3).
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
      * @param ret A 64-bit floating-point number.
      * @return A 32-bit signed integer.
      */
-    private static int Hsl(
-  String str,
-  int index,
-  int endIndex,
-  double[] ret) {
+        private static int Hsl(
+      String str,
+      int index,
+      int endIndex,
+      double[] ret) {
             int indexStart, indexTemp, tx2;
             indexStart = index;
             indexTemp = index;
@@ -119,24 +126,42 @@ private ColorValidator() {
             return indexTemp;
         }
 
-    private static int Pct(
-        String str,
-        int index,
-        int endIndex,
-        double[] ret,
-        int retIndex) {
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
+     * @param ret The parameter {@code ret} is not documented yet.
+     * @param retIndex The parameter {@code retIndex} is not documented yet.
+     * @return A 32-bit signed integer.
+     */
+        private static int Pct(
+            String str,
+            int index,
+            int endIndex,
+            double[] ret,
+            int retIndex) {
             int tx2 = ParseNumber(str, index, endIndex);
             if (tx2 != index) {
                 if (tx2 >= endIndex || str.charAt(tx2) != 37) {
- return index;
-}
+                    return index;
+                }
                 ret[retIndex] = StringToPercent(str, index, tx2) * 255.0 /
                     100.0;
-        return tx2 + 1;
+                return tx2 + 1;
             }
             return tx2;
         }
 
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
+     * @param ret The parameter {@code ret} is not documented yet.
+     * @param retIndex The parameter {@code retIndex} is not documented yet.
+     * @return A 32-bit signed integer.
+     */
         private static int ParseByte(
         String str,
         int index,
@@ -150,6 +175,15 @@ private ColorValidator() {
             return tx2;
         }
 
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
+     * @param ret The parameter {@code ret} is not documented yet.
+     * @param retIndex The parameter {@code retIndex} is not documented yet.
+     * @return A 32-bit signed integer.
+     */
         private static int ParseHue(
         String str,
         int index,
@@ -167,38 +201,65 @@ private ColorValidator() {
             }
         }
 
-    private static int SepByte(
-        String str,
-        int index,
-        int endIndex,
-        double[] ret,
-        int retIndex) {
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
+     * @param ret The parameter {@code ret} is not documented yet.
+     * @param retIndex The parameter {@code retIndex} is not documented yet.
+     * @return A 32-bit signed integer.
+     */
+        private static int SepByte(
+            String str,
+            int index,
+            int endIndex,
+            double[] ret,
+            int retIndex) {
             int tx2 = ParseComma(str, index, endIndex);
              return (tx2 != index) ? ParseByte(
-     str,
-     tx2,
-     endIndex,
-     ret,
-     retIndex) : tx2;
+    str,
+    tx2,
+    endIndex,
+    ret,
+    retIndex) : tx2;
         }
 
-    private static int SepPct(
-        String str,
-        int index,
-        int endIndex,
-        double[] ret,
-        int retIndex) {
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
+     * @param ret The parameter {@code ret} is not documented yet.
+     * @param retIndex The parameter {@code retIndex} is not documented yet.
+     * @return A 32-bit signed integer.
+     */
+        private static int SepPct(
+            String str,
+            int index,
+            int endIndex,
+            double[] ret,
+            int retIndex) {
             int tx2 = ParseComma(str, index, endIndex);
             return (tx2 != index) ?
               Pct(str, tx2, endIndex, ret, retIndex) : tx2;
         }
 
-    private static int SepAlpha(
-        String str,
-        int index,
-        int endIndex,
-        double[] ret,
-        int retIndex) {
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
+     * @param ret The parameter {@code ret} is not documented yet.
+     * @param retIndex The parameter {@code retIndex} is not documented yet.
+     * @return A 32-bit signed integer.
+     */
+        private static int SepAlpha(
+            String str,
+            int index,
+            int endIndex,
+            double[] ret,
+            int retIndex) {
             int tx2 = ParseComma(str, index, endIndex);
             if (tx2 != index) {
                 index = tx2;
@@ -212,17 +273,17 @@ private ColorValidator() {
 
     /**
      * Not documented yet.
-     * @param str Not documented yet.
-     * @param index Not documented yet.
-     * @param endIndex Not documented yet. (3).
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
      * @param ret A 64-bit floating-point number.
      * @return A 32-bit signed integer.
      */
-    private static int Hsla(
-    String str,
-    int index,
-    int endIndex,
-    double[] ret) {
+        private static int Hsla(
+        String str,
+        int index,
+        int endIndex,
+        double[] ret) {
             int indexStart, indexTemp, tx2;
             indexStart = index;
             indexTemp = index;
@@ -273,17 +334,17 @@ private ColorValidator() {
 
     /**
      * Not documented yet.
-     * @param str Not documented yet.
-     * @param index Not documented yet.
-     * @param endIndex Not documented yet. (3).
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
      * @param result A 64-bit floating-point number.
      * @return A 32-bit signed integer.
      */
-    private static int Rgba(
-        String str,
-        int index,
-        int endIndex,
-        double[] result) {
+        private static int Rgba(
+            String str,
+            int index,
+            int endIndex,
+            double[] result) {
             int indexStart, tx2;
             indexStart = index;
             index = SkipWhite(str, index, endIndex);
@@ -385,11 +446,19 @@ private ColorValidator() {
             return index;
         }
 
-    private static int Rgb(
-       String str,
-       int index,
-       int endIndex,
-       double[] result) {
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
+     * @param result The parameter {@code result} is not documented yet.
+     * @return A 32-bit signed integer.
+     */
+        private static int Rgb(
+           String str,
+           int index,
+           int endIndex,
+           double[] result) {
             int indexStart, tx2;
             indexStart = index;
             index = SkipWhite(str, index, endIndex);
@@ -471,6 +540,13 @@ private ColorValidator() {
             }
         }
 
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
+     * @return A 64-bit floating-point number.
+     */
         private static double StringToNumber(
      String str,
      int index,
@@ -480,6 +556,13 @@ private ColorValidator() {
     Double.parseDouble(str2);
         }
 
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
+     * @return A 64-bit floating-point number.
+     */
         private static double StringToPercent(
       String str,
       int index,
@@ -489,6 +572,13 @@ private ColorValidator() {
               100 : num));
         }
 
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
+     * @return A 64-bit floating-point number.
+     */
         private static double StringToAlpha(
     String str,
     int index,
@@ -497,16 +587,30 @@ private ColorValidator() {
             return (num < 0) ? 0 : ((num > 1.0) ? 255 : num * 255.0);
         }
 
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
+     * @return A 64-bit floating-point number.
+     */
         private static double StringToHue(
     String str,
     int index,
     int endIndex) {
             double num = StringToNumber(str, index, endIndex);
              return (Double.isNaN(num) || ((num) == Double.POSITIVE_INFINITY) ||
-            ((num) == Double.NEGATIVE_INFINITY)) ? 0 : (((num % 360) + 360) %
-            360);
+           ((num) == Double.NEGATIVE_INFINITY)) ? 0 : (((num % 360) + 360) %
+           360);
         }
 
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
+     * @return A 64-bit floating-point number.
+     */
         private static double StringToByte(
     String str,
     int index,
@@ -517,9 +621,9 @@ private ColorValidator() {
 
     /**
      * Not documented yet.
-     * @param str Not documented yet.
-     * @param index Not documented yet.
-     * @param endIndex Not documented yet. (3).
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
      * @param posneg A Boolean object.
      * @return A 32-bit signed integer.
      */
@@ -543,9 +647,9 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
 
     /**
      * Not documented yet.
-     * @param str Not documented yet.
-     * @param index Not documented yet.
-     * @param endIndex Not documented yet. (3).
+     * @param str The parameter {@code str} is not documented yet.
+     * @param index The parameter {@code index} is not documented yet.
+     * @param endIndex The parameter {@code endIndex} is not documented yet.
      * @return A 32-bit signed integer.
      */
         private static int ParseNumber(String str, int index, int endIndex) {
@@ -559,11 +663,11 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
                     ++index;
                     if ((tmp = ParseInteger(str, index, endIndex, false)) !=
                     index) {
-           int tmp2 = 0;
-      return (index < endIndex && (str.charAt(index) == 0x45 || str.charAt(index) == 0x65)
-             &&
-   (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index + 1) ?
-       tmp2 : tmp;
+                    int tmp2 = 0;
+       return (index < endIndex && (str.charAt(index) == 0x45 || str.charAt(index) ==
+  0x65) && (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index +
+
+                1) ? tmp2 : tmp;
                     } else {
                     return index - 1;
                     }
@@ -579,11 +683,11 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
                     ++index;
                     if ((tmp = ParseInteger(str, index, endIndex, false)) !=
                     index) {
-           int tmp2 = 0;
-      return (index < endIndex && (str.charAt(index) == 0x45 || str.charAt(index) == 0x65)
-             &&
-   (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index + 1) ?
-       tmp2 : tmp;
+                    int tmp2 = 0;
+       return (index < endIndex && (str.charAt(index) == 0x45 || str.charAt(index) ==
+  0x65) && (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index +
+
+                1) ? tmp2 : tmp;
                     } else {
                     return indexStart;
                     }
@@ -597,9 +701,9 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
      * from 0 to 360, and lightness and saturation can range from 0 to 255.
      * If lightness and saturation are out of range, those values are
      * clamped to fit that range.
-     * @param hueval Not documented yet.
-     * @param lum Not documented yet.
-     * @param sat Not documented yet. (3).
+     * @param hueval The parameter {@code hueval} is not documented yet.
+     * @param lum The parameter {@code lum} is not documented yet.
+     * @param sat The parameter {@code sat} is not documented yet.
      * @return An array containing three elements, with the red, green, and blue
      * components of the same color, each from 0 to 255.
      * @throws NullPointerException The parameter "hls" is null.
@@ -630,26 +734,27 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
             if (hue >= 360) {
                 hue -= 360;
             }
-            r = (hue < 60) ? (a + (b - a) * hue / 60) : ((hue < 180) ? b :
-              ((hue < 240) ? (a + (b - a) * (240 - hue) / 60) : a));
+            r = (hue < 60) ? (a + ((b - a) * hue / 60)) : ((hue < 180) ? b :
+              ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
             hue = hueval;
-            g = (hue < 60) ? (a + (b - a) * hue / 60) : ((hue < 180) ? b :
-                    ((hue < 240) ? (a + (b - a) * (240 - hue) / 60) : a));
+            g = (hue < 60) ? (a + ((b - a) * hue / 60)) : ((hue < 180) ? b :
+              ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
             hue = hueval - 120;
             if (hue < 0) {
                 hue += 360;
             }
-            bl = (hue < 60) ? (a + (b - a) * hue / 60) : ((hue < 180) ? b :
-              ((hue < 240) ? (a + (b - a) * (240 - hue) / 60) : a));
+            bl = (hue < 60) ? (a + ((b - a) * hue / 60)) : ((hue < 180) ? b :
+              ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
             return new double[] {
                 (r < 0 ? 0 : (r > 255 ? 255 : r)),
         (g < 0 ? 0 : (g > 255 ? 255 : g)),
-        (bl < 0 ? 0 : (bl > 255 ? 255 : bl))};
+        (bl < 0 ? 0 : (bl > 255 ? 255 : bl))
+      };
         }
 
     /**
      * Not documented yet.
-     * @param c Not documented yet.
+     * @param c The parameter {@code c} is not documented yet.
      * @return A 32-bit signed integer.
      */
         private static int dehexchar(int c) {
@@ -662,7 +767,7 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
 
     /**
      * Not documented yet.
-     * @param str Not documented yet.
+     * @param str The parameter {@code str} is not documented yet.
      * @return A string object.
      */
         private static String ToLowerCaseAscii(String str) {
@@ -696,7 +801,7 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
 
     /**
      * Not documented yet.
-     * @param str Not documented yet.
+     * @param str The parameter {@code str} is not documented yet.
      * @return A string object.
      */
         private static String TrimAsciiWhite(String str) {
@@ -734,6 +839,13 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
             return "";
         }
 
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is not documented yet.
+     * @param hexval The parameter {@code hexval} is not documented yet.
+     * @param hash The parameter {@code hash} is not documented yet.
+     * @return A Boolean object.
+     */
         private static boolean RgbHex(String str, double[] hexval, boolean hash) {
             if (((str) == null || (str).length() == 0)) {
                 return false;
@@ -829,19 +941,19 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
             }
             if (x.length() > 4 && x.substring(0,4).equals("rgb(")) {
                  return (Rgb(x, 4, x.length(), ret) == x.length()) ?
-                 ret : null;
+                ret : null;
             }
             if (x.length() > 5 && x.substring(0,5).equals("rgba(")) {
                  return (Rgba(x, 5, x.length(), ret) == x.length()) ?
-                  ret : null;
+                 ret : null;
             }
             if (x.length() > 4 && x.substring(0,4).equals("hsl(")) {
                  return (Hsl(x, 4, x.length(), ret) == x.length()) ?
-                 ret : null;
+                ret : null;
             }
             if (x.length() > 5 && x.substring(0,5).equals("hsla(")) {
                  return (Hsla(x, 5, x.length(), ret) == x.length()) ?
-                  ret : null;
+                 ret : null;
             }
             HashMap<String, String> colors = ColorToRgbaSetUpNamedColors();
             if (colors.containsKey(x)) {
@@ -938,7 +1050,7 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
      * Not documented yet.
      * @return A Dictionary(string, string) object.
      */
-      private static HashMap<String, String> ColorToRgbaSetUpNamedColors() {
+        private static HashMap<String, String> ColorToRgbaSetUpNamedColors() {
             if (namedColorMap == null) {
                 synchronized (syncRoot) {
                     if (namedColorMap == null) {
@@ -955,14 +1067,14 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
 
                     ncm.put("dimgrey", ncm.get("dimgray"));
                     ncm.put(
-            "lightgrey",
-            ncm.get("lightgray"));
+                "lightgrey",
+                ncm.get("lightgray"));
                     ncm.put(
-            "lightslategrey",
-            ncm.get("lightslategray"));
+                "lightslategrey",
+                ncm.get("lightslategray"));
                     ncm.put(
-            "slategrey",
-            ncm.get("slategray"));
+                "slategrey",
+                ncm.get("slategray"));
                     namedColorMap = ncm;
                     }
                 }
@@ -972,7 +1084,7 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
 
     /**
      * Not documented yet.
-     * @param r Not documented yet.
+     * @param r The parameter {@code r} is not documented yet.
      * @return A string object.
      */
         private static String RoundedString(double r) {
@@ -1050,7 +1162,7 @@ RoundedString(arrayRGB[2]) + ")" ; } else { double prec = StrictMath.round(
      * @return A string object.
      * @throws NullPointerException The parameter {@code rgb} is null.
      */
-       public static String RgbToColorHtml(double[] rgb) {
+        public static String RgbToColorHtml(double[] rgb) {
             if (rgb == null) {
                 throw new NullPointerException("rgb");
             }
@@ -1059,20 +1171,13 @@ RoundedString(arrayRGB[2]) + ")" ; } else { double prec = StrictMath.round(
                     "(3)");
             }
             StringBuilder sb = new StringBuilder();
-            int c; c = ((c = (int)StrictMath.round(
-  rgb[0])) < 0 ? 0 : (c > 255 ? 255 : c));
-            sb.append(valueHexArray.charAt((c >> 4) & 15));
-            sb.append(valueHexArray.charAt(c & 15)); c = ((
-      c = (
-      int)StrictMath.round(
-      rgb[1])) < 0 ? 0 : (c > 255 ? 255 : c));
-            sb.append(valueHexArray.charAt((c >> 4) & 15));
-            sb.append(valueHexArray.charAt(c & 15)); c = ((
-      c = (
-      int)StrictMath.round(
-      rgb[2])) < 0 ? 0 : (c > 255 ? 255 : c));
-            sb.append(valueHexArray.charAt((c >> 4) & 15));
-            sb.append(valueHexArray.charAt(c & 15));
+            int c, d;
+            for (int i = 0; i < 3; ++i) {
+                d = (int)StrictMath.round(rgb[i]);
+                c = d < 0 ? 0 : (d > 255 ? 255 : d);
+                sb.append(valueHexArray.charAt((c >> 4) & 15));
+                sb.append(valueHexArray.charAt(c & 15));
+            }
             return sb.toString();
         }
     }
