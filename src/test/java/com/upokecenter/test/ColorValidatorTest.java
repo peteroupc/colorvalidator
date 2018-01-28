@@ -7386,7 +7386,7 @@ this.AssertCssColor(item, 5, 2, 0, 33.15);
         ColorValidator.RgbToColorDisplay(null);
         Assert.fail("Should have failed");
       } catch (NullPointerException ex) {
-new Object();
+// NOTE: Intentionally empty
 } catch (Exception ex) {
         Assert.fail(ex.toString());
         throw new IllegalStateException("", ex);
@@ -7398,7 +7398,7 @@ new Object();
         ColorValidator.RgbToColorHtml(null);
         Assert.fail("Should have failed");
       } catch (NullPointerException ex) {
-new Object();
+// NOTE: Intentionally empty
 } catch (Exception ex) {
         Assert.fail(ex.toString());
         throw new IllegalStateException("", ex);

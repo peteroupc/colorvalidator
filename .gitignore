@@ -2,11 +2,13 @@
 *.bat
 *.jar
 *.map
+*.snk
 *.suo
 *.userprefs
 .nuget/
 bin/
 encoding/
+encodingfldr/
 obj/
 packages/
 target/

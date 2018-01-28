@@ -7384,7 +7384,7 @@ this.AssertCssColor(item, 5, 2, 0, 33.15);
         ColorValidator.RgbToColorDisplay(null);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-new Object();
+// NOTE: Intentionally empty
 } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -7396,7 +7396,7 @@ new Object();
         ColorValidator.RgbToColorHtml(null);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-new Object();
+// NOTE: Intentionally empty
 } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
