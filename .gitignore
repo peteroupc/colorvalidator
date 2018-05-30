@@ -2,6 +2,7 @@
 *.bat
 *.jar
 *.map
+*.pyc
 *.snk
 *.suo
 *.userprefs
