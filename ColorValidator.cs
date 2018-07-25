@@ -1127,7 +1127,7 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
     /// name='arrayRGB'/> is null.</exception>
         public static string RgbToColor(double[] arrayRGB) {
             if (arrayRGB == null) {
-                throw new ArgumentNullException("arrayRGB");
+                throw new ArgumentNullException(nameof(arrayRGB));
             }
             if (arrayRGB.Length < 3) {
                 throw new ArgumentException("3 more than " + arrayRGB.Length +
@@ -1168,7 +1168,7 @@ RoundedString(arrayRGB[2]) + ")";
     /// name='rgb'/> is null.</exception>
         public static string RgbToColorDisplay(double[] rgb) {
             if (rgb == null) {
-                throw new ArgumentNullException("rgb");
+                throw new ArgumentNullException(nameof(rgb));
             }
             if (rgb.Length < 3) {
                 throw new ArgumentException("3 more than " + rgb.Length +
@@ -1193,7 +1193,7 @@ RoundedString(arrayRGB[2]) + ")";
     /// name='rgb'/> is null.</exception>
         public static string RgbToColorHtml(double[] rgb) {
             if (rgb == null) {
-                throw new ArgumentNullException("rgb");
+                throw new ArgumentNullException(nameof(rgb));
             }
             if (rgb.Length < 3) {
                 throw new ArgumentException("3 more than " + rgb.Length +
