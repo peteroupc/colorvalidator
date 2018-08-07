@@ -2,11 +2,13 @@
 *.bat
 *.jar
 *.map
+*.nupkg
 *.pyc
 *.snk
 *.suo
 *.userprefs
 .nuget/
+.vs/
 bin/
 encoding/
 encodingfldr/
