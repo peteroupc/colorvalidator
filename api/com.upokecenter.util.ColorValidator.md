@@ -104,6 +104,8 @@ Converts an RGBA color to a string, either rgb(...) or rgba(...) as
 
 * <code>NullPointerException</code> - The parameter <code>arrayRGB</code> is null.
 
+* <code>IllegalArgumentException</code>
+
 ### RgbToColorDisplay
     public static String RgbToColorDisplay​(double[] rgb)
 Converts a red-green-blue-alpha color to a string in CSS format.
@@ -144,3 +146,5 @@ Converts an RGBA color to an HTML color, (ex. #002233).&#x22;rgb&#x22; must
 **Throws:**
 
 * <code>NullPointerException</code> - The parameter <code>rgb</code> is null.
+
+* <code>IllegalArgumentException</code>
