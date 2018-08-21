@@ -78,7 +78,7 @@ Converts an HTML or CSS color string to a 4-element RGB array.
  <code>chocolate</code>, and so on, including the newly added <code>
  rebeccapurple</code>.</li> <li>The value <code>transparent</code>, meaning
  transparent black.</li></ul> <p>For more information:
- [https://peteroupc.github.io/html3dutil/tutorial-colors.html</p>](https://peteroupc.github.io/html3dutil/tutorial-colors.html</p>) .
+ https://peteroupc.github.io/html3dutil/tutorial-colors.html</p> .
 
 **Returns:**
 
@@ -103,8 +103,6 @@ Converts an RGBA color to a string, either rgb(...) or rgba(...) as
 **Throws:**
 
 * <code>NullPointerException</code> - The parameter <code>arrayRGB</code> is null.
-
-* <code>IllegalArgumentException</code>
 
 ### RgbToColorDisplay
     public static String RgbToColorDisplay​(double[] rgb)
@@ -146,5 +144,3 @@ Converts an RGBA color to an HTML color, (ex. #002233).&#x22;rgb&#x22; must
 **Throws:**
 
 * <code>NullPointerException</code> - The parameter <code>rgb</code> is null.
-
-* <code>IllegalArgumentException</code>

@@ -1125,7 +1125,6 @@ if (posneg && index < endIndex && ((str[index] == 43) || (str[index] == 45))) {
     /// <returns>A string object.</returns>
     /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='arrayRGB'/> is null.</exception>
-    /// <exception cref='ArgumentException'/>
         public static string RgbToColor(double[] arrayRGB) {
             if (arrayRGB == null) {
                 throw new ArgumentNullException(nameof(arrayRGB));
@@ -1192,7 +1191,6 @@ RoundedString(arrayRGB[2]) + ")";
     /// <returns>A string object.</returns>
     /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='rgb'/> is null.</exception>
-    /// <exception cref='ArgumentException'/>
         public static string RgbToColorHtml(double[] rgb) {
             if (rgb == null) {
                 throw new ArgumentNullException(nameof(rgb));

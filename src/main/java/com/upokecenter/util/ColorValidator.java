@@ -1081,7 +1081,6 @@ if (posneg && index < endIndex && ((str.charAt(index) == 43) || (str.charAt(inde
      * and blue (each from 0-255), with optional alpha (0-255).
      * @return A string object.
      * @throws NullPointerException The parameter {@code arrayRGB} is null.
-     * @throws IllegalArgumentException
      */
         public static String RgbToColor(double[] arrayRGB) {
             if (arrayRGB == null) {
@@ -1145,7 +1144,6 @@ RoundedString(arrayRGB[2]) + ")";
      * @param rgb A double[] object.
      * @return A string object.
      * @throws NullPointerException The parameter {@code rgb} is null.
-     * @throws IllegalArgumentException
      */
         public static String RgbToColorHtml(double[] rgb) {
             if (rgb == null) {
