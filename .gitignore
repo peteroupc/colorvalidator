@@ -1,5 +1,6 @@
 *.Cache
 *.bat
+*.cache
 *.jar
 *.map
 *.nupkg

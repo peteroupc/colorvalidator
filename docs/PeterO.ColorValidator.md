@@ -4,78 +4,78 @@
 
 Contains methods to convert between different representations of HTML and CSS colors.
 
-### ColorHtmlToRgba
+### Member Summary
+* <code>[ColorToRgba(string)](#ColorToRgba_string)</code> - Converts an HTML or CSS color string to a 4-element RGB array.
+* <code>[HlsToRgb(double, double, double)](#HlsToRgb_double_double_double)</code> - Converts a color in the HLS color space to red/green/blue.
+* <code>[RgbToColor(double[])](#RgbToColor_double)</code> - Converts an RGBA color to a string, either rgb(.
+* <code>[RgbToColorDisplay(double[])](#RgbToColorDisplay_double)</code> - Converts a red-green-blue-alpha color to a string in CSS format.
+* <code>[RgbToColorHtml(double[])](#RgbToColorHtml_double)</code> - Converts an RGBA color to an HTML color, (ex.
 
-    public static double[] ColorHtmlToRgba(
-        string x);
-
-Converts HTML colors to Red/Green/Blue colors.
-
-<b>Parameters:</b>
-
- * <i>x</i>: A string in the form of an HTML color or CSS color name (ex. #223344, #234, or royalblue).All strings are treated as valid.Returns a 4-element array containing the red, green, blue, and alpha(each 0-255); the alpha is always 255..
-
-<b>Return Value:</b>
-
-An array of four elements, each from 0 to 255: the red, green, blue, and alpha components, in that order.
-
-<b>Exceptions:</b>
-
- * System.ArgumentNullException:
-The parameter  <i>x</i>
-is null.
-
-### ColorToRgb
-
-    public static double[] ColorToRgb(
-        string x);
-
-Converts HTML colors to Red/Green/Blue colors. Use this function to parse colors from normal color picker controls: [http://peteroupc.github.com/colorpicker/.](http://peteroupc.github.com/colorpicker/.)
-
-<b>Parameters:</b>
-
- * <i>x</i>: A string object.
-
-<b>Return Value:</b>
-
-A double[] object.
-
+<a id="ColorToRgba_string"></a>
 ### ColorToRgba
 
     public static double[] ColorToRgba(
         string x);
 
-Not documented yet.
+Converts an HTML or CSS color string to a 4-element RGB array.
 
 <b>Parameters:</b>
 
- * <i>x</i>: Not documented yet.
+ * <i>x</i>: A string which names a color. The following lists the kinds of colors accepted:
+
+ * HTML colors with the syntax  `#RRGGBB` , where RR is the hexadecimal form of the red component (00-FF), GG is the hexadecimal green component, and BB is the hexadecimal blue component. Example: #88DFE0.
+
+ * HTML colors with the syntax  `#RGB` , where R is the hexadecimal form of the red component (0-F), G is the hexadecimal green component, and B is the hexadecimal blue component. Example: #8DE.
+
+ * CSS colors with the syntax  `rgb(red, green, blue)`  or  `rgba(red, green, blue, alpha)`  where  `red` ,  `green` , and  `blue`  are the red, green, and blue components, respectively, either as a number (0-255) or as a percent, and  `alpha`  is a number from 0-1 specifying the alpha component. Examples:  `rgb(255, 0, 0)` ,  `rgb(100%, 50%,
+            0%)` ,  `rgba(20, 255, 255, 0.5)` .
+
+ * CSS colors with the syntax  `hsl(hue, sat, light)`  or  `hsla(hue, sat, light, alpha)`  where  `hue`  is the hue component in degrees (0-360),  `sat`  and  `light`  are the saturation and lightness components, respectively, as percents, and  `alpha`  is a number from 0-1 specifying the alpha component. Examples:  `rgb(255, 0, 0)` ,  `hsl(200, 50%, 50%)` ,  `hsla(20, 80%, 90%, 0.5)` .
+
+ * CSS colors such as  `red` ,  `green` ,  `white` ,  `lemonchiffon` ,  `chocolate` , and so on, including the newly added  `rebeccapurple` .
+
+ * The value  `transparent` , meaning transparent black.
+
+For more information: https://peteroupc.github.io/html3dutil/tutorial-colors.html
+
+ .
 
 <b>Return Value:</b>
 
-Not documented yet.
+An array containing four elements, with the red, green, blue, and alpha components of the same color, each from 0 to 255. Returns null if  <i>x</i>
+ is null, empty, or has invalid syntax.
 
+<a id="HlsToRgb_double_double_double"></a>
 ### HlsToRgb
 
     public static double[] HlsToRgb(
-        double[] hls);
+        double hueval,
+        double lum,
+        double sat);
 
-Converts a color in the HLS color space to red/green/blue.
+Converts a color in the HLS color space to red/green/blue. Hue can range from 0 to 360, and lightness and saturation can range from 0 to 255. If lightness and saturation are out of range, those values are clamped to fit that range.
 
 <b>Parameters:</b>
 
- * <i>hls</i>: An array containing three elements: The first is the hue, in degrees, ranging from 0 through 360; the second is the luminosity (luminance or lightness), ranging from 0 to 255; and the third is the saturation, ranging from 0 to 255.
+ * <i>hueval</i>: The parameter  <i>hueval</i>
+ is not documented yet.
+
+ * <i>lum</i>: The parameter  <i>lum</i>
+ is not documented yet.
+
+ * <i>sat</i>: The parameter  <i>sat</i>
+ is not documented yet.
 
 <b>Return Value:</b>
 
-An array of three elements, each from 0 to 255: the red, green, and blue components, in that order.
+An array containing three elements, with the red, green, and blue components of the same color, each from 0 to 255.
 
 <b>Exceptions:</b>
 
  * System.ArgumentNullException:
-The parameter  <i>hls</i>
- is null.
+The parameter "hls" is null.
 
+<a id="RgbToColor_double"></a>
 ### RgbToColor
 
     public static string RgbToColor(
@@ -85,7 +85,7 @@ Converts an RGBA color to a string, either rgb(...) or rgba(...) as applicable.
 
 <b>Parameters:</b>
 
- * <i>arrayRGB</i>: A double[] object.
+ * <i>arrayRGB</i>: A 3- or 4-item array containing the intensity of red, green, and blue (each from 0-255), with optional alpha (0-255).
 
 <b>Return Value:</b>
 
@@ -97,6 +97,7 @@ A string object.
 The parameter  <i>arrayRGB</i>
  is null.
 
+<a id="RgbToColorDisplay_double"></a>
 ### RgbToColorDisplay
 
     public static string RgbToColorDisplay(
@@ -106,11 +107,11 @@ Converts a red-green-blue-alpha color to a string in CSS format.
 
 <b>Parameters:</b>
 
- * <i>rgb</i>: A double[] object.
+ * <i>rgb</i>: An array containing three or four elements, with the red, green, blue, and alpha components of the color, each from 0 to 255. Each element's value is adjusted to 0 if it's less than 0 and to 255 if it's greater than 255 (the array itself is not modified, though).
 
 <b>Return Value:</b>
 
-A string object.
+A string in HTML color format: "#RRGGBB", if there are three elements or the fourth value in the array is 255, or a string in the RGBA color format otherwise.
 
 <b>Exceptions:</b>
 
@@ -120,29 +121,9 @@ The parameter  <i>rgb</i>
 
  * System.ArgumentNullException:
 The parameter  <i>rgb</i>
-is null.
+ is null.
 
-### RgbToColorHtml
-
-    public static string RgbToColorHtml(
-        double r,
-        double g,
-        double b);
-
-Converts a red-green-blue color to a string in HTML format.
-
-<b>Parameters:</b>
-
- * <i>r</i>: A 64-bit floating-point number.
-
- * <i>g</i>: Another 64-bit floating-point number.
-
- * <i>b</i>: A 64-bit floating-point number. (3).
-
-<b>Return Value:</b>
-
-A string object.
-
+<a id="RgbToColorHtml_double"></a>
 ### RgbToColorHtml
 
     public static string RgbToColorHtml(
@@ -162,4 +143,4 @@ A string object.
 
  * System.ArgumentNullException:
 The parameter  <i>rgb</i>
-is null.
+ is null.

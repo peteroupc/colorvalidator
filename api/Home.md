@@ -1,5 +1,6 @@
 # API Documentation
 
 * [com.upokecenter.util.ColorValidator](com.upokecenter.util.ColorValidator.md) -
-Contains methods to convert between different representations of HTML and
- CSS colors.
+Contains utility methods for processing Uniform Resource Identifiers (URIs)
+ and Internationalized Resource Identifiers (IRIs) under RFC3986 and
+ RFC3987, respectively.
