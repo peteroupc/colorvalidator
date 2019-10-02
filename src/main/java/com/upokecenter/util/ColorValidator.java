@@ -9,42 +9,41 @@ at: http://peteroupc.github.io/
 
 import java.util.*;
 
-    /**
-     * Contains utility methods for processing Uniform Resource Identifiers (URIs)
-     * and Internationalized Resource Identifiers (IRIs) under RFC3986 and
-     * RFC3987, respectively. In the following documentation, URIs and IRIs
-     * include URI references and IRI references, for convenience. <p>There
-     * are five components to a URI: scheme, authority, path, query, and
-     * fragment identifier. The generic syntax to these components is
-     * defined in RFC3986 and extended in RFC3987. According to RFC3986,
-     * different URI schemes can further restrict the syntax of the
-     * authority, path, and query component (see also RFC 7320). However,
-     * the syntax of fragment identifiers depends on the media type (also
-     * known as MIME type) of the resource a URI references (see also RFC
-     * 3986 and RFC 7320). As of September 3, 2019, only the following
-     * media types specify a syntax for fragment identifiers:</p> <ul>
-     * <li>The following application/* media types: epub + zip, pdf, senml
-     * + cbor, senml + json, senml-exi, sensml + cbor, sensml + json,
-     * sensml-exi, smil, vnd.3gpp-v2x-local-service-information,
-     * vnd.3gpp.mcdata-signalling, vnd.collection.doc + json, vnd.hc +
-     * json, vnd.hyper + json, vnd.hyper-item + json, vnd.mason + json,
-     * vnd.microsoft.portable-executable, vnd.oma.bcast.sgdu,
-     * vnd.shootproof + json</li> <li>The following image/* media types:
-     * avci, avcs, heic, heic-sequence, heif, heif-sequence, hej2k, hsj2,
-     * jxra, jxrs, jxsi, jxss</li> <li>The XML media types:
-     * application/xml, application/xml-external-parsed-entity, text/xml,
-     * text/xml-external-parsed-entity, application/xml-dtd</li> <li>All
-     *  media types with subtypes ending in "+xml" (see RFC 7303) use
-     * XPointer Framework syntax as fragment identifiers, except the
-     * following application/* media types: dicom + xml (syntax not
-     * defined), senml + xml (own syntax), sensml + xml (own syntax), ttml
-     * + xml (own syntax), xliff + xml (own syntax), yang-data + xml
-     * (syntax not defined)</li> <li>font/collection</li>
-     * <li>multipart/x-mixed-replace</li> <li>text/plain</li>
-     * <li>text/csv</li> <li>text/html</li> <li>text/markdown</li>
-     * <li>text/vnd.a</li></ul>
-     */
-    public final class ColorValidator {
+  /**
+   * Contains utility methods for processing Uniform Resource Identifiers (URIs)
+   * and Internationalized Resource Identifiers (IRIs) under RFC3986 and
+   * RFC3987, respectively. In the following documentation, URIs and IRIs
+   * include URI references and IRI references, for convenience. <p>There
+   * are five components to a URI: scheme, authority, path, query, and
+   * fragment identifier. The generic syntax to these components is defined
+   * in RFC3986 and extended in RFC3987. According to RFC3986, different
+   * URI schemes can further restrict the syntax of the authority, path,
+   * and query component (see also RFC 7320). However, the syntax of
+   * fragment identifiers depends on the media type (also known as MIME
+   * type) of the resource a URI references (see also RFC 3986 and RFC
+   * 7320). As of September 3, 2019, only the following media types specify
+   * a syntax for fragment identifiers:</p> <ul> <li>The following
+   * application/* media types: epub + zip, pdf, senml + cbor, senml +
+   * json, senml-exi, sensml + cbor, sensml + json, sensml-exi, smil,
+   * vnd.3gpp-v2x-local-service-information, vnd.3gpp.mcdata-signalling,
+   * vnd.collection.doc + json, vnd.hc + json, vnd.hyper + json,
+   * vnd.hyper-item + json, vnd.mason + json,
+   * vnd.microsoft.portable-executable, vnd.oma.bcast.sgdu, vnd.shootproof
+   * + json</li> <li>The following image/* media types: avci, avcs, heic,
+   * heic-sequence, heif, heif-sequence, hej2k, hsj2, jxra, jxrs, jxsi,
+   * jxss</li> <li>The XML media types: application/xml,
+   * application/xml-external-parsed-entity, text/xml,
+   * text/xml-external-parsed-entity, application/xml-dtd</li> <li>All
+   *  media types with subtypes ending in "+xml" (see RFC 7303) use XPointer
+   * Framework syntax as fragment identifiers, except the following
+   * application/* media types: dicom + xml (syntax not defined), senml +
+   * xml (own syntax), sensml + xml (own syntax), ttml + xml (own syntax),
+   * xliff + xml (own syntax), yang-data + xml (syntax not defined)</li>
+   * <li>font/collection</li> <li>multipart/x-mixed-replace</li>
+   * <li>text/plain</li> <li>text/csv</li> <li>text/html</li>
+   * <li>text/markdown</li> <li>text/vnd.a</li></ul>
+   */
+  public final class ColorValidator {
 private ColorValidator() {
 }
     /**
@@ -54,17 +53,17 @@ private ColorValidator() {
      * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
      * @return A 32-bit signed integer.
      */
-        private static int SkipWhite(String str, int index, int endIndex) {
-            while (index < endIndex) {
-                int c = str.charAt(index);
-                if (c == 32 || c == 13 || c == 12 || c == 9 || c == 10) {
-                  ++index;
-                } else {
-                    break;
-                }
-            }
-            return index;
+    private static int SkipWhite(String str, int index, int endIndex) {
+      while (index < endIndex) {
+        int c = str.charAt(index);
+        if (c == 32 || c == 13 || c == 12 || c == 9 || c == 10) {
+          ++index;
+        } else {
+          break;
         }
+      }
+      return index;
+    }
 
     /**
      * Not documented yet.
@@ -73,15 +72,15 @@ private ColorValidator() {
      * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
      * @return A 32-bit signed integer.
      */
-        private static int ParseComma(String str, int index, int endIndex) {
-            int indexStart = index;
-            index = SkipWhite(str, index, endIndex);
-            if (index < endIndex && (str.charAt(index) == 44)) {
-              return SkipWhite(str, index + 1, endIndex);
-            } else {
-                return indexStart;
-            }
-        }
+    private static int ParseComma(String str, int index, int endIndex) {
+      int indexStart = index;
+      index = SkipWhite(str, index, endIndex);
+      if (index < endIndex && (str.charAt(index) == 44)) {
+        return SkipWhite(str, index + 1, endIndex);
+      } else {
+        return indexStart;
+      }
+    }
 
     /**
      * Not documented yet.
@@ -90,218 +89,15 @@ private ColorValidator() {
      * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
      * @return A 32-bit signed integer.
      */
-        private static int ParseEndparen(String str, int index, int endIndex) {
-            int indexStart = index;
-            index = SkipWhite(str, index, endIndex);
-            if (index < endIndex && (str.charAt(index) == 41)) {
-              return index + 1;
-            } else {
-                return indexStart;
-            }
-        }
-
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param ret A 64-bit floating-point number.
-     * @return A 32-bit signed integer.
-     */
-        private static int Hsl(
-          String str,
-          int index,
-          int endIndex,
-          double[] ret) {
-            int indexStart, indexTemp, tx2;
-            indexStart = index;
-            indexTemp = index;
-            do {
-                if ((tx2 = ParseHue(str, index, endIndex, ret, 0)) == index) {
-                  return indexStart;
-                }
-                index = tx2;
-                if ((
-                  tx2 = SepPct(
-                    str,
-                    index,
-                    endIndex,
-                    ret,
-                    1)) == index) {
-                  return indexStart;
-                }
-                index = tx2;
-                if ((
-                 tx2 = SepPct(
-                   str,
-                   index,
-                   endIndex,
-                   ret,
-                   2)) == index) {
-                  return indexStart;
-                }
-                index = tx2;
-                tx2 = ParseEndparen(str, index, endIndex);
-                if (tx2 == index) {
-                    index = indexStart;
-                    break;
-                  } else {
-                    index = tx2;
-                }
-                double[] rgb = HlsToRgb(ret[0], ret[2], ret[1]);
-                ret[0] = rgb[0];
-                ret[1] = rgb[1];
-                ret[2] = rgb[2];
-                ret[3] = 255.0;
-                indexTemp = index;
-            } while (false);
-            return indexTemp;
-        }
-
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param ret The parameter {@code ret} is a Double[] object.
-     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
-     * @return A 32-bit signed integer.
-     */
-        private static int Pct(
-          String str,
-          int index,
-          int endIndex,
-          double[] ret,
-          int retIndex) {
-            int tx2 = ParseNumber(str, index, endIndex);
-            if (tx2 != index) {
-              if (tx2 >= endIndex || str.charAt(tx2) != 37) {
-                return index;
-              }
-              ret[retIndex] = StringToPercent(str, index, tx2) * 255.0 /
-                    100.0;
-                    return tx2 + 1;
-            }
-            return tx2;
-        }
-
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param ret The parameter {@code ret} is a Double[] object.
-     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
-     * @return A 32-bit signed integer.
-     */
-        private static int ParseByte(
-          String str,
-          int index,
-          int endIndex,
-          double[] ret,
-          int retIndex) {
-            int tx2 = ParseInteger(str, index, endIndex, true);
-            if (tx2 != index) {
-              ret[retIndex] = StringToByte(str, index, tx2);
-            }
-            return tx2;
-        }
-
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param ret The parameter {@code ret} is a Double[] object.
-     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
-     * @return A 32-bit signed integer.
-     */
-        private static int ParseHue(
-          String str,
-          int index,
-          int endIndex,
-          double[] ret,
-          int retIndex) {
-            int start = index;
-            index = SkipWhite(str, index, endIndex);
-            int tx2 = ParseNumber(str, index, endIndex);
-            if (tx2 != index) {
-                ret[retIndex] = StringToHue(str, index, tx2);
-                return tx2;
-              } else {
-                return start;
-            }
-        }
-
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param ret The parameter {@code ret} is a Double[] object.
-     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
-     * @return A 32-bit signed integer.
-     */
-        private static int SepByte(
-          String str,
-          int index,
-          int endIndex,
-          double[] ret,
-          int retIndex) {
-            int tx2 = ParseComma(str, index, endIndex);
-            return (tx2 != index) ? ParseByte(
-              str,
-              tx2,
-              endIndex,
-              ret,
-              retIndex) : tx2;
-        }
-
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param ret The parameter {@code ret} is a Double[] object.
-     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
-     * @return A 32-bit signed integer.
-     */
-        private static int SepPct(
-          String str,
-          int index,
-          int endIndex,
-          double[] ret,
-          int retIndex) {
-            int tx2 = ParseComma(str, index, endIndex);
-            return (tx2 != index) ?
-              Pct(str, tx2, endIndex, ret, retIndex) : tx2;
-        }
-
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param ret The parameter {@code ret} is a Double[] object.
-     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
-     * @return A 32-bit signed integer.
-     */
-        private static int SepAlpha(
-          String str,
-          int index,
-          int endIndex,
-          double[] ret,
-          int retIndex) {
-            int tx2 = ParseComma(str, index, endIndex);
-            if (tx2 != index) {
-                index = tx2;
-                tx2 = ParseNumber(str, index, endIndex);
-                if (tx2 != index) {
-                  ret[retIndex] = StringToAlpha(str, index, tx2);
-                }
-            }
-            return tx2;
-        }
+    private static int ParseEndparen(String str, int index, int endIndex) {
+      int indexStart = index;
+      index = SkipWhite(str, index, endIndex);
+      if (index < endIndex && (str.charAt(index) == 41)) {
+        return index + 1;
+      } else {
+        return indexStart;
+      }
+    }
 
     /**
      * Not documented yet.
@@ -311,59 +107,262 @@ private ColorValidator() {
      * @param ret A 64-bit floating-point number.
      * @return A 32-bit signed integer.
      */
-        private static int Hsla(
-          String str,
-          int index,
-          int endIndex,
-          double[] ret) {
-            int indexStart, indexTemp, tx2;
-            indexStart = index;
-            indexTemp = index;
-            do {
-                if ((tx2 = ParseHue(str, index, endIndex, ret, 0)) == index) {
-                  return indexStart;
-                }
-                index = tx2;
-                if ((
-                  tx2 = SepPct(
-                    str,
-                    index,
-                    endIndex,
-                    ret,
-                    1)) == index) {
-                  return indexStart;
-                }
-                index = tx2;
-                if ((
-                 tx2 = SepPct(
-                   str,
-                   index,
-                   endIndex,
-                   ret,
-                   2)) == index) {
-                  return indexStart;
-                }
-                index = tx2;
-                if ((tx2 = SepAlpha(str, index, endIndex, ret, 3)) ==
-                    index) {
-                  return indexStart;
-                }
-                index = tx2;
-                double[] rgb = HlsToRgb(ret[0], ret[2], ret[1]);
-                ret[0] = rgb[0];
-                ret[1] = rgb[1];
-                ret[2] = rgb[2];
-                tx2 = ParseEndparen(str, index, endIndex);
-                if (tx2 == index) {
-                    index = indexStart;
-                    break;
-                  } else {
-                    index = tx2;
-                }
-                indexTemp = index;
-            } while (false);
-            return indexTemp;
+    private static int Hsl(
+      String str,
+      int index,
+      int endIndex,
+      double[] ret) {
+      int indexStart, indexTemp, tx2;
+      indexStart = index;
+      indexTemp = index;
+      do {
+        if ((tx2 = ParseHue(str, index, endIndex, ret, 0)) == index) {
+          return indexStart;
         }
+        index = tx2;
+        if ((
+          tx2 = SepPct(
+            str,
+            index,
+            endIndex,
+            ret,
+            1)) == index) {
+          return indexStart;
+        }
+        index = tx2;
+        if ((
+         tx2 = SepPct(
+           str,
+           index,
+           endIndex,
+           ret,
+           2)) == index) {
+          return indexStart;
+        }
+        index = tx2;
+        tx2 = ParseEndparen(str, index, endIndex);
+        if (tx2 == index) {
+          index = indexStart;
+          break;
+        } else {
+          index = tx2;
+        }
+        double[] rgb = HlsToRgb(ret[0], ret[2], ret[1]);
+        ret[0] = rgb[0];
+        ret[1] = rgb[1];
+        ret[2] = rgb[2];
+        ret[3] = 255.0;
+        indexTemp = index;
+      } while (false);
+      return indexTemp;
+    }
+
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is a text string.
+     * @param index The parameter {@code index} is a 32-bit signed integer.
+     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
+     * @param ret The parameter {@code ret} is a Double[] object.
+     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
+     * @return A 32-bit signed integer.
+     */
+    private static int Pct(
+      String str,
+      int index,
+      int endIndex,
+      double[] ret,
+      int retIndex) {
+      int tx2 = ParseNumber(str, index, endIndex);
+      if (tx2 != index) {
+        if (tx2 >= endIndex || str.charAt(tx2) != 37) {
+          return index;
+        }
+        ret[retIndex] = StringToPercent(str, index, tx2) * 255.0 /
+              100.0;
+        return tx2 + 1;
+      }
+      return tx2;
+    }
+
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is a text string.
+     * @param index The parameter {@code index} is a 32-bit signed integer.
+     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
+     * @param ret The parameter {@code ret} is a Double[] object.
+     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
+     * @return A 32-bit signed integer.
+     */
+    private static int ParseByte(
+      String str,
+      int index,
+      int endIndex,
+      double[] ret,
+      int retIndex) {
+      int tx2 = ParseInteger(str, index, endIndex, true);
+      if (tx2 != index) {
+        ret[retIndex] = StringToByte(str, index, tx2);
+      }
+      return tx2;
+    }
+
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is a text string.
+     * @param index The parameter {@code index} is a 32-bit signed integer.
+     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
+     * @param ret The parameter {@code ret} is a Double[] object.
+     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
+     * @return A 32-bit signed integer.
+     */
+    private static int ParseHue(
+      String str,
+      int index,
+      int endIndex,
+      double[] ret,
+      int retIndex) {
+      int start = index;
+      index = SkipWhite(str, index, endIndex);
+      int tx2 = ParseNumber(str, index, endIndex);
+      if (tx2 != index) {
+        ret[retIndex] = StringToHue(str, index, tx2);
+        return tx2;
+      } else {
+        return start;
+      }
+    }
+
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is a text string.
+     * @param index The parameter {@code index} is a 32-bit signed integer.
+     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
+     * @param ret The parameter {@code ret} is a Double[] object.
+     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
+     * @return A 32-bit signed integer.
+     */
+    private static int SepByte(
+      String str,
+      int index,
+      int endIndex,
+      double[] ret,
+      int retIndex) {
+      int tx2 = ParseComma(str, index, endIndex);
+      return (tx2 != index) ? ParseByte(
+        str,
+        tx2,
+        endIndex,
+        ret,
+        retIndex) : tx2;
+    }
+
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is a text string.
+     * @param index The parameter {@code index} is a 32-bit signed integer.
+     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
+     * @param ret The parameter {@code ret} is a Double[] object.
+     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
+     * @return A 32-bit signed integer.
+     */
+    private static int SepPct(
+      String str,
+      int index,
+      int endIndex,
+      double[] ret,
+      int retIndex) {
+      int tx2 = ParseComma(str, index, endIndex);
+      return (tx2 != index) ?
+        Pct(str, tx2, endIndex, ret, retIndex) : tx2;
+    }
+
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is a text string.
+     * @param index The parameter {@code index} is a 32-bit signed integer.
+     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
+     * @param ret The parameter {@code ret} is a Double[] object.
+     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
+     * @return A 32-bit signed integer.
+     */
+    private static int SepAlpha(
+      String str,
+      int index,
+      int endIndex,
+      double[] ret,
+      int retIndex) {
+      int tx2 = ParseComma(str, index, endIndex);
+      if (tx2 != index) {
+        index = tx2;
+        tx2 = ParseNumber(str, index, endIndex);
+        if (tx2 != index) {
+          ret[retIndex] = StringToAlpha(str, index, tx2);
+        }
+      }
+      return tx2;
+    }
+
+    /**
+     * Not documented yet.
+     * @param str The parameter {@code str} is a text string.
+     * @param index The parameter {@code index} is a 32-bit signed integer.
+     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
+     * @param ret A 64-bit floating-point number.
+     * @return A 32-bit signed integer.
+     */
+    private static int Hsla(
+      String str,
+      int index,
+      int endIndex,
+      double[] ret) {
+      int indexStart, indexTemp, tx2;
+      indexStart = index;
+      indexTemp = index;
+      do {
+        if ((tx2 = ParseHue(str, index, endIndex, ret, 0)) == index) {
+          return indexStart;
+        }
+        index = tx2;
+        if ((
+          tx2 = SepPct(
+            str,
+            index,
+            endIndex,
+            ret,
+            1)) == index) {
+          return indexStart;
+        }
+        index = tx2;
+        if ((
+         tx2 = SepPct(
+           str,
+           index,
+           endIndex,
+           ret,
+           2)) == index) {
+          return indexStart;
+        }
+        index = tx2;
+        if ((tx2 = SepAlpha(str, index, endIndex, ret, 3)) ==
+            index) {
+          return indexStart;
+        }
+        index = tx2;
+        double[] rgb = HlsToRgb(ret[0], ret[2], ret[1]);
+        ret[0] = rgb[0];
+        ret[1] = rgb[1];
+        ret[2] = rgb[2];
+        tx2 = ParseEndparen(str, index, endIndex);
+        if (tx2 == index) {
+          index = indexStart;
+          break;
+        } else {
+          index = tx2;
+        }
+        indexTemp = index;
+      } while (false);
+      return indexTemp;
+    }
 
     /**
      * Not documented yet.
@@ -373,111 +372,111 @@ private ColorValidator() {
      * @param result A 64-bit floating-point number.
      * @return A 32-bit signed integer.
      */
-        private static int Rgba(
-          String str,
-          int index,
-          int endIndex,
-          double[] result) {
-            int indexStart, tx2;
-            indexStart = index;
-            index = SkipWhite(str, index, endIndex);
-            int st = index;
-            boolean continuing = true;
-            if ((tx2 = Pct(str, index, endIndex, result, 0)) ==
-                    index) {
-              continuing = false;
-            } else {
-                index = tx2;
-            }
-            if (
-          continuing && (
-          tx2 = SepPct(
-            str,
-            index,
-            endIndex,
-            result,
-            1)) == index) {
-              continuing = false;
-            } else {
-                index = tx2;
-            }
-            if (
-          continuing && (
-          tx2 = SepPct(
-            str,
-            index,
-            endIndex,
-            result,
-            2)) == index) {
-              continuing = false;
-            } else {
-                index = tx2;
-            }
-            if (
-          continuing && (
-          tx2 = SepAlpha(
-            str,
-            index,
-            endIndex,
-            result,
-            3)) == index) {
-              continuing = false;
-            } else {
-                index = tx2;
-            }
-            if (!continuing) {
-              index = st;
-              continuing = true;
-              if ((tx2 = ParseByte(str, index, endIndex, result, 0)) ==
-                    index) {
-                continuing = false;
-              } else {
-                    index = tx2;
-                }
-                if (
-              continuing && (
-              tx2 = SepByte(
-                str,
-                index,
-                endIndex,
-                result,
-                1)) == index) {
-                  continuing = false;
-                } else {
-                    index = tx2;
-                }
-                if (
-              continuing && (
-              tx2 = SepByte(
-                str,
-                index,
-                endIndex,
-                result,
-                2)) == index) {
-                  continuing = false;
-                } else {
-                    index = tx2;
-                }
-                if (
-              continuing && (
-              tx2 = SepAlpha(
-                str,
-                index,
-                endIndex,
-                result,
-                3)) == index) {
-                  continuing = false;
-                } else {
-                    index = tx2;
-                }
-            }
-            if (!continuing) {
-              return indexStart;
-            }
-            tx2 = ParseEndparen(str, index, endIndex);
-            index = (tx2 == index) ? indexStart : tx2;
-            return index;
+    private static int Rgba(
+      String str,
+      int index,
+      int endIndex,
+      double[] result) {
+      int indexStart, tx2;
+      indexStart = index;
+      index = SkipWhite(str, index, endIndex);
+      int st = index;
+      boolean continuing = true;
+      if ((tx2 = Pct(str, index, endIndex, result, 0)) ==
+              index) {
+        continuing = false;
+      } else {
+        index = tx2;
+      }
+      if (
+    continuing && (
+    tx2 = SepPct(
+      str,
+      index,
+      endIndex,
+      result,
+      1)) == index) {
+        continuing = false;
+      } else {
+        index = tx2;
+      }
+      if (
+    continuing && (
+    tx2 = SepPct(
+      str,
+      index,
+      endIndex,
+      result,
+      2)) == index) {
+        continuing = false;
+      } else {
+        index = tx2;
+      }
+      if (
+    continuing && (
+    tx2 = SepAlpha(
+      str,
+      index,
+      endIndex,
+      result,
+      3)) == index) {
+        continuing = false;
+      } else {
+        index = tx2;
+      }
+      if (!continuing) {
+        index = st;
+        continuing = true;
+        if ((tx2 = ParseByte(str, index, endIndex, result, 0)) ==
+              index) {
+          continuing = false;
+        } else {
+          index = tx2;
         }
+        if (
+      continuing && (
+      tx2 = SepByte(
+        str,
+        index,
+        endIndex,
+        result,
+        1)) == index) {
+          continuing = false;
+        } else {
+          index = tx2;
+        }
+        if (
+      continuing && (
+      tx2 = SepByte(
+        str,
+        index,
+        endIndex,
+        result,
+        2)) == index) {
+          continuing = false;
+        } else {
+          index = tx2;
+        }
+        if (
+      continuing && (
+      tx2 = SepAlpha(
+        str,
+        index,
+        endIndex,
+        result,
+        3)) == index) {
+          continuing = false;
+        } else {
+          index = tx2;
+        }
+      }
+      if (!continuing) {
+        return indexStart;
+      }
+      tx2 = ParseEndparen(str, index, endIndex);
+      index = (tx2 == index) ? indexStart : tx2;
+      return index;
+    }
 
     /**
      * Not documented yet.
@@ -487,91 +486,91 @@ private ColorValidator() {
      * @param result The parameter {@code result} is a Double[] object.
      * @return A 32-bit signed integer.
      */
-        private static int Rgb(
-          String str,
-          int index,
-          int endIndex,
-          double[] result) {
-            int indexStart, tx2;
-            indexStart = index;
-            index = SkipWhite(str, index, endIndex);
-            int st = index;
-            boolean continuing = true;
-            if ((tx2 = Pct(str, index, endIndex, result, 0)) ==
-                    index) {
-              continuing = false;
-            } else {
-                index = tx2;
-            }
-            if (
-          continuing && (
-          tx2 = SepPct(
-            str,
-            index,
-            endIndex,
-            result,
-            1)) == index) {
-              continuing = false;
-            } else {
-                index = tx2;
-            }
-            if (
-          continuing && (
-          tx2 = SepPct(
-            str,
-            index,
-            endIndex,
-            result,
-            2)) == index) {
-              continuing = false;
-            } else {
-                index = tx2;
-            }
-            if (!continuing) {
-              index = st;
-              continuing = true;
-              if ((tx2 = ParseByte(str, index, endIndex, result, 0)) ==
-                    index) {
-                continuing = false;
-              } else {
-                    index = tx2;
-                }
-                if (
-              continuing && (
-              tx2 = SepByte(
-                str,
-                index,
-                endIndex,
-                result,
-                1)) == index) {
-                  continuing = false;
-                } else {
-                    index = tx2;
-                }
-                if (
-              continuing && (
-              tx2 = SepByte(
-                str,
-                index,
-                endIndex,
-                result,
-                2)) == index) {
-                  continuing = false;
-                } else {
-                    index = tx2;
-                }
-            }
-            if (!continuing) {
-              return indexStart;
-            }
-            result[3] = 255.0;
-            tx2 = ParseEndparen(str, index, endIndex);
-            if (tx2 == index) {
-              return indexStart;
-            } else {
-                return tx2;
-            }
+    private static int Rgb(
+      String str,
+      int index,
+      int endIndex,
+      double[] result) {
+      int indexStart, tx2;
+      indexStart = index;
+      index = SkipWhite(str, index, endIndex);
+      int st = index;
+      boolean continuing = true;
+      if ((tx2 = Pct(str, index, endIndex, result, 0)) ==
+              index) {
+        continuing = false;
+      } else {
+        index = tx2;
+      }
+      if (
+    continuing && (
+    tx2 = SepPct(
+      str,
+      index,
+      endIndex,
+      result,
+      1)) == index) {
+        continuing = false;
+      } else {
+        index = tx2;
+      }
+      if (
+    continuing && (
+    tx2 = SepPct(
+      str,
+      index,
+      endIndex,
+      result,
+      2)) == index) {
+        continuing = false;
+      } else {
+        index = tx2;
+      }
+      if (!continuing) {
+        index = st;
+        continuing = true;
+        if ((tx2 = ParseByte(str, index, endIndex, result, 0)) ==
+              index) {
+          continuing = false;
+        } else {
+          index = tx2;
         }
+        if (
+      continuing && (
+      tx2 = SepByte(
+        str,
+        index,
+        endIndex,
+        result,
+        1)) == index) {
+          continuing = false;
+        } else {
+          index = tx2;
+        }
+        if (
+      continuing && (
+      tx2 = SepByte(
+        str,
+        index,
+        endIndex,
+        result,
+        2)) == index) {
+          continuing = false;
+        } else {
+          index = tx2;
+        }
+      }
+      if (!continuing) {
+        return indexStart;
+      }
+      result[3] = 255.0;
+      tx2 = ParseEndparen(str, index, endIndex);
+      if (tx2 == index) {
+        return indexStart;
+      } else {
+        return tx2;
+      }
+    }
 
     /**
      * Not documented yet.
@@ -580,14 +579,14 @@ private ColorValidator() {
      * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
      * @return A 64-bit floating-point number.
      */
-        private static double StringToNumber(
-          String str,
-          int index,
-          int endIndex) {
-            String str2 = str.substring(index, (index)+(endIndex - index));
-            return
-    Double.parseDouble(str2);
-        }
+    private static double StringToNumber(
+      String str,
+      int index,
+      int endIndex) {
+      String str2 = str.substring(index, (index)+(endIndex - index));
+      return
+Double.parseDouble(str2);
+    }
 
     /**
      * Not documented yet.
@@ -596,14 +595,14 @@ private ColorValidator() {
      * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
      * @return A 64-bit floating-point number.
      */
-        private static double StringToPercent(
-          String str,
-          int index,
-          int endIndex) {
-            double num = StringToNumber(str, index, endIndex);
-            return Double.isNaN(num) ? (-1) : ((num < 0) ? 0 :
-        ((num > 100) ? 100 : num));
-        }
+    private static double StringToPercent(
+      String str,
+      int index,
+      int endIndex) {
+      double num = StringToNumber(str, index, endIndex);
+      return Double.isNaN(num) ? (-1) : ((num < 0) ? 0 :
+  ((num > 100) ? 100 : num));
+    }
 
     /**
      * Not documented yet.
@@ -612,13 +611,13 @@ private ColorValidator() {
      * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
      * @return A 64-bit floating-point number.
      */
-        private static double StringToAlpha(
-          String str,
-          int index,
-          int endIndex) {
-            double num = StringToNumber(str, index, endIndex);
-            return (num < 0) ? 0 : ((num > 1.0) ? 255 : num * 255.0);
-        }
+    private static double StringToAlpha(
+      String str,
+      int index,
+      int endIndex) {
+      double num = StringToNumber(str, index, endIndex);
+      return (num < 0) ? 0 : ((num > 1.0) ? 255 : num * 255.0);
+    }
 
     /**
      * Not documented yet.
@@ -627,15 +626,15 @@ private ColorValidator() {
      * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
      * @return A 64-bit floating-point number.
      */
-        private static double StringToHue(
-          String str,
-          int index,
-          int endIndex) {
-            double num = StringToNumber(str, index, endIndex);
-            return (Double.isNaN(num) || ((num) == Double.POSITIVE_INFINITY) ||
-           ((num) == Double.NEGATIVE_INFINITY)) ? 0 : (((num % 360) + 360) %
-           360);
-        }
+    private static double StringToHue(
+      String str,
+      int index,
+      int endIndex) {
+      double num = StringToNumber(str, index, endIndex);
+      return (Double.isNaN(num) || ((num) == Double.POSITIVE_INFINITY) ||
+     ((num) == Double.NEGATIVE_INFINITY)) ? 0 : (((num % 360) + 360) %
+     360);
+    }
 
     /**
      * Not documented yet.
@@ -644,13 +643,13 @@ private ColorValidator() {
      * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
      * @return A 64-bit floating-point number.
      */
-        private static double StringToByte(
-          String str,
-          int index,
-          int endIndex) {
-            double num = StringToNumber(str, index, endIndex);
-            return (num < 0) ? 0 : ((num > 255) ? 255 : num);
-        }
+    private static double StringToByte(
+      String str,
+      int index,
+      int endIndex) {
+      double num = StringToNumber(str, index, endIndex);
+      return (num < 0) ? 0 : ((num > 255) ? 255 : num);
+    }
 
     /**
      * Not documented yet.
@@ -661,25 +660,25 @@ private ColorValidator() {
      * false}.
      * @return A 32-bit signed integer.
      */
-        private static int ParseInteger(
-          String str,
-          int index,
-          int endIndex,
-          boolean posneg) {
-            boolean digits = false;
-            int indexStart = index;
-            if (
-              posneg && index < endIndex && ((str.charAt(index) == 43) ||
+    private static int ParseInteger(
+      String str,
+      int index,
+      int endIndex,
+      boolean posneg) {
+      boolean digits = false;
+      int indexStart = index;
+      if (
+        posneg && index < endIndex && ((str.charAt(index) == 43) ||
 (str.charAt(index) == 45))) {
-              ++index;
-            }
-            while (index < endIndex && (str.charAt(index) >= 48 && str.charAt(index) <=
-                57)) {
-                ++index;
-                digits = true;
-            }
-            return digits ? index : indexStart;
-        }
+        ++index;
+      }
+      while (index < endIndex && (str.charAt(index) >= 48 && str.charAt(index) <=
+          57)) {
+        ++index;
+        digits = true;
+      }
+      return digits ? index : indexStart;
+    }
 
     /**
      * Not documented yet.
@@ -688,51 +687,51 @@ private ColorValidator() {
      * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
      * @return A 32-bit signed integer.
      */
-        private static int ParseNumber(String str, int index, int endIndex) {
-            int indexStart = index;
-            int tmp = index;
-            if ((tmp = ParseInteger(str, index, endIndex, true)) !=
-                 indexStart) {
-                index = tmp;
-                if (index < endIndex && (str.charAt(index) == 46)) {
-                    // Dot is optional
-                    ++index;
-                    if ((tmp = ParseInteger(str, index, endIndex, false)) !=
-                    index) {
-                    int tmp2 = 0;
-                    return (
-                      index < endIndex && (str.charAt(index) == 0x45 || str.charAt(index) ==
-  0x65) && (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index +
+    private static int ParseNumber(String str, int index, int endIndex) {
+      int indexStart = index;
+      int tmp = index;
+      if ((tmp = ParseInteger(str, index, endIndex, true)) !=
+           indexStart) {
+        index = tmp;
+        if (index < endIndex && (str.charAt(index) == 46)) {
+          // Dot is optional
+          ++index;
+          if ((tmp = ParseInteger(str, index, endIndex, false)) !=
+          index) {
+            int tmp2 = 0;
+            return (
+              index < endIndex && (str.charAt(index) == 0x45 || str.charAt(index) ==
+0x65) && (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index +
 
-                1) ? tmp2 : tmp;
-                    } else {
-                    return index - 1;
-                    }
-                }
-                return index;
-              } else {
-                if (index < endIndex && ((str.charAt(index) == 43) || (str.charAt(index) ==
-                    45))) {
-                  ++index;
-                }
-                if (index < endIndex && (str.charAt(index) == 46)) {
-                    // Dot is required
-                    ++index;
-                    if ((tmp = ParseInteger(str, index, endIndex, false)) !=
-                    index) {
-                    int tmp2 = 0;
-                    return (
-                      index < endIndex && (str.charAt(index) == 0x45 || str.charAt(index) ==
-  0x65) && (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index +
-
-                1) ? tmp2 : tmp;
-                    } else {
-                    return indexStart;
-                    }
-                }
-                return indexStart;
-            }
+        1) ? tmp2 : tmp;
+          } else {
+            return index - 1;
+          }
         }
+        return index;
+      } else {
+        if (index < endIndex && ((str.charAt(index) == 43) || (str.charAt(index) ==
+            45))) {
+          ++index;
+        }
+        if (index < endIndex && (str.charAt(index) == 46)) {
+          // Dot is required
+          ++index;
+          if ((tmp = ParseInteger(str, index, endIndex, false)) !=
+          index) {
+            int tmp2 = 0;
+            return (
+              index < endIndex && (str.charAt(index) == 0x45 || str.charAt(index) ==
+0x65) && (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index +
+
+        1) ? tmp2 : tmp;
+          } else {
+            return indexStart;
+          }
+        }
+        return indexStart;
+      }
+    }
 
     /**
      * Converts a color in the HLS color space to red/green/blue. Hue can range
@@ -747,136 +746,136 @@ private ColorValidator() {
      * components of the same color, each from 0 to 255.
      * @throws NullPointerException The parameter "hls" is null.
      */
-        public static double[] HlsToRgb(
-          double hueval,
-          double lum,
-          double sat) {
-            lum = lum < 0 ? 0 : (lum > 255 ? 255 : lum);
-            sat = sat < 0 ? 0 : (sat > 255 ? 255 : sat);
-            if (sat == 0) {
-                return new double[] { lum, lum, lum };
-            }
-            double b = 0;
-            if (lum <= 127.5) {
-              b = (lum * (255.0 + sat)) / 255.0;
-            } else {
-                b = lum * sat;
-                b /= 255.0;
-                b = lum + sat - b;
-            }
-            double a = (lum * 2) - b;
-            double r, g, bl;
-            if (hueval < 0 || hueval >= 360) {
-              hueval = ((hueval % 360) + 360) % 360;
-            }
-            double hue = hueval + 120;
-            if (hue >= 360) {
-              hue -= 360;
-            }
-            r = (hue < 60) ? (a + ((b - a) * hue / 60)) : ((hue < 180) ? b :
-              ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
-            hue = hueval;
-            g = (hue < 60) ? (a + ((b - a) * hue / 60)) : ((hue < 180) ? b :
-              ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
-            hue = hueval - 120;
-            if (hue < 0) {
-              hue += 360;
-            }
-            bl = (hue < 60) ? (a + ((b - a) * hue / 60)) : ((hue < 180) ? b :
-              ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
-            return new double[] {
+    public static double[] HlsToRgb(
+      double hueval,
+      double lum,
+      double sat) {
+      lum = lum < 0 ? 0 : (lum > 255 ? 255 : lum);
+      sat = sat < 0 ? 0 : (sat > 255 ? 255 : sat);
+      if (sat == 0) {
+        return new double[] { lum, lum, lum };
+      }
+      double b = 0;
+      if (lum <= 127.5) {
+        b = (lum * (255.0 + sat)) / 255.0;
+      } else {
+        b = lum * sat;
+        b /= 255.0;
+        b = lum + sat - b;
+      }
+      double a = (lum * 2) - b;
+      double r, g, bl;
+      if (hueval < 0 || hueval >= 360) {
+        hueval = ((hueval % 360) + 360) % 360;
+      }
+      double hue = hueval + 120;
+      if (hue >= 360) {
+        hue -= 360;
+      }
+      r = (hue < 60) ? (a + ((b - a) * hue / 60)) : ((hue < 180) ? b :
+        ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
+      hue = hueval;
+      g = (hue < 60) ? (a + ((b - a) * hue / 60)) : ((hue < 180) ? b :
+        ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
+      hue = hueval - 120;
+      if (hue < 0) {
+        hue += 360;
+      }
+      bl = (hue < 60) ? (a + ((b - a) * hue / 60)) : ((hue < 180) ? b :
+        ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
+      return new double[] {
               (r < 0 ? 0 : (r > 255 ? 255 : r)),
               (g < 0 ? 0 : (g > 255 ? 255 : g)),
               (bl < 0 ? 0 : (bl > 255 ? 255 : bl)),
             };
-        }
+    }
 
     /**
      * Not documented yet.
      * @param c The parameter {@code c} is a 32-bit signed integer.
      * @return A 32-bit signed integer.
      */
-        private static int Dehexchar(int c) {
-            if (c >= '0' && c <= '9') {
-              return c - 0x30;
-            }
-            return (c >= 'A' && c <= 'F') ? (c + 10 - 0x41) : ((c >= 'a' && c
-              <= 'f') ? (c + 10 - 0x61) : (-1));
-        }
+    private static int Dehexchar(int c) {
+      if (c >= '0' && c <= '9') {
+        return c - 0x30;
+      }
+      return (c >= 'A' && c <= 'F') ? (c + 10 - 0x41) : ((c >= 'a' && c
+        <= 'f') ? (c + 10 - 0x61) : (-1));
+    }
 
     /**
      * Not documented yet.
      * @param str The parameter {@code str} is a text string.
      * @return A text string.
      */
-        private static String ToLowerCaseAscii(String str) {
-            if (str == null) {
-              return null;
-            }
-            int len = str.length();
-            char c = (char)0;
-            boolean hasUpperCase = false;
-            for (int i = 0; i < len; ++i) {
-                c = str.charAt(i);
-                if (c >= 0x41 && c <= 0x5a) {
-                    hasUpperCase = true;
-                    break;
-                }
-            }
-            if (!hasUpperCase) {
-              return str;
-            }
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < len; ++i) {
-                c = str.charAt(i);
-                if (c >= 0x41 && c <= 0x5a) {
-                  builder.append((char)(c + 0x20));
-                } else {
-                    builder.append(c);
-                }
-            }
-            return builder.toString();
+    private static String ToLowerCaseAscii(String str) {
+      if (str == null) {
+        return null;
+      }
+      int len = str.length();
+      char c = (char)0;
+      boolean hasUpperCase = false;
+      for (int i = 0; i < len; ++i) {
+        c = str.charAt(i);
+        if (c >= 0x41 && c <= 0x5a) {
+          hasUpperCase = true;
+          break;
         }
+      }
+      if (!hasUpperCase) {
+        return str;
+      }
+      StringBuilder builder = new StringBuilder();
+      for (int i = 0; i < len; ++i) {
+        c = str.charAt(i);
+        if (c >= 0x41 && c <= 0x5a) {
+          builder.append((char)(c + 0x20));
+        } else {
+          builder.append(c);
+        }
+      }
+      return builder.toString();
+    }
 
     /**
      * Not documented yet.
      * @param str The parameter {@code str} is a text string.
      * @return A text string.
      */
-        private static String TrimAsciiWhite(String str) {
-            if (((str) == null || (str).length() == 0)) {
-              return str;
-            }
-            int index = 0;
-            int valueSLength = str.length();
-            while (index < valueSLength) {
-                char c = str.charAt(index);
-                if (c != 0x09 && c != 0x20 && c != 0x0c && c != 0x0d && c !=
-                    0x0a) {
-                  break;
-                }
-                ++index;
-            }
-            if (index == valueSLength) {
-              return "";
-            }
-            int indexStart = index;
-            index = str.length() - 1;
-            while (index >= 0) {
-                char c = str.charAt(index);
-                if (c != 0x09 && c != 0x20 && c != 0x0c && c != 0x0d && c !=
-                    0x0a) {
-                    int indexEnd = index + 1;
-                    if (indexEnd == indexStart) {
-                      return "";
-                    }
-                    return (indexEnd == str.length() && indexStart == 0) ? str :
-                    str.substring(indexStart, (indexStart)+(indexEnd - indexStart));
-                }
-                --index;
-            }
+    private static String TrimAsciiWhite(String str) {
+      if (((str) == null || (str).length() == 0)) {
+        return str;
+      }
+      int index = 0;
+      int valueSLength = str.length();
+      while (index < valueSLength) {
+        char c = str.charAt(index);
+        if (c != 0x09 && c != 0x20 && c != 0x0c && c != 0x0d && c !=
+            0x0a) {
+          break;
+        }
+        ++index;
+      }
+      if (index == valueSLength) {
+        return "";
+      }
+      int indexStart = index;
+      index = str.length() - 1;
+      while (index >= 0) {
+        char c = str.charAt(index);
+        if (c != 0x09 && c != 0x20 && c != 0x0c && c != 0x0d && c !=
+            0x0a) {
+          int indexEnd = index + 1;
+          if (indexEnd == indexStart) {
             return "";
+          }
+          return (indexEnd == str.length() && indexStart == 0) ? str :
+          str.substring(indexStart, (indexStart)+(indexEnd - indexStart));
         }
+        --index;
+      }
+      return "";
+    }
 
     /**
      * Not documented yet.
@@ -886,48 +885,48 @@ private ColorValidator() {
      * false}.
      * @return Either {@code true} or {@code false}.
      */
-        private static boolean RgbHex(String str, double[] hexval, boolean hash) {
-            if (((str) == null || (str).length() == 0)) {
-              return false;
-            }
-            int slen = str.length();
-            int[] hexes = new int[8];
-            int index = 0;
-            int hexIndex = 0;
-            if (str.charAt(0) == '#') {
-                --slen;
-                ++index;
-              } else if (hash) {
-                return false;
-              }
-            if (slen != 3 && slen != 4 && slen != 6 && slen != 8) {
-              return false;
-            }
-            for (int i = index; i < str.length(); ++i) {
-                int hex = Dehexchar(str.charAt(i));
-                if (hex < 0) {
-                  return false;
-                }
-                hexes[hexIndex++] = hex;
-            }
-            if (slen == 4) {
-              hexval[3] = (double)(hexes[3] | (hexes[3] << 4));
-            } else if (slen == 8) {
-              hexval[3] = (double)(hexes[7] | (hexes[6] << 4));
-            } else {
-                hexval[3] = 255.0;
-            }
-            if (slen == 3 || slen == 4) {
-              hexval[0] = (double)(hexes[0] | (hexes[0] << 4));
-              hexval[1] = (double)(hexes[1] | (hexes[1] << 4));
-              hexval[2] = (double)(hexes[2] | (hexes[2] << 4));
-            } else if (slen >= 6) {
-              hexval[0] = (double)(hexes[1] | (hexes[0] << 4));
-                hexval[1] = (double)(hexes[3] | (hexes[2] << 4));
-                hexval[2] = (double)(hexes[5] | (hexes[4] << 4));
-            }
-            return true;
+    private static boolean RgbHex(String str, double[] hexval, boolean hash) {
+      if (((str) == null || (str).length() == 0)) {
+        return false;
+      }
+      int slen = str.length();
+      int[] hexes = new int[8];
+      int index = 0;
+      int hexIndex = 0;
+      if (str.charAt(0) == '#') {
+        --slen;
+        ++index;
+      } else if (hash) {
+        return false;
+      }
+      if (slen != 3 && slen != 4 && slen != 6 && slen != 8) {
+        return false;
+      }
+      for (int i = index; i < str.length(); ++i) {
+        int hex = Dehexchar(str.charAt(i));
+        if (hex < 0) {
+          return false;
         }
+        hexes[hexIndex++] = hex;
+      }
+      if (slen == 4) {
+        hexval[3] = (double)(hexes[3] | (hexes[3] << 4));
+      } else if (slen == 8) {
+        hexval[3] = (double)(hexes[7] | (hexes[6] << 4));
+      } else {
+        hexval[3] = 255.0;
+      }
+      if (slen == 3 || slen == 4) {
+        hexval[0] = (double)(hexes[0] | (hexes[0] << 4));
+        hexval[1] = (double)(hexes[1] | (hexes[1] << 4));
+        hexval[2] = (double)(hexes[2] | (hexes[2] << 4));
+      } else if (slen >= 6) {
+        hexval[0] = (double)(hexes[1] | (hexes[0] << 4));
+        hexval[1] = (double)(hexes[3] | (hexes[2] << 4));
+        hexval[2] = (double)(hexes[5] | (hexes[4] << 4));
+      }
+      return true;
+    }
 
     /**
      * Converts an HTML or CSS color string to a 4-element RGB array.
@@ -956,60 +955,64 @@ private ColorValidator() {
      * lemonchiffon}, {@code chocolate}, and so on, including the newly
      * added {@code rebeccapurple}.</li> <li>The value {@code transparent},
      * meaning transparent black.</li></ul> <p>For more information:
-     * https://peteroupc.github.io/html3dutil/tutorial-colors.html</p> .
+     * https://peteroupc.github.io/html3dutil/tutorial-colors.html.</p> .
      * @return An array containing four elements, with the red, green, blue, and
      * alpha components of the same color, each from 0 to 255. Returns null
      * if {@code x} is null, empty, or has invalid syntax.
      */
-        public static double[] ColorToRgba(String x) {
-            if (((x) == null || (x).length() == 0)) {
-              return null;
-            }
-            x = TrimAsciiWhite(x);
-            x = ToLowerCaseAscii(x);
-            if (x.equals("transparent")) {
-                return new double[] { 0, 0, 0, 0 };
-            }
-            if (((x) == null || (x).length() == 0)) {
-              return null;
-            }
-            double[] ret = new double[4];
-            if (x.charAt(0) == '#') {
-              if (RgbHex(x, ret, true)) {
-                return ret;
-              }
-            }
-            if (x.length() > 4 && x.substring(0,4).equals("rgb(")) {
-                 return (Rgb(x, 4, x.length(), ret) == x.length()) ?
-                ret : null;
-            }
-            if (x.length() > 5 && x.substring(0,5).equals("rgba(")) {
-                 return (Rgba(x, 5, x.length(), ret) == x.length()) ?
-                 ret : null;
-            }
-            if (x.length() > 4 && x.substring(0,4).equals("hsl(")) {
-                 return (Hsl(x, 4, x.length(), ret) == x.length()) ?
-                ret : null;
-            }
-            if (x.length() > 5 && x.substring(0,5).equals("hsla(")) {
-                 return (Hsla(x, 5, x.length(), ret) == x.length()) ?
-                 ret : null;
-            }
-            HashMap<String, String> colors = ColorToRgbaSetUpNamedColors();
-            if (colors.containsKey(x)) {
-                String colorValue = colors.get(x);
-                RgbHex(colorValue, ret, false);
-                return ret;
-            }
-            return null;
+    public static double[] ColorToRgba(String x) {
+      if (((x) == null || (x).length() == 0)) {
+        return null;
+      }
+      x = TrimAsciiWhite(x);
+      x = ToLowerCaseAscii(x);
+      if (x.equals("transparent")) {
+        return new double[] { 0, 0, 0, 0 };
+      }
+      if (((x) == null || (x).length() == 0)) {
+        return null;
+      }
+      double[] ret = new double[4];
+      if (x.charAt(0) == '#') {
+        if (RgbHex(x, ret, true)) {
+          return ret;
         }
+      }
+      if (x.length() > 4 && x.substring(0,4).equals("rgb(",
+                                                   StringComparison.Ordinal)) {
+        return (Rgb(x, 4, x.length(), ret) == x.length()) ?
+       ret : null;
+      }
+      if (x.length() > 5 && x.substring(0,5).equals("rgba(",
+                                                   StringComparison.Ordinal)) {
+        return (Rgba(x, 5, x.length(), ret) == x.length()) ?
+        ret : null;
+      }
+      if (x.length() > 4 && x.substring(0,4).equals("hsl(",
+                                                   StringComparison.Ordinal)) {
+        return (Hsl(x, 4, x.length(), ret) == x.length()) ?
+       ret : null;
+      }
+      if (x.length() > 5 && x.substring(0,5).equals("hsla(",
+                                                   StringComparison.Ordinal)) {
+        return (Hsla(x, 5, x.length(), ret) == x.length()) ?
+        ret : null;
+      }
+      HashMap<String, String> colors = ColorToRgbaSetUpNamedColors();
+      if (colors.containsKey(x)) {
+        String colorValue = colors.get(x);
+        RgbHex(colorValue, ret, false);
+        return ret;
+      }
+      return null;
+    }
 
-        private static volatile HashMap<String, String>
-              namedColorMap;
+    private static volatile HashMap<String, String>
+          namedColorMap;
 
-        private static Object syncRoot = new Object();
+    private static Object syncRoot = new Object();
 
-        private static String[] nc = new String[] {
+    private static String[] nc = new String[] {
           "aliceblue", "f0f8ff", "antiquewhite", "faebd7", "aqua",
           "00ffff", "aquamarine", "7fffd4", "azure", "f0ffff", "beige",
           "f5f5dc",
@@ -1076,42 +1079,42 @@ private ColorValidator() {
           "whitesmoke", "f5f5f5", "yellow", "ffff00", "yellowgreen", "9acd32",
         };
 
-        private static HashMap<String, String> ColorToRgbaSetUpNamedColors() {
-            if (namedColorMap == null) {
-                synchronized (syncRoot) {
-                    if (namedColorMap == null) {
-                    HashMap<String, String> ncm = new HashMap<String, String>();
-                    for (int i = 0; i < nc.length; i += 2) {
-                      ncm.put(nc[i], nc[i + 1]);
-                    }
-                    // "Grey" aliases for "gray" colors
-                    ncm.put("grey", ncm.get("gray"));
-                    ncm.put("darkgrey", ncm.get("darkgray"));
-                    ncm.put(
-                      "darkslategrey",
-                      ncm.get("darkslategray"));
-
-                    ncm.put("dimgrey", ncm.get("dimgray"));
-                    ncm.put(
-                      "lightgrey",
-                      ncm.get("lightgray"));
-                    ncm.put(
-                      "lightslategrey",
-                      ncm.get("lightslategray"));
-                    ncm.put(
-                      "slategrey",
-                      ncm.get("slategray"));
-                    namedColorMap = ncm;
-                    }
-                }
+    private static HashMap<String, String> ColorToRgbaSetUpNamedColors() {
+      if (namedColorMap == null) {
+        synchronized (syncRoot) {
+          if (namedColorMap == null) {
+            HashMap<String, String> ncm = new HashMap<String, String>();
+            for (int i = 0; i < nc.length; i += 2) {
+              ncm.put(nc[i], nc[i + 1]);
             }
-            return namedColorMap;
-        }
+            // "Grey" aliases for "gray" colors
+            ncm.put("grey", ncm.get("gray"));
+            ncm.put("darkgrey", ncm.get("darkgray"));
+            ncm.put(
+              "darkslategrey",
+              ncm.get("darkslategray"));
 
-        private static String RoundedString(double r) {
-            r = StrictMath.round(r);
-            return Double.toString((double)r);
+            ncm.put("dimgrey", ncm.get("dimgray"));
+            ncm.put(
+              "lightgrey",
+              ncm.get("lightgray"));
+            ncm.put(
+              "lightslategrey",
+              ncm.get("lightslategray"));
+            ncm.put(
+              "slategrey",
+              ncm.get("slategray"));
+            namedColorMap = ncm;
+          }
         }
+      }
+      return namedColorMap;
+    }
+
+    private static String RoundedString(double r) {
+      r = StrictMath.round(r);
+      return Double.toString((double)r);
+    }
 
     /**
      * Converts an RGBA color to a string, either rgb(...) or rgba(...) as
@@ -1121,28 +1124,28 @@ private ColorValidator() {
      * @return A text string.
      * @throws NullPointerException The parameter {@code arrayRGB} is null.
      */
-        public static String RgbToColor(double[] arrayRGB) {
-            if (arrayRGB == null) {
-              throw new NullPointerException("arrayRGB");
-            }
-            if (arrayRGB.length < 3) {
-                throw new IllegalArgumentException("3 more than " + arrayRGB.length +
-                    " (3)");
-            }
-            // we should include the spaces
-            if ((arrayRGB.length > 3 && (arrayRGB[3] == 255.0)) ||
-                  arrayRGB.length == 3) {
-                return "rgb(" + RoundedString(arrayRGB[0]) + ", " +
-                    RoundedString(arrayRGB[1]) + ", " +
+    public static String RgbToColor(double[] arrayRGB) {
+      if (arrayRGB == null) {
+        throw new NullPointerException("arrayRGB");
+      }
+      if (arrayRGB.length < 3) {
+        throw new IllegalArgumentException("3 more than " + arrayRGB.length +
+            " (3)");
+      }
+      // we should include the spaces
+      if ((arrayRGB.length > 3 && (arrayRGB[3] == 255.0)) ||
+            arrayRGB.length == 3) {
+        return "rgb(" + RoundedString(arrayRGB[0]) + ", " +
+            RoundedString(arrayRGB[1]) + ", " +
 RoundedString(arrayRGB[2]) + ")";
-        }
-        double prec = StrictMath.round(
-  (arrayRGB[3] / 255.0) * 100.0) / 100.0;
-  return "rgba(" + RoundedString(arrayRGB[0]) + ", " +
-                    RoundedString(arrayRGB[1]) + ", " +
-                    RoundedString(arrayRGB[2]) + ", " +
-                    Double.toString((double)prec) + ")";
-        }
+      }
+      double prec = StrictMath.round(
+(arrayRGB[3] / 255.0) * 100.0) / 100.0;
+      return "rgba(" + RoundedString(arrayRGB[0]) + ", " +
+                        RoundedString(arrayRGB[1]) + ", " +
+                        RoundedString(arrayRGB[2]) + ", " +
+                        Double.toString((double)prec) + ")";
+    }
 
     /**
      * Converts a red-green-blue-alpha color to a string in CSS format.
@@ -1157,25 +1160,25 @@ RoundedString(arrayRGB[2]) + ")";
      * fewer than three elements.
      * @throws NullPointerException The parameter {@code rgb} is null.
      */
-        public static String RgbToColorDisplay(double[] rgb) {
-            if (rgb == null) {
-              throw new NullPointerException("rgb");
-            }
-            if (rgb.length < 3) {
-                throw new IllegalArgumentException("3 more than " + rgb.length +
-                    " (3)");
-            }
-            if (rgb.length == 3 || (rgb.length > 3 && rgb[3] == 255)) {
-              return RgbToColorHtml(rgb);
-            } else {
-                return RgbToColor(rgb).replace(" ", "");
-            }
-        }
+    public static String RgbToColorDisplay(double[] rgb) {
+      if (rgb == null) {
+        throw new NullPointerException("rgb");
+      }
+      if (rgb.length < 3) {
+        throw new IllegalArgumentException("3 more than " + rgb.length +
+            " (3)");
+      }
+      if (rgb.length == 3 || (rgb.length > 3 && rgb[3] == 255)) {
+        return RgbToColorHtml(rgb);
+      } else {
+        return RgbToColor(rgb).replace(" ", "");
+      }
+    }
 
     /**
      * Not documented yet.
      */
-        private static String valueHexArray = "0123456789abcdef";
+    private static String valueHexArray = "0123456789abcdef";
 
     /**
      * Converts an RGBA color to an HTML color, (ex. #002233).&#x22;rgb&#x22; must
@@ -1184,22 +1187,22 @@ RoundedString(arrayRGB[2]) + ")";
      * @return A text string.
      * @throws NullPointerException The parameter {@code rgb} is null.
      */
-        public static String RgbToColorHtml(double[] rgb) {
-            if (rgb == null) {
-              throw new NullPointerException("rgb");
-            }
-            if (rgb.length < 3) {
-                throw new IllegalArgumentException("3 more than " + rgb.length +
-                    "(3)");
-            }
-            StringBuilder sb = new StringBuilder();
-            int c, d;
-            for (int i = 0; i < 3; ++i) {
-                d = (int)StrictMath.round(rgb[i]);
-                c = d < 0 ? 0 : (d > 255 ? 255 : d);
-                sb.append(valueHexArray.charAt((c >> 4) & 15));
-                sb.append(valueHexArray.charAt(c & 15));
-            }
-            return sb.toString();
-        }
+    public static String RgbToColorHtml(double[] rgb) {
+      if (rgb == null) {
+        throw new NullPointerException("rgb");
+      }
+      if (rgb.length < 3) {
+        throw new IllegalArgumentException("3 more than " + rgb.length +
+            "(3)");
+      }
+      StringBuilder sb = new StringBuilder();
+      int c, d;
+      for (int i = 0; i < 3; ++i) {
+        d = (int)StrictMath.round(rgb[i]);
+        c = d < 0 ? 0 : (d > 255 ? 255 : d);
+        sb.append(valueHexArray.charAt((c >> 4) & 15));
+        sb.append(valueHexArray.charAt(c & 15));
+      }
+      return sb.toString();
     }
+  }

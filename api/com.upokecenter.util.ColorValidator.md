@@ -7,34 +7,33 @@ Contains utility methods for processing Uniform Resource Identifiers (URIs)
  RFC3987, respectively. In the following documentation, URIs and IRIs
  include URI references and IRI references, for convenience. <p>There
  are five components to a URI: scheme, authority, path, query, and
- fragment identifier. The generic syntax to these components is
- defined in RFC3986 and extended in RFC3987. According to RFC3986,
- different URI schemes can further restrict the syntax of the
- authority, path, and query component (see also RFC 7320). However,
- the syntax of fragment identifiers depends on the media type (also
- known as MIME type) of the resource a URI references (see also RFC
- 3986 and RFC 7320). As of September 3, 2019, only the following
- media types specify a syntax for fragment identifiers:</p> <ul>
- <li>The following application/* media types: epub + zip, pdf, senml
- + cbor, senml + json, senml-exi, sensml + cbor, sensml + json,
- sensml-exi, smil, vnd.3gpp-v2x-local-service-information,
- vnd.3gpp.mcdata-signalling, vnd.collection.doc + json, vnd.hc +
- json, vnd.hyper + json, vnd.hyper-item + json, vnd.mason + json,
- vnd.microsoft.portable-executable, vnd.oma.bcast.sgdu,
- vnd.shootproof + json</li> <li>The following image/* media types:
- avci, avcs, heic, heic-sequence, heif, heif-sequence, hej2k, hsj2,
- jxra, jxrs, jxsi, jxss</li> <li>The XML media types:
- application/xml, application/xml-external-parsed-entity, text/xml,
+ fragment identifier. The generic syntax to these components is defined
+ in RFC3986 and extended in RFC3987. According to RFC3986, different
+ URI schemes can further restrict the syntax of the authority, path,
+ and query component (see also RFC 7320). However, the syntax of
+ fragment identifiers depends on the media type (also known as MIME
+ type) of the resource a URI references (see also RFC 3986 and RFC
+ 7320). As of September 3, 2019, only the following media types specify
+ a syntax for fragment identifiers:</p> <ul> <li>The following
+ application/* media types: epub + zip, pdf, senml + cbor, senml +
+ json, senml-exi, sensml + cbor, sensml + json, sensml-exi, smil,
+ vnd.3gpp-v2x-local-service-information, vnd.3gpp.mcdata-signalling,
+ vnd.collection.doc + json, vnd.hc + json, vnd.hyper + json,
+ vnd.hyper-item + json, vnd.mason + json,
+ vnd.microsoft.portable-executable, vnd.oma.bcast.sgdu, vnd.shootproof
+ + json</li> <li>The following image/* media types: avci, avcs, heic,
+ heic-sequence, heif, heif-sequence, hej2k, hsj2, jxra, jxrs, jxsi,
+ jxss</li> <li>The XML media types: application/xml,
+ application/xml-external-parsed-entity, text/xml,
  text/xml-external-parsed-entity, application/xml-dtd</li> <li>All
-  media types with subtypes ending in "+xml" (see RFC 7303) use
- XPointer Framework syntax as fragment identifiers, except the
- following application/* media types: dicom + xml (syntax not
- defined), senml + xml (own syntax), sensml + xml (own syntax), ttml
- + xml (own syntax), xliff + xml (own syntax), yang-data + xml
- (syntax not defined)</li> <li>font/collection</li>
- <li>multipart/x-mixed-replace</li> <li>text/plain</li>
- <li>text/csv</li> <li>text/html</li> <li>text/markdown</li>
- <li>text/vnd.a</li></ul>
+  media types with subtypes ending in "+xml" (see RFC 7303) use XPointer
+ Framework syntax as fragment identifiers, except the following
+ application/* media types: dicom + xml (syntax not defined), senml +
+ xml (own syntax), sensml + xml (own syntax), ttml + xml (own syntax),
+ xliff + xml (own syntax), yang-data + xml (syntax not defined)</li>
+ <li>font/collection</li> <li>multipart/x-mixed-replace</li>
+ <li>text/plain</li> <li>text/csv</li> <li>text/html</li>
+ <li>text/markdown</li> <li>text/vnd.a</li></ul>
 
 ## Methods
 
@@ -110,7 +109,7 @@ Converts an HTML or CSS color string to a 4-element RGB array.
  lemonchiffon</code>, <code>chocolate</code>, and so on, including the newly
  added <code>rebeccapurple</code>.</li> <li>The value <code>transparent</code>,
  meaning transparent black.</li></ul> <p>For more information:
- [https://peteroupc.github.io/html3dutil/tutorial-colors.html</p>](https://peteroupc.github.io/html3dutil/tutorial-colors.html</p>) .
+ https://peteroupc.github.io/html3dutil/tutorial-colors.html.</p> .
 
 **Returns:**
 
