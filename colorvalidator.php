@@ -1,7 +1,7 @@
 <?php
 
 /* This file is in the public domain. Peter O., 2012. http://upokecenter.dreamhosters.com
-    Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/  */
+    Any copyright to this work is released to the Public Domain.  In case this is not possible, this work is also licensed under Creative Commons Zero: http://creativecommons.org/publicdomain/zero/1.0/  */
 /*
  This file converts between different representations of HTML and CSS colors.
 */

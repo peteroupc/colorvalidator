@@ -2,7 +2,29 @@
 
     public static class ColorValidator
 
-Contains methods to convert between different representations of HTML and CSS colors.
+Contains utility methods for processing Uniform Resource Identifiers (URIs) and Internationalized Resource Identifiers (IRIs) under RFC3986 and RFC3987, respectively. In the following documentation, URIs and IRIs include URI references and IRI references, for convenience. There are five components to a URI: scheme, authority, path, query, and fragment identifier. The generic syntax to these components is defined in RFC3986 and extended in RFC3987. According to RFC3986, different URI schemes can further restrict the syntax of the authority, path, and query component (see also RFC 7320). However, the syntax of fragment identifiers depends on the media type (also known as MIME type) of the resource a URI references (see also RFC 3986 and RFC 7320). As of September 3, 2019, only the following media types specify a syntax for fragment identifiers:
+
+ * The following application/* media types: epub + zip, pdf, senml + cbor, senml + json, senml-exi, sensml + cbor, sensml + json, sensml-exi, smil, vnd.3gpp-v2x-local-service-information, vnd.3gpp.mcdata-signalling, vnd.collection.doc + json, vnd.hc + json, vnd.hyper + json, vnd.hyper-item + json, vnd.mason + json, vnd.microsoft.portable-executable, vnd.oma.bcast.sgdu, vnd.shootproof + json
+
+ * The following image/* media types: avci, avcs, heic, heic-sequence, heif, heif-sequence, hej2k, hsj2, jxra, jxrs, jxsi, jxss
+
+ * The XML media types: application/xml, application/xml-external-parsed-entity, text/xml, text/xml-external-parsed-entity, application/xml-dtd
+
+ * All media types with subtypes ending in "+xml" (see RFC 7303) use XPointer Framework syntax as fragment identifiers, except the following application/* media types: dicom + xml (syntax not defined), senml + xml (own syntax), sensml + xml (own syntax), ttml + xml (own syntax), xliff + xml (own syntax), yang-data + xml (syntax not defined)
+
+ * font/collection
+
+ * multipart/x-mixed-replace
+
+ * text/plain
+
+ * text/csv
+
+ * text/html
+
+ * text/markdown
+
+ * text/vnd.a
 
 ### Member Summary
 * <code>[ColorToRgba(string)](#ColorToRgba_string)</code> - Converts an HTML or CSS color string to a 4-element RGB array.
@@ -36,7 +58,7 @@ Converts an HTML or CSS color string to a 4-element RGB array.
 
  * The value  `transparent` , meaning transparent black.
 
-For more information: [https://peteroupc.github.io/html3dutil/tutorial-colors.html](https://peteroupc.github.io/html3dutil/tutorial-colors.html)
+For more information: https://peteroupc.github.io/html3dutil/tutorial-colors.html.
 
  .
 
@@ -58,13 +80,13 @@ Converts a color in the HLS color space to red/green/blue. Hue can range from 0 
 <b>Parameters:</b>
 
  * <i>hueval</i>: The parameter  <i>hueval</i>
- is not documented yet.
+ is a 64-bit floating-point number.
 
  * <i>lum</i>: The parameter  <i>lum</i>
- is not documented yet.
+ is a 64-bit floating-point number.
 
  * <i>sat</i>: The parameter  <i>sat</i>
- is not documented yet.
+ is a 64-bit floating-point number.
 
 <b>Return Value:</b>
 
@@ -89,7 +111,7 @@ Converts an RGBA color to a string, either rgb(...) or rgba(...) as applicable.
 
 <b>Return Value:</b>
 
-A string object.
+A text string.
 
 <b>Exceptions:</b>
 
@@ -137,7 +159,7 @@ Converts an RGBA color to an HTML color, (ex. #002233)."rgb" must contain at lea
 
 <b>Return Value:</b>
 
-A string object.
+A text string.
 
 <b>Exceptions:</b>
 

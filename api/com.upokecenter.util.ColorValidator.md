@@ -109,7 +109,7 @@ Converts an HTML or CSS color string to a 4-element RGB array.
  lemonchiffon</code>, <code>chocolate</code>, and so on, including the newly
  added <code>rebeccapurple</code>.</li> <li>The value <code>transparent</code>,
  meaning transparent black.</li></ul> <p>For more information:
- https://peteroupc.github.io/html3dutil/tutorial-colors.html.</p> .
+ [https://peteroupc.github.io/html3dutil/tutorial-colors.html.</p>](https://peteroupc.github.io/html3dutil/tutorial-colors.html.</p>) .
 
 **Returns:**
 

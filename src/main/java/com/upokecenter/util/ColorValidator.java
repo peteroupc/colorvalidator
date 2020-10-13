@@ -121,22 +121,22 @@ private ColorValidator() {
         }
         index = tx2;
         if ((
-          tx2 = SepPct(
-            str,
-            index,
-            endIndex,
-            ret,
-            1)) == index) {
+            tx2 = SepPct(
+              str,
+              index,
+              endIndex,
+              ret,
+              1)) == index) {
           return indexStart;
         }
         index = tx2;
         if ((
-         tx2 = SepPct(
-           str,
-           index,
-           endIndex,
-           ret,
-           2)) == index) {
+            tx2 = SepPct(
+              str,
+              index,
+              endIndex,
+              ret,
+              2)) == index) {
           return indexStart;
         }
         index = tx2;
@@ -178,7 +178,7 @@ private ColorValidator() {
           return index;
         }
         ret[retIndex] = StringToPercent(str, index, tx2) * 255.0 /
-              100.0;
+          100.0;
         return tx2 + 1;
       }
       return tx2;
@@ -272,8 +272,7 @@ private ColorValidator() {
       double[] ret,
       int retIndex) {
       int tx2 = ParseComma(str, index, endIndex);
-      return (tx2 != index) ?
-        Pct(str, tx2, endIndex, ret, retIndex) : tx2;
+      return (tx2 != index) ? Pct(str, tx2, endIndex, ret, retIndex) : tx2;
     }
 
     /**
@@ -324,27 +323,27 @@ private ColorValidator() {
         }
         index = tx2;
         if ((
-          tx2 = SepPct(
-            str,
-            index,
-            endIndex,
-            ret,
-            1)) == index) {
+            tx2 = SepPct(
+              str,
+              index,
+              endIndex,
+              ret,
+              1)) == index) {
           return indexStart;
         }
         index = tx2;
         if ((
-         tx2 = SepPct(
-           str,
-           index,
-           endIndex,
-           ret,
-           2)) == index) {
+            tx2 = SepPct(
+              str,
+              index,
+              endIndex,
+              ret,
+              2)) == index) {
           return indexStart;
         }
         index = tx2;
         if ((tx2 = SepAlpha(str, index, endIndex, ret, 3)) ==
-            index) {
+          index) {
           return indexStart;
         }
         index = tx2;
@@ -383,43 +382,43 @@ private ColorValidator() {
       int st = index;
       boolean continuing = true;
       if ((tx2 = Pct(str, index, endIndex, result, 0)) ==
-              index) {
+        index) {
         continuing = false;
       } else {
         index = tx2;
       }
       if (
-    continuing && (
-    tx2 = SepPct(
-      str,
-      index,
-      endIndex,
-      result,
-      1)) == index) {
+        continuing && (
+          tx2 = SepPct(
+            str,
+            index,
+            endIndex,
+            result,
+            1)) == index) {
         continuing = false;
       } else {
         index = tx2;
       }
       if (
-    continuing && (
-    tx2 = SepPct(
-      str,
-      index,
-      endIndex,
-      result,
-      2)) == index) {
+        continuing && (
+          tx2 = SepPct(
+            str,
+            index,
+            endIndex,
+            result,
+            2)) == index) {
         continuing = false;
       } else {
         index = tx2;
       }
       if (
-    continuing && (
-    tx2 = SepAlpha(
-      str,
-      index,
-      endIndex,
-      result,
-      3)) == index) {
+        continuing && (
+          tx2 = SepAlpha(
+            str,
+            index,
+            endIndex,
+            result,
+            3)) == index) {
         continuing = false;
       } else {
         index = tx2;
@@ -428,43 +427,43 @@ private ColorValidator() {
         index = st;
         continuing = true;
         if ((tx2 = ParseByte(str, index, endIndex, result, 0)) ==
-              index) {
+          index) {
           continuing = false;
         } else {
           index = tx2;
         }
         if (
-      continuing && (
-      tx2 = SepByte(
-        str,
-        index,
-        endIndex,
-        result,
-        1)) == index) {
+          continuing && (
+            tx2 = SepByte(
+              str,
+              index,
+              endIndex,
+              result,
+              1)) == index) {
           continuing = false;
         } else {
           index = tx2;
         }
         if (
-      continuing && (
-      tx2 = SepByte(
-        str,
-        index,
-        endIndex,
-        result,
-        2)) == index) {
+          continuing && (
+            tx2 = SepByte(
+              str,
+              index,
+              endIndex,
+              result,
+              2)) == index) {
           continuing = false;
         } else {
           index = tx2;
         }
         if (
-      continuing && (
-      tx2 = SepAlpha(
-        str,
-        index,
-        endIndex,
-        result,
-        3)) == index) {
+          continuing && (
+            tx2 = SepAlpha(
+              str,
+              index,
+              endIndex,
+              result,
+              3)) == index) {
           continuing = false;
         } else {
           index = tx2;
@@ -497,31 +496,31 @@ private ColorValidator() {
       int st = index;
       boolean continuing = true;
       if ((tx2 = Pct(str, index, endIndex, result, 0)) ==
-              index) {
+        index) {
         continuing = false;
       } else {
         index = tx2;
       }
       if (
-    continuing && (
-    tx2 = SepPct(
-      str,
-      index,
-      endIndex,
-      result,
-      1)) == index) {
+        continuing && (
+          tx2 = SepPct(
+            str,
+            index,
+            endIndex,
+            result,
+            1)) == index) {
         continuing = false;
       } else {
         index = tx2;
       }
       if (
-    continuing && (
-    tx2 = SepPct(
-      str,
-      index,
-      endIndex,
-      result,
-      2)) == index) {
+        continuing && (
+          tx2 = SepPct(
+            str,
+            index,
+            endIndex,
+            result,
+            2)) == index) {
         continuing = false;
       } else {
         index = tx2;
@@ -530,31 +529,31 @@ private ColorValidator() {
         index = st;
         continuing = true;
         if ((tx2 = ParseByte(str, index, endIndex, result, 0)) ==
-              index) {
+          index) {
           continuing = false;
         } else {
           index = tx2;
         }
         if (
-      continuing && (
-      tx2 = SepByte(
-        str,
-        index,
-        endIndex,
-        result,
-        1)) == index) {
+          continuing && (
+            tx2 = SepByte(
+              str,
+              index,
+              endIndex,
+              result,
+              1)) == index) {
           continuing = false;
         } else {
           index = tx2;
         }
         if (
-      continuing && (
-      tx2 = SepByte(
-        str,
-        index,
-        endIndex,
-        result,
-        2)) == index) {
+          continuing && (
+            tx2 = SepByte(
+              str,
+              index,
+              endIndex,
+              result,
+              2)) == index) {
           continuing = false;
         } else {
           index = tx2;
@@ -584,8 +583,7 @@ private ColorValidator() {
       int index,
       int endIndex) {
       String str2 = str.substring(index, (index)+(endIndex - index));
-      return
-Double.parseDouble(str2);
+      return Double.parseDouble(str2);
     }
 
     /**
@@ -601,7 +599,7 @@ Double.parseDouble(str2);
       int endIndex) {
       double num = StringToNumber(str, index, endIndex);
       return Double.isNaN(num) ? (-1) : ((num < 0) ? 0 :
-  ((num > 100) ? 100 : num));
+          ((num > 100) ? 100 : num));
     }
 
     /**
@@ -632,8 +630,8 @@ Double.parseDouble(str2);
       int endIndex) {
       double num = StringToNumber(str, index, endIndex);
       return (Double.isNaN(num) || ((num) == Double.POSITIVE_INFINITY) ||
-     ((num) == Double.NEGATIVE_INFINITY)) ? 0 : (((num % 360) + 360) %
-     360);
+          ((num) == Double.NEGATIVE_INFINITY)) ? 0 : (((num % 360) + 360) %
+          360);
     }
 
     /**
@@ -669,7 +667,7 @@ Double.parseDouble(str2);
       int indexStart = index;
       if (
         posneg && index < endIndex && ((str.charAt(index) == 43) ||
-(str.charAt(index) == 45))) {
+          (str.charAt(index) == 45))) {
         ++index;
       }
       while (index < endIndex && (str.charAt(index) >= 48 && str.charAt(index) <=
@@ -691,19 +689,21 @@ Double.parseDouble(str2);
       int indexStart = index;
       int tmp = index;
       if ((tmp = ParseInteger(str, index, endIndex, true)) !=
-           indexStart) {
+        indexStart) {
         index = tmp;
         if (index < endIndex && (str.charAt(index) == 46)) {
           // Dot is optional
           ++index;
           if ((tmp = ParseInteger(str, index, endIndex, false)) !=
-          index) {
+            index) {
             int tmp2 = 0;
             return (
-              index < endIndex && (str.charAt(index) == 0x45 || str.charAt(index) ==
-0x65) && (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index +
-
-        1) ? tmp2 : tmp;
+                index < endIndex && (str.charAt(index) == 0x45 || str.charAt(index) ==
+                  0x65) && (tmp2 = ParseInteger(
+                    str,
+                    index + 1,
+                    endIndex,
+                    true)) != index + 1) ? tmp2 : tmp;
           } else {
             return index - 1;
           }
@@ -711,20 +711,22 @@ Double.parseDouble(str2);
         return index;
       } else {
         if (index < endIndex && ((str.charAt(index) == 43) || (str.charAt(index) ==
-            45))) {
+              45))) {
           ++index;
         }
         if (index < endIndex && (str.charAt(index) == 46)) {
           // Dot is required
           ++index;
           if ((tmp = ParseInteger(str, index, endIndex, false)) !=
-          index) {
+            index) {
             int tmp2 = 0;
             return (
-              index < endIndex && (str.charAt(index) == 0x45 || str.charAt(index) ==
-0x65) && (tmp2 = ParseInteger(str, index + 1, endIndex, true)) != index +
-
-        1) ? tmp2 : tmp;
+                index < endIndex && (str.charAt(index) == 0x45 || str.charAt(index) ==
+                  0x65) && (tmp2 = ParseInteger(
+                    str,
+                    index + 1,
+                    endIndex,
+                    true)) != index + 1) ? tmp2 : tmp;
           } else {
             return indexStart;
           }
@@ -773,21 +775,21 @@ Double.parseDouble(str2);
         hue -= 360;
       }
       r = (hue < 60) ? (a + ((b - a) * hue / 60)) : ((hue < 180) ? b :
-        ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
+          ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
       hue = hueval;
       g = (hue < 60) ? (a + ((b - a) * hue / 60)) : ((hue < 180) ? b :
-        ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
+          ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
       hue = hueval - 120;
       if (hue < 0) {
         hue += 360;
       }
       bl = (hue < 60) ? (a + ((b - a) * hue / 60)) : ((hue < 180) ? b :
-        ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
+          ((hue < 240) ? (a + ((b - a) * (240 - hue) / 60)) : a));
       return new double[] {
-              (r < 0 ? 0 : (r > 255 ? 255 : r)),
-              (g < 0 ? 0 : (g > 255 ? 255 : g)),
-              (bl < 0 ? 0 : (bl > 255 ? 255 : bl)),
-            };
+        (r < 0 ? 0 : (r > 255 ? 255 : r)),
+        (g < 0 ? 0 : (g > 255 ? 255 : g)),
+        (bl < 0 ? 0 : (bl > 255 ? 255 : bl)),
+      };
     }
 
     /**
@@ -800,7 +802,7 @@ Double.parseDouble(str2);
         return c - 0x30;
       }
       return (c >= 'A' && c <= 'F') ? (c + 10 - 0x41) : ((c >= 'a' && c
-        <= 'f') ? (c + 10 - 0x61) : (-1));
+            <= 'f') ? (c + 10 - 0x61) : (-1));
     }
 
     /**
@@ -851,7 +853,7 @@ Double.parseDouble(str2);
       while (index < valueSLength) {
         char c = str.charAt(index);
         if (c != 0x09 && c != 0x20 && c != 0x0c && c != 0x0d && c !=
-            0x0a) {
+          0x0a) {
           break;
         }
         ++index;
@@ -864,13 +866,13 @@ Double.parseDouble(str2);
       while (index >= 0) {
         char c = str.charAt(index);
         if (c != 0x09 && c != 0x20 && c != 0x0c && c != 0x0d && c !=
-            0x0a) {
+          0x0a) {
           int indexEnd = index + 1;
           if (indexEnd == indexStart) {
             return "";
           }
           return (indexEnd == str.length() && indexStart == 0) ? str :
-          str.substring(indexStart, (indexStart)+(indexEnd - indexStart));
+            str.substring(indexStart, (indexStart)+(indexEnd - indexStart));
         }
         --index;
       }
@@ -978,25 +980,21 @@ Double.parseDouble(str2);
           return ret;
         }
       }
-      if (x.length() > 4 && x.substring(0,4).equals("rgb(",
-                                                   StringComparison.Ordinal)) {
+      if (x.length() > 4 && x.substring(0,4).equals("rgb(")) {
         return (Rgb(x, 4, x.length(), ret) == x.length()) ?
-       ret : null;
+          ret : null;
       }
-      if (x.length() > 5 && x.substring(0,5).equals("rgba(",
-                                                   StringComparison.Ordinal)) {
+      if (x.length() > 5 && x.substring(0,5).equals("rgba(")) {
         return (Rgba(x, 5, x.length(), ret) == x.length()) ?
-        ret : null;
+          ret : null;
       }
-      if (x.length() > 4 && x.substring(0,4).equals("hsl(",
-                                                   StringComparison.Ordinal)) {
+      if (x.length() > 4 && x.substring(0,4).equals("hsl(")) {
         return (Hsl(x, 4, x.length(), ret) == x.length()) ?
-       ret : null;
+          ret : null;
       }
-      if (x.length() > 5 && x.substring(0,5).equals("hsla(",
-                                                   StringComparison.Ordinal)) {
+      if (x.length() > 5 && x.substring(0,5).equals("hsla(")) {
         return (Hsla(x, 5, x.length(), ret) == x.length()) ?
-        ret : null;
+          ret : null;
       }
       HashMap<String, String> colors = ColorToRgbaSetUpNamedColors();
       if (colors.containsKey(x)) {
@@ -1008,76 +1006,76 @@ Double.parseDouble(str2);
     }
 
     private static volatile HashMap<String, String>
-          namedColorMap;
+    namedColorMap;
 
     private static Object syncRoot = new Object();
 
     private static String[] nc = new String[] {
-          "aliceblue", "f0f8ff", "antiquewhite", "faebd7", "aqua",
-          "00ffff", "aquamarine", "7fffd4", "azure", "f0ffff", "beige",
-          "f5f5dc",
-          "bisque", "ffe4c4", "black", "000000", "blanchedalmond",
-          "ffebcd",
-          "blue", "0000ff", "blueviolet", "8a2be2", "brown",
-          "a52a2a", "burlywood", "deb887", "cadetblue", "5f9ea0",
-          "chartreuse", "7fff00", "chocolate", "d2691e", "coral", "ff7f50",
-          "cornflowerblue", "6495ed", "cornsilk", "fff8dc", "crimson",
-          "dc143c", "cyan", "00ffff", "darkblue", "00008b", "darkcyan",
-          "008b8b", "darkgoldenrod", "b8860b", "darkgray", "a9a9a9",
-          "darkgreen", "006400", "darkkhaki", "bdb76b", "darkmagenta",
-          "8b008b", "darkolivegreen", "556b2f", "darkorange", "ff8c00",
-          "darkorchid", "9932cc", "darkred", "8b0000", "darksalmon",
-          "e9967a", "darkseagreen", "8fbc8f", "darkslateblue", "483d8b",
-          "darkslategray", "2f4f4f", "darkturquoise", "00ced1",
-          "darkviolet", "9400d3", "deeppink", "ff1493",
-          "deepskyblue", "00bfff", "dimgray", "696969", "dodgerblue",
-          "1e90ff", "firebrick", "b22222", "floralwhite", "fffaf0",
-          "forestgreen", "228b22", "fuchsia", "ff00ff", "gainsboro", "dcdcdc",
-          "ghostwhite", "f8f8ff", "gold", "ffd700", "goldenrod", "daa520",
-          "gray", "808080", "green", "008000", "greenyellow", "adff2f",
-          "honeydew", "f0fff0", "hotpink", "ff69b4", "indianred", "cd5c5c",
-          "indigo", "4b0082", "ivory", "fffff0", "khaki", "f0e68c",
-          "lavender", "e6e6fa", "lavenderblush", "fff0f5", "lawngreen",
-          "7cfc00", "lemonchiffon", "fffacd", "lightblue", "add8e6",
-          "lightcoral", "f08080", "lightcyan", "e0ffff",
-          "lightgoldenrodyellow",
-          "fafad2", "lightgray", "d3d3d3", "lightgreen",
-          "90ee90", "lightpink", "ffb6c1", "lightsalmon", "ffa07a",
-          "lightseagreen", "20b2aa", "lightskyblue", "87cefa",
-          "lightslategray",
-          "778899", "lightsteelblue", "b0c4de", "lightyellow", "ffffe0",
-          "lime", "00ff00", "limegreen", "32cd32", "linen", "faf0e6",
-          "magenta",
-          "ff00ff", "maroon", "800000", "mediumaquamarine",
-          "66cdaa", "mediumblue", "0000cd", "mediumorchid", "ba55d3",
-          "mediumpurple", "9370d8", "mediumseagreen", "3cb371",
-          "mediumslateblue", "7b68ee", "mediumspringgreen",
-          "00fa9a", "mediumturquoise", "48d1cc", "mediumvioletred",
-          "c71585",
-          "midnightblue", "191970", "mintcream", "f5fffa", "mistyrose",
-          "ffe4e1", "moccasin", "ffe4b5", "navajowhite", "ffdead", "navy",
-          "000080", "oldlace", "fdf5e6", "olive", "808000", "olivedrab",
-          "6b8e23",
-          "orange", "ffa500", "orangered",
-          "ff4500", "orchid", "da70d6", "palegoldenrod", "eee8aa",
-          "palegreen", "98fb98", "paleturquoise", "afeeee",
-          "palevioletred", "d87093",
-          "papayawhip", "ffefd5", "peachpuff",
-          "ffdab9", "peru", "cd853f", "pink", "ffc0cb", "plum", "dda0dd",
-          "powderblue", "b0e0e6", "purple", "800080", "rebeccapurple",
-          "663399", "red", "ff0000",
-          "rosybrown", "bc8f8f", "royalblue", "4169e1",
-          "saddlebrown", "8b4513", "salmon", "fa8072", "sandybrown",
-          "f4a460", "seagreen", "2e8b57", "seashell", "fff5ee", "sienna",
-          "a0522d", "silver", "c0c0c0", "skyblue", "87ceeb", "slateblue",
-          "6a5acd", "slategray", "708090", "snow", "fffafa",
-          "springgreen",
-          "00ff7f", "steelblue", "4682b4", "tan", "d2b48c", "teal",
-          "008080", "thistle", "d8bfd8", "tomato", "ff6347", "turquoise",
-          "40e0d0", "violet", "ee82ee", "wheat", "f5deb3", "white",
-          "ffffff",
-          "whitesmoke", "f5f5f5", "yellow", "ffff00", "yellowgreen", "9acd32",
-        };
+      "aliceblue", "f0f8ff", "antiquewhite", "faebd7", "aqua",
+      "00ffff", "aquamarine", "7fffd4", "azure", "f0ffff", "beige",
+      "f5f5dc",
+      "bisque", "ffe4c4", "black", "000000", "blanchedalmond",
+      "ffebcd",
+      "blue", "0000ff", "blueviolet", "8a2be2", "brown",
+      "a52a2a", "burlywood", "deb887", "cadetblue", "5f9ea0",
+      "chartreuse", "7fff00", "chocolate", "d2691e", "coral", "ff7f50",
+      "cornflowerblue", "6495ed", "cornsilk", "fff8dc", "crimson",
+      "dc143c", "cyan", "00ffff", "darkblue", "00008b", "darkcyan",
+      "008b8b", "darkgoldenrod", "b8860b", "darkgray", "a9a9a9",
+      "darkgreen", "006400", "darkkhaki", "bdb76b", "darkmagenta",
+      "8b008b", "darkolivegreen", "556b2f", "darkorange", "ff8c00",
+      "darkorchid", "9932cc", "darkred", "8b0000", "darksalmon",
+      "e9967a", "darkseagreen", "8fbc8f", "darkslateblue", "483d8b",
+      "darkslategray", "2f4f4f", "darkturquoise", "00ced1",
+      "darkviolet", "9400d3", "deeppink", "ff1493",
+      "deepskyblue", "00bfff", "dimgray", "696969", "dodgerblue",
+      "1e90ff", "firebrick", "b22222", "floralwhite", "fffaf0",
+      "forestgreen", "228b22", "fuchsia", "ff00ff", "gainsboro", "dcdcdc",
+      "ghostwhite", "f8f8ff", "gold", "ffd700", "goldenrod", "daa520",
+      "gray", "808080", "green", "008000", "greenyellow", "adff2f",
+      "honeydew", "f0fff0", "hotpink", "ff69b4", "indianred", "cd5c5c",
+      "indigo", "4b0082", "ivory", "fffff0", "khaki", "f0e68c",
+      "lavender", "e6e6fa", "lavenderblush", "fff0f5", "lawngreen",
+      "7cfc00", "lemonchiffon", "fffacd", "lightblue", "add8e6",
+      "lightcoral", "f08080", "lightcyan", "e0ffff",
+      "lightgoldenrodyellow",
+      "fafad2", "lightgray", "d3d3d3", "lightgreen",
+      "90ee90", "lightpink", "ffb6c1", "lightsalmon", "ffa07a",
+      "lightseagreen", "20b2aa", "lightskyblue", "87cefa",
+      "lightslategray",
+      "778899", "lightsteelblue", "b0c4de", "lightyellow", "ffffe0",
+      "lime", "00ff00", "limegreen", "32cd32", "linen", "faf0e6",
+      "magenta",
+      "ff00ff", "maroon", "800000", "mediumaquamarine",
+      "66cdaa", "mediumblue", "0000cd", "mediumorchid", "ba55d3",
+      "mediumpurple", "9370d8", "mediumseagreen", "3cb371",
+      "mediumslateblue", "7b68ee", "mediumspringgreen",
+      "00fa9a", "mediumturquoise", "48d1cc", "mediumvioletred",
+      "c71585",
+      "midnightblue", "191970", "mintcream", "f5fffa", "mistyrose",
+      "ffe4e1", "moccasin", "ffe4b5", "navajowhite", "ffdead", "navy",
+      "000080", "oldlace", "fdf5e6", "olive", "808000", "olivedrab",
+      "6b8e23",
+      "orange", "ffa500", "orangered",
+      "ff4500", "orchid", "da70d6", "palegoldenrod", "eee8aa",
+      "palegreen", "98fb98", "paleturquoise", "afeeee",
+      "palevioletred", "d87093",
+      "papayawhip", "ffefd5", "peachpuff",
+      "ffdab9", "peru", "cd853f", "pink", "ffc0cb", "plum", "dda0dd",
+      "powderblue", "b0e0e6", "purple", "800080", "rebeccapurple",
+      "663399", "red", "ff0000",
+      "rosybrown", "bc8f8f", "royalblue", "4169e1",
+      "saddlebrown", "8b4513", "salmon", "fa8072", "sandybrown",
+      "f4a460", "seagreen", "2e8b57", "seashell", "fff5ee", "sienna",
+      "a0522d", "silver", "c0c0c0", "skyblue", "87ceeb", "slateblue",
+      "6a5acd", "slategray", "708090", "snow", "fffafa",
+      "springgreen",
+      "00ff7f", "steelblue", "4682b4", "tan", "d2b48c", "teal",
+      "008080", "thistle", "d8bfd8", "tomato", "ff6347", "turquoise",
+      "40e0d0", "violet", "ee82ee", "wheat", "f5deb3", "white",
+      "ffffff",
+      "whitesmoke", "f5f5f5", "yellow", "ffff00", "yellowgreen", "9acd32",
+    };
 
     private static HashMap<String, String> ColorToRgbaSetUpNamedColors() {
       if (namedColorMap == null) {
@@ -1130,21 +1128,19 @@ Double.parseDouble(str2);
       }
       if (arrayRGB.length < 3) {
         throw new IllegalArgumentException("3 more than " + arrayRGB.length +
-            " (3)");
+          " (3)");
       }
       // we should include the spaces
       if ((arrayRGB.length > 3 && (arrayRGB[3] == 255.0)) ||
-            arrayRGB.length == 3) {
+        arrayRGB.length == 3) {
         return "rgb(" + RoundedString(arrayRGB[0]) + ", " +
-            RoundedString(arrayRGB[1]) + ", " +
-RoundedString(arrayRGB[2]) + ")";
+          RoundedString(arrayRGB[1]) + ", " + RoundedString(arrayRGB[2]) + ")";
       }
       double prec = StrictMath.round(
-(arrayRGB[3] / 255.0) * 100.0) / 100.0;
+          (arrayRGB[3] / 255.0) * 100.0) / 100.0;
       return "rgba(" + RoundedString(arrayRGB[0]) + ", " +
-                        RoundedString(arrayRGB[1]) + ", " +
-                        RoundedString(arrayRGB[2]) + ", " +
-                        Double.toString((double)prec) + ")";
+        RoundedString(arrayRGB[1]) + ", " + RoundedString(arrayRGB[2]) + ", " +
+        Double.toString((double)prec) + ")";
     }
 
     /**
@@ -1166,7 +1162,7 @@ RoundedString(arrayRGB[2]) + ")";
       }
       if (rgb.length < 3) {
         throw new IllegalArgumentException("3 more than " + rgb.length +
-            " (3)");
+          " (3)");
       }
       if (rgb.length == 3 || (rgb.length > 3 && rgb[3] == 255)) {
         return RgbToColorHtml(rgb);
@@ -1193,7 +1189,7 @@ RoundedString(arrayRGB[2]) + ")";
       }
       if (rgb.length < 3) {
         throw new IllegalArgumentException("3 more than " + rgb.length +
-            "(3)");
+          "(3)");
       }
       StringBuilder sb = new StringBuilder();
       int c, d;

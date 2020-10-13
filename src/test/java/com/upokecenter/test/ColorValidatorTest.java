@@ -24,9 +24,8 @@ import com.upokecenter.util.*;
       if ((rgba) == null) {
  Assert.fail(str);
  }
-    String valueSMsg = str + "\n" + rgba[0] + ", " + rgba[1] + ", " +
-      rgba[2] + ", " +
- rgba[3];
+      String valueSMsg = str + "\n" + rgba[0] + ", " + rgba[1] + ", " +
+        rgba[2] + ", " + rgba[3];
       Assert.assertEquals(valueSMsg + ": red",r,rgba[0],1.5);
       Assert.assertEquals(valueSMsg + ": green",g,rgba[1],1.5);
       Assert.assertEquals(valueSMsg + ": blue",b,rgba[2],1.5);
@@ -44,8 +43,8 @@ import com.upokecenter.util.*;
         ColorValidator.RgbToColorDisplay(null);
         Assert.fail("Should have failed");
       } catch (NullPointerException ex) {
-// NOTE: Intentionally empty
-} catch (Exception ex) {
+        // NOTE: Intentionally empty
+      } catch (Exception ex) {
         Assert.fail(ex.toString());
         throw new IllegalStateException("", ex);
       }
@@ -56,8 +55,8 @@ import com.upokecenter.util.*;
         ColorValidator.RgbToColorHtml(null);
         Assert.fail("Should have failed");
       } catch (NullPointerException ex) {
-// NOTE: Intentionally empty
-} catch (Exception ex) {
+        // NOTE: Intentionally empty
+      } catch (Exception ex) {
         Assert.fail(ex.toString());
         throw new IllegalStateException("", ex);
       }

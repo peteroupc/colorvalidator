@@ -22,9 +22,8 @@ namespace Test {
       double a) {
       double[] rgba = ColorValidator.ColorToRgba(str);
       Assert.NotNull(rgba, str);
-    string valueSMsg = str + "\n" + rgba[0] + ", " + rgba[1] + ", " +
-      rgba[2] + ", " +
- rgba[3];
+      string valueSMsg = str + "\n" + rgba[0] + ", " + rgba[1] + ", " +
+        rgba[2] + ", " + rgba[3];
       Assert.AreEqual(r, rgba[0], 1.5, valueSMsg + ": red");
       Assert.AreEqual(g, rgba[1], 1.5, valueSMsg + ": green");
       Assert.AreEqual(b, rgba[2], 1.5, valueSMsg + ": blue");
@@ -42,8 +41,8 @@ namespace Test {
         ColorValidator.RgbToColorDisplay(null);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-// NOTE: Intentionally empty
-} catch (Exception ex) {
+        // NOTE: Intentionally empty
+      } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
       }
@@ -54,8 +53,8 @@ namespace Test {
         ColorValidator.RgbToColorHtml(null);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-// NOTE: Intentionally empty
-} catch (Exception ex) {
+        // NOTE: Intentionally empty
+      } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
       }
