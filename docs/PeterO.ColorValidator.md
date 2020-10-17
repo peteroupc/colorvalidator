@@ -58,7 +58,7 @@ Converts an HTML or CSS color string to a 4-element RGB array.
 
  * The value  `transparent` , meaning transparent black.
 
-For more information: [https://peteroupc.github.io/html3dutil/tutorial-colors.html.](https://peteroupc.github.io/html3dutil/tutorial-colors.html.)
+For more information: https://peteroupc.github.io/html3dutil/tutorial-colors.html.
 
  .
 
