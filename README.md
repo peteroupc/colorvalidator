@@ -6,8 +6,6 @@ ColorValidator
 
 **Download source code: [ZIP file](https://github.com/peteroupc/MailLib/archive/master.zip)**
 
-If you like this software, consider donating to me at this link: [http://peteroupc.github.io/](http://peteroupc.github.io/)
-
 ----
 
 Functions for server-side validation of CSS colors, in several popular server languages.
@@ -58,8 +56,7 @@ About
 
 Written by Peter O.
 
-Any copyright is dedicated to the Public Domain.
-[http://creativecommons.org/publicdomain/zero/1.0/](http://creativecommons.org/publicdomain/zero/1.0/)
-
-If you like this, you should donate to Peter O.
-at: [http://peteroupc.github.io/](http://peteroupc.github.io/)
+Any copyright to this work is released to the Public Domain.
+In case this is not possible, this work is also
+licensed under Creative Commons Zero (CC0):
+[https://creativecommons.org/publicdomain/zero/1.0/](https://creativecommons.org/publicdomain/zero/1.0/)

@@ -1,47 +1,17 @@
 package com.upokecenter.util;
 /*
 Written in 2012-2016 by Peter O.
-Any copyright is dedicated to the Public Domain.
-http://creativecommons.org/publicdomain/zero/1.0/
-If you like this, you should donate to Peter O.
-at: http://peteroupc.github.io/
+Any copyright to this work is released to the Public Domain.
+In case this is not possible, this work is also
+licensed under Creative Commons Zero (CC0):
+https://creativecommons.org/publicdomain/zero/1.0/
+
  */
 
 import java.util.*;
 
   /**
-   * Contains utility methods for processing Uniform Resource Identifiers (URIs)
-   * and Internationalized Resource Identifiers (IRIs) under RFC3986 and
-   * RFC3987, respectively. In the following documentation, URIs and IRIs
-   * include URI references and IRI references, for convenience. <p>There
-   * are five components to a URI: scheme, authority, path, query, and
-   * fragment identifier. The generic syntax to these components is defined
-   * in RFC3986 and extended in RFC3987. According to RFC3986, different
-   * URI schemes can further restrict the syntax of the authority, path,
-   * and query component (see also RFC 7320). However, the syntax of
-   * fragment identifiers depends on the media type (also known as MIME
-   * type) of the resource a URI references (see also RFC 3986 and RFC
-   * 7320). As of September 3, 2019, only the following media types specify
-   * a syntax for fragment identifiers:</p> <ul> <li>The following
-   * application/* media types: epub + zip, pdf, senml + cbor, senml +
-   * json, senml-exi, sensml + cbor, sensml + json, sensml-exi, smil,
-   * vnd.3gpp-v2x-local-service-information, vnd.3gpp.mcdata-signalling,
-   * vnd.collection.doc + json, vnd.hc + json, vnd.hyper + json,
-   * vnd.hyper-item + json, vnd.mason + json,
-   * vnd.microsoft.portable-executable, vnd.oma.bcast.sgdu, vnd.shootproof
-   * + json</li> <li>The following image/* media types: avci, avcs, heic,
-   * heic-sequence, heif, heif-sequence, hej2k, hsj2, jxra, jxrs, jxsi,
-   * jxss</li> <li>The XML media types: application/xml,
-   * application/xml-external-parsed-entity, text/xml,
-   * text/xml-external-parsed-entity, application/xml-dtd</li> <li>All
-   *  media types with subtypes ending in "+xml" (see RFC 7303) use XPointer
-   * Framework syntax as fragment identifiers, except the following
-   * application/* media types: dicom + xml (syntax not defined), senml +
-   * xml (own syntax), sensml + xml (own syntax), ttml + xml (own syntax),
-   * xliff + xml (own syntax), yang-data + xml (syntax not defined)</li>
-   * <li>font/collection</li> <li>multipart/x-mixed-replace</li>
-   * <li>text/plain</li> <li>text/csv</li> <li>text/html</li>
-   * <li>text/markdown</li> <li>text/vnd.a</li></ul>
+   * Color validator.
    */
   public final class ColorValidator {
 private ColorValidator() {
@@ -737,9 +707,9 @@ private ColorValidator() {
 
     /**
      * Converts a color in the HLS color space to red/green/blue. Hue can range
-     * from 0 to 360, and lightness and saturation can range from 0 to 255.
-     * If lightness and saturation are out of range, those values are
-     * clamped to fit that range.
+     * from 0 to 360, and lightness and saturation can range from 0 to 255. If
+     * lightness and saturation are out of range, those values are clamped to fit
+     * that range.
      * @param hueval The parameter {@code hueval} is a 64-bit floating-point
      * number.
      * @param lum The parameter {@code lum} is a 64-bit floating-point number.
@@ -931,36 +901,7 @@ private ColorValidator() {
     }
 
     /**
-     * Converts an HTML or CSS color string to a 4-element RGB array.
-     * @param x A string which names a color. The following lists the kinds of
-     * colors accepted: <ul> <li>HTML colors with the syntax {@code
-     * #RRGGBB}, where RR is the hexadecimal form of the red component
-     * (00-FF), GG is the hexadecimal green component, and BB is the
-     * hexadecimal blue component. Example: #88DFE0.</li> <li>HTML colors
-     * with the syntax {@code #RGB}, where R is the hexadecimal form of the
-     * red component (0-F), G is the hexadecimal green component, and B is
-     * the hexadecimal blue component. Example: #8DE.</li> <li>CSS colors
-     * with the syntax {@code rgb(red, green, blue)} or {@code rgba(red,
-     * green, blue, alpha)} where {@code red}, {@code green}, and {@code
-     * blue} are the red, green, and blue components, respectively, either
-     * as a number (0-255) or as a percent, and {@code alpha} is a number
-     * from 0-1 specifying the alpha component. Examples: {@code rgb(255,
-     * 0, 0)}, {@code rgb(100%, 50%, 0%)}, {@code rgba(20, 255, 255,
-     * 0.5)}.</li> <li>CSS colors with the syntax {@code hsl(hue, sat,
-     * light)} or {@code hsla(hue, sat, light, alpha)} where {@code hue} is
-     * the hue component in degrees (0-360), {@code sat} and {@code light}
-     * are the saturation and lightness components, respectively, as
-     * percents, and {@code alpha} is a number from 0-1 specifying the
-     * alpha component. Examples: {@code rgb(255, 0, 0)}, {@code hsl(200,
-     * 50%, 50%)}, {@code hsla(20, 80%, 90%, 0.5)}.</li> <li>CSS colors
-     * such as {@code red}, {@code green}, {@code white}, {@code
-     * lemonchiffon}, {@code chocolate}, and so on, including the newly
-     * added {@code rebeccapurple}.</li> <li>The value {@code transparent},
-     * meaning transparent black.</li></ul> <p>For more information:
-     * https://peteroupc.github.io/html3dutil/tutorial-colors.html.</p> .
-     * @return An array containing four elements, with the red, green, blue, and
-     * alpha components of the same color, each from 0 to 255. Returns null
-     * if {@code x} is null, empty, or has invalid syntax.
+     *
      */
     public static double[] ColorToRgba(String x) {
       if (((x) == null || (x).length() == 0)) {
@@ -1146,12 +1087,12 @@ private ColorValidator() {
     /**
      * Converts a red-green-blue-alpha color to a string in CSS format.
      * @param rgb An array containing three or four elements, with the red, green,
-     * blue, and alpha components of the color, each from 0 to 255. Each
-     * element's value is adjusted to 0 if it's less than 0 and to 255 if
-     * it's greater than 255 (the array itself is not modified, though).
+     * blue, and alpha components of the color, each from 0 to 255. Each element's
+     * value is adjusted to 0 if it's less than 0 and to 255 if it's greater than
+     * 255 (the array itself is not modified, though).
      * @return A string in HTML color format: "#RRGGBB", if there are three
-     * elements or the fourth value in the array is 255, or a string in the
-     * RGBA color format otherwise.
+     * elements or the fourth value in the array is 255, or a string in the RGBA
+     * color format otherwise.
      * @throws IllegalArgumentException The parameter {@code rgb} is null or contains
      * fewer than three elements.
      * @throws NullPointerException The parameter {@code rgb} is null.
@@ -1177,8 +1118,8 @@ private ColorValidator() {
     private static String valueHexArray = "0123456789abcdef";
 
     /**
-     * Converts an RGBA color to an HTML color, (ex. #002233).&#x22;rgb&#x22; must
-     * contain at least 3 elements: the red, green, and blue (each 0-255).
+     * Converts an RGBA color to an HTML color, (ex. #002233)."rgb" must contain at
+     * least 3 elements: the red, green, and blue (each 0-255).
      * @param rgb A double[] object.
      * @return A text string.
      * @throws NullPointerException The parameter {@code rgb} is null.

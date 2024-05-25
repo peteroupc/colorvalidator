@@ -5,7 +5,6 @@
 *.map
 *.nupkg
 *.pyc
-*.snk
 *.suo
 *.userprefs
 .nuget/
