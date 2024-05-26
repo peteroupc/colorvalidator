@@ -39,7 +39,7 @@ Converts an HTML or CSS color string to a 4-element RGB array.
 
 **What do some colors look like?** Consult a [list of useful colors sorted by hue or color tone](https://peteroupc.github.io/html3dutil/websafe.svg). This particular list was historically called the "Web safe" colors, which were chosen "specifically because they matched the palettes selected by various browser applications" for 256-color displays (according to [**Wikipedia**](http://en.wikipedia.org/wiki/Web_colors)). Each entry in the list consists of a color swatch and the corresponding HTML name (see next question).
 
-A [second list](https://peteroupc.github.io/html3dutil/colornames.svg) shows the colors defined in the [**CSS3 Color Module section 4**](http://www.w3.org/TR/css3-color/#colorunits), as well as the newly-added name  `rebeccapurple`  . Where  `grey`  is part of a name, it can be replaced with  `gray`  . Next to the name of each color in the list, the color's HTML notation is shown.
+A [second list](https://peteroupc.github.io/html3dutil/colornames.svg) shows the colors defined in the [**CSS3 Color Module section 4**](http://www.w3.org/TR/css3-color/#colorunits), as well as the newly-added name  `rebeccapurple`  . Where  `gray`  is part of a name, it can be replaced with  `grey`  . Next to the name of each color in the list, the color's HTML notation is shown.
 
 **What is the syntax for HTML colors?** The notation employed in the list of "Web safe colors" in the preceding section is HTML's way to define colors. It’s also known as “hex colors”. Take  `#ff80cc`  as an example. The color defined is a carnation pink. There are four parts to this example:
 
@@ -73,7 +73,7 @@ After you choose the three values, combine them by writing the  `#`  , then the 
 
 **What is RGB notation?** A color in RGB notation contains the same information as an HTML color, except that each value is shown in the familiar base-10 format. For example, the value  `rgb(192, 64, 0)`  is the same as the HTML color value  `#C04000`  .
 
-The components of the RGB color (red, green, and blue, in that order) can range from  `0`  to  `255`  , or from  `0%`  to  `100%`  , but mixing ranges is not allowed. For example,  `rgb(192, 64, 0)`  and  `rgb(80%, 50%, 0%)`  are allowed, but not  `rgb(192,50%,0%)`  . The steps for "darkening", "lightening", and "desaturating" RGB colors are pretty much the same as with HTML colors. Another syntax for RGB colors supports the alpha component (see _What is an alpha component?_, later): in the example  `rgba(192, 64, 0, 0.5)`  , the  `0.5`  is the alpha component. This component supports either range for RGB colors, either 0-255 or percentages. (Note that the example starts with  `rgba`  , not just  `rgb`  .)
+The components of the RGB color (red, green, and blue, in that order) can range from  `0`  to  `255`  , or from  `0%`  to  `100%`  , but mixing ranges is not allowed. For example,  `rgb(192, 64, 0)`  and  `rgb(80%, 50%, 0%)`  are allowed, but not  `rgb(192, 50%, 0%)`  . The steps for "darkening", "lightening", and "desaturating" RGB colors are pretty much the same as with HTML colors. Another syntax for RGB colors supports the alpha component (see _What is an alpha component?_, later): in the example  `rgba(192, 64, 0, 0.5)`  , the  `0.5`  is the alpha component. This component supports either range for RGB colors, either 0-255 or percentages. (Note that the example starts with  `rgba`  , not just  `rgb`  .)
 
 **What is HSL notation?** A color in HSL notation is made of the following three components:
 
