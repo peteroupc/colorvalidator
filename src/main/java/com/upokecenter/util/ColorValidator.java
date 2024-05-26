@@ -929,8 +929,8 @@ private ColorValidator() {
      * list)(https://peteroupc.github.io/html3dutil/colornames.svg) shows the
      * colors defined in the.get(**CSS3 Color Module section
      * 4**)(http://www.w3.org/TR/css3-color/#colorunits), as well as the
-     * newly-added name {@code rebeccapurple} . Where {@code grey} is part of a
-     * name, it can be replaced with {@code gray} . Next to the name of each color
+     * newly-added name {@code rebeccapurple} . Where {@code gray} is part of a
+     * name, it can be replaced with {@code grey} . Next to the name of each color
      * in the list, the color's HTML notation is shown.</p> <p>**What is the syntax
      * for HTML colors?** The notation employed in the list of "Web safe colors" in
      * the preceding section is HTML's way to define colors. It’s also known as
@@ -994,8 +994,8 @@ private ColorValidator() {
      * <p>The components of the RGB color (red, green, and blue, in that order) can
      * range from {@code 0} to {@code 255} , or from {@code 0%} to {@code 100%} ,
      * but mixing ranges is not allowed. For example, {@code rgb(192, 64, 0)} and
-     * {@code rgb(80%, 50%, 0%)} are allowed, but not {@code rgb(192, 50%, 0%)} . The
-     * steps for "darkening", "lightening", and "desaturating" RGB colors are
+     * {@code rgb(80%, 50%, 0%)} are allowed, but not {@code rgb(192, 50%, 0%)} .
+     * The steps for "darkening", "lightening", and "desaturating" RGB colors are
      * pretty much the same as with HTML colors. Another syntax for RGB colors
      * supports the alpha component (see _What is an alpha component?_, later): in
      * the example {@code rgba(192, 64, 0, 0.5)} , the {@code 0.5} is the alpha

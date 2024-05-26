@@ -989,9 +989,9 @@ namespace PeterO {
     /// the colors defined in the [**CSS3 Color Module section
     /// 4**](http://www.w3.org/TR/css3-color/#colorunits), as well as the
     /// newly-added name <c>rebeccapurple</c>
-    ///  . Where <c>grey</c>
+    ///  . Where <c>gray</c>
     ///  is part
-    /// of a name, it can be replaced with <c>gray</c>
+    /// of a name, it can be replaced with <c>grey</c>
     ///  . Next to the name
     /// of each color in the list, the color's HTML notation is
     /// shown.</para>
@@ -1099,7 +1099,7 @@ namespace PeterO {
     /// example, <c>rgb(192, 64, 0)</c>
     ///  and <c>rgb(80%, 50%, 0%)</c>
     ///  are
-    /// allowed, but not <c>rgb(192,50%,0%)</c>
+    /// allowed, but not <c>rgb(192, 50%, 0%)</c>
     ///  . The steps for
     /// "darkening", "lightening", and "desaturating" RGB colors are pretty
     /// much the same as with HTML colors. Another syntax for RGB colors

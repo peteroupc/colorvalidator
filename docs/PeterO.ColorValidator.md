@@ -2,29 +2,7 @@
 
     public static class ColorValidator
 
-Contains utility methods for processing Uniform Resource Identifiers (URIs) and Internationalized Resource Identifiers (IRIs) under RFC3986 and RFC3987, respectively. In the following documentation, URIs and IRIs include URI references and IRI references, for convenience. There are five components to a URI: scheme, authority, path, query, and fragment identifier. The generic syntax to these components is defined in RFC3986 and extended in RFC3987. According to RFC3986, different URI schemes can further restrict the syntax of the authority, path, and query component (see also RFC 7320). However, the syntax of fragment identifiers depends on the media type (also known as MIME type) of the resource a URI references (see also RFC 3986 and RFC 7320). As of September 3, 2019, only the following media types specify a syntax for fragment identifiers:
-
- * The following application/* media types: epub + zip, pdf, senml + cbor, senml + json, senml-exi, sensml + cbor, sensml + json, sensml-exi, smil, vnd.3gpp-v2x-local-service-information, vnd.3gpp.mcdata-signalling, vnd.collection.doc + json, vnd.hc + json, vnd.hyper + json, vnd.hyper-item + json, vnd.mason + json, vnd.microsoft.portable-executable, vnd.oma.bcast.sgdu, vnd.shootproof + json
-
- * The following image/* media types: avci, avcs, heic, heic-sequence, heif, heif-sequence, hej2k, hsj2, jxra, jxrs, jxsi, jxss
-
- * The XML media types: application/xml, application/xml-external-parsed-entity, text/xml, text/xml-external-parsed-entity, application/xml-dtd
-
- * All media types with subtypes ending in "+xml" (see RFC 7303) use XPointer Framework syntax as fragment identifiers, except the following application/* media types: dicom + xml (syntax not defined), senml + xml (own syntax), sensml + xml (own syntax), ttml + xml (own syntax), xliff + xml (own syntax), yang-data + xml (syntax not defined)
-
- * font/collection
-
- * multipart/x-mixed-replace
-
- * text/plain
-
- * text/csv
-
- * text/html
-
- * text/markdown
-
- * text/vnd.a
+Color validator.
 
 ### Member Summary
 * <code>[ColorToRgba(string)](#ColorToRgba_string)</code> - Converts an HTML or CSS color string to a 4-element RGB array.
@@ -43,22 +21,72 @@ Converts an HTML or CSS color string to a 4-element RGB array.
 
 <b>Parameters:</b>
 
- * <i>x</i>: A string which names a color. The following lists the kinds of colors accepted:
+ * <i>x</i>: A string which names a color. The letters in the string can be in any combination of basic upper-case letters A to Z (U+0041 to U+005A) and basic lower-case letters. The string can begin with any combination of white space characters (U+0009, U+000A, U+000C, U+000D, U+0020), can end with any combination of those characters, or both.
 
- * HTML colors with the syntax  `#RRGGBB` , where RR is the hexadecimal form of the red component (00-FF), GG is the hexadecimal green component, and BB is the hexadecimal blue component. Example: #88DFE0.
+**What colors can I use?** You can use values like the following as color strings.
 
- * HTML colors with the syntax  `#RGB` , where R is the hexadecimal form of the red component (0-F), G is the hexadecimal green component, and B is the hexadecimal blue component. Example: #8DE.
+ * CSS color names (from the CSS3 Color Module):  `red`  ,  `blue`  ,  `silver`  ,  `fuchsia`  ,  `darkslateblue`  .
 
- * CSS colors with the syntax  `rgb(red, green, blue)`  or  `rgba(red, green, blue, alpha)`  where  `red` ,  `green` , and  `blue`  are the red, green, and blue components, respectively, either as a number (0-255) or as a percent, and  `alpha`  is a number from 0-1 specifying the alpha component. Examples:  `rgb(255, 0, 0)` ,  `rgb(100%, 50%,
-            0%)` ,  `rgba(20, 255, 255, 0.5)` .
+ * HTML “hex colors”:  `#223344`  ,  `#234`  ,  `#234F`  , or  `#223344FF`  . (See _What is the syntax for HTML colors?_)
 
- * CSS colors with the syntax  `hsl(hue, sat, light)`  or  `hsla(hue, sat, light, alpha)`  where  `hue`  is the hue component in degrees (0-360),  `sat`  and  `light`  are the saturation and lightness components, respectively, as percents, and  `alpha`  is a number from 0-1 specifying the alpha component. Examples:  `rgb(255, 0, 0)` ,  `hsl(200, 50%, 50%)` ,  `hsla(20, 80%, 90%, 0.5)` .
+ * RGB notation:  `rgb(20, 30, 40)`  or  `rgba(20, 30, 40, 50%)`  . (See _What is RGB notation?_, later.)
 
- * CSS colors such as  `red` ,  `green` ,  `white` ,  `lemonchiffon` ,  `chocolate` , and so on, including the newly added  `rebeccapurple` .
+ * HSL notation:  `hsl(200, 100%, 50%)`  or  `hsla(200, 100%, 50%, 80%`  . (See _What is HSL notation?_, later.)
 
- * The value  `transparent` , meaning transparent black.
+ * The newly-added color name  `rebeccapurple`  .
 
-For more information: [https://peteroupc.github.io/html3dutil/tutorial-colors.html.](https://peteroupc.github.io/html3dutil/tutorial-colors.html.)
+ * The word  `transparent`  , meaning a fully-transparent color.
+
+**What do some colors look like?** Consult a [list of useful colors sorted by hue or color tone](https://peteroupc.github.io/html3dutil/websafe.svg). This particular list was historically called the "Web safe" colors, which were chosen "specifically because they matched the palettes selected by various browser applications" for 256-color displays (according to [**Wikipedia**](http://en.wikipedia.org/wiki/Web_colors)). Each entry in the list consists of a color swatch and the corresponding HTML name (see next question).
+
+A [second list](https://peteroupc.github.io/html3dutil/colornames.svg) shows the colors defined in the [**CSS3 Color Module section 4**](http://www.w3.org/TR/css3-color/#colorunits), as well as the newly-added name  `rebeccapurple`  . Where  `grey`  is part of a name, it can be replaced with  `gray`  . Next to the name of each color in the list, the color's HTML notation is shown.
+
+**What is the syntax for HTML colors?** The notation employed in the list of "Web safe colors" in the preceding section is HTML's way to define colors. It’s also known as “hex colors”. Take  `#ff80cc`  as an example. The color defined is a carnation pink. There are four parts to this example:
+
+ * The  `#`  identifies this code as a color.
+
+ * The  `ff`  is two letters and/or digits that show the red component of the color. This is a so-called hexadecimal number, or base-16 number. Each digit of this number can range from 0-9 and from A-F, with 0 being the lowest digit, and F being the highest digit. The highest two-digit value is 00, and the lowest two-digit value is FF (256). (The digits A-F may appear in upper or lower case.)
+
+ * The  `80`  is a base-16 number showing the color’s green component.
+
+ * The  `cc`  is a base-16 number showing the color’s blue component.
+
+The notation may also include an additional base-16 number, as in this example:  `#ac80ccff`  . Here, the last  `ff`  shows the color's alpha component (see _What is an alpha component?_, later). Two shortened notations are supported: colors with only three or four base-16 digits are the same as their expanded six-digit or eight-digit form, respectively. For example,  `#f8c`  is the same as  `#ff88cc`  ; and  `#f8ce`  ,  `#ff88ccee`  .
+
+**How do I make HTML colors?** Look at the table below that shows some of the values possible for the red, green, and blue components of some colors.
+
+                Red.. 00 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 FF
+                Green 00 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 FF
+                Blue. 00 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 FF
+
+Now, to make a custom color, you choose one value from the red row, one value from the green row, and one value from the blue row. Each value shows the intensity of the "light" that the color ideally reflects. For example, a red value of 00 means that, ideally, "red light" is not reflected, and a red value of FF, fully reflected.
+
+If you choose the same value in all three rows, the result is black (if you choose 00), white (if you choose FF) or a shade of gray. This shows that "red light", "green light", and "blue light" are ideally equally reflected.
+
+After you choose the three values, combine them by writing the  `#`  , then the red value, then the green value, then the blue value. For example, if you choose  `FF`  for red,  `A0`  for green, and  `00`  for blue, write the resulting color (orange) like this:  `#FFA000`  .
+
+**How do I "darken" an HTML color?** To darken a color (make a * shade* of it), consult the table shown in the question _How do I make HTML colors?_, above, and move each component (red, green, and blue) the same number of steps to the left. If you can’t move a component that far to the left, that component becomes 00. For example, to make a "darker" sky blue, start with 00, FF, and FF for red, green, and blue. When we move these components ten steps to the left, we get 00, 60, and 60. The final color becomes #006060.
+
+**How do I "lighten" an HTML color?** "Lightening" a color (making a *tint* of it) is almost the same as "darkening" a color, except we move the same number of steps to the right rather than the left. If you can’t move a component that far to the right, that component becomes FF. For example, to make a "lighter" red, start with FF, 00, and 00 for red, green, and blue. When we move these components ten steps to the right, we get FF, A0, and A0. The final color becomes #FFA0A0.
+
+**How do I "desaturate" an HTML color?** To make a "desaturated" ("washed-out") version (or *tone*) of a color, move the color components closer to each other, in about the same proportion. (If they’re exactly the same, the result is a shade of gray.) For example, to make a "washed-out" red, start with FF, 00, and 00 for red, green, and blue. When we move these components closer to each other, we get C0, 40, and 40. The final color becomes #C04040.
+
+**What is RGB notation?** A color in RGB notation contains the same information as an HTML color, except that each value is shown in the familiar base-10 format. For example, the value  `rgb(192, 64, 0)`  is the same as the HTML color value  `#C04000`  .
+
+The components of the RGB color (red, green, and blue, in that order) can range from  `0`  to  `255`  , or from  `0%`  to  `100%`  , but mixing ranges is not allowed. For example,  `rgb(192, 64, 0)`  and  `rgb(80%, 50%, 0%)`  are allowed, but not  `rgb(192,50%,0%)`  . The steps for "darkening", "lightening", and "desaturating" RGB colors are pretty much the same as with HTML colors. Another syntax for RGB colors supports the alpha component (see _What is an alpha component?_, later): in the example  `rgba(192, 64, 0, 0.5)`  , the  `0.5`  is the alpha component. This component supports either range for RGB colors, either 0-255 or percentages. (Note that the example starts with  `rgba`  , not just  `rgb`  .)
+
+**What is HSL notation?** A color in HSL notation is made of the following three components:
+
+ * _Hue_ ranges from 0 to 360 degrees. Each angle on the color wheel (which looks more like a hexagon than like a circle in HSL) stands for a different hue: red, yellow, green, cyan (sky-blue), blue, and magenta correspond roughly to hue 0 (say, 12 o’clock), 60, 120, 180, 240, and 300, respectively.
+
+ * "Saturation" and "lightness" range from 0% to 100%. "Saturation" is the distance of the color from gray (0% means gray; 100% means most distant from gray). "Lightness" is roughly the amount of black or white mixed with the color (0% means black; 100% means white; closer to 0 means closer to black; closer to 1 means clmagenta correspond roughly to hue 0 (say, 12 o’clock), 60, 120, 180, 240, and 300, respectively.
+
+**Example:** The value  `hsl(240, 100%, 50%)`  has a hue of 240 (blue), a "saturation" of 100% (fully saturated), and a "lightness" of 50% (neither black or white). It represents a vivid blue. If we lower "lightness" to 20%, we get a "darker" blue. If we also change the hue to 0, we get a "dark" red.
+
+An alternate syntax for HSL colors supports the alpha component (see next question): in the example  `hsla(240, 100%,
+            50%, 80%)`  , the  `80%`  is the alpha component.
+
+**What is an alpha component?** An alpha component shows how much the color is transparent (see-through) or opaque. The alpha component can range from  `00`  /  `0.0`  , or "fully transparent" (completely invisible), to  `FF`  /  `1.0`  , or "fully opaque" (letting nothing through it). If a color notation doesn't provide for an alpha component, the color is fully opaque.
 
  .
 
