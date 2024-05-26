@@ -19,7 +19,7 @@ NuGet Package Gallery under the name
 this library as a NuGet package, enter `Install-Package PeterO.ColorValidator` in the
 NuGet Package Manager Console.
 
-The Java implementation is expected to available
+The Java implementation is expected to be available
 as an [artifact](https://search.maven.org/#search|ga|1|g%3A%22com.github.peteroupc%22%20AND%20a%3A%22colorvalidator%22) in the Central Repository. To add this library to a Maven
 project, add the following to the `dependencies` section in your `pom.xml` file:
 
