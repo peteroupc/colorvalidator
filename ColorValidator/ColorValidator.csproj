@@ -17,22 +17,22 @@ Version 1.0:
 - First release
     </PackageReleaseNotes>
     <Copyright>Written by Peter O.  Any copyright to this work is released to the Public Domain.  In case this is not possible, this work is also
-licensed under Creative Commons Zero (CC0): https://creativecommons.org/publicdomain/zero/1.0/</Copyright>
+licensed under the Unlicense: https://unlicense.org/</Copyright>
     <PackOnBuild>true</PackOnBuild>
     <Version>1.0.0</Version>
     <Summary>A portable library for server-side validation of CSS colors.</Summary>
     <PackageTags>colors</PackageTags>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>PeterO.snk</AssemblyOriginatorKeyFile>
-  <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet><IsTrimmable Condition='$([MSBuild]::IsTargetFrameworkCompatible(&apos;$(TargetFramework)&apos;, &apos;net6.0&apos;))'>true</IsTrimmable><TargetFrameworks>netstandard1.0;net7.0</TargetFrameworks></PropertyGroup>
+  <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet><IsTrimmable Condition='$([MSBuild]::IsTargetFrameworkCompatible(&apos;$(TargetFramework)&apos;, &apos;net6.0&apos;))'>true</IsTrimmable><TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks></PropertyGroup>
 
   <PropertyGroup Condition=' &apos;$(Configuration)&apos;==&apos;Debug&apos; '>
-    <DocumentationFile>bin\Debug\netstandard1.0\ColorValidator.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard2.0\ColorValidator.xml</DocumentationFile>
   <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
   <PropertyGroup Condition=' &apos;$(Configuration)&apos;==&apos;Release&apos; '>
-    <DebugType/>
-    <DocumentationFile>bin\Release\netstandard1.0\ColorValidator.xml</DocumentationFile>
+    <DebugType>none</DebugType>
+    <DocumentationFile>bin\Release\netstandard2.0\ColorValidator.xml</DocumentationFile>
   <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
   <ItemGroup>
-  <PackageReference Include='StyleCop.Analyzers' PrivateAssets='All' Version='1.2.0-beta.354'/><AdditionalFiles Include='stylecop.json'/><AdditionalFiles Include='rules.ruleset'/><PackageReference Include='Microsoft.CodeAnalysis.NetAnalyzers' PrivateAssets='All' Version='7.0.3'/></ItemGroup>
+  <PackageReference Include='StyleCop.Analyzers' PrivateAssets='All' Version='1.2.0-beta.354'/><AdditionalFiles Include='stylecop.json'/><AdditionalFiles Include='rules.ruleset'/><!-- PackageReference Include='Microsoft.CodeAnalysis.NetAnalyzers' PrivateAssets='All' Version='9.0.0-preview.24454.1' --></ItemGroup>
 </Project>

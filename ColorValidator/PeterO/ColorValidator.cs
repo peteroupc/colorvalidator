@@ -2,8 +2,7 @@
 Written in 2012-2016 by Peter O.
 Any copyright to this work is released to the Public Domain.
 In case this is not possible, this work is also
-licensed under Creative Commons Zero (CC0):
-https://creativecommons.org/publicdomain/zero/1.0/
+licensed under the Unlicense: https://unlicense.org/
 
  */
 using System;
@@ -977,13 +976,18 @@ namespace PeterO {
     /// <para>**What do some colors look like?** Consult a [list of useful
     /// colors sorted by hue or color
     /// tone](https://peteroupc.github.io/html3dutil/websafe.svg). This
-    /// particular list was historically called the "Web safe" colors,
-    /// which were chosen "specifically because they matched the palettes
-    /// selected by various browser applications" for 256-color displays
-    /// (according to
-    /// [**Wikipedia**](http://en.wikipedia.org/wiki/Web_colors)). Each
-    /// entry in the list consists of a color swatch and the corresponding
-    /// HTML name (see next question).</para>
+    /// particular list was historically called the "Web safe" colors or
+    /// the "safety palette", and consists of 216 colors that are uniformly
+    /// spaced in the red-green-blue color cube. Robert Hess's article
+    /// "[The Safety
+    /// Palette](https://learn.microsoft.com/en-us/previous-versions/ms976419(v=msdn.10))",
+    /// 1996, described the advantage that images that use only colors in
+    /// this palette won't dither when displayed by Web browsers on a
+    /// 256-color display. (See also
+    /// [**Wikipedia**](http://en.wikipedia.org/wiki/Web_colors). Dithering
+    /// is the scattering of colors in a limited set to simulate colors
+    /// outside that set.) Each entry in the list consists of a color
+    /// swatch and the corresponding HTML name (see next question).</para>
     /// <para>A [second
     /// list](https://peteroupc.github.io/html3dutil/colornames.svg) shows
     /// the colors defined in the [**CSS3 Color Module section
@@ -996,11 +1000,11 @@ namespace PeterO {
     /// of each color in the list, the color's HTML notation is
     /// shown.</para>
     /// <para>**What is the syntax for HTML colors?** The notation employed
-    /// in the list of "Web safe colors" in the preceding section is HTML's
-    /// way to define colors. It&#8217;s also known as &#8220;hex
-    /// colors&#8221;. Take <c>#ff80cc</c>
-    ///  as an example. The color defined
-    /// is a carnation pink. There are four parts to this example:</para>
+    /// in the "safety palette" in the preceding section is HTML's way to
+    /// define colors. It&#8217;s also known as &#8220;hex colors&#8221;.
+    /// Take <c>#ff80cc</c>
+    ///  as an example. The color defined is a carnation
+    /// pink. There are four parts to this example:</para>
     /// <list><item>The <c>#</c>
     ///  identifies this code as a color.</item>
     /// <item>The <c>ff</c>
