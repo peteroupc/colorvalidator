@@ -982,8 +982,8 @@ namespace PeterO {
     /// "[The Safety
     /// Palette](https://learn.microsoft.com/en-us/previous-versions/ms976419(v=msdn.10))",
     /// 1996, described the advantage that images that use only colors in
-    /// this palette won't dither when displayed by Web browsers on a
-    /// 256-color display. (See also
+    /// this palette won't dither when displayed by Web browsers on
+    /// displays that can show at most 256 colors at once. (See also
     /// [**Wikipedia**](http://en.wikipedia.org/wiki/Web_colors). Dithering
     /// is the scattering of colors in a limited set to simulate colors
     /// outside that set.) Each entry in the list consists of a color

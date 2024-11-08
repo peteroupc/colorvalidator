@@ -924,11 +924,12 @@ private ColorValidator() {
      * color cube. Robert Hess's article "[The Safety
      *   Palette](https://learn.microsoft.com/en-us/previous-versions/ms976419(v=msdn.10))",
      * 1996, described the advantage that images that use only colors in this
-     * palette won't dither when displayed by Web browsers on a 256-color display.
-     * (See also [**Wikipedia**](http://en.wikipedia.org/wiki/Web_colors).
-     * Dithering is the scattering of colors in a limited set to simulate colors
-     * outside that set.) Each entry in the list consists of a color swatch and the
-     * corresponding HTML name (see next question).</p> <p>A.get(second
+     * palette won't dither when displayed by Web browsers on displays that can
+     * show at most 256 colors at once. (See also
+     * [**Wikipedia**](http://en.wikipedia.org/wiki/Web_colors). Dithering is the
+     * scattering of colors in a limited set to simulate colors outside that set.)
+     * Each entry in the list consists of a color swatch and the corresponding HTML
+     * name (see next question).</p> <p>A.get(second
      * list)(https://peteroupc.github.io/html3dutil/colornames.svg) shows the
      * colors defined in the.get(**CSS3 Color Module section
      * 4**)(http://www.w3.org/TR/css3-color/#colorunits), as well as the

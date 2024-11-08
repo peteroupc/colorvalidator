@@ -75,21 +75,26 @@ Converts an HTML or CSS color string to a 4-element RGB array.
  color.</li></ul> <p>**What do some colors look like?** Consult a.get(list of
  useful colors sorted by hue or color
  tone)(https://peteroupc.github.io/html3dutil/websafe.svg). This particular
- list was historically called the "Web safe" colors, which were chosen
- "specifically because they matched the palettes selected by various browser
- applications" for 256-color displays (according to
- [**Wikipedia**](http://en.wikipedia.org/wiki/Web_colors)). Each entry in the
- list consists of a color swatch and the corresponding HTML name (see next
- question).</p> <p>A.get(second
+ list was historically called the "Web safe" colors or the "safety palette",
+ and consists of 216 colors that are uniformly spaced in the red-green-blue
+ color cube. Robert Hess's article "[The Safety
+   Palette](https://learn.microsoft.com/en-us/previous-versions/ms976419(v=msdn.10))",
+ 1996, described the advantage that images that use only colors in this
+ palette won't dither when displayed by Web browsers on displays that can
+ show at most 256 colors at once. (See also
+ [**Wikipedia**](http://en.wikipedia.org/wiki/Web_colors). Dithering is the
+ scattering of colors in a limited set to simulate colors outside that set.)
+ Each entry in the list consists of a color swatch and the corresponding HTML
+ name (see next question).</p> <p>A.get(second
  list)(https://peteroupc.github.io/html3dutil/colornames.svg) shows the
  colors defined in the.get(**CSS3 Color Module section
  4**)(http://www.w3.org/TR/css3-color/#colorunits), as well as the
  newly-added name <code>rebeccapurple</code> . Where <code>gray</code> is part of a
  name, it can be replaced with <code>grey</code> . Next to the name of each color
  in the list, the color's HTML notation is shown.</p> <p>**What is the syntax
- for HTML colors?** The notation employed in the list of "Web safe colors" in
- the preceding section is HTML's way to define colors. It’s also known as
- “hex colors”. Take <code>#ff80cc</code> as an example. The color defined is a
+ for HTML colors?** The notation employed in the "safety palette" in the
+ preceding section is HTML's way to define colors. It’s also known as “hex
+ colors”. Take <code>#ff80cc</code> as an example. The color defined is a
  carnation pink. There are four parts to this example:</p> <ul><li>The <code>
  #</code> identifies this code as a color.</li><li>The <code>ff</code> is two letters
  and/or digits that show the red component of the color. This is a so-called
