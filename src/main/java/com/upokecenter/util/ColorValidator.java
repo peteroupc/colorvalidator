@@ -920,7 +920,7 @@ private ColorValidator() {
      * useful colors sorted by hue or color
      * tone)(https://peteroupc.github.io/html3dutil/websafe.svg). This particular
      * list was historically called the "Web safe" colors or the "safety palette",
-     * and consists of 216 colors that are uniformly spaced in the red-green-blue
+     * and consists of 216 colors that are uniformly spaced in the red–green–blue
      * color cube. Robert Hess's article "[The Safety
      *   Palette](https://learn.microsoft.com/en-us/previous-versions/ms976419(v=msdn.10))",
      * 1996, described the advantage that images that use only colors in this
@@ -1014,21 +1014,20 @@ private ColorValidator() {
      * "lightness" range from 0% to 100%. "Saturation" is the distance of the color
      * from gray (0% means gray; 100% means most distant from gray). "Lightness" is
      * roughly the amount of black or white mixed with the color (0% means black;
-     * 100% means white; closer to 0 means closer to black; closer to 1 means
-     * clmagenta correspond roughly to hue 0 (say, 12 o’clock), 60, 120, 180, 240,
-     * and 300, respectively.</li></ul> <p>**Example:** The value {@code hsl(240,
-     * 100%, 50%)} has a hue of 240 (blue), a "saturation" of 100% (fully
-     * saturated), and a "lightness" of 50% (neither black or white). It represents
-     * a vivid blue. If we lower "lightness" to 20%, we get a "darker" blue. If we
-     * also change the hue to 0, we get a "dark" red.</p> <p>An alternate syntax
-     * for HSL colors supports the alpha component (see next question): in the
-     * example {@code hsla(240, 100%, 50%, 80%)} , the {@code 80%} is the alpha
-     * component.</p> <p>**What is an alpha component?** An alpha component shows
-     * how much the color is transparent (see-through) or opaque. The alpha
-     * component can range from {@code 00} / {@code 0.0} , or "fully transparent"
-     * (completely invisible), to {@code FF} / {@code 1.0} , or "fully opaque"
-     * (letting nothing through it). If a color notation doesn't provide for an
-     * alpha component, the color is fully opaque.</p> .
+     * 100% means white; closer to 0% means closer to black; closer to 100% means
+     * closer to white).</li></ul> <p>**Example:** The value {@code hsl(240, 100%,
+     * 50%)} has a hue of 240 (blue), a "saturation" of 100% (fully saturated), and
+     * a "lightness" of 50% (neither black or white). It represents a vivid blue.
+     * If we lower "lightness" to 20%, we get a "darker" blue. If we also change
+     * the hue to 0, we get a "dark" red.</p> <p>An alternate syntax for HSL colors
+     * supports the alpha component (see next question): in the example {@code
+     * hsla(240, 100%, 50%, 80%)} , the {@code 80%} is the alpha component.</p>
+     * <p>**What is an alpha component?** An alpha component shows how much the
+     * color is transparent (see-through) or opaque. The alpha component can range
+     * from {@code 00} / {@code 0.0} , or "fully transparent" (completely
+     * invisible), to {@code FF} / {@code 1.0} , or "fully opaque" (letting nothing
+     * through it). If a color notation doesn't provide for an alpha component, the
+     * color is fully opaque.</p> .
      * @return An array containing four elements, with the red, green, blue, and
      * alpha components of the same color, each from 0 to 255. Returns null if
      * {@code x} is null, empty, or has invalid syntax.
@@ -1215,7 +1214,7 @@ private ColorValidator() {
     }
 
     /**
-     * Converts a red-green-blue-alpha color to a string in CSS format.
+     * Converts a red–green–blue-alpha color to a string in CSS format.
      * @param rgb An array containing three or four elements, with the red, green,
      * blue, and alpha components of the color, each from 0 to 255. Each element's
      * value is adjusted to 0 if it's less than 0 and to 255 if it's greater than

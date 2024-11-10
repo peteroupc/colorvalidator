@@ -978,8 +978,8 @@ namespace PeterO {
     /// tone](https://peteroupc.github.io/html3dutil/websafe.svg). This
     /// particular list was historically called the "Web safe" colors or
     /// the "safety palette", and consists of 216 colors that are uniformly
-    /// spaced in the red-green-blue color cube. Robert Hess's article
-    /// "[The Safety
+    /// spaced in the red&ndash;green&ndash;blue color cube. Robert Hess's
+    /// article "[The Safety
     /// Palette](https://learn.microsoft.com/en-us/previous-versions/ms976419(v=msdn.10))",
     /// 1996, described the advantage that images that use only colors in
     /// this palette won't dither when displayed by Web browsers on
@@ -1127,9 +1127,8 @@ namespace PeterO {
     /// "Saturation" is the distance of the color from gray (0% means gray;
     /// 100% means most distant from gray). "Lightness" is roughly the
     /// amount of black or white mixed with the color (0% means black; 100%
-    /// means white; closer to 0 means closer to black; closer to 1 means
-    /// clmagenta correspond roughly to hue 0 (say, 12 o&#8217;clock), 60,
-    /// 120, 180, 240, and 300, respectively.</item>
+    /// means white; closer to 0% means closer to black; closer to 100%
+    /// means closer to white).</item>
     ///  </list>
     /// <para>**Example:** The value <c>hsl(240, 100%, 50%)</c>
     ///  has a hue
@@ -1349,8 +1348,8 @@ namespace PeterO {
           System.Globalization.CultureInfo.InvariantCulture) + ")";
     }
 
-    /// <summary>Converts a red-green-blue-alpha color to a string in CSS
-    /// format.</summary>
+    /// <summary>Converts a red&ndash;green&ndash;blue-alpha color to a
+    /// string in CSS format.</summary>
     /// <param name='rgb'>An array containing three or four elements, with
     /// the red, green, blue, and alpha components of the color, each from
     /// 0 to 255. Each element's value is adjusted to 0 if it's less than 0
