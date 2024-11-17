@@ -1133,9 +1133,10 @@ namespace PeterO {
     /// <para>**Example:** The value <c>hsl(240, 100%, 50%)</c>
     ///  has a hue
     /// of 240 (blue), a "saturation" of 100% (fully saturated), and a
-    /// "lightness" of 50% (neither black or white). It represents a vivid
-    /// blue. If we lower "lightness" to 20%, we get a "darker" blue. If we
-    /// also change the hue to 0, we get a "dark" red.</para>
+    /// "lightness" of 50% (as far from "black" as from "white"). It
+    /// represents a vivid blue. If we lower "lightness" to 20%, we get a
+    /// "darker" blue. If we also change the hue to 0, we get a "dark"
+    /// red.</para>
     /// <para>An alternate syntax for HSL colors supports the alpha
     /// component (see next question): in the example <c>hsla(240, 100%,
     /// 50%, 80%)</c>

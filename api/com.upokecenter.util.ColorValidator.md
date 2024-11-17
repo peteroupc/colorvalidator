@@ -173,17 +173,17 @@ Converts an HTML or CSS color string to a 4-element RGB array.
  100% means white; closer to 0% means closer to black; closer to 100% means
  closer to white).</li></ul> <p>**Example:** The value <code>hsl(240, 100%,
  50%)</code> has a hue of 240 (blue), a "saturation" of 100% (fully saturated), and
- a "lightness" of 50% (neither black or white). It represents a vivid blue.
- If we lower "lightness" to 20%, we get a "darker" blue. If we also change
- the hue to 0, we get a "dark" red.</p> <p>An alternate syntax for HSL colors
- supports the alpha component (see next question): in the example <code>
- hsla(240, 100%, 50%, 80%)</code> , the <code>80%</code> is the alpha component.</p>
- <p>**What is an alpha component?** An alpha component shows how much the
- color is transparent (see-through) or opaque. The alpha component can range
- from <code>00</code> / <code>0.0</code> , or "fully transparent" (completely
- invisible), to <code>FF</code> / <code>1.0</code> , or "fully opaque" (letting nothing
- through it). If a color notation doesn't provide for an alpha component, the
- color is fully opaque.</p> .
+ a "lightness" of 50% (as far from "black" as from "white"). It represents a
+ vivid blue. If we lower "lightness" to 20%, we get a "darker" blue. If we
+ also change the hue to 0, we get a "dark" red.</p> <p>An alternate syntax
+ for HSL colors supports the alpha component (see next question): in the
+ example <code>hsla(240, 100%, 50%, 80%)</code> , the <code>80%</code> is the alpha
+ component.</p> <p>**What is an alpha component?** An alpha component shows
+ how much the color is transparent (see-through) or opaque. The alpha
+ component can range from <code>00</code> / <code>0.0</code> , or "fully transparent"
+ (completely invisible), to <code>FF</code> / <code>1.0</code> , or "fully opaque"
+ (letting nothing through it). If a color notation doesn't provide for an
+ alpha component, the color is fully opaque.</p> .
 
 **Returns:**
 
