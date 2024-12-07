@@ -581,7 +581,7 @@
 </doc>
 <doc name="M:PeterO.ColorValidator.RgbToColorDisplay(System.Double[])">
 
-            <summary>Converts a red&ndash;green&ndash;blue-alpha color to a string in CSS
+            <summary>Converts a red&#x2013;green&#x2013;blue-alpha color to a string in CSS
             format.</summary>
             <param name='rgb'>An array containing three or four elements, with
             the red, green, blue, and alpha components of the color, each from

@@ -978,8 +978,8 @@ namespace PeterO {
     /// tone](https://peteroupc.github.io/html3dutil/websafe.svg). This
     /// particular list was historically called the "Web safe" colors or
     /// the "safety palette", and consists of 216 colors that are uniformly
-    /// spaced in the red&ndash;green&ndash;blue color cube. Robert Hess's
-    /// article "[The Safety
+    /// spaced in the red&#x2013;green&#x2013;blue color cube. Robert
+    /// Hess's article "[The Safety
     /// Palette](https://learn.microsoft.com/en-us/previous-versions/ms976419(v=msdn.10))",
     /// 1996, described the advantage that images that use only colors in
     /// this palette won't dither when displayed by Web browsers on
@@ -1349,7 +1349,7 @@ namespace PeterO {
           System.Globalization.CultureInfo.InvariantCulture) + ")";
     }
 
-    /// <summary>Converts a red&ndash;green&ndash;blue-alpha color to a
+    /// <summary>Converts a red&#x2013;green&#x2013;blue-alpha color to a
     /// string in CSS format.</summary>
     /// <param name='rgb'>An array containing three or four elements, with
     /// the red, green, blue, and alpha components of the color, each from
