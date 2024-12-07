@@ -8,7 +8,7 @@ Color validator.
 * <code>[ColorToRgba(string)](#ColorToRgba_string)</code> - Converts an HTML or CSS color string to a 4-element RGB array.
 * <code>[HlsToRgb(double, double, double)](#HlsToRgb_double_double_double)</code> - Converts a color in the HLS color space to red/green/blue.
 * <code>[RgbToColor(double[])](#RgbToColor_double)</code> - Converts an RGBA color to a string, either rgb(.
-* <code>[RgbToColorDisplay(double[])](#RgbToColorDisplay_double)</code> - Converts a red-green-blue-alpha color to a string in CSS format.
+* <code>[RgbToColorDisplay(double[])](#RgbToColorDisplay_double)</code> - Converts a red&ndash;green&ndash;blue-alpha color to a string in CSS format.
 * <code>[RgbToColorHtml(double[])](#RgbToColorHtml_double)</code> - Converts an RGBA color to an HTML color, (ex.
 
 <a id="ColorToRgba_string"></a>
@@ -65,7 +65,7 @@ If you choose the same value in all three rows, the result is black (if you choo
 
 After you choose the three values, combine them by writing the  `#`  , then the red value, then the green value, then the blue value. For example, if you choose  `FF`  for red,  `A0`  for green, and  `00`  for blue, write the resulting color (orange) like this:  `#FFA000`  .
 
-**How do I "darken" an HTML color?** To darken a color (make a * shade* of it), consult the table shown in the question _How do I make HTML colors?_, above, and move each component (red, green, and blue) the same number of steps to the left. If you can’t move a component that far to the left, that component becomes 00. For example, to make a "darker" sky blue, start with 00, FF, and FF for red, green, and blue. When we move these components ten steps to the left, we get 00, 60, and 60. The final color becomes #006060.
+**How do I "darken" an HTML color?** To darken a color (make a * shade* of it), consult the table shown in the question _How do I make HTML colors?_, earlier, and move each component (red, green, and blue) the same number of steps to the left. If you can’t move a component that far to the left, that component becomes 00. For example, to make a "darker" sky blue, start with 00, FF, and FF for red, green, and blue. When we move these components ten steps to the left, we get 00, 60, and 60. The final color becomes #006060.
 
 **How do I "lighten" an HTML color?** "Lightening" a color (making a *tint* of it) is almost the same as "darkening" a color, except we move the same number of steps to the right rather than the left. If you can’t move a component that far to the right, that component becomes FF. For example, to make a "lighter" red, start with FF, 00, and 00 for red, green, and blue. When we move these components ten steps to the right, we get FF, A0, and A0. The final color becomes #FFA0A0.
 
@@ -153,7 +153,7 @@ The parameter  <i>arrayRGB</i>
     public static string RgbToColorDisplay(
         double[] rgb);
 
-Converts a red-green-blue-alpha color to a string in CSS format.
+Converts a red&ndash;green&ndash;blue-alpha color to a string in CSS format.
 
 <b>Parameters:</b>
 

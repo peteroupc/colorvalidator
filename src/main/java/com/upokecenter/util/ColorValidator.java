@@ -973,7 +973,7 @@ private ColorValidator() {
      * and {@code 00} for blue, write the resulting color (orange) like this:
      * {@code #FFA000} .</p> <p>**How do I "darken" an HTML color?** To darken a
      * color (make a * shade* of it), consult the table shown in the question _How
-     * do I make HTML colors?_, above, and move each component (red, green, and
+     * do I make HTML colors?_, earlier, and move each component (red, green, and
      * blue) the same number of steps to the left. If you can’t move a component
      * that far to the left, that component becomes 00. For example, to make a
      * "darker" sky blue, start with 00, FF, and FF for red, green, and blue. When

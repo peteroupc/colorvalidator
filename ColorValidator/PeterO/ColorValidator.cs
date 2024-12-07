@@ -1063,7 +1063,7 @@ namespace PeterO {
     /// .</para>
     /// <para>**How do I "darken" an HTML color?** To darken a color (make
     /// a * shade* of it), consult the table shown in the question _How do
-    /// I make HTML colors?_, above, and move each component (red, green,
+    /// I make HTML colors?_, earlier, and move each component (red, green,
     /// and blue) the same number of steps to the left. If you can&#8217;t
     /// move a component that far to the left, that component becomes 00.
     /// For example, to make a "darker" sky blue, start with 00, FF, and FF
