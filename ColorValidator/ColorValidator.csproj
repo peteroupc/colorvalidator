@@ -22,7 +22,7 @@ licensed under the Unlicense: https://unlicense.org/</Copyright>
     <Version>1.0.0</Version>
     <Summary>A portable library for server-side validation of CSS colors.</Summary>
     <PackageTags>colors</PackageTags>
-  <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet><IsTrimmable Condition='$([MSBuild]::IsTargetFrameworkCompatible(&apos;$(TargetFramework)&apos;, &apos;net6.0&apos;))'>true</IsTrimmable><TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks></PropertyGroup>
+  <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet><IsTrimmable Condition='$([MSBuild]::IsTargetFrameworkCompatible(&apos;$(TargetFramework)&apos;, &apos;net6.0&apos;))'>true</IsTrimmable><TargetFrameworks>netstandard2.0;net9.0</TargetFrameworks></PropertyGroup>
 
   <PropertyGroup Condition=' &apos;$(Configuration)&apos;==&apos;Debug&apos; '>
     <DocumentationFile>bin\Debug\netstandard2.0\ColorValidator.xml</DocumentationFile>
