@@ -908,16 +908,16 @@ private ColorValidator() {
      * combination of those characters, or both.</p> <p>**What colors can I use?**
      * You can use values like the following as color strings.</p> <ul><li>CSS
      * color names (from the CSS3 Color Module): {@code red} , {@code blue} ,
-     * {@code silver} , {@code fuchsia} , {@code darkslateblue} .</li><li>HTML “hex
-     * colors”: {@code #223344} , {@code #234} , {@code #234F} , or {@code
-     * #223344FF} . (See _What is the syntax for HTML colors?_)</li><li>RGB
-     * notation: {@code rgb(20, 30, 40)} or {@code rgba(20, 30, 40, 50%)} . (See
-     * _What is RGB notation?_, later.)</li><li>HSL notation: {@code hsl(200, 100%,
-     * 50%)} or {@code hsla(200, 100%, 50%, 80%} . (See _What is HSL notation?_,
-     * later.)</li><li>The newly-added color name {@code rebeccapurple}
-     * .</li><li>The word {@code transparent} , meaning a fully-transparent
-     * color.</li></ul> <p>**What do some colors look like?** Consult a.get(list of
-     * useful colors sorted by hue or color
+     * {@code silver} , {@code fuchsia} , {@code darkslateblue} .</li><li>HTML
+     * hexadecimal (base-16) colors: {@code #223344} , {@code #234} , {@code #234F}
+     * , or {@code #223344FF} . (See _What is the syntax for HTML
+     * colors?_)</li><li>RGB notation: {@code rgb(20, 30, 40)} or {@code rgba(20,
+     * 30, 40, 50%)} . (See _What is RGB notation?_, later.)</li><li>HSL notation:
+     * {@code hsl(200, 100%, 50%)} or {@code hsla(200, 100%, 50%, 80%} . (See _What
+     * is HSL notation?_, later.)</li><li>The newly-added color name {@code
+     * rebeccapurple} .</li><li>The word {@code transparent} , meaning a
+     * fully-transparent color.</li></ul> <p>**What do some colors look like?**
+     * Consult a.get(list of useful colors sorted by hue or color
      * tone)(https://peteroupc.github.io/html3dutil/websafe.svg). This particular
      * list was historically called the "Web safe" colors or the "safety palette",
      * and consists of 216 colors that are uniformly spaced in the red–green–blue
@@ -937,20 +937,20 @@ private ColorValidator() {
      * name, it can be replaced with {@code grey} . Next to the name of each color
      * in the list, the color's HTML notation is shown.</p> <p>**What is the syntax
      * for HTML colors?** The notation employed in the "safety palette" in the
-     * preceding section is HTML's way to define colors. It’s also known as “hex
-     * colors”. Take {@code #ff80cc} as an example. The color defined is a
-     * carnation pink. There are four parts to this example:</p> <ul><li>The {@code
-     * #} identifies this code as a color.</li><li>The {@code ff} is two letters
-     * and/or digits that show the red component of the color. This is a so-called
-     * hexadecimal number, or base-16 number. Each digit of this number can range
-     * from 0-9 and from A-F, with 0 being the lowest digit, and F being the
-     * highest digit. The highest two-digit value is 00, and the lowest two-digit
-     * value is FF (256). (The digits A-F may appear in upper or lower
-     * case.)</li><li>The {@code 80} is a base-16 number showing the color’s green
-     * component.</li><li>The {@code cc} is a base-16 number showing the color’s
-     * blue component.</li></ul> <p>The notation may also include an additional
-     * base-16 number, as in this example: {@code #ac80ccff} . Here, the last
-     * {@code ff} shows the color's alpha component (see _What is an alpha
+     * preceding section is HTML's way to define colors. The notation expresses a
+     * hexadecimal (base-16) color. Take {@code #ff80cc} as an example. The color
+     * defined is a carnation pink. There are four parts to this example:</p>
+     * <ul><li>The {@code #} identifies this code as a color.</li><li>The {@code
+     * ff} is two letters and/or digits that show the red component of the color.
+     * This is a so-called hexadecimal number, or base-16 number. Each digit of
+     * this number can range from 0-9 and from A-F, with 0 being the lowest digit,
+     * and F being the highest digit. The highest two-digit value is 00, and the
+     * lowest two-digit value is FF (256). (The digits A-F may appear in upper or
+     * lower case.)</li><li>The {@code 80} is a base-16 number showing the color’s
+     * green component.</li><li>The {@code cc} is a base-16 number showing the
+     * color’s blue component.</li></ul> <p>The notation may also include an
+     * additional base-16 number, as in this example: {@code #ac80ccff} . Here, the
+     * last {@code ff} shows the color's alpha component (see _What is an alpha
      * component?_, later). Two shortened notations are supported: colors with only
      * three or four base-16 digits are the same as their expanded six-digit or
      * eight-digit form, respectively. For example, {@code #f8c} is the same as

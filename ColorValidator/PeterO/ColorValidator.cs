@@ -949,30 +949,31 @@ namespace PeterO {
     ///  ,
     /// <c>darkslateblue</c>
     /// .</item>
-    ///  <item>HTML &#8220;hex colors&#8221;:
-    /// <c>#223344</c>
+    ///  <item>HTML hexadecimal (base-16)
+    /// colors: <c>#223344</c>
     ///  , <c>#234</c>
     ///  , <c>#234F</c>
-    ///  , or <c>#223344FF</c>
-    /// .
-    /// (See _What is the syntax for HTML colors?_)</item>
-    ///  <item>RGB
-    /// notation: <c>rgb(20, 30, 40)</c>
-    ///  or <c>rgba(20, 30, 40, 50%)</c>
-    /// .
-    /// (See _What is RGB notation?_, later.)</item>
-    ///  <item>HSL notation:
-    /// <c>hsl(200, 100%, 50%)</c>
-    ///  or <c>hsla(200, 100%, 50%, 80%</c>
-    /// .
-    /// (See _What is HSL notation?_, later.)</item>
-    ///  <item>The newly-added
-    /// color name <c>rebeccapurple</c>
+    ///  , or
+    /// <c>#223344FF</c>
+    /// . (See _What is the syntax for HTML
+    /// colors?_)</item>
+    ///  <item>RGB notation: <c>rgb(20, 30, 40)</c>
+    ///  or
+    /// <c>rgba(20, 30, 40, 50%)</c>
+    /// . (See _What is RGB notation?_,
+    /// later.)</item>
+    ///  <item>HSL notation: <c>hsl(200, 100%, 50%)</c>
+    ///  or
+    /// <c>hsla(200, 100%, 50%, 80%</c>
+    /// . (See _What is HSL notation?_,
+    /// later.)</item>
+    ///  <item>The newly-added color name
+    /// <c>rebeccapurple</c>
     /// .</item>
-    ///  <item>The word
-    /// <c>transparent</c>
-    ///  , meaning a fully-transparent color.</item>
-    /// </list>
+    ///  <item>The word <c>transparent</c>
+    ///  ,
+    /// meaning a fully-transparent color.</item>
+    ///  </list>
     /// <para>**What do some colors look like?** Consult a [list of useful
     /// colors sorted by hue or color
     /// tone](https://peteroupc.github.io/html3dutil/websafe.svg). This
@@ -1001,10 +1002,10 @@ namespace PeterO {
     /// shown.</para>
     /// <para>**What is the syntax for HTML colors?** The notation employed
     /// in the "safety palette" in the preceding section is HTML's way to
-    /// define colors. It&#8217;s also known as &#8220;hex colors&#8221;.
-    /// Take <c>#ff80cc</c>
-    ///  as an example. The color defined is a carnation
-    /// pink. There are four parts to this example:</para>
+    /// define colors. The notation expresses a hexadecimal (base-16)
+    /// color. Take <c>#ff80cc</c>
+    ///  as an example. The color defined is a
+    /// carnation pink. There are four parts to this example:</para>
     /// <list><item>The <c>#</c>
     ///  identifies this code as a color.</item>
     /// <item>The <c>ff</c>

@@ -27,7 +27,7 @@ Converts an HTML or CSS color string to a 4-element RGB array.
 
  * CSS color names (from the CSS3 Color Module):  `red`  ,  `blue`  ,  `silver`  ,  `fuchsia`  ,  `darkslateblue`  .
 
- * HTML “hex colors”:  `#223344`  ,  `#234`  ,  `#234F`  , or  `#223344FF`  . (See _What is the syntax for HTML colors?_)
+ * HTML hexadecimal (base-16) colors:  `#223344`  ,  `#234`  ,  `#234F`  , or  `#223344FF`  . (See _What is the syntax for HTML colors?_)
 
  * RGB notation:  `rgb(20, 30, 40)`  or  `rgba(20, 30, 40, 50%)`  . (See _What is RGB notation?_, later.)
 
@@ -41,7 +41,7 @@ Converts an HTML or CSS color string to a 4-element RGB array.
 
 A [second list](https://peteroupc.github.io/html3dutil/colornames.svg) shows the colors defined in the [**CSS3 Color Module section 4**](http://www.w3.org/TR/css3-color/#colorunits), as well as the newly-added name  `rebeccapurple`  . Where  `gray`  is part of a name, it can be replaced with  `grey`  . Next to the name of each color in the list, the color's HTML notation is shown.
 
-**What is the syntax for HTML colors?** The notation employed in the list of "Web safe colors" in the preceding section is HTML's way to define colors. It’s also known as “hex colors”. Take  `#ff80cc`  as an example. The color defined is a carnation pink. There are four parts to this example:
+**What is the syntax for HTML colors?** The notation employed in the list of "Web safe colors" in the preceding section is HTML's way to define colors. It’s also known as hexadecimal (base-16) colors. Take  `#ff80cc`  as an example. The color defined is a carnation pink. There are four parts to this example:
 
  * The  `#`  identifies this code as a color.
 
