@@ -21,7 +21,7 @@ Converts an HTML or CSS color string to a 4-element RGB array.
 
 <b>Parameters:</b>
 
- * <i>x</i>: A string which names a color. The letters in the string can be in any combination of basic upper-case letters A to Z (U+0041 to U+005A) and basic lower-case letters. The string can begin with any combination of white space characters (U+0009, U+000A, U+000C, U+000D, U+0020), can end with any combination of those characters, or both.
+ * <i>x</i>: A string which names a color. The letters in the string can be in any combination of basic uppercase letters A to Z (U+0041 to U+005A) and basic lowercase letters. The string can begin with any combination of white space characters (U+0009, U+000A, U+000C, U+000D, U+0020), can end with any combination of those characters, or both.
 
 **What colors can I use?** You can use values like the following as color strings.
 
@@ -45,7 +45,7 @@ A [second list](https://peteroupc.github.io/html3dutil/colornames.svg) shows the
 
  * The  `#`  identifies this code as a color.
 
- * The  `ff`  is two letters and/or digits that show the red component of the color. This is a so-called hexadecimal number, or base-16 number. Each digit of this number can range from 0-9 and from A-F, with 0 being the lowest digit, and F being the highest digit. The highest two-digit value is 00, and the lowest two-digit value is FF (256). (The digits A-F may appear in upper or lower case.)
+ * The  `ff`  is two letters and/or digits that show the red component of the color. This is a so-called hexadecimal number, or base-16 number. Each digit of this number can range from 0-9 and from A-F, with 0 being the lowest digit, and F being the highest digit. The highest two-digit value is 00, and the lowest two-digit value is FF (256). (The digits A-F may appear in uppercase or lowercase.)
 
  * The  `80`  is a base-16 number showing the color’s green component.
 

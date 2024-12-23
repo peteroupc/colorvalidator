@@ -934,8 +934,8 @@ namespace PeterO {
     /// array.</summary>
     /// <param name='x'>
     /// <para>A string which names a color. The letters in the string can
-    /// be in any combination of basic upper-case letters A to Z (U+0041 to
-    /// U+005A) and basic lower-case letters. The string can begin with any
+    /// be in any combination of basic uppercase letters A to Z (U+0041 to
+    /// U+005A) and basic lowercase letters. The string can begin with any
     /// combination of white space characters (U+0009, U+000A, U+000C,
     /// U+000D, U+0020), can end with any combination of those characters,
     /// or both.</para>
@@ -1036,8 +1036,8 @@ namespace PeterO {
     ///  ,
     /// <c>#ff88ccee</c>
     /// .</para>
-    /// <para>**How do I make HTML colors?** Look at the table below that
-    /// shows some of the values possible for the red, green, and blue
+    /// <para>**How do I make HTML colors?** Look at the following table
+    /// that shows some of the values possible for the red, green, and blue
     /// components of some colors.</para>
     /// <code>
     /// Red.. 00 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 FF

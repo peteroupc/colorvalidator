@@ -58,8 +58,8 @@ Converts an HTML or CSS color string to a 4-element RGB array.
 **Parameters:**
 
 * <code>x</code> - <p>A string which names a color. The letters in the string can be
- in any combination of basic upper-case letters A to Z (U+0041 to U+005A) and
- basic lower-case letters. The string can begin with any combination of white
+ in any combination of basic uppercase letters A to Z (U+0041 to U+005A) and
+ basic lowercase letters. The string can begin with any combination of white
  space characters (U+0009, U+000A, U+000C, U+000D, U+0020), can end with any
  combination of those characters, or both.</p> <p>**What colors can I use?**
  You can use values like the following as color strings.</p> <ul><li>CSS
@@ -111,13 +111,13 @@ Converts an HTML or CSS color string to a 4-element RGB array.
  three or four base-16 digits are the same as their expanded six-digit or
  eight-digit form, respectively. For example, <code>#f8c</code> is the same as
  <code>#ff88cc</code> ; and <code>#f8ce</code> , <code>#ff88ccee</code> .</p> <p>**How do I
- make HTML colors?** Look at the table below that shows some of the values
- possible for the red, green, and blue components of some colors.</p> <pre>
- Red.. 00 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 FF Green 00 10 20 30
- 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 FF Blue. 00 10 20 30 40 50 60 70 80 90
- A0 B0 C0 D0 E0 F0 FF</pre> <p>Now, to make a custom color, you choose one
- value from the red row, one value from the green row, and one value from the
- blue row. Each value shows the intensity of the "light" that the color
+ make HTML colors?** Look at the following table that shows some of the
+ values possible for the red, green, and blue components of some colors.</p>
+ <pre> Red.. 00 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 FF Green 00 10
+ 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 FF Blue. 00 10 20 30 40 50 60 70
+ 80 90 A0 B0 C0 D0 E0 F0 FF</pre> <p>Now, to make a custom color, you choose
+ one value from the red row, one value from the green row, and one value from
+ the blue row. Each value shows the intensity of the "light" that the color
  ideally reflects. For example, a red value of 00 means that, ideally, "red
  light" is not reflected, and a red value of FF, fully reflected.</p> <p>If
  you choose the same value in all three rows, the result is black (if you
