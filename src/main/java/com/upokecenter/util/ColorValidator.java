@@ -946,7 +946,7 @@ private ColorValidator() {
      * this number can range from 0-9 and from A-F, with 0 being the lowest digit,
      * and F being the highest digit. The highest two-digit value is 00, and the
      * lowest two-digit value is FF (256). (The digits A-F may appear in upper or
-     * lower case.)</li><li>The {@code 80} is a base-16 number showing the color’s
+     * lowercase.)</li><li>The {@code 80} is a base-16 number showing the color’s
      * green component.</li><li>The {@code cc} is a base-16 number showing the
      * color’s blue component.</li></ul> <p>The notation may also include an
      * additional base-16 number, as in this example: {@code #ac80ccff} . Here, the
