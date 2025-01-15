@@ -15,13 +15,6 @@ import java.util.*;
   public final class ColorValidator {
 private ColorValidator() {
 }
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @return A 32-bit signed integer.
-     */
     private static int SkipWhite(String str, int index, int endIndex) {
       while (index < endIndex) {
         int c = str.charAt(index);
@@ -34,13 +27,6 @@ private ColorValidator() {
       return index;
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @return A 32-bit signed integer.
-     */
     private static int ParseComma(String str, int index, int endIndex) {
       int indexStart = index;
       index = SkipWhite(str, index, endIndex);
@@ -51,13 +37,6 @@ private ColorValidator() {
       }
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @return A 32-bit signed integer.
-     */
     private static int ParseEndparen(String str, int index, int endIndex) {
       int indexStart = index;
       index = SkipWhite(str, index, endIndex);
@@ -68,14 +47,6 @@ private ColorValidator() {
       }
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param ret A 64-bit floating-point number.
-     * @return A 32-bit signed integer.
-     */
     private static int Hsl(
       String str,
       int index,
@@ -126,15 +97,6 @@ private ColorValidator() {
       return indexTemp;
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param ret The parameter {@code ret} is a Double[] object.
-     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
-     * @return A 32-bit signed integer.
-     */
     private static int Pct(
       String str,
       int index,
@@ -153,15 +115,6 @@ private ColorValidator() {
       return tx2;
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param ret The parameter {@code ret} is a Double[] object.
-     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
-     * @return A 32-bit signed integer.
-     */
     private static int ParseByte(
       String str,
       int index,
@@ -175,15 +128,6 @@ private ColorValidator() {
       return tx2;
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param ret The parameter {@code ret} is a Double[] object.
-     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
-     * @return A 32-bit signed integer.
-     */
     private static int ParseHue(
       String str,
       int index,
@@ -201,15 +145,6 @@ private ColorValidator() {
       }
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param ret The parameter {@code ret} is a Double[] object.
-     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
-     * @return A 32-bit signed integer.
-     */
     private static int SepByte(
       String str,
       int index,
@@ -225,15 +160,6 @@ private ColorValidator() {
         retIndex) : tx2;
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param ret The parameter {@code ret} is a Double[] object.
-     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
-     * @return A 32-bit signed integer.
-     */
     private static int SepPct(
       String str,
       int index,
@@ -244,15 +170,6 @@ private ColorValidator() {
       return (tx2 != index) ? Pct(str, tx2, endIndex, ret, retIndex) : tx2;
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param ret The parameter {@code ret} is a Double[] object.
-     * @param retIndex The parameter {@code retIndex} is a 32-bit signed integer.
-     * @return A 32-bit signed integer.
-     */
     private static int SepAlpha(
       String str,
       int index,
@@ -270,14 +187,6 @@ private ColorValidator() {
       return tx2;
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param ret A 64-bit floating-point number.
-     * @return A 32-bit signed integer.
-     */
     private static int Hsla(
       String str,
       int index,
@@ -332,14 +241,6 @@ private ColorValidator() {
       return indexTemp;
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param result A 64-bit floating-point number.
-     * @return A 32-bit signed integer.
-     */
     private static int Rgba(
       String str,
       int index,
@@ -446,14 +347,6 @@ private ColorValidator() {
       return index;
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param result The parameter {@code result} is a Double[] object.
-     * @return A 32-bit signed integer.
-     */
     private static int Rgb(
       String str,
       int index,
@@ -540,13 +433,6 @@ private ColorValidator() {
       }
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @return A 64-bit floating-point number.
-     */
     private static double StringToNumber(
       String str,
       int index,
@@ -555,13 +441,6 @@ private ColorValidator() {
       return Double.parseDouble(str2);
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @return A 64-bit floating-point number.
-     */
     private static double StringToPercent(
       String str,
       int index,
@@ -571,13 +450,6 @@ private ColorValidator() {
           ((num > 100) ? 100 : num));
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @return A 64-bit floating-point number.
-     */
     private static double StringToAlpha(
       String str,
       int index,
@@ -586,13 +458,6 @@ private ColorValidator() {
       return (num < 0) ? 0 : ((num > 1.0) ? 255 : num * 255.0);
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @return A 64-bit floating-point number.
-     */
     private static double StringToHue(
       String str,
       int index,
@@ -603,13 +468,6 @@ private ColorValidator() {
           360);
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @return A 64-bit floating-point number.
-     */
     private static double StringToByte(
       String str,
       int index,
@@ -618,15 +476,6 @@ private ColorValidator() {
       return (num < 0) ? 0 : ((num > 255) ? 255 : num);
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @param posneg The parameter {@code posneg} is either {@code true} or {@code
-     * false}.
-     * @return A 32-bit signed integer.
-     */
     private static int ParseInteger(
       String str,
       int index,
@@ -647,13 +496,6 @@ private ColorValidator() {
       return digits ? index : indexStart;
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param index The parameter {@code index} is a 32-bit signed integer.
-     * @param endIndex The parameter {@code endIndex} is a 32-bit signed integer.
-     * @return A 32-bit signed integer.
-     */
     private static int ParseNumber(String str, int index, int endIndex) {
       int indexStart = index;
       int tmp = index;
@@ -761,11 +603,6 @@ private ColorValidator() {
       };
     }
 
-    /**
-     * Not documented yet.
-     * @param c The parameter {@code c} is a 32-bit signed integer.
-     * @return A 32-bit signed integer.
-     */
     private static int Dehexchar(int c) {
       if (c >= '0' && c <= '9') {
         return c - 0x30;
@@ -774,11 +611,6 @@ private ColorValidator() {
             <= 'f') ? (c + 10 - 0x61) : (-1));
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @return A text string.
-     */
     private static String ToLowerCaseAscii(String str) {
       if (str == null) {
         return null;
@@ -808,11 +640,6 @@ private ColorValidator() {
       return builder.toString();
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @return A text string.
-     */
     private static String TrimAsciiWhite(String str) {
       if (((str) == null || (str).length() == 0)) {
         return str;
@@ -848,14 +675,6 @@ private ColorValidator() {
       return "";
     }
 
-    /**
-     * Not documented yet.
-     * @param str The parameter {@code str} is a text string.
-     * @param hexval The parameter {@code hexval} is a Double[] object.
-     * @param hash The parameter {@code hash} is either {@code true} or {@code
-     * false}.
-     * @return Either {@code true} or {@code false}.
-     */
     private static boolean RgbHex(String str, double[] hexval, boolean hash) {
       if (((str) == null || (str).length() == 0)) {
         return false;
@@ -901,27 +720,27 @@ private ColorValidator() {
 
     /**
      * Converts an HTML or CSS color string to a 4-element RGB array.
-     * @param x <p>A string which names a color. The letters in the string can be
-     * in any combination of basic uppercase letters A to Z (U+0041 to U+005A) and
-     * basic lowercase letters. The string can begin with any combination of white
-     * space characters (U+0009, U+000A, U+000C, U+000D, U+0020), can end with any
-     * combination of those characters, or both.</p> <p>**What colors can I use?**
-     * You can use values like the following as color strings.</p> <ul><li>CSS
-     * color names (from the CSS3 Color Module): {@code red} , {@code blue} ,
-     * {@code silver} , {@code fuchsia} , {@code darkslateblue} .</li><li>HTML
-     * hexadecimal (base-16) colors: {@code #223344} , {@code #234} , {@code #234F}
-     * , or {@code #223344FF} . (See _What is the syntax for HTML
-     * colors?_)</li><li>RGB notation: {@code rgb(20, 30, 40)} or {@code rgba(20,
-     * 30, 40, 50%)} . (See _What is RGB notation?_, later.)</li><li>HSL notation:
-     * {@code hsl(200, 100%, 50%)} or {@code hsla(200, 100%, 50%, 80%} . (See _What
-     * is HSL notation?_, later.)</li><li>The newly-added color name {@code
-     * rebeccapurple} .</li><li>The word {@code transparent} , meaning a
-     * fully-transparent color.</li></ul> <p>**What do some colors look like?**
-     * Consult a.get(list of useful colors sorted by hue or color
-     * tone)(https://peteroupc.github.io/html3dutil/websafe.svg). This particular
-     * list was historically called the "Web safe" colors or the "safety palette",
-     * and consists of 216 colors that are uniformly spaced in the red–green–blue
-     * color cube. Robert Hess's article "[The Safety
+     * @param colorString <p>A string that names a color. The letters in the string
+     * can be in any combination of basic uppercase letters A to Z (U+0041 to
+     * U+005A) and basic lowercase letters. The string can begin with any
+     * combination of white space characters (U+0009, U+000A, U+000C, U+000D,
+     * U+0020), can end with any combination of those characters, or both.</p>
+     * <p>**What colors can I use?** You can use values like the following as color
+     * strings.</p> <p>1. CSS color names (from the CSS3 Color Module): {@code
+     * red}, {@code blue}, {@code silver}, {@code fuchsia}, {@code
+     * darkslateblue}.</p> <p>2. HTML hexadecimal (base-16) colors: {@code
+     * #223344}, {@code #234}, {@code #234F}, or {@code #223344FF} (See _What is
+     * the syntax for HTML colors?_).</p> <p>3. RGB notation: {@code rgb(20, 30,
+     * 40)} or {@code rgba(20, 30, 40, 50%)}. (See _What is RGB notation?_,
+     * later.)</p> <p>4. HSL notation: {@code hsl(200, 100%, 50%)} or {@code
+     * hsla(200, 100%, 50%, 80%}. (See _What is HSL notation?_, later.)</p> <p>5.
+     * The newly-added color name {@code rebeccapurple}.</p> <p>6. The word {@code
+     * transparent}, meaning a fully-transparent color.</p> <p>**What do some
+     * colors look like?** Consult a.get(list of useful colors sorted by hue or
+     * color tone)(https://peteroupc.github.io/html3dutil/websafe.svg). This
+     * particular list was historically called the "Web safe" colors or the "safety
+     * palette", and consists of 216 colors that are uniformly spaced in the
+     * red–green–blue color cube. Robert Hess's article "[The Safety
      *   Palette](https://learn.microsoft.com/en-us/previous-versions/ms976419(v=msdn.10))",
      * 1996, described the advantage that images that use only colors in this
      * palette won't dither when displayed by Web browsers on displays that can
@@ -932,54 +751,54 @@ private ColorValidator() {
      * name (see next question).</p> <p>A.get(second
      * list)(https://peteroupc.github.io/html3dutil/colornames.svg) shows the
      * colors defined in the.get(**CSS3 Color Module section
-     * 4**)(http://www.w3.org/TR/css3-color/#colorunits), as well as the
-     * newly-added name {@code rebeccapurple} . Where {@code gray} is part of a
-     * name, it can be replaced with {@code grey} . Next to the name of each color
+     * 4**)(https://www.w3.org/TR/css3-color/#colorunits), as well as the
+     * newly-added name {@code rebeccapurple}. Where {@code gray} is part of a
+     * name, it can be replaced with {@code grey}. Next to the name of each color
      * in the list, the color's HTML notation is shown.</p> <p>**What is the syntax
      * for HTML colors?** The notation employed in the "safety palette" in the
      * preceding section is HTML's way to define colors. The notation expresses a
      * hexadecimal (base-16) color. Take {@code #ff80cc} as an example. The color
-     * defined is a carnation pink. There are four parts to this example:</p>
-     * <ul><li>The {@code #} identifies this code as a color.</li><li>The {@code
-     * ff} is two letters and/or digits that show the red component of the color.
-     * This is a so-called hexadecimal number, or base-16 number. Each digit of
-     * this number can range from 0-9 and from A-F, with 0 being the lowest digit,
-     * and F being the highest digit. The highest two-digit value is 00, and the
-     * lowest two-digit value is FF (256). (The digits A-F may appear in upper or
-     * lower case.)</li><li>The {@code 80} is a base-16 number showing the color’s
-     * green component.</li><li>The {@code cc} is a base-16 number showing the
-     * color’s blue component.</li></ul> <p>The notation may also include an
-     * additional base-16 number, as in this example: {@code #ac80ccff} . Here, the
-     * last {@code ff} shows the color's alpha component (see _What is an alpha
-     * component?_, later). Two shortened notations are supported: colors with only
-     * three or four base-16 digits are the same as their expanded six-digit or
-     * eight-digit form, respectively. For example, {@code #f8c} is the same as
-     * {@code #ff88cc} ; and {@code #f8ce} , {@code #ff88ccee} .</p> <p>**How do I
-     * make HTML colors?** Look at the following table that shows some of the
-     * values possible for the red, green, and blue components of some colors.</p>
-     * <pre> Red.. 00 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 FF Green 00 10
-     * 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 FF Blue. 00 10 20 30 40 50 60 70
-     * 80 90 A0 B0 C0 D0 E0 F0 FF</pre> <p>Now, to make a custom color, you choose
-     * one value from the red row, one value from the green row, and one value from
-     * the blue row. Each value shows the intensity of the "light" that the color
+     * defined is a carnation pink. There are four parts to this example:</p> <p>1.
+     * The {@code #} identifies this code as a color.</p> <p>2. The {@code ff} is
+     * two letters and/or digits that show the red component of the color. This is
+     * a so-called hexadecimal number, or base-16 number. Each digit of this number
+     * can range from 0 to 9 and from A to F, with 0 being the lowest digit, and F
+     * being the highest digit. The highest two-digit value is 00, and the lowest
+     * two-digit value is FF (255). (The digits A-F may appear in uppercase or
+     * lowercase.)</p> <p>3. The {@code 80} is a base-16 number showing the color’s
+     * green component.</p> <p>4. The {@code cc} is a base-16 number showing the
+     * color’s blue component.</p> <p>The notation may also include an additional
+     * base-16 number, as in this example: {@code #ac80ccff}. Here, the last {@code
+     * ff} shows the color's alpha component (see _What is an alpha component?_,
+     * later). Two shortened notations are supported: colors with only three or
+     * four base-16 digits are the same as their expanded six-digit or eight-digit
+     * form, respectively. For example, {@code #f8c} is the same as {@code #ff88cc}
+     * ; and {@code #f8ce}, {@code #ff88ccee}.</p> <p>**How do I make HTML
+     * colors?** Look at the following table that shows some of the values possible
+     * for the red, green, and blue components of some colors.</p> <p>Red.. 00 10
+     * 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 FF</p> <p>Green 00 10 20 30 40 50
+     * 60 70 80 90 A0 B0 C0 D0 E0 F0 FF</p> <p>Blue. 00 10 20 30 40 50 60 70 80 90
+     * A0 B0 C0 D0 E0 F0 FF</p> <p>Now, to make a custom color, you choose one
+     * value from the red row, one value from the green row, and one value from the
+     * blue row. Each value shows the intensity of the "light" that the color
      * ideally reflects. For example, a red value of 00 means that, ideally, "red
      * light" is not reflected, and a red value of FF, fully reflected.</p> <p>If
      * you choose the same value in all three rows, the result is black (if you
      * choose 00), white (if you choose FF) or a shade of gray. This shows that
      * "red light", "green light", and "blue light" are ideally equally
      * reflected.</p> <p>After you choose the three values, combine them by writing
-     * the {@code #} , then the red value, then the green value, then the blue
+     * the {@code #}, then the red value, then the green value, then the blue
      * value. For example, if you choose {@code FF} for red, {@code A0} for green,
      * and {@code 00} for blue, write the resulting color (orange) like this:
-     * {@code #FFA000} .</p> <p>**How do I "darken" an HTML color?** To darken a
-     * color (make a * shade* of it), consult the table shown in the question _How
+     * {@code #FFA000}.</p> <p>**How do I "darken" an HTML color?** To "darken" a
+     * color (make a _shade_ of it), consult the table shown in the question _How
      * do I make HTML colors?_, earlier, and move each component (red, green, and
      * blue) the same number of steps to the left. If you can’t move a component
      * that far to the left, that component becomes 00. For example, to make a
      * "darker" sky blue, start with 00, FF, and FF for red, green, and blue. When
      * we move these components ten steps to the left, we get 00, 60, and 60. The
      * final color becomes #006060.</p> <p>**How do I "lighten" an HTML color?**
-     * "Lightening" a color (making a *tint* of it) is almost the same as
+     * "Lightening" a color (making a _tint_ of it) is almost the same as
      * "darkening" a color, except we move the same number of steps to the right
      * rather than the left. If you can’t move a component that far to the right,
      * that component becomes FF. For example, to make a "lighter" red, start with
@@ -994,45 +813,47 @@ private ColorValidator() {
      * final color becomes #C04040.</p> <p>**What is RGB notation?** A color in RGB
      * notation contains the same information as an HTML color, except that each
      * value is shown in the familiar base-10 format. For example, the value {@code
-     * rgb(192, 64, 0)} is the same as the HTML color value {@code #C04000} .</p>
+     * rgb(192, 64, 0)} is the same as the HTML color value {@code #C04000}.</p>
      * <p>The components of the RGB color (red, green, and blue, in that order) can
-     * range from {@code 0} to {@code 255} , or from {@code 0%} to {@code 100%} ,
-     * but mixing ranges is not allowed. For example, {@code rgb(192, 64, 0)} and
-     * {@code rgb(80%, 50%, 0%)} are allowed, but not {@code rgb(192, 50%, 0%)} .
+     * range from {@code 0} to {@code 255}, or from {@code 0%} to {@code 100%}, but
+     * mixing ranges is not allowed. For example, {@code rgb(192, 64, 0)} and
+     * {@code rgb(80%, 50%, 0%)} are allowed, but not {@code rgb(192, 50%, 0%)}.
      * The steps for "darkening", "lightening", and "desaturating" RGB colors are
-     * pretty much the same as with HTML colors. Another syntax for RGB colors
-     * supports the alpha component (see _What is an alpha component?_, later): in
-     * the example {@code rgba(192, 64, 0, 0.5)} , the {@code 0.5} is the alpha
+     * largely the same as with HTML colors. Another syntax for RGB colors supports
+     * the alpha component (see _What is an alpha component?_, later): in the
+     * example {@code rgba(192, 64, 0, 0.5)}, the {@code 0.5} is the alpha
      * component. This component supports either range for RGB colors, either 0-255
-     * or percentages. (Note that the example starts with {@code rgba} , not just
-     * {@code rgb} .)</p> <p>**What is HSL notation?** A color in HSL notation is
-     * made of the following three components:</p> <ul><li>_Hue_ ranges from 0 to
-     * 360 degrees. Each angle on the color wheel (which looks more like a hexagon
-     * than like a circle in HSL) stands for a different hue: red, yellow, green,
-     * cyan (sky-blue), blue, and magenta correspond roughly to hue 0 (say, 12
-     * o’clock), 60, 120, 180, 240, and 300, respectively.</li><li>"Saturation" and
-     * "lightness" range from 0% to 100%. "Saturation" is the distance of the color
-     * from gray (0% means gray; 100% means most distant from gray). "Lightness" is
-     * roughly the amount of black or white mixed with the color (0% means black;
-     * 100% means white; closer to 0% means closer to black; closer to 100% means
-     * closer to white).</li></ul> <p>**Example:** The value {@code hsl(240, 100%,
-     * 50%)} has a hue of 240 (blue), a "saturation" of 100% (fully saturated), and
-     * a "lightness" of 50% (as far from "black" as from "white"). It represents a
-     * vivid blue. If we lower "lightness" to 20%, we get a "darker" blue. If we
-     * also change the hue to 0, we get a "dark" red.</p> <p>An alternate syntax
-     * for HSL colors supports the alpha component (see next question): in the
-     * example {@code hsla(240, 100%, 50%, 80%)} , the {@code 80%} is the alpha
-     * component.</p> <p>**What is an alpha component?** An alpha component shows
-     * how much the color is transparent (see-through) or opaque. The alpha
-     * component can range from {@code 00} / {@code 0.0} , or "fully transparent"
-     * (completely invisible), to {@code FF} / {@code 1.0} , or "fully opaque"
-     * (letting nothing through it). If a color notation doesn't provide for an
-     * alpha component, the color is fully opaque.</p> .
+     * or percentages. (Note that the example starts with {@code rgba}, not just
+     * {@code rgb}.)</p> <p>**What is HSL notation?** A color in HSL notation is
+     * made of the following three components:</p> <p>1. _Hue_ ranges from 0 to 360
+     * degrees. Each angle on the color wheel (which looks more like a hexagon than
+     * like a circle in HSL) stands for a different hue: red, yellow, green, cyan
+     * (sky-blue), blue, and magenta correspond roughly to hue 0 (say, 12 o’clock),
+     * 60, 120, 180, 240, and 300, respectively.</p> <p>2. "Saturation", which
+     * ranges from 0% to 100%, is the distance of the color from gray (0% means
+     * gray; 100% means most distant from gray).</p> <p>3. "Lightness", which
+     * likewise ranges from 0% to 100%, is roughly the amount of black or white
+     * mixed with the color (0% means black; 100% means white; closer to 0% means
+     * closer to black; closer to 100% means closer to white).</p> <p>**Example:**
+     * The value {@code hsl(240, 100%, 50%)} has a hue of 240 (blue), a
+     * "saturation" of 100% ("fully saturated"), and a "lightness" of 50% (as far
+     * from "black" as from "white"). It represents a vivid blue. If we lower
+     * "lightness" to 20%, we get a "darker" blue. If we also change the hue to 0,
+     * we get a "dark" red.</p> <p>An alternative syntax for HSL colors supports
+     * the alpha component (see next question): in the example {@code hsla(240,
+     * 100%, 50%, 80%)}, the {@code 80%} is the alpha component.</p> <p>**What is
+     * an alpha component?** An alpha component shows how much the color is
+     * transparent (see-through) or opaque. The alpha component can range from
+     * {@code 00} / {@code 0.0}, or "fully transparent" (completely invisible), to
+     * {@code FF} / {@code 1.0}, or "fully opaque" (letting nothing through it). If
+     * a color notation doesn't provide for an alpha component, the color is fully
+     * opaque.</p>
      * @return An array containing four elements, with the red, green, blue, and
      * alpha components of the same color, each from 0 to 255. Returns null if
-     * {@code x} is null, empty, or has invalid syntax.
+     * {@code colorString} is null, empty, or has invalid syntax.
      */
-    public static double[] ColorToRgba(String x) {
+    public static double[] ColorToRgba(String colorString) {
+      String x = colorString;
       if (((x) == null || (x).length() == 0)) {
         return null;
       }
@@ -1241,9 +1062,6 @@ private ColorValidator() {
       }
     }
 
-    /**
-     * Not documented yet.
-     */
     private static String valueHexArray = "0123456789abcdef";
 
     /**

@@ -12,14 +12,6 @@ using System.Text;
 namespace PeterO {
   /// <summary>Color validator.</summary>
   public static class ColorValidator {
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <returns>A 32-bit signed integer.</returns>
     private static int SkipWhite(string str, int index, int endIndex) {
       while (index < endIndex) {
         int c = str[index];
@@ -32,14 +24,6 @@ namespace PeterO {
       return index;
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <returns>A 32-bit signed integer.</returns>
     private static int ParseComma(string str, int index, int endIndex) {
       int indexStart = index;
       index = SkipWhite(str, index, endIndex);
@@ -50,14 +34,6 @@ namespace PeterO {
       }
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <returns>A 32-bit signed integer.</returns>
     private static int ParseEndparen(string str, int index, int endIndex) {
       int indexStart = index;
       index = SkipWhite(str, index, endIndex);
@@ -68,15 +44,6 @@ namespace PeterO {
       }
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <param name='ret'>A 64-bit floating-point number.</param>
-    /// <returns>A 32-bit signed integer.</returns>
     private static int Hsl(
       string str,
       int index,
@@ -127,18 +94,6 @@ namespace PeterO {
       return indexTemp;
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <param name='ret'>The parameter <paramref name='ret'/> is a
-    /// Double[] object.</param>
-    /// <param name='retIndex'>The parameter <paramref name='retIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <returns>A 32-bit signed integer.</returns>
     private static int Pct(
       string str,
       int index,
@@ -157,18 +112,6 @@ namespace PeterO {
       return tx2;
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <param name='ret'>The parameter <paramref name='ret'/> is a
-    /// Double[] object.</param>
-    /// <param name='retIndex'>The parameter <paramref name='retIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <returns>A 32-bit signed integer.</returns>
     private static int ParseByte(
       string str,
       int index,
@@ -182,18 +125,6 @@ namespace PeterO {
       return tx2;
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <param name='ret'>The parameter <paramref name='ret'/> is a
-    /// Double[] object.</param>
-    /// <param name='retIndex'>The parameter <paramref name='retIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <returns>A 32-bit signed integer.</returns>
     private static int ParseHue(
       string str,
       int index,
@@ -211,18 +142,6 @@ namespace PeterO {
       }
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <param name='ret'>The parameter <paramref name='ret'/> is a
-    /// Double[] object.</param>
-    /// <param name='retIndex'>The parameter <paramref name='retIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <returns>A 32-bit signed integer.</returns>
     private static int SepByte(
       string str,
       int index,
@@ -238,18 +157,6 @@ namespace PeterO {
         retIndex) : tx2;
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <param name='ret'>The parameter <paramref name='ret'/> is a
-    /// Double[] object.</param>
-    /// <param name='retIndex'>The parameter <paramref name='retIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <returns>A 32-bit signed integer.</returns>
     private static int SepPct(
       string str,
       int index,
@@ -260,18 +167,6 @@ namespace PeterO {
       return (tx2 != index) ? Pct(str, tx2, endIndex, ret, retIndex) : tx2;
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <param name='ret'>The parameter <paramref name='ret'/> is a
-    /// Double[] object.</param>
-    /// <param name='retIndex'>The parameter <paramref name='retIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <returns>A 32-bit signed integer.</returns>
     private static int SepAlpha(
       string str,
       int index,
@@ -289,15 +184,6 @@ namespace PeterO {
       return tx2;
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <param name='ret'>A 64-bit floating-point number.</param>
-    /// <returns>A 32-bit signed integer.</returns>
     private static int Hsla(
       string str,
       int index,
@@ -352,15 +238,6 @@ namespace PeterO {
       return indexTemp;
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <param name='result'>A 64-bit floating-point number.</param>
-    /// <returns>A 32-bit signed integer.</returns>
     private static int Rgba(
       string str,
       int index,
@@ -467,16 +344,6 @@ namespace PeterO {
       return index;
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <param name='result'>The parameter <paramref name='result'/> is a
-    /// Double[] object.</param>
-    /// <returns>A 32-bit signed integer.</returns>
     private static int Rgb(
       string str,
       int index,
@@ -563,14 +430,6 @@ namespace PeterO {
       }
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <returns>A 64-bit floating-point number.</returns>
     private static double StringToNumber(
       string str,
       int index,
@@ -581,14 +440,6 @@ namespace PeterO {
         System.Globalization.CultureInfo.InvariantCulture);
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <returns>A 64-bit floating-point number.</returns>
     private static double StringToPercent(
       string str,
       int index,
@@ -598,14 +449,6 @@ namespace PeterO {
           ((num > 100) ? 100 : num));
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <returns>A 64-bit floating-point number.</returns>
     private static double StringToAlpha(
       string str,
       int index,
@@ -614,14 +457,6 @@ namespace PeterO {
       return (num < 0) ? 0 : ((num > 1.0) ? 255 : num * 255.0);
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <returns>A 64-bit floating-point number.</returns>
     private static double StringToHue(
       string str,
       int index,
@@ -632,14 +467,6 @@ namespace PeterO {
           360);
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <returns>A 64-bit floating-point number.</returns>
     private static double StringToByte(
       string str,
       int index,
@@ -648,16 +475,6 @@ namespace PeterO {
       return (num < 0) ? 0 : ((num > 255) ? 255 : num);
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <param name='posneg'>The parameter <paramref name='posneg'/> is
-    /// either <c>true</c> or <c>false</c>.</param>
-    /// <returns>A 32-bit signed integer.</returns>
     private static int ParseInteger(
       string str,
       int index,
@@ -678,14 +495,6 @@ namespace PeterO {
       return digits ? index : indexStart;
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='index'>The parameter <paramref name='index'/> is a
-    /// 32-bit signed integer.</param>
-    /// <param name='endIndex'>The parameter <paramref name='endIndex'/> is
-    /// a 32-bit signed integer.</param>
-    /// <returns>A 32-bit signed integer.</returns>
     private static int ParseNumber(string str, int index, int endIndex) {
       int indexStart = index;
       int tmp = index;
@@ -795,10 +604,6 @@ namespace PeterO {
       };
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='c'>The parameter <paramref name='c'/> is a 32-bit
-    /// signed integer.</param>
-    /// <returns>A 32-bit signed integer.</returns>
     private static int Dehexchar(int c) {
       if (c >= '0' && c <= '9') {
         return c - 0x30;
@@ -807,10 +612,6 @@ namespace PeterO {
             <= 'f') ? (c + 10 - 0x61) : (-1));
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <returns>A text string.</returns>
     private static string ToLowerCaseAscii(string str) {
       if (str == null) {
         return null;
@@ -840,10 +641,6 @@ namespace PeterO {
       return builder.ToString();
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <returns>A text string.</returns>
     private static string TrimAsciiWhite(string str) {
       if (String.IsNullOrEmpty(str)) {
         return str;
@@ -879,14 +676,6 @@ namespace PeterO {
       return String.Empty;
     }
 
-    /// <summary>Not documented yet.</summary>
-    /// <param name='str'>The parameter <paramref name='str'/> is a text
-    /// string.</param>
-    /// <param name='hexval'>The parameter <paramref name='hexval'/> is a
-    /// Double[] object.</param>
-    /// <param name='hash'>The parameter <paramref name='hash'/> is either
-    /// <c>true</c> or <c>false</c>.</param>
-    /// <returns>Either <c>true</c> or <c>false</c>.</returns>
     private static bool RgbHex(string str, double[] hexval, bool hash) {
       if (String.IsNullOrEmpty(str)) {
         return false;
@@ -932,48 +721,27 @@ namespace PeterO {
 
     /// <summary>Converts an HTML or CSS color string to a 4-element RGB
     /// array.</summary>
-    /// <param name='x'>
-    /// <para>A string which names a color. The letters in the string can
-    /// be in any combination of basic uppercase letters A to Z (U+0041 to
+    /// <param name='colorString'>
+    /// <para>A string that names a color. The letters in the string can be
+    /// in any combination of basic uppercase letters A to Z (U+0041 to
     /// U+005A) and basic lowercase letters. The string can begin with any
     /// combination of white space characters (U+0009, U+000A, U+000C,
     /// U+000D, U+0020), can end with any combination of those characters,
     /// or both.</para>
     /// <para>**What colors can I use?** You can use values like the
     /// following as color strings.</para>
-    /// <list><item>CSS color names (from the CSS3 Color Module):
-    /// <c>red</c>
-    ///  , <c>blue</c>
-    ///  , <c>silver</c>
-    ///  , <c>fuchsia</c>
-    ///  ,
-    /// <c>darkslateblue</c>
-    /// .</item>
-    ///  <item>HTML hexadecimal (base-16)
-    /// colors: <c>#223344</c>
-    ///  , <c>#234</c>
-    ///  , <c>#234F</c>
-    ///  , or
-    /// <c>#223344FF</c>
-    /// . (See _What is the syntax for HTML
-    /// colors?_)</item>
-    ///  <item>RGB notation: <c>rgb(20, 30, 40)</c>
-    ///  or
-    /// <c>rgba(20, 30, 40, 50%)</c>
-    /// . (See _What is RGB notation?_,
-    /// later.)</item>
-    ///  <item>HSL notation: <c>hsl(200, 100%, 50%)</c>
-    ///  or
-    /// <c>hsla(200, 100%, 50%, 80%</c>
-    /// . (See _What is HSL notation?_,
-    /// later.)</item>
-    ///  <item>The newly-added color name
-    /// <c>rebeccapurple</c>
-    /// .</item>
-    ///  <item>The word <c>transparent</c>
-    ///  ,
-    /// meaning a fully-transparent color.</item>
-    ///  </list>
+    /// <para>1. CSS color names (from the CSS3 Color Module): <c>red</c>,
+    /// <c>blue</c>, <c>silver</c>, <c>fuchsia</c>, <c>darkslateblue</c>.</para>
+    /// <para>2. HTML hexadecimal (base-16) colors: <c>#223344</c>,
+    /// <c>#234</c>, <c>#234F</c>, or <c>#223344FF</c> (See _What is the
+    /// syntax for HTML colors?_).</para>
+    /// <para>3. RGB notation: <c>rgb(20, 30, 40)</c> or <c>rgba(20, 30,
+    /// 40, 50%)</c>. (See _What is RGB notation?_, later.)</para>
+    /// <para>4. HSL notation: <c>hsl(200, 100%, 50%)</c> or <c>hsla(200,
+    /// 100%, 50%, 80%</c>. (See _What is HSL notation?_, later.)</para>
+    /// <para>5. The newly-added color name <c>rebeccapurple</c>.</para>
+    /// <para>6. The word <c>transparent</c>, meaning a fully-transparent
+    /// color.</para>
     /// <para>**What do some colors look like?** Consult a [list of useful
     /// colors sorted by hue or color
     /// tone](https://peteroupc.github.io/html3dutil/websafe.svg). This
@@ -981,7 +749,7 @@ namespace PeterO {
     /// the "safety palette", and consists of 216 colors that are uniformly
     /// spaced in the red&#x2013;green&#x2013;blue color cube. Robert
     /// Hess's article "[The Safety
-    /// Palette](https://learn.microsoft.com/en-us/previous-versions/ms976419(v=msdn.10))",
+    ///   Palette](https://learn.microsoft.com/en-us/previous-versions/ms976419(v=msdn.10))",
     /// 1996, described the advantage that images that use only colors in
     /// this palette won't dither when displayed by Web browsers on
     /// displays that can show up to 256 colors at once. (See also
@@ -992,57 +760,45 @@ namespace PeterO {
     /// <para>A [second
     /// list](https://peteroupc.github.io/html3dutil/colornames.svg) shows
     /// the colors defined in the [**CSS3 Color Module section
-    /// 4**](http://www.w3.org/TR/css3-color/#colorunits), as well as the
-    /// newly-added name <c>rebeccapurple</c>
-    ///  . Where <c>gray</c>
-    ///  is part
-    /// of a name, it can be replaced with <c>grey</c>
-    ///  . Next to the name
+    /// 4**](https://www.w3.org/TR/css3-color/#colorunits), as well as the
+    /// newly-added name <c>rebeccapurple</c>. Where <c>gray</c> is part
+    /// of a name, it can be replaced with <c>grey</c>. Next to the name
     /// of each color in the list, the color's HTML notation is
     /// shown.</para>
     /// <para>**What is the syntax for HTML colors?** The notation employed
     /// in the "safety palette" in the preceding section is HTML's way to
     /// define colors. The notation expresses a hexadecimal (base-16)
-    /// color. Take <c>#ff80cc</c>
-    ///  as an example. The color defined is a
+    /// color. Take <c>#ff80cc</c> as an example. The color defined is a
     /// carnation pink. There are four parts to this example:</para>
-    /// <list><item>The <c>#</c>
-    ///  identifies this code as a color.</item>
-    /// <item>The <c>ff</c>
-    ///  is two letters and/or digits that show the red
-    /// component of the color. This is a so-called hexadecimal number, or
-    /// base-16 number. Each digit of this number can range from 0-9 and
-    /// from A-F, with 0 being the lowest digit, and F being the highest
-    /// digit. The highest two-digit value is 00, and the lowest two-digit
-    /// value is FF (256). (The digits A-F may appear in upper or lower
-    /// case.)</item>
-    ///  <item>The <c>80</c>
-    ///  is a base-16 number showing the
-    /// color&#8217;s green component.</item>
-    ///  <item>The <c>cc</c>
-    ///  is a
-    /// base-16 number showing the color&#8217;s blue component.</item>
-    /// </list>
+    /// <para>1. The <c>#</c> identifies this code as a color.</para>
+    /// <para>2. The <c>ff</c> is two letters and/or digits that show the
+    /// red component of the color. This is a so-called hexadecimal number,
+    /// or base-16 number. Each digit of this number can range from 0 to 9
+    /// and from A to F, with 0 being the lowest digit, and F being the
+    /// highest digit. The highest two-digit value is 00, and the lowest
+    /// two-digit value is FF (255). (The digits A-F may appear in
+    /// uppercase or lowercase.)</para>
+    /// <para>3. The <c>80</c> is a base-16 number showing the
+    /// color&#8217;s green component.</para>
+    /// <para>4. The <c>cc</c> is a base-16 number showing the
+    /// color&#8217;s blue component.</para>
     /// <para>The notation may also include an additional base-16 number,
-    /// as in this example: <c>#ac80ccff</c>
-    /// . Here, the last <c>ff</c>
+    /// as in this example: <c>#ac80ccff</c>. Here, the last <c>ff</c>
     /// shows the color's alpha component (see _What is an alpha
     /// component?_, later). Two shortened notations are supported: colors
     /// with only three or four base-16 digits are the same as their
     /// expanded six-digit or eight-digit form, respectively. For example,
-    /// <c>#f8c</c>
-    ///  is the same as <c>#ff88cc</c>
-    ///  ; and <c>#f8ce</c>
-    ///  ,
-    /// <c>#ff88ccee</c>
-    /// .</para>
+    /// <c>#f8c</c> is the same as <c>#ff88cc</c> ; and <c>#f8ce</c>,
+    /// <c>#ff88ccee</c>.</para>
     /// <para>**How do I make HTML colors?** Look at the following table
     /// that shows some of the values possible for the red, green, and blue
     /// components of some colors.</para>
-    /// <code>
-    /// Red.. 00 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 FF
-    /// Green 00 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 FF
-    /// Blue. 00 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 FF</code>
+    /// <para>Red.. 00 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0
+    /// FF</para>
+    /// <para>Green 00 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0
+    /// FF</para>
+    /// <para>Blue. 00 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0
+    /// FF</para>
     /// <para>Now, to make a custom color, you choose one value from the
     /// red row, one value from the green row, and one value from the blue
     /// row. Each value shows the intensity of the "light" that the color
@@ -1054,25 +810,21 @@ namespace PeterO {
     /// gray. This shows that "red light", "green light", and "blue light"
     /// are ideally equally reflected.</para>
     /// <para>After you choose the three values, combine them by writing
-    /// the <c>#</c>
-    ///  , then the red value, then the green value, then the
-    /// blue value. For example, if you choose <c>FF</c>
-    ///  for red, <c>A0</c>
-    /// for green, and <c>00</c>
-    ///  for blue, write the resulting color
-    /// (orange) like this: <c>#FFA000</c>
-    /// .</para>
-    /// <para>**How do I "darken" an HTML color?** To darken a color (make
-    /// a * shade* of it), consult the table shown in the question _How do
-    /// I make HTML colors?_, earlier, and move each component (red, green,
-    /// and blue) the same number of steps to the left. If you can&#8217;t
-    /// move a component that far to the left, that component becomes 00.
-    /// For example, to make a "darker" sky blue, start with 00, FF, and FF
-    /// for red, green, and blue. When we move these components ten steps
-    /// to the left, we get 00, 60, and 60. The final color becomes
-    /// #006060.</para>
+    /// the <c>#</c>, then the red value, then the green value, then the
+    /// blue value. For example, if you choose <c>FF</c> for red, <c>A0</c>
+    /// for green, and <c>00</c> for blue, write the resulting color
+    /// (orange) like this: <c>#FFA000</c>.</para>
+    /// <para>**How do I "darken" an HTML color?** To "darken" a color
+    /// (make a _shade_ of it), consult the table shown in the question
+    /// _How do I make HTML colors?_, earlier, and move each component
+    /// (red, green, and blue) the same number of steps to the left. If you
+    /// can&#8217;t move a component that far to the left, that component
+    /// becomes 00. For example, to make a "darker" sky blue, start with
+    /// 00, FF, and FF for red, green, and blue. When we move these
+    /// components ten steps to the left, we get 00, 60, and 60. The final
+    /// color becomes #006060.</para>
     /// <para>**How do I "lighten" an HTML color?** "Lightening" a color
-    /// (making a *tint* of it) is almost the same as "darkening" a color,
+    /// (making a _tint_ of it) is almost the same as "darkening" a color,
     /// except we move the same number of steps to the right rather than
     /// the left. If you can&#8217;t move a component that far to the
     /// right, that component becomes FF. For example, to make a "lighter"
@@ -1090,77 +842,56 @@ namespace PeterO {
     /// <para>**What is RGB notation?** A color in RGB notation contains
     /// the same information as an HTML color, except that each value is
     /// shown in the familiar base-10 format. For example, the value
-    /// <c>rgb(192, 64, 0)</c>
-    ///  is the same as the HTML color value
-    /// <c>#C04000</c>
-    /// .</para>
+    /// <c>rgb(192, 64, 0)</c> is the same as the HTML color value
+    /// <c>#C04000</c>.</para>
     /// <para>The components of the RGB color (red, green, and blue, in
-    /// that order) can range from <c>0</c>
-    ///  to <c>255</c>
-    ///  , or from
-    /// <c>0%</c>
-    ///  to <c>100%</c>
-    ///  , but mixing ranges is not allowed. For
-    /// example, <c>rgb(192, 64, 0)</c>
-    ///  and <c>rgb(80%, 50%, 0%)</c>
-    ///  are
-    /// allowed, but not <c>rgb(192, 50%, 0%)</c>
-    ///  . The steps for
-    /// "darkening", "lightening", and "desaturating" RGB colors are pretty
-    /// much the same as with HTML colors. Another syntax for RGB colors
+    /// that order) can range from <c>0</c> to <c>255</c>, or from
+    /// <c>0%</c> to <c>100%</c>, but mixing ranges is not allowed. For
+    /// example, <c>rgb(192, 64, 0)</c> and <c>rgb(80%, 50%, 0%)</c> are
+    /// allowed, but not <c>rgb(192, 50%, 0%)</c>. The steps for
+    /// "darkening", "lightening", and "desaturating" RGB colors are
+    /// largely the same as with HTML colors. Another syntax for RGB colors
     /// supports the alpha component (see _What is an alpha component?_,
-    /// later): in the example <c>rgba(192, 64, 0, 0.5)</c>
-    ///  , the
-    /// <c>0.5</c>
-    ///  is the alpha component. This component supports either
+    /// later): in the example <c>rgba(192, 64, 0, 0.5)</c>, the
+    /// <c>0.5</c> is the alpha component. This component supports either
     /// range for RGB colors, either 0-255 or percentages. (Note that the
-    /// example starts with <c>rgba</c>
-    ///  , not just <c>rgb</c>
-    ///  .)</para>
+    /// example starts with <c>rgba</c>, not just <c>rgb</c>.)</para>
     /// <para>**What is HSL notation?** A color in HSL notation is made of
     /// the following three components:</para>
-    /// <list><item>_Hue_ ranges from 0 to 360 degrees. Each angle on the
+    /// <para>1. _Hue_ ranges from 0 to 360 degrees. Each angle on the
     /// color wheel (which looks more like a hexagon than like a circle in
     /// HSL) stands for a different hue: red, yellow, green, cyan
     /// (sky-blue), blue, and magenta correspond roughly to hue 0 (say, 12
-    /// o&#8217;clock), 60, 120, 180, 240, and 300, respectively.</item>
-    /// <item>"Saturation" and "lightness" range from 0% to 100%.
-    /// "Saturation" is the distance of the color from gray (0% means gray;
-    /// 100% means most distant from gray). "Lightness" is roughly the
-    /// amount of black or white mixed with the color (0% means black; 100%
-    /// means white; closer to 0% means closer to black; closer to 100%
-    /// means closer to white).</item>
-    ///  </list>
-    /// <para>**Example:** The value <c>hsl(240, 100%, 50%)</c>
-    ///  has a hue
-    /// of 240 (blue), a "saturation" of 100% (fully saturated), and a
+    /// o&#8217;clock), 60, 120, 180, 240, and 300, respectively.</para>
+    /// <para>2. "Saturation", which ranges from 0% to 100%, is the
+    /// distance of the color from gray (0% means gray; 100% means most
+    /// distant from gray).</para>
+    /// <para>3. "Lightness", which likewise ranges from 0% to 100%, is
+    /// roughly the amount of black or white mixed with the color (0% means
+    /// black; 100% means white; closer to 0% means closer to black; closer
+    /// to 100% means closer to white).</para>
+    /// <para>**Example:** The value <c>hsl(240, 100%, 50%)</c> has a hue
+    /// of 240 (blue), a "saturation" of 100% ("fully saturated"), and a
     /// "lightness" of 50% (as far from "black" as from "white"). It
     /// represents a vivid blue. If we lower "lightness" to 20%, we get a
     /// "darker" blue. If we also change the hue to 0, we get a "dark"
     /// red.</para>
-    /// <para>An alternate syntax for HSL colors supports the alpha
+    /// <para>An alternative syntax for HSL colors supports the alpha
     /// component (see next question): in the example <c>hsla(240, 100%,
-    /// 50%, 80%)</c>
-    ///  , the <c>80%</c>
-    ///  is the alpha component.</para>
+    /// 50%, 80%)</c>, the <c>80%</c> is the alpha component.</para>
     /// <para>**What is an alpha component?** An alpha component shows how
     /// much the color is transparent (see-through) or opaque. The alpha
-    /// component can range from <c>00</c>
-    ///  / <c>0.0</c>
-    ///  , or "fully
-    /// transparent" (completely invisible), to <c>FF</c>
-    ///  / <c>1.0</c>
-    ///  , or
+    /// component can range from <c>00</c> / <c>0.0</c>, or "fully
+    /// transparent" (completely invisible), to <c>FF</c> / <c>1.0</c>, or
     /// "fully opaque" (letting nothing through it). If a color notation
     /// doesn't provide for an alpha component, the color is fully
-    /// opaque.</para>
-    ///  .
-    /// </param>
+    /// opaque.</para></param>
     /// <returns>An array containing four elements, with the red, green,
     /// blue, and alpha components of the same color, each from 0 to 255.
-    /// Returns null if <paramref name='x'/> is null, empty, or has invalid
-    /// syntax.</returns>
-    public static double[] ColorToRgba(string x) {
+    /// Returns null if <paramref name='colorString'/> is null, empty, or
+    /// has invalid syntax.</returns>
+    public static double[] ColorToRgba(string colorString) {
+      string x = colorString;
       if (String.IsNullOrEmpty(x)) {
         return null;
       }
@@ -1380,7 +1111,6 @@ namespace PeterO {
       }
     }
 
-    /// <summary>Not documented yet.</summary>
     private static string valueHexArray = "0123456789abcdef";
 
     /// <summary>Converts an RGBA color to an HTML color, (ex.
