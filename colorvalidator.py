@@ -5,6 +5,7 @@
 
 import re, math
 
+
 def _clamp(a, mn, mx):
     if a < mn:
         return mn
@@ -12,6 +13,7 @@ def _clamp(a, mn, mx):
         return mx
     else:
         return a
+
 
 def hls_to_rgb(hls):
     """Converts Hue/Lightness/Sat colors to Red/Green/Blue colors.
@@ -71,6 +73,7 @@ def hls_to_rgb(hls):
         bl = a
     return [clamp(r, 0, 255), _clamp(g, 0, 255), _clamp(bl, 0, 255)]
 
+
 def color_html_to_rgba(x):
     """Converts HTML colors to Red/Green/Blue colors.
     "color" is an HTML color or color name (ex. #223344, #234, or royalblue).
@@ -121,6 +124,7 @@ def color_html_to_rgba(x):
         arr[sublength * 2 + offset] * 16 + arr[sublength * 2 + offset + 1],
         255,
     ]
+
 
 # Converts a representation of a color to its RGB form.
 #
@@ -292,6 +296,7 @@ def color_to_rgba(colorString):
             return [0, 0, 0, 0]
         return None
 
+
 # Same as color_to_rgba, except the 'rgba' and 'hsla' notation
 # is not allowed and neither are color strings that result in a
 # nonopaque color (color with an alpha component other than 255).
@@ -303,6 +308,7 @@ def color_to_rgb(x):
     if rgba is None or rgba[3] == 0:
         return None
     return array(rgba[0], rgba[1], rgba[2], 255)
+
 
 # Converts an RGBA color to a string, either rgb(...) or rgba(...) as applicable.
 # 'x' is a 3- or 4-item array containing the intensity of red,
@@ -338,6 +344,7 @@ def rgb_to_color(x):
             + ")"
         )
 
+
 def rgb_to_color_display(rgb):
     """Converts an RGBA color to a string, (ex. #002233 or rgba(...) as applicable).
     "rgb" must contain at least 3 elements: the red, green, and blue (each 0-255).
@@ -349,6 +356,7 @@ def rgb_to_color_display(rgb):
         return rgb_to_color_html(rgb)
     else:
         return re.sub("\s+", "", rgb_to_color(rgb))
+
 
 def rgb_to_color_html(r, g=None, b=None):
     """Converts an RGBA color to an HTML color, (ex. #002233).
@@ -367,6 +375,7 @@ def rgb_to_color_html(r, g=None, b=None):
             + format(_clamp(round(b), 0, 255), "02x")
         )
         return ret
+
 
 def __color_to_rgba_setUpNamedColors():
     ncs = (
