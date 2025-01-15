@@ -1,11 +1,11 @@
-# This file is in the public domain. Peter O., 2012. http://peteroupc.github.io
+# Written by Peter O., 2012-2024. http://peteroupc.github.io
 # Any copyright to this work is released to the Public Domain.  In case this is not possible, this work is also licensed under the Unlicense: https://unlicense.org/
 #
 #  This file converts between different representations of HTML and CSS colors.
 
 import re, math
 
-def clamp(a, mn, mx):
+def _clamp(a, mn, mx):
     if a < mn:
         return mn
     elif a > mx:
@@ -21,8 +21,8 @@ def hls_to_rgb(hls):
     hueval = hls[0] * 1.0  # [0-360)
     lum = hls[1] * 1.0  # [0-255]
     sat = hls[2] * 1.0  # [0-255]
-    lum = clamp(lum, 0, 255)
-    sat = clamp(sat, 0, 255)
+    lum = _clamp(lum, 0, 255)
+    sat = _clamp(sat, 0, 255)
     if sat == 0:
         return [lum, lum, lum]
     b = 0
@@ -69,7 +69,7 @@ def hls_to_rgb(hls):
         bl = a + (b - a) * (240 - hue) / 60
     else:
         bl = a
-    return [clamp(r, 0, 255), clamp(g, 0, 255), clamp(bl, 0, 255)]
+    return [clamp(r, 0, 255), _clamp(g, 0, 255), _clamp(bl, 0, 255)]
 
 def color_html_to_rgba(x):
     """Converts HTML colors to Red/Green/Blue colors.
@@ -84,11 +84,12 @@ def color_html_to_rgba(x):
     if "grey" in x:
         x = re.sub("grey", "gray", x)
         # support "grey" variants
-    if x in __color_to_rgba_namedColors:
-        return color_to_rgba(__color_to_rgba_namedColors[x])
     if x[0] == "#":
         i = 1
     else:
+        colorhash = __color_to_rgba_setUpNamedColors()
+        if x in colorhash:
+            return color_to_rgba(colorhash[x])
         i = 0
     while i < len(x):
         c = ord(x[i])
@@ -201,6 +202,7 @@ def color_html_to_rgba(x):
 # Invalid values of 'colorString' result in a return value of None.
 #
 # Returns a 4-element array containing the red, green, blue, and alpha (each 0-255).
+# The values in the array can be nonintegers.
 def color_to_rgba(colorString):
     x = colorString
     e = []
@@ -215,38 +217,38 @@ def color_to_rgba(colorString):
         r"^rgb\(\s*([\+\-]?\d+)\s*,\s*([\+\-]?\d+)\s*,\s*([\+\-]?\d+)\s*\)$", x
     )
     if m:
-        r1 = clamp(int(m.group(1)), 0, 255)
-        r2 = clamp(int(m.group(2)), 0, 255)
-        r3 = clamp(int(m.group(3)), 0, 255)
+        r1 = _clamp(int(m.group(1)), 0, 255)
+        r2 = _clamp(int(m.group(2)), 0, 255)
+        r3 = _clamp(int(m.group(3)), 0, 255)
         return [r1, r2, r3, 255]
     m = re.match(
         r"^rgb\(\s*([\+\-]?\d+(?:\.\d+)?%)\s*,\s*([\+\-]?\d+(?:\.\d+)?%)\s*,\s*([\+\-]?\d+(?:\.\d+)?%)\s*\)$",
         x,
     )
     if m:
-        r1 = clamp(float(m.group(1)), 0, 100) * 255.0 / 100.0
-        r2 = clamp(float(m.group(2)), 0, 100) * 255.0 / 100.0
-        r3 = clamp(float(m.group(3)), 0, 100) * 255.0 / 100.0
+        r1 = _clamp(float(m.group(1)), 0, 100) * 255.0 / 100.0
+        r2 = _clamp(float(m.group(2)), 0, 100) * 255.0 / 100.0
+        r3 = _clamp(float(m.group(3)), 0, 100) * 255.0 / 100.0
         return [r1, r2, r3, 255]
     m = re.match(
         r"^rgba\(\s*([\+\-]?\d+)\s*,\s*([\+\-]?\d+)\s*,\s*([\+\-]?\d+)\s*,\s*([\+\-]?\d+(?:\.\d+)?)\s*\)$",
         x,
     )
     if m:
-        r1 = clamp(int(m.group(1)), 0, 255)
-        r2 = clamp(int(m.group(2)), 0, 255)
-        r3 = clamp(int(m.group(3)), 0, 255)
-        r4 = clamp(float(m.group(4)), 0, 1.0) * 255
+        r1 = _clamp(int(m.group(1)), 0, 255)
+        r2 = _clamp(int(m.group(2)), 0, 255)
+        r3 = _clamp(int(m.group(3)), 0, 255)
+        r4 = _clamp(float(m.group(4)), 0, 1.0) * 255
         return [r1, r2, r3, r4]
     m = re.match(
         r"^rgba\(\s*([\+\-]?\d+(?:\.\d+)?%)\s*,\s*([\+\-]?\d+(?:\.\d+)?%)\s*,\s*([\+\-]?\d+(?:\.\d+)?%)\s*,\s*([\+\-]?\d+(?:\.\d+)?)\s*\)$",
         x,
     )
     if m:
-        r1 = clamp(float(m.group(1)), 0, 100) * 255.0 / 100.0
-        r2 = clamp(float(m.group(2)), 0, 100) * 255.0 / 100.0
-        r3 = clamp(float(m.group(3)), 0, 100) * 255.0 / 100.0
-        r4 = clamp(float(m.group(4)), 0, 1.0) * 255
+        r1 = _clamp(float(m.group(1)), 0, 100) * 255.0 / 100.0
+        r2 = _clamp(float(m.group(2)), 0, 100) * 255.0 / 100.0
+        r3 = _clamp(float(m.group(3)), 0, 100) * 255.0 / 100.0
+        r4 = _clamp(float(m.group(4)), 0, 1.0) * 255
         return [r1, r2, r3, r4]
     m = re.match(r"^#([A-Fa-f0-9]{1})([A-Fa-f0-9]{1})([A-Fa-f0-9]{1})$", x)
     if m:
@@ -262,8 +264,8 @@ def color_to_rgba(colorString):
         r1 = float(m.group(1))
         if r1 < 0 or r1 >= 360:
             r1 = ((r1 % 360) + 360) % 360
-        r2 = clamp(float(m.group(3)), 0, 100) * 255.0 / 100.0
-        r3 = clamp(float(m.group(2)), 0, 100) * 255.0 / 100.0
+        r2 = _clamp(float(m.group(3)), 0, 100) * 255.0 / 100.0
+        r3 = _clamp(float(m.group(2)), 0, 100) * 255.0 / 100.0
         rgb = hls_to_rgb([r1, r2, r3])
         return [rgb[0], rgb[1], rgb[2], 255]
     m = re.match(
@@ -274,17 +276,18 @@ def color_to_rgba(colorString):
         r1 = float(m.group(1))
         if r1 < 0 or r1 >= 360:
             r1 = ((r1 % 360) + 360) % 360
-        r2 = clamp(float(m.group(3)), 0, 100) * 255.0 / 100.0
-        r3 = clamp(float(m.group(2)), 0, 100) * 255.0 / 100.0
-        r4 = clamp(float(m.group(4)), 0, 1.0) * 255
+        r2 = _clamp(float(m.group(3)), 0, 100) * 255.0 / 100.0
+        r3 = _clamp(float(m.group(2)), 0, 100) * 255.0 / 100.0
+        r4 = _clamp(float(m.group(4)), 0, 1.0) * 255
         rgb = hls_to_rgb([r1, r2, r3])
         return [rgb[0], rgb[1], rgb[2], r4]
     else:
         x = x.lower()
         if "grey" in x:
             x = re.sub("grey", "gray", x)  # support "grey" variants
-        if x in __color_to_rgba_namedColors:
-            return color_to_rgba(__color_to_rgba_namedColors[x])
+        colorhash = __color_to_rgba_setUpNamedColors()
+        if x in colorhash:
+            return color_to_rgba(colorhash[x])
         if x == "transparent":
             return [0, 0, 0, 0]
         return None
@@ -353,15 +356,15 @@ def rgb_to_color_html(r, g=None, b=None):
     """
     if r != None and g == None and b == None:
         return "#" + (
-            format(clamp(round(r[0]), 0, 255), "02x")
-            + format(clamp(round(r[1]), 0, 255), "02x")
-            + format(clamp(round(r[2]), 0, 255), "02x")
+            format(_clamp(round(r[0]), 0, 255), "02x")
+            + format(_clamp(round(r[1]), 0, 255), "02x")
+            + format(_clamp(round(r[2]), 0, 255), "02x")
         )
     else:
         return "#" + (
-            format(clamp(round(r), 0, 255), "02x")
-            + format(clamp(round(g), 0, 255), "02x")
-            + format(clamp(round(b), 0, 255), "02x")
+            format(_clamp(round(r), 0, 255), "02x")
+            + format(_clamp(round(g), 0, 255), "02x")
+            + format(_clamp(round(b), 0, 255), "02x")
         )
         return ret
 
@@ -391,5 +394,3 @@ def __color_to_rgba_setUpNamedColors():
         __color_to_rgba_namedColors[nc[i]] = "#" + nc[i + 1]
         i += 2
     return __color_to_rgba_namedColors
-
-__color_to_rgba_namedColors = __color_to_rgba_setUpNamedColors()
