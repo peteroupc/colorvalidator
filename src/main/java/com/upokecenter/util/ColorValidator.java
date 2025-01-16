@@ -776,9 +776,9 @@ private ColorValidator() {
      * ; and {@code #f8ce}, {@code #ff88ccee}.</p> <p>**How do I make HTML
      * colors?** Look at the following table that shows some of the values possible
      * for the red, green, and blue components of some colors.</p> <p>Red.. 00 10
-     * 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 FF</p> <p>Green 00 10 20 30 40 50
-     * 60 70 80 90 A0 B0 C0 D0 E0 F0 FF</p> <p>Blue. 00 10 20 30 40 50 60 70 80 90
-     * A0 B0 C0 D0 E0 F0 FF</p> <p>Now, to make a custom color, you choose one
+     * 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 FF.</p> <p>Green 00 10 20 30 40 50
+     * 60 70 80 90 A0 B0 C0 D0 E0 F0 FF.</p> <p>Blue. 00 10 20 30 40 50 60 70 80 90
+     * A0 B0 C0 D0 E0 F0 FF.</p> <p>Now, to make a custom color, you choose one
      * value from the red row, one value from the green row, and one value from the
      * blue row. Each value shows the intensity of the "light" that the color
      * ideally reflects. For example, a red value of 00 means that, ideally, "red

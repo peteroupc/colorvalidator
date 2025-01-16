@@ -794,11 +794,11 @@ namespace PeterO {
     /// that shows some of the values possible for the red, green, and blue
     /// components of some colors.</para>
     /// <para>Red.. 00 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0
-    /// FF</para>
+    /// FF.</para>
     /// <para>Green 00 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0
-    /// FF</para>
+    /// FF.</para>
     /// <para>Blue. 00 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0
-    /// FF</para>
+    /// FF.</para>
     /// <para>Now, to make a custom color, you choose one value from the
     /// red row, one value from the green row, and one value from the blue
     /// row. Each value shows the intensity of the "light" that the color
