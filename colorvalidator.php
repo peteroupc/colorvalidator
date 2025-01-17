@@ -43,11 +43,11 @@ A [second list](https://peteroupc.github.io/html3dutil/colornames.svg) shows the
 
 2. The `ff` is two letters and/or digits that show the red component of the color. This is a so-called hexadecimal number, or base-16 number. Each digit of this number can range from 0 to 9 and from A to F, with 0 being the lowest digit, and F being the highest digit. The highest two-digit value is 00, and the lowest two-digit value is FF (255). The digits A-F may appear in uppercase or lowercase.
 
-3. The `80`  is a base-16 number showing the color&#8217;s green component.
+3. The `80` is a base-16 number showing the color&#8217;s green component.
 
 4. The `cc` is a base-16 number showing the color&#8217;s blue component.
 
-The notation may also include an additional base-16 number, as in this example: `#ac80ccff`. Here, the last `ff` shows the color's alpha component (see _What is an alpha component?_, later). Two shortened notations are supported: colors with only three or four base-16 digits are the same as their expanded six-digit or eight-digit form, respectively. For example, `#f8c`  is the same as `#ff88cc`  ; and `#f8ce` , `#ff88ccee`.
+The notation may also include an additional base-16 number, as in this example: `#ac80ccff`. Here, the last `ff` shows the color's alpha component (see _What is an alpha component?_, later). Two shortened notations are supported: colors with only three or four base-16 digits are the same as their expanded six-digit or eight-digit form, respectively. For example, `#f8c`  is the same as `#ff88cc`; and `#f8ce`, `#ff88ccee`.
 
 **How do I make HTML colors?** Look at the following table that shows some of the values possible for the red, green, and blue components of some colors.
 
@@ -69,7 +69,7 @@ After you choose the three values, combine them by writing the `#` , then the re
 
 **How do I "desaturate" an HTML color?** To make a "desaturated" ("washed-out") version (or *tone*) of a color, move the color components closer to each other, in about the same proportion. (If they&#8217;re exactly the same, the result is a shade of gray.) For example, to make a "washed-out" red, start with FF, 00, and 00 for red, green, and blue. When we move these components closer to each other, we get C0, 40, and 40. The final color becomes #C04040.
 
-**What is RGB notation?** A color in RGB notation contains the same information as an HTML color, except that each value is shown in the familiar base-10 format. For example, the value `rgb(192, 64, 0)`  is the same as the HTML color value `#C04000`.
+**What is RGB notation?** A color in RGB notation contains the same information as an HTML color, except that each value is shown in the familiar base-10 format. For example, the value `rgb(192, 64, 0)` is the same as the HTML color value `#C04000`.
 
 The components of the RGB color (red, green, and blue, in that order) can range from `0`  to `255` , or from `0%` to `100%`, but mixing ranges is not allowed. For example, `rgb(192, 64, 0)` and `rgb(80%, 50%, 0%)` are allowed, but not `rgb(192, 50%, 0%)`. The steps for "darkening", "lightening", and "desaturating" RGB colors are largely the same as with HTML colors. Another syntax for RGB colors supports the alpha component (see _What is an alpha component?_, later): in the example `rgba(192, 64, 0, 0.5)` , the `0.5` is the alpha component. This component supports either range for RGB colors, either 0-255 or percentages. (Note that the example starts with `rgba`, not just `rgb`.)
 

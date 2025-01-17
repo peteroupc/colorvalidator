@@ -2,6 +2,7 @@
 
   <PropertyGroup>
 
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>PeterO.ColorValidator</PackageId>
     <Title>ColorValidator Library</Title>

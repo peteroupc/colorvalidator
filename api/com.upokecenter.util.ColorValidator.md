@@ -27,7 +27,9 @@ Color validator.
 ## Method Details
 
 ### HlsToRgb
+
     public static double[] HlsToRgb(double hueval, double lum, double sat)
+
 Converts a color in the HLS color space to red/green/blue. Hue can range
  from 0 to 360, and lightness and saturation can range from 0 to 255. If
  lightness and saturation are out of range, those values are clamped to fit
@@ -52,7 +54,9 @@ Converts a color in the HLS color space to red/green/blue. Hue can range
 * <code>NullPointerException</code> - The parameter "hls" is null.
 
 ### ColorToRgba
+
     public static double[] ColorToRgba(String colorString)
+
 Converts an HTML or CSS color string to a 4-element RGB array.
 
 **Parameters:**
@@ -78,7 +82,7 @@ Converts an HTML or CSS color string to a 4-element RGB array.
  particular list was historically called the "Web safe" colors or the "safety
  palette", and consists of 216 colors that are uniformly spaced in the
  red–green–blue color cube. Robert Hess's article "[The Safety
-   Palette](https://learn.microsoft.com/en-us/previous-versions/ms976419(v=msdn.10))",
+ Palette](https://learn.microsoft.com/en-us/previous-versions/ms976419(v=msdn.10))",
  1996, described the advantage that images that use only colors in this
  palette won't dither when displayed by Web browsers on displays that can
  show up to 256 colors at once. (See also
@@ -193,7 +197,9 @@ Converts an HTML or CSS color string to a 4-element RGB array.
  <code>colorString</code> is null, empty, or has invalid syntax.
 
 ### RgbToColor
+
     public static String RgbToColor(double[] arrayRGB)
+
 Converts an RGBA color to a string, either rgb(...) or rgba(...) as
  applicable.
 
@@ -211,7 +217,9 @@ Converts an RGBA color to a string, either rgb(...) or rgba(...) as
 * <code>NullPointerException</code> - The parameter <code>arrayRGB</code> is null.
 
 ### RgbToColorDisplay
+
     public static String RgbToColorDisplay(double[] rgb)
+
 Converts a red–green–blue-alpha color to a string in CSS format.
 
 **Parameters:**
@@ -235,7 +243,9 @@ Converts a red–green–blue-alpha color to a string in CSS format.
 * <code>NullPointerException</code> - The parameter <code>rgb</code> is null.
 
 ### RgbToColorHtml
+
     public static String RgbToColorHtml(double[] rgb)
+
 Converts an RGBA color to an HTML color, (ex. #002233)."rgb" must contain at
  least 3 elements: the red, green, and blue (each 0-255).
 
