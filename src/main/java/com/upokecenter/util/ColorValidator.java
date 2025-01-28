@@ -680,7 +680,7 @@ private ColorValidator() {
         return false;
       }
       int slen = str.length();
-      int[] hexes = new int[8];
+      int hexes = new int[8];
       int index = 0;
       int hexIndex = 0;
       if (str.charAt(0) == '#') {
@@ -697,23 +697,23 @@ private ColorValidator() {
         if (hex < 0) {
           return false;
         }
-        hexes[hexIndex++] = hex;
+        hexes.set(hexIndex++, hex);
       }
       if (slen == 4) {
-        hexval[3] = (double)(hexes[3] | (hexes[3] << 4));
+        hexval[3] = (double)(hexes.get(3) | (hexes.get(3) << 4));
       } else if (slen == 8) {
-        hexval[3] = (double)(hexes[7] | (hexes[6] << 4));
+        hexval[3] = (double)(hexes.get(7) | (hexes.get(6) << 4));
       } else {
         hexval[3] = 255.0;
       }
       if (slen == 3 || slen == 4) {
-        hexval[0] = (double)(hexes[0] | (hexes[0] << 4));
-        hexval[1] = (double)(hexes[1] | (hexes[1] << 4));
-        hexval[2] = (double)(hexes[2] | (hexes[2] << 4));
+        hexval[0] = (double)(hexes.get(0) | (hexes.get(0) << 4));
+        hexval[1] = (double)(hexes.get(1) | (hexes.get(1) << 4));
+        hexval[2] = (double)(hexes.get(2) | (hexes.get(2) << 4));
       } else if (slen >= 6) {
-        hexval[0] = (double)(hexes[1] | (hexes[0] << 4));
-        hexval[1] = (double)(hexes[3] | (hexes[2] << 4));
-        hexval[2] = (double)(hexes[5] | (hexes[4] << 4));
+        hexval[0] = (double)(hexes.get(1) | (hexes.get(0) << 4));
+        hexval[1] = (double)(hexes.get(3) | (hexes.get(2) << 4));
+        hexval[2] = (double)(hexes.get(5) | (hexes.get(4) << 4));
       }
       return true;
     }
@@ -865,7 +865,7 @@ private ColorValidator() {
       if (((x) == null || (x).length() == 0)) {
         return null;
       }
-      double[] ret = new double[4];
+      double ret = new double[4];
       if (x.charAt(0) == '#') {
         if (RgbHex(x, ret, true)) {
           return ret;
